@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -40,10 +39,9 @@ public class CompetitionPlanner extends Actor {
 
 	//Relationship
 
-	private Collection<Competition>	competitions;
+	private Collection<Competition> competitions;
 
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "competitionPlanner")
 	public Collection<Competition> getCompetitions() {

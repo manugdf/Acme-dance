@@ -6,7 +6,6 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -74,7 +73,6 @@ public class Event extends DomainEntity {
 	private DanceSchool			danceSchool;
 
 
-	@ElementCollection
 	@NotNull
 	@ManyToMany(mappedBy = "events")
 	public Collection<Alumn> getAlumns() {

@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -62,7 +61,6 @@ public abstract class Actor extends DomainEntity {
 	private Collection<Message>	messagesReceived;
 
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "sender")
 	public Collection<Message> getMessagesSended() {
@@ -72,7 +70,6 @@ public abstract class Actor extends DomainEntity {
 		this.messagesSended = messagesSended;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "receiver")
 	public Collection<Message> getMessagesReceived() {

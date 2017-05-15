@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -87,7 +86,6 @@ public class DanceClass extends DomainEntity {
 		this.danceSchool = danceSchool;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "danceClass")
 	public Collection<Schedule> getSchedules() {
@@ -97,7 +95,6 @@ public class DanceClass extends DomainEntity {
 		this.schedules = schedules;
 	}
 
-	@ElementCollection
 	@NotNull
 	@ManyToMany(mappedBy = "danceClasses")
 	public Collection<Teacher> getTeachers() {
@@ -107,7 +104,6 @@ public class DanceClass extends DomainEntity {
 		this.teachers = teachers;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "danceClass")
 	public Collection<Material> getMaterials() {
@@ -117,7 +113,6 @@ public class DanceClass extends DomainEntity {
 		this.materials = materials;
 	}
 
-	@ElementCollection
 	@NotNull
 	@ManyToMany(mappedBy = "danceClasses")
 	public Collection<Alumn> getAlumns() {
@@ -127,7 +122,6 @@ public class DanceClass extends DomainEntity {
 		this.alumns = alumns;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "danceClass")
 	public Collection<DanceTest> getDanceTests() {
