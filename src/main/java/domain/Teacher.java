@@ -18,6 +18,7 @@ public class Teacher extends Actor {
 
 	private double	averageScore;
 	private String	picture;
+	//viva
 	private String	presentationVideo;
 
 
