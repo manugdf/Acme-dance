@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -49,7 +48,6 @@ public class Alumn extends Actor {
 	private Collection<DanceClass>			danceClasses;
 
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "invitationSender")
 	public Collection<PartnerInvitation> getPartnerInvitationSends() {
@@ -59,7 +57,6 @@ public class Alumn extends Actor {
 		this.partnerInvitationSends = partnerInvitationSends;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "invitationReceiver")
 	public Collection<PartnerInvitation> getPartnerInvitationReceives() {
@@ -69,7 +66,6 @@ public class Alumn extends Actor {
 		this.partnerInvitationReceives = partnerInvitationReceives;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "alumn")
 	public Collection<PartnerRequest> getPartnerRequests() {
@@ -79,7 +75,6 @@ public class Alumn extends Actor {
 		this.partnerRequests = partnerRequests;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "alumn")
 	public Collection<Review> getReviews() {
@@ -89,7 +84,6 @@ public class Alumn extends Actor {
 		this.reviews = reviews;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "alumn")
 	public Collection<DanceCertificate> getDanceCertificates() {
@@ -99,7 +93,6 @@ public class Alumn extends Actor {
 		this.danceCertificates = danceCertificates;
 	}
 
-	@ElementCollection
 	@NotNull
 	@ManyToMany(mappedBy = "alumns")
 	public Collection<Event> getEvents() {
@@ -109,7 +102,6 @@ public class Alumn extends Actor {
 		this.events = events;
 	}
 
-	@ElementCollection
 	@NotNull
 	@ManyToMany(mappedBy = "alumns")
 	public Collection<DanceTest> getDanceTests() {
@@ -119,7 +111,6 @@ public class Alumn extends Actor {
 		this.danceTests = danceTests;
 	}
 
-	@ElementCollection
 	@NotNull
 	@ManyToMany(mappedBy = "alumns")
 	public Collection<DanceClass> getDanceClasses() {

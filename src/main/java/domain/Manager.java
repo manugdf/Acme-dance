@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
@@ -42,7 +41,6 @@ public class Manager extends Actor {
 	private Collection<Banner>		banner;
 
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "manager")
 	public Collection<DanceSchool> getDanceSchools() {
@@ -52,7 +50,6 @@ public class Manager extends Actor {
 		this.danceSchools = danceSchools;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "manager")
 	public Collection<Banner> getBanner() {

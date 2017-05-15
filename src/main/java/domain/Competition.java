@@ -6,7 +6,6 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -96,7 +95,6 @@ public class Competition extends DomainEntity {
 	}
 
 	@NotNull
-	@ElementCollection
 	@ManyToMany(mappedBy = "competitions")
 	public Collection<DanceSchool> getDanceSchools() {
 		return this.danceSchools;
@@ -105,7 +103,6 @@ public class Competition extends DomainEntity {
 		this.danceSchools = danceSchools;
 	}
 
-	@ElementCollection
 	@NotNull
 	@OneToMany(mappedBy = "competition")
 	public Collection<Award> getAwards() {
