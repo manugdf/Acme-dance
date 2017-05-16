@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
- * converters.xml
- *
- * Copyright (C) 2017 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- -->
+<!-- * converters.xml * * Copyright (C) 2017 Universidad de Sevilla * * The 
+	use of this project is hereby constrained to the conditions of the * TDG 
+	Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
@@ -18,10 +12,53 @@
 	">
 
 	<util:list id="converters">
-		<!-- 
-			Add your own converters using entries of the following form: 
-			<bean class="converters.Class1ToClass2" /> 
-		-->
+
+		<!-- Class To String Converters -->
+
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.AdminToStringConverter" />
+		<bean class="converters.AlumnToStringConverter" />
+		<bean class="converters.AwardToStringConverter" />
+		<bean class="converters.BannerToStringConverter" />
+		<bean class="converters.CensoredWordsToStringConverter" />
+		<bean class="converters.CompetitionPlannerToStringConverter" />
+		<bean class="converters.CompetitionToStringConverter" />
+		<bean class="converters.DanceCertificateToStringConverter" />
+		<bean class="converters.DanceClassToStringConverter" />
+		<bean class="converters.DanceSchoolToStringConverter" />
+		<bean class="converters.DanceTestToStringConverter" />
+		<bean class="converters.EventToStringConverter" />
+		<bean class="converters.ManagerToStringConverter" />
+		<bean class="converters.MaterialToStringConverter" />
+		<bean class="converters.MessageToStringConverter" />
+		<bean class="converters.PatnerInvitationToStringConverter" />
+		<bean class="converters.PatnerRequestToStringConverter" />
+		<bean class="converters.ScheduleToStringConverter" />
+		<bean class="converters.TeacherToStringConverter" />
+
+		<!-- String To Class Converters -->
+
+		<bean class="converters.StringToActorConverter" />
+		<bean class="converters.StringToAdminConverter" />
+		<bean class="converters.StringToAlumnConverter" />
+		<bean class="converters.StringToAwardConverter" />
+		<bean class="converters.StringToBannerConverter" />
+		<bean class="converters.StringToCensoredWordsConverter" />
+		<bean class="converters.StringToCompetitionPlannerConverter" />
+		<bean class="converters.StringToCompetitionConverter" />
+		<bean class="converters.StringToDanceCertificateConverter" />
+		<bean class="converters.StringToDanceClassConverter" />
+		<bean class="converters.StringToDanceSchoolConverter" />
+		<bean class="converters.StringToDanceTestConverter" />
+		<bean class="converters.StringToEventConverter" />
+		<bean class="converters.StringToManagerConverter" />
+		<bean class="converters.StringToMaterialConverter" />
+		<bean class="converters.StringToMessageConverter" />
+		<bean class="converters.StringToPatnerInvitationConverter" />
+		<bean class="converters.StringToPatnerRequestConverter" />
+		<bean class="converters.StringToScheduleConverter" />
+		<bean class="converters.StringToTeacherConverter" />
+
 	</util:list>
-	
+
 </beans>
