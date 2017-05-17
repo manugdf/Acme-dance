@@ -49,7 +49,7 @@ public class Teacher extends Actor {
 	//Relationship
 
 	private Collection<Review>				reviews;
-	private Collection<DanceCertificate>	danceCertificate;
+	private Collection<DanceCertificate>	danceCertificates;
 	private Collection<DanceClass>			danceClasses;
 	private Collection<Material>			materials;
 
@@ -65,11 +65,11 @@ public class Teacher extends Actor {
 
 	@NotNull
 	@OneToMany(mappedBy = "teacher")
-	public Collection<DanceCertificate> getDanceCertificate() {
-		return this.danceCertificate;
+	public Collection<DanceCertificate> getDanceCertificates() {
+		return this.danceCertificates;
 	}
-	public void setDanceCertificate(final Collection<DanceCertificate> danceCertificate) {
-		this.danceCertificate = danceCertificate;
+	public void setDanceCertificates(final Collection<DanceCertificate> danceCertificates) {
+		this.danceCertificates = danceCertificates;
 	}
 
 	@NotNull

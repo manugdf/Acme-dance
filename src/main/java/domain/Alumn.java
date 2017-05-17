@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -124,7 +123,6 @@ public class Alumn extends Actor {
 
 	@NotNull
 	@Valid
-	@ElementCollection
 	@OneToMany(mappedBy = "alumn")
 	public Collection<Payment> getPayments() {
 		return this.payments;

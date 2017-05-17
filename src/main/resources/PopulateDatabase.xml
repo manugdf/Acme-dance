@@ -25,8 +25,8 @@
 	</bean>
 
 	<bean id="userAccount2" class="security.UserAccount">
-		<property name="username" value="customer" />
-		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
+		<property name="username" value="alumn1" />
+		<property name="password" value="ef616bc25965a2fa55e9019bef0aca76" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -36,8 +36,552 @@
 		</property>
 	</bean>
 
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="alumn2" />
+		<property name="password" value="cd5e41cdddec23756b0260df7018bb8e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ALUMN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="alumn3" />
+		<property name="password" value="dd0d34c085d16dc304db3b335763dca1" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ALUMN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
-	<!-- Other domain beans come here -->
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="manager1" />
+		<property name="password" value="c240642ddef994358c96da82c0361a58" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="MANAGER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="manager2" />
+		<property name="password" value="8df5127cd164b5bc2d2b78410a7eea0c" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="MANAGER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="manager3" />
+		<property name="password" value="2d3a5db4a2a9717b43698520a8de57d0" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="MANAGER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="planner1" />
+		<property name="password" value="3065cebdd83ecb61fbd3f5535ac244e6" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPETITIONPLANNER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="planner2" />
+		<property name="password" value="c028b049440d9e1713047725fb761395" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPETITIONPLANNER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="planner3" />
+		<property name="password" value="29abf6c9c3dff77df69890fd5237bb24" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPETITIONPLANNER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="teacher1" />
+		<property name="password" value="41c8949aa55b8cb5dbec662f34b62df3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TEACHER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount12" class="security.UserAccount">
+		<property name="username" value="teacher2" />
+		<property name="password" value="ccffb0bb993eeb79059b31e1611ec353" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TEACHER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount13" class="security.UserAccount">
+		<property name="username" value="teacher3" />
+		<property name="password" value="a1640a634b148f4eae2df8872c81aeff" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="TEACHER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!--Censored Words -->
+
+	<bean id="censoredWords" class="domain.CensoredWords">
+		<property name="words">
+			<list>
+			</list>
+		</property>
+
+	</bean>
+
+	<!--Alumns -->
+
+	<bean id="alumn1" class="domain.Alumn">
+		<property name="UserAccount" ref="userAccount2" />
+		<property name="name" value="Julian" />
+		<property name="surname" value="Lopez" />
+		<property name="phone" value="650180424" />
+		<property name="email" value="alumn1@dance.com" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="fee" value="0.0" />
+		<property name="danceTests">
+			<list></list>
+		</property>
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="danceCertificates">
+			<list></list>
+		</property>
+		<property name="events">
+			<list></list>
+		</property>
+		<property name="payments">
+			<list></list>
+		</property>
+		<property name="reviews">
+			<list></list>
+		</property>
+		<property name="partnerRequests">
+			<list></list>
+		</property>
+		<property name="partnerInvitationReceives">
+			<list></list>
+		</property>
+		<property name="partnerInvitationSends">
+			<list></list>
+		</property>
+		<property name="creditCard">
+			<bean class="domain.CreditCard">
+				<property name="holderName" value="Cordelia Amaya Fernández" />
+				<property name="brandName" value="VISA" />
+				<property name="number" value="4958903707661558" />
+				<property name="expirationMonth" value="10" />
+				<property name="expirationYear" value="2020" />
+				<property name="cvvCode" value="982" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="alumn2" class="domain.Alumn">
+		<property name="UserAccount" ref="userAccount3" />
+		<property name="name" value="Manu" />
+		<property name="surname" value="Gil" />
+		<property name="phone" value="620280423" />
+		<property name="email" value="alumn2@dance.com" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="fee" value="1.0" />
+		<property name="danceTests">
+			<list></list>
+		</property>
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="danceCertificates">
+			<list></list>
+		</property>
+		<property name="events">
+			<list></list>
+		</property>
+		<property name="payments">
+			<list></list>
+		</property>
+		<property name="reviews">
+			<list></list>
+		</property>
+		<property name="partnerRequests">
+			<list></list>
+		</property>
+		<property name="partnerInvitationReceives">
+			<list></list>
+		</property>
+		<property name="partnerInvitationSends">
+			<list></list>
+		</property>
+		<property name="creditCard">
+			<bean class="domain.CreditCard">
+				<property name="holderName" value="Cordelia Amaya Fernández" />
+				<property name="brandName" value="VISA" />
+				<property name="number" value="4958903707661558" />
+				<property name="expirationMonth" value="11" />
+				<property name="expirationYear" value="2021" />
+				<property name="cvvCode" value="932" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="alumn3" class="domain.Alumn">
+		<property name="UserAccount" ref="userAccount4" />
+		<property name="name" value="Pau" />
+		<property name="surname" value="Boixader" />
+		<property name="phone" value="640484423" />
+		<property name="email" value="alumn3@dance.com" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="fee" value="4.0" />
+		<property name="danceTests">
+			<list></list>
+		</property>
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="danceCertificates">
+			<list></list>
+		</property>
+		<property name="events">
+			<list></list>
+		</property>
+		<property name="payments">
+			<list></list>
+		</property>
+		<property name="reviews">
+			<list></list>
+		</property>
+		<property name="partnerRequests">
+			<list></list>
+		</property>
+		<property name="partnerInvitationReceives">
+			<list></list>
+		</property>
+		<property name="partnerInvitationSends">
+			<list></list>
+		</property>
+		<property name="creditCard">
+			<bean class="domain.CreditCard">
+				<property name="holderName" value="Cordelia Amaya Fernández" />
+				<property name="brandName" value="VISA" />
+				<property name="number" value="4958903707661558" />
+				<property name="expirationMonth" value="06" />
+				<property name="expirationYear" value="2022" />
+				<property name="cvvCode" value="332" />
+			</bean>
+		</property>
+	</bean>
+
+	<!--Manager -->
+
+	<bean id="manager1" class="domain.Manager">
+		<property name="UserAccount" ref="userAccount5" />
+		<property name="name" value="Jesus" />
+		<property name="surname" value="Martos" />
+		<property name="phone" value="630434323" />
+		<property name="email" value="manager1@dance.com" />
+		<property name="fee" value="5.0" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="danceSchools">
+			<list></list>
+		</property>
+		<property name="banner">
+			<list></list>
+		</property>
+		<property name="creditCard">
+			<bean class="domain.CreditCard">
+				<property name="holderName" value="Cordelia Amaya Fernández" />
+				<property name="brandName" value="VISA" />
+				<property name="number" value="4958903707661558" />
+				<property name="expirationMonth" value="06" />
+				<property name="expirationYear" value="2022" />
+				<property name="cvvCode" value="332" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="manager2" class="domain.Manager">
+		<property name="UserAccount" ref="userAccount6" />
+		<property name="name" value="Jose" />
+		<property name="surname" value="Izquierdo" />
+		<property name="phone" value="611431321" />
+		<property name="email" value="manager2@dance.com" />
+		<property name="fee" value="5.3" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="danceSchools">
+			<list></list>
+		</property>
+		<property name="banner">
+			<list></list>
+		</property>
+		<property name="creditCard">
+			<bean class="domain.CreditCard">
+				<property name="holderName" value="Cordelia Amaya Fernández" />
+				<property name="brandName" value="VISA" />
+				<property name="number" value="4958903707661558" />
+				<property name="expirationMonth" value="05" />
+				<property name="expirationYear" value="2020" />
+				<property name="cvvCode" value="432" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="manager3" class="domain.Manager">
+		<property name="UserAccount" ref="userAccount7" />
+		<property name="name" value="Alejandro" />
+		<property name="surname" value="Ramirez" />
+		<property name="phone" value="635435325" />
+		<property name="email" value="manager3@dance.com" />
+		<property name="fee" value="5.333" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="danceSchools">
+			<list></list>
+		</property>
+		<property name="banner">
+			<list></list>
+		</property>
+		<property name="creditCard">
+			<bean class="domain.CreditCard">
+				<property name="holderName" value="Cordelia Amaya Fernández" />
+				<property name="brandName" value="VISA" />
+				<property name="number" value="4958903707661558" />
+				<property name="expirationMonth" value="03" />
+				<property name="expirationYear" value="2023" />
+				<property name="cvvCode" value="333" />
+			</bean>
+		</property>
+	</bean>
+
+	<!--Competition Planner -->
+
+	<bean id="planner1" class="domain.CompetitionPlanner">
+		<property name="UserAccount" ref="userAccount8" />
+		<property name="name" value="Sara" />
+		<property name="surname" value="Perez" />
+		<property name="phone" value="631415125" />
+		<property name="email" value="planner1@dance.com" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="competitions">
+			<list></list>
+		</property>
+		<property name="picture" value="http://www.image.com/index.png" />
+		<property name="companyName" value="Acme-Pub" />
+	</bean>
+
+	<bean id="planner2" class="domain.CompetitionPlanner">
+		<property name="UserAccount" ref="userAccount9" />
+		<property name="name" value="Carmen" />
+		<property name="surname" value="Gonzalez" />
+		<property name="phone" value="638485828" />
+		<property name="email" value="planner2@dance.com" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="competitions">
+			<list></list>
+		</property>
+		<property name="picture" value="http://www.image.com/index.png" />
+		<property name="companyName" value="Acme-Pizza" />
+	</bean>
+
+	<bean id="planner3" class="domain.CompetitionPlanner">
+		<property name="UserAccount" ref="userAccount10" />
+		<property name="name" value="Elena" />
+		<property name="surname" value="Blanco" />
+		<property name="phone" value="632485228" />
+		<property name="email" value="planner3@dance.com" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="competitions">
+			<list></list>
+		</property>
+		<property name="picture" value="http://www.image.com/index.png" />
+		<property name="companyName" value="Acme-Copas" />
+	</bean>
+
+	<!-- Teacher -->
+
+	<bean id="teacher1" class="domain.Teacher">
+		<property name="UserAccount" ref="userAccount11" />
+		<property name="name" value="Pepe" />
+		<property name="surname" value="Garcia" />
+		<property name="phone" value="610180124" />
+		<property name="email" value="teacher1@dance.com" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="averageScore" value="0.0" />
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="danceCertificates">
+			<list></list>
+		</property>
+		<property name="picture" value="http://www.image/index.png" />
+		<property name="materials">
+			<list></list>
+		</property>
+		<property name="reviews">
+			<list></list>
+		</property>
+		<property name="presentationVideo" value="http://www.youtube.com" />
+	</bean>
+
+	<bean id="teacher2" class="domain.Teacher">
+		<property name="UserAccount" ref="userAccount12" />
+		<property name="name" value="Victoria" />
+		<property name="surname" value="Jimenez" />
+		<property name="phone" value="630110121" />
+		<property name="email" value="teacher2@dance.com" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="averageScore" value="0.0" />
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="danceCertificates">
+			<list></list>
+		</property>
+		<property name="picture" value="http://www.image/index.png" />
+		<property name="materials">
+			<list></list>
+		</property>
+		<property name="reviews">
+			<list></list>
+		</property>
+		<property name="presentationVideo" value="http://www.youtube.com" />
+	</bean>
+
+	<bean id="teacher3" class="domain.Teacher">
+		<property name="UserAccount" ref="userAccount13" />
+		<property name="name" value="Hector" />
+		<property name="surname" value="Dominguez" />
+		<property name="phone" value="670120122" />
+		<property name="email" value="teacher3@dance.com" />
+		<property name="messagesSended">
+			<list></list>
+		</property>
+		<property name="messagesReceived">
+			<list></list>
+		</property>
+		<property name="averageScore" value="0.0" />
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="danceCertificates">
+			<list></list>
+		</property>
+		<property name="picture" value="http://www.image/index.png" />
+		<property name="materials">
+			<list></list>
+		</property>
+		<property name="reviews">
+			<list></list>
+		</property>
+		<property name="presentationVideo" value="http://www.youtube.com" />
+	</bean>
+	<!-- <bean id="payment1" class="domain.Payment"> <property name="paymentType" 
+		value="Type 1" /> <property name="startDate" value="2018/12/12 00:00" /> 
+		<property name="endDate" value="2018/12/12 04:00" /> <property name="alumn" 
+		ref="alumn1" /> </bean> -->
+
 
 </beans>

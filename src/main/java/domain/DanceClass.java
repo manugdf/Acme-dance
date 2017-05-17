@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -81,7 +80,6 @@ public class DanceClass extends DomainEntity {
 
 	@NotNull
 	@Valid
-	@ElementCollection
 	@OneToMany(mappedBy = "danceClass")
 	public Collection<Payment> getPayments() {
 		return this.payments;

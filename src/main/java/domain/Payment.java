@@ -5,7 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -13,9 +13,9 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-@Embeddable
+@Entity
 @Access(AccessType.PROPERTY)
-public class Payment {
+public class Payment extends DomainEntity {
 
 	private String	paymentType;
 	private Date	startDate;
