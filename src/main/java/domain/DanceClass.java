@@ -96,7 +96,7 @@ public class DanceClass extends DomainEntity {
 	}
 
 	@NotNull
-	@ManyToMany(mappedBy = "danceClasses")
+	@ManyToMany
 	public Collection<Teacher> getTeachers() {
 		return this.teachers;
 	}
@@ -114,7 +114,7 @@ public class DanceClass extends DomainEntity {
 	}
 
 	@NotNull
-	@ManyToMany(mappedBy = "danceClasses")
+	@ManyToMany
 	public Collection<Alumn> getAlumns() {
 		return this.alumns;
 	}

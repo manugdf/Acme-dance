@@ -74,7 +74,7 @@ public class Event extends DomainEntity {
 
 
 	@NotNull
-	@ManyToMany(mappedBy = "events")
+	@ManyToMany
 	public Collection<Alumn> getAlumns() {
 		return this.alumns;
 	}

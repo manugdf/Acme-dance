@@ -1,7 +1,7 @@
 /target
 /.idea
 /.settings
-Acme-Dance.iml
+Acme-dance.iml
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -14,4 +14,4 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 /.idea/
-/Acme-Dance.iml
+/Acme-dance.iml

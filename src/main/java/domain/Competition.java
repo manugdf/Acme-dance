@@ -95,7 +95,7 @@ public class Competition extends DomainEntity {
 	}
 
 	@NotNull
-	@ManyToMany(mappedBy = "competitions")
+	@ManyToMany
 	public Collection<DanceSchool> getDanceSchools() {
 		return this.danceSchools;
 	}

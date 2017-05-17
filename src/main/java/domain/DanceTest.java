@@ -52,7 +52,7 @@ public class DanceTest extends DomainEntity {
 
 
 	@NotNull
-	@ManyToMany(mappedBy = "danceTests")
+	@ManyToMany
 	public Collection<Alumn> getAlumns() {
 		return this.alumns;
 	}
