@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -46,6 +47,7 @@ public class Alumn extends Actor {
 	private Collection<Event>				events;
 	private Collection<DanceTest>			danceTests;
 	private Collection<DanceClass>			danceClasses;
+	private Collection<Payment>				payments;
 
 
 	@NotNull
@@ -94,7 +96,7 @@ public class Alumn extends Actor {
 	}
 
 	@NotNull
-	@ManyToMany(mappedBy = "alumns")
+	@ManyToMany()
 	public Collection<Event> getEvents() {
 		return this.events;
 	}
@@ -118,6 +120,18 @@ public class Alumn extends Actor {
 	}
 	public void setDanceClasses(final Collection<DanceClass> danceClasses) {
 		this.danceClasses = danceClasses;
+	}
+
+	@NotNull
+	@Valid
+	@ElementCollection
+	@OneToMany(mappedBy = "alumn")
+	public Collection<Payment> getPayments() {
+		return this.payments;
+	}
+
+	public void setPayments(final Collection<Payment> payments) {
+		this.payments = payments;
 	}
 
 }
