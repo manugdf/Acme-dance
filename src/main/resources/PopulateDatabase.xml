@@ -203,7 +203,10 @@
 			<list></list>
 		</property>
 		<property name="events">
-			<list></list>
+			<list>
+				<ref bean="event2"/>
+				<ref bean="event4"/>
+			</list>
 		</property>
 		<property name="payments">
 			<list></list>
@@ -255,7 +258,9 @@
 			<list></list>
 		</property>
 		<property name="events">
-			<list></list>
+			<list>
+				<ref bean="event2"/>
+			</list>
 		</property>
 		<property name="payments">
 			<list></list>
@@ -307,7 +312,10 @@
 			<list></list>
 		</property>
 		<property name="events">
-			<list></list>
+			<list>
+				<ref bean="event3"/>
+				<ref bean="event4"/>
+			</list>
 		</property>
 		<property name="payments">
 			<list></list>
@@ -710,7 +718,11 @@
 		</property>
 		<property name="description" value="Description2" />
 		<property name="events">
-			<list></list>
+			<list>
+				<ref bean="event1"/>
+				<ref bean="event2"/>
+				<ref bean="event4"/>
+			</list>
 		</property>
 		<property name="location" ref="location2" />
 		<property name="manager" ref="manager2" />
@@ -754,7 +766,9 @@
 		</property>
 		<property name="description" value="Description4" />
 		<property name="events">
-			<list></list>
+			<list>
+				<ref bean="event3"/>
+			</list>
 		</property>
 		<property name="location" ref="location4" />
 		<property name="manager" ref="manager1" />
@@ -1039,4 +1053,65 @@
 		<property name="competition" ref="competition1" />
 		<property name="danceSchool" ref="danceSchool3" />
 	</bean>
+	
+	<!-- Events -->
+	
+	<bean id="event1" class="domain.Event">
+		<property name="title" value="Master Class bachata"/>
+		<property name="maxAlumns" value="10"/>
+		<property name="startDate" value="2017/06/28"/>
+		<property name="duration" value="2"/>
+		<property name="description" value="Bachata por nuestor experto"/>
+		<property name="danceSchool" ref="danceSchool2"/>
+		<property name="alumns">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="event2" class="domain.Event">
+		<property name="title" value="Master class de zumba"/>
+		<property name="maxAlumns" value="2"/>
+		<property name="startDate" value="2015/06/28"/>
+		<property name="duration" value="1"/>
+		<property name="description" value="Zumba por nuestor experto"/>
+		<property name="danceSchool" ref="danceSchool2"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+				<ref bean="alumn2"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="event3" class="domain.Event">
+		<property name="title" value="Master class de zumba"/>
+		<property name="maxAlumns" value="10"/>
+		<property name="startDate" value="2018/06/28"/>
+		<property name="duration" value="1"/>
+		<property name="description" value="Zumba por nuestor experto"/>
+		<property name="danceSchool" ref="danceSchool4"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="event4" class="domain.Event">
+		<property name="title" value="Introducción a bailes modernos"/>
+		<property name="maxAlumns" value="20"/>
+		<property name="startDate" value="2016/01/28"/>
+		<property name="duration" value="3"/>
+		<property name="description" value="Introducción a bailes modernos latinos"/>
+		<property name="danceSchool" ref="danceSchool2"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn3"/>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
+	</bean>
+	
 </beans>
+

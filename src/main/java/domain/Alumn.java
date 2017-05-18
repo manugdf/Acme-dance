@@ -95,7 +95,7 @@ public class Alumn extends Actor {
 	}
 
 	@NotNull
-	@ManyToMany()
+	@ManyToMany(mappedBy = "alumns")
 	public Collection<Event> getEvents() {
 		return this.events;
 	}
