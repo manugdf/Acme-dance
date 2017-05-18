@@ -578,10 +578,465 @@
 		</property>
 		<property name="presentationVideo" value="http://www.youtube.com" />
 	</bean>
-	<!-- <bean id="payment1" class="domain.Payment"> <property name="paymentType" 
-		value="Type 1" /> <property name="startDate" value="2018/12/12 00:00" /> 
-		<property name="endDate" value="2018/12/12 04:00" /> <property name="alumn" 
-		ref="alumn1" /> </bean> -->
+
+	<!-- Locations -->
+
+	<bean id="location1" class="domain.Location">
+		<property name="address" value="Address1" />
+		<property name="city" value="City1" />
+		<property name="province" value="Province1" />
+	</bean>
+
+	<bean id="location2" class="domain.Location">
+		<property name="address" value="Address2" />
+		<property name="city" value="City2" />
+		<property name="province" value="Province2" />
+	</bean>
+
+	<bean id="location3" class="domain.Location">
+		<property name="address" value="Address3" />
+		<property name="city" value="City3" />
+		<property name="province" value="Province3" />
+	</bean>
+
+	<bean id="location4" class="domain.Location">
+		<property name="address" value="Address4" />
+		<property name="city" value="City4" />
+		<property name="province" value="Province4" />
+	</bean>
+
+	<!-- Competitions -->
+
+	<bean id="competition1" class="domain.Competition">
+		<property name="alumnPerSchool" value="20" />
+		<property name="awards">
+			<list></list>
+		</property>
+		<property name="competitionPlanner" ref="planner1" />
+		<property name="danceSchools">
+			<list></list>
+		</property>
+		<property name="description" value="Description1" />
+		<property name="limitInscription" value="2018/12/12 00:00" />
+		<property name="limitSchool" value="100" />
+		<property name="place" ref="location1" />
+		<property name="startDate" value="2018/12/20 00:00" />
+
+	</bean>
+
+	<bean id="competition2" class="domain.Competition">
+		<property name="alumnPerSchool" value="10" />
+		<property name="awards">
+			<list></list>
+		</property>
+		<property name="competitionPlanner" ref="planner2" />
+		<property name="danceSchools">
+			<list></list>
+		</property>
+		<property name="description" value="Description2" />
+		<property name="limitInscription" value="2018/12/01 00:00" />
+		<property name="limitSchool" value="100" />
+		<property name="place" ref="location2" />
+		<property name="startDate" value="2018/12/06 00:00" />
+
+	</bean>
+
+	<bean id="competition3" class="domain.Competition">
+		<property name="alumnPerSchool" value="10" />
+		<property name="awards">
+			<list></list>
+		</property>
+		<property name="competitionPlanner" ref="planner3" />
+		<property name="danceSchools">
+			<list></list>
+		</property>
+		<property name="description" value="Description3" />
+		<property name="limitInscription" value="2018/12/03 00:00" />
+		<property name="limitSchool" value="100" />
+		<property name="place" ref="location3" />
+		<property name="startDate" value="2018/12/06 00:00" />
+
+	</bean>
+
+	<bean id="competition4" class="domain.Competition">
+		<property name="alumnPerSchool" value="15" />
+		<property name="awards">
+			<list></list>
+		</property>
+		<property name="competitionPlanner" ref="planner1" />
+		<property name="danceSchools">
+			<list></list>
+		</property>
+		<property name="description" value="Description4" />
+		<property name="limitInscription" value="2018/12/04 00:00" />
+		<property name="limitSchool" value="100" />
+		<property name="place" ref="location4" />
+		<property name="startDate" value="2018/12/08 00:00" />
+	</bean>
+
+	<!-- Dance School -->
+
+	<bean id="danceSchool1" class="domain.DanceSchool">
+		<property name="awards">
+			<list></list>
+		</property>
+		<property name="competitions">
+			<list></list>
+		</property>
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="description" value="Description1" />
+		<property name="events">
+			<list></list>
+		</property>
+		<property name="location" ref="location1" />
+		<property name="manager" ref="manager1" />
+		<property name="name" value="Name1" />
+		<property name="phone" value="955667553" />
+		<property name="picture" value="http://www.image.com/index.png" />
+		<property name="state" value="PENDING" />
+	</bean>
+
+	<bean id="danceSchool2" class="domain.DanceSchool">
+		<property name="awards">
+			<list></list>
+		</property>
+		<property name="competitions">
+			<list></list>
+		</property>
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="description" value="Description2" />
+		<property name="events">
+			<list></list>
+		</property>
+		<property name="location" ref="location2" />
+		<property name="manager" ref="manager2" />
+		<property name="name" value="Name2" />
+		<property name="phone" value="955262553" />
+		<property name="picture" value="http://www.image.com/index.png" />
+		<property name="state" value="ACCEPTED" />
+	</bean>
+
+	<bean id="danceSchool3" class="domain.DanceSchool">
+		<property name="awards">
+			<list></list>
+		</property>
+		<property name="competitions">
+			<list></list>
+		</property>
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="description" value="Description3" />
+		<property name="events">
+			<list></list>
+		</property>
+		<property name="location" ref="location3" />
+		<property name="manager" ref="manager3" />
+		<property name="name" value="Name3" />
+		<property name="phone" value="953663553" />
+		<property name="picture" value="http://www.image.com/index.png" />
+		<property name="state" value="PENDING" />
+	</bean>
+
+	<bean id="danceSchool4" class="domain.DanceSchool">
+		<property name="awards">
+			<list></list>
+		</property>
+		<property name="competitions">
+			<list></list>
+		</property>
+		<property name="danceClasses">
+			<list></list>
+		</property>
+		<property name="description" value="Description4" />
+		<property name="events">
+			<list></list>
+		</property>
+		<property name="location" ref="location4" />
+		<property name="manager" ref="manager1" />
+		<property name="name" value="Name4" />
+		<property name="phone" value="955467453" />
+		<property name="picture" value="http://www.image.com/index.png" />
+		<property name="state" value="ACCEPTED" />
+	</bean>
 
 
+	<!-- Dance Class -->
+
+	<bean id="danceClass1" class="domain.DanceClass">
+		<property name="alumns">
+			<list>
+			</list>
+		</property>
+		<property name="danceSchool" ref="danceSchool1" />
+		<property name="danceTests">
+			<list>
+			</list>
+		</property>
+		<property name="description" value="Description1" />
+		<property name="materials">
+			<list>
+			</list>
+		</property>
+		<property name="maxAlumns" value="100" />
+		<property name="monthlyPrice" value="20.00" />
+		<property name="yearlyPrice" value="120.00" />
+		<property name="style" value="Style1" />
+		<property name="payments">
+			<list>
+			</list>
+		</property>
+		<property name="schedules">
+			<list>
+			</list>
+		</property>
+		<property name="teachers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="danceClass2" class="domain.DanceClass">
+		<property name="alumns">
+			<list>
+			</list>
+		</property>
+		<property name="danceSchool" ref="danceSchool2" />
+		<property name="danceTests">
+			<list>
+			</list>
+		</property>
+		<property name="description" value="Description2" />
+		<property name="materials">
+			<list>
+			</list>
+		</property>
+		<property name="maxAlumns" value="150" />
+		<property name="monthlyPrice" value="30.00" />
+		<property name="yearlyPrice" value="150.00" />
+		<property name="style" value="Style2" />
+		<property name="payments">
+			<list>
+			</list>
+		</property>
+		<property name="schedules">
+			<list>
+			</list>
+		</property>
+		<property name="teachers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="danceClass3" class="domain.DanceClass">
+		<property name="alumns">
+			<list>
+			</list>
+		</property>
+		<property name="danceSchool" ref="danceSchool3" />
+		<property name="danceTests">
+			<list>
+			</list>
+		</property>
+		<property name="description" value="Description3" />
+		<property name="materials">
+			<list>
+			</list>
+		</property>
+		<property name="maxAlumns" value="100" />
+		<property name="monthlyPrice" value="20.00" />
+		<property name="yearlyPrice" value="120.00" />
+		<property name="style" value="Style1" />
+		<property name="payments">
+			<list>
+			</list>
+		</property>
+		<property name="schedules">
+			<list>
+			</list>
+		</property>
+		<property name="teachers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="danceClass4" class="domain.DanceClass">
+		<property name="alumns">
+			<list>
+			</list>
+		</property>
+		<property name="danceSchool" ref="danceSchool1" />
+		<property name="danceTests">
+			<list>
+			</list>
+		</property>
+		<property name="description" value="Description1" />
+		<property name="materials">
+			<list>
+			</list>
+		</property>
+		<property name="maxAlumns" value="100" />
+		<property name="monthlyPrice" value="20.00" />
+		<property name="yearlyPrice" value="120.00" />
+		<property name="style" value="Style3" />
+		<property name="payments">
+			<list>
+			</list>
+		</property>
+		<property name="schedules">
+			<list>
+			</list>
+		</property>
+		<property name="teachers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- Payments -->
+
+	<bean id="payment1" class="domain.Payment">
+		<property name="paymentType" value="MONTHLY" />
+		<property name="startDate" value="2018/12/12 00:00" />
+		<property name="endDate" value="2018/12/12 04:00" />
+		<property name="alumn" ref="alumn1" />
+		<property name="danceClass" ref="danceClass1" />
+	</bean>
+
+	<bean id="payment2" class="domain.Payment">
+		<property name="paymentType" value="YEARLY" />
+		<property name="startDate" value="2018/12/12 00:00" />
+		<property name="endDate" value="2018/12/12 04:00" />
+		<property name="alumn" ref="alumn2" />
+		<property name="danceClass" ref="danceClass2" />
+	</bean>
+
+	<bean id="payment3" class="domain.Payment">
+		<property name="paymentType" value="MONTHLY" />
+		<property name="startDate" value="2018/12/12 00:00" />
+		<property name="endDate" value="2018/12/12 04:00" />
+		<property name="alumn" ref="alumn3" />
+		<property name="danceClass" ref="danceClass3" />
+	</bean>
+
+	<bean id="payment4" class="domain.Payment">
+		<property name="paymentType" value="MONTHLY" />
+		<property name="startDate" value="2018/12/12 00:00" />
+		<property name="endDate" value="2018/12/12 04:00" />
+		<property name="alumn" ref="alumn1" />
+		<property name="danceClass" ref="danceClass2" />
+	</bean>
+
+	<!-- Schedule -->
+
+	<bean id="schedule1" class="domain.Schedule">
+		<property name="classroom" value="A1.10" />
+		<property name="danceClass" ref="danceClass1" />
+		<property name="dayOfWeek" value="MONDAY" />
+		<property name="startDate" value="2018/12/12 04:00" />
+		<property name="endTime" value="2018/12/12 05:00" />
+	</bean>
+
+	<bean id="schedule2" class="domain.Schedule">
+		<property name="classroom" value="A2.10" />
+		<property name="danceClass" ref="danceClass2" />
+		<property name="dayOfWeek" value="FRIDAY" />
+		<property name="startDate" value="2018/12/12 04:00" />
+		<property name="endTime" value="2018/12/12 05:00" />
+	</bean>
+
+	<bean id="schedule3" class="domain.Schedule">
+		<property name="classroom" value="A3.10" />
+		<property name="danceClass" ref="danceClass3" />
+		<property name="dayOfWeek" value="TUESDAY" />
+		<property name="startDate" value="2018/12/12 04:00" />
+		<property name="endTime" value="2018/12/12 05:00" />
+	</bean>
+
+	<bean id="schedule4" class="domain.Schedule">
+		<property name="classroom" value="B1.10" />
+		<property name="danceClass" ref="danceClass4" />
+		<property name="dayOfWeek" value="MONDAY" />
+		<property name="startDate" value="2018/12/12 04:00" />
+		<property name="endTime" value="2018/12/12 05:00" />
+	</bean>
+
+	<bean id="schedule5" class="domain.Schedule">
+		<property name="classroom" value="H1.10" />
+		<property name="danceClass" ref="danceClass1" />
+		<property name="dayOfWeek" value="WEDNESDAY" />
+		<property name="startDate" value="2018/12/12 04:00" />
+		<property name="endTime" value="2018/12/12 05:00" />
+	</bean>
+
+	<!-- Banners -->
+
+	<bean id="banner1" class="domain.Banner">
+		<property name="state" value="ACCEPTED" />
+		<property name="url" value="http://www.image.com/image.png" />
+		<property name="manager" ref="manager1" />
+	</bean>
+
+	<bean id="banner2" class="domain.Banner">
+		<property name="state" value="ACCEPTED" />
+		<property name="url" value="http://www.image.com/image2.png" />
+		<property name="manager" ref="manager2" />
+	</bean>
+
+	<bean id="banner3" class="domain.Banner">
+		<property name="state" value="REJECTED" />
+		<property name="url" value="http://www.image.com/image3.png" />
+		<property name="manager" ref="manager3" />
+	</bean>
+
+	<bean id="banner4" class="domain.Banner">
+		<property name="state" value="PENDING" />
+		<property name="url" value="http://www.image.com/image.png" />
+		<property name="manager" ref="manager1" />
+	</bean>
+
+	<!-- Awards -->
+
+	<bean id="award1" class="domain.Award">
+		<property name="award" value="Award1" />
+		<property name="winnerName" value="Winner1" />
+		<property name="competition" ref="competition1" />
+		<property name="danceSchool" ref="danceSchool1" />
+	</bean>
+
+	<bean id="award2" class="domain.Award">
+		<property name="award" value="Award2" />
+		<property name="winnerName" value="Winner2" />
+		<property name="competition" ref="competition2" />
+		<property name="danceSchool" ref="danceSchool2" />
+	</bean>
+
+	<bean id="award3" class="domain.Award">
+		<property name="award" value="Award3" />
+		<property name="winnerName" value="Winner3" />
+		<property name="competition" ref="competition3" />
+		<property name="danceSchool" ref="danceSchool3" />
+	</bean>
+
+	<bean id="award4" class="domain.Award">
+		<property name="award" value="Award4" />
+		<property name="winnerName" value="Winner4" />
+		<property name="competition" ref="competition4" />
+		<property name="danceSchool" ref="danceSchool4" />
+	</bean>
+
+	<bean id="award5" class="domain.Award">
+		<property name="award" value="Award5" />
+		<property name="winnerName" value="Winner5" />
+		<property name="competition" ref="competition1" />
+		<property name="danceSchool" ref="danceSchool3" />
+	</bean>
 </beans>
