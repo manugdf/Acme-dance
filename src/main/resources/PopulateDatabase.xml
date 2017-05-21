@@ -514,7 +514,9 @@
 		</property>
 		<property name="averageScore" value="0.0" />
 		<property name="danceClasses">
-			<list></list>
+			<list>
+			
+			</list>
 		</property>
 		<property name="danceCertificates">
 			<list></list>
@@ -686,13 +688,18 @@
 
 	<bean id="danceSchool1" class="domain.DanceSchool">
 		<property name="awards">
-			<list></list>
+			<list>
+			
+			</list>
 		</property>
 		<property name="competitions">
 			<list></list>
 		</property>
 		<property name="danceClasses">
-			<list></list>
+			<list>
+			<ref bean="danceClass1"/>
+			<ref bean="danceClass4"/>
+			</list>
 		</property>
 		<property name="description" value="Baila hasta el anochecer." />
 		<property name="events">
@@ -714,7 +721,9 @@
 			<list></list>
 		</property>
 		<property name="danceClasses">
-			<list></list>
+			<list>
+			<ref bean="danceClass2"/>
+			</list>
 		</property>
 		<property name="description" value="Si te gusta bailar, esta es tu escuela. Buenos precios." />
 		<property name="events">
@@ -740,7 +749,9 @@
 			<list></list>
 		</property>
 		<property name="danceClasses">
-			<list></list>
+			<list>
+			<ref bean="danceClass3"/>
+			</list>
 		</property>
 		<property name="description" value="¡Aqui puedes bailar todo lo que quieras!" />
 		<property name="events">
@@ -810,6 +821,7 @@
 		</property>
 		<property name="teachers">
 			<list>
+			<ref bean="teacher1"/>
 			</list>
 		</property>
 	</bean>
@@ -843,6 +855,8 @@
 		</property>
 		<property name="teachers">
 			<list>
+			<ref bean="teacher1"/>
+			<ref bean="teacher2"/>
 			</list>
 		</property>
 	</bean>
@@ -876,6 +890,8 @@
 		</property>
 		<property name="teachers">
 			<list>
+			<ref bean="teacher3"/>
+			<ref bean="teacher1"/>
 			</list>
 		</property>
 	</bean>
@@ -909,6 +925,8 @@
 		</property>
 		<property name="teachers">
 			<list>
+			<ref bean="teacher2"/>
+			<ref bean="teacher3"/>
 			</list>
 		</property>
 	</bean>

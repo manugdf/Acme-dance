@@ -27,6 +27,9 @@
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
 		<value>/views/danceSchool/messages</value>
+		<value>/views/teacher/messages</value>
+		<value>/views/danceClass/messages</value>
+		<value>/views/schedule/messages</value>
 		
 	</util:list>
 
