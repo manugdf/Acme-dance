@@ -1,0 +1,40 @@
+package services;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+import domain.Manager;
+import repositories.ManagerRepository;
+import security.LoginService;
+import security.UserAccount;
+
+@Service
+@Transactional
+public class ManagerService {
+	
+	@Autowired
+	private ManagerRepository managerRepository;
+	
+	// Constructor
+	public ManagerService() {
+		super();
+	}
+	
+	// Simple CRUD methods
+
+	
+	
+	
+	
+	
+	public Manager findByPrincipal() {
+
+		final UserAccount userAccount = LoginService.getPrincipal();
+		final Manager manager = this.managerRepository.findByPrincipal(userAccount.getId());
+		Assert.isTrue(manager.getUserAccount().equals(userAccount));
+		return manager;
+	}
+}

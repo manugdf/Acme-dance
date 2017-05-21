@@ -16,6 +16,7 @@ import domain.DanceSchool;
 import forms.SearchForm;
 import services.DanceSchoolService;
 
+
 @Controller
 @RequestMapping("/danceSchool")
 public class DanceSchoolController extends AbstractController {
@@ -23,6 +24,7 @@ public class DanceSchoolController extends AbstractController {
 	@Autowired
 	private DanceSchoolService danceSchoolService;
 
+	
 
 	public DanceSchoolController() {
 		super();
@@ -37,7 +39,7 @@ public class DanceSchoolController extends AbstractController {
 		return res;
 
 	}
-
+	
 	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search")
 	public ModelAndView save(@Valid final SearchForm searchForm, final BindingResult binding) {
 
