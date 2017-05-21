@@ -995,25 +995,25 @@
 
 	<bean id="banner1" class="domain.Banner">
 		<property name="state" value="ACCEPTED" />
-		<property name="url" value="http://www.image.com/image.png" />
+		<property name="url" value="http://www.withampublichall.co.uk/img/dance%20text%20banner.jpg" />
 		<property name="manager" ref="manager1" />
 	</bean>
 
 	<bean id="banner2" class="domain.Banner">
 		<property name="state" value="ACCEPTED" />
-		<property name="url" value="http://www.image.com/image2.png" />
+		<property name="url" value="http://ohiodance.org/wp-content/uploads/2012/01/banner_toledo_ballet_01.jpg" />
 		<property name="manager" ref="manager2" />
 	</bean>
 
 	<bean id="banner3" class="domain.Banner">
 		<property name="state" value="REJECTED" />
-		<property name="url" value="http://www.image.com/image3.png" />
+		<property name="url" value="http://www.crystalmn.gov/images/youth_dance_banner.png" />
 		<property name="manager" ref="manager3" />
 	</bean>
 
 	<bean id="banner4" class="domain.Banner">
 		<property name="state" value="PENDING" />
-		<property name="url" value="http://www.image.com/image.png" />
+		<property name="url" value="http://www.nolimitsdancehouse.com.au/logo.JPG" />
 		<property name="manager" ref="manager1" />
 	</bean>
 
