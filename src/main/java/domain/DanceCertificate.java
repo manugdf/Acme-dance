@@ -9,13 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class DanceCertificate extends DomainEntity {
 
-	private Date		certificateDate;
-	private DanceLevel	danceLevel;
+	private Date	certificateDate;
+	private String	danceLevel;
 
 
 	@NotNull
@@ -27,10 +28,11 @@ public class DanceCertificate extends DomainEntity {
 	}
 
 	@NotNull
-	public DanceLevel getDanceLevel() {
+	@Pattern(regexp = "^BASIC$|^MEDIUM$|^HIGH$")
+	public String getDanceLevel() {
 		return this.danceLevel;
 	}
-	public void setDanceLevel(final DanceLevel danceLevel) {
+	public void setDanceLevel(final String danceLevel) {
 		this.danceLevel = danceLevel;
 	}
 
