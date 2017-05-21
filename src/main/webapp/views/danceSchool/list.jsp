@@ -10,10 +10,12 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<spring:message code="danceschool.search" var="search"/>
-<form:form action="${requestURI}" modelAttribute="searchForm">
-<input type="text"> <input type="button" value="${search}">
+<form:form action="danceSchool/search.do" modelAttribute="searchForm">
+	<form:input path="word"/>
+
+	<acme:submit code="danceschool.search" name="search" />
 </form:form>
 
 <display:table name="danceSchools" id="row" requestURI="${requestURI}"
@@ -25,14 +27,14 @@
 	<spring:message code="danceschool.description" var="desColumn"/>
 	<display:column property="description" title="${desColumn}"/>
 	
-	<spring:message code="danceschool.location.address" var="addrColumn"/>
-	<display:column property="location.address" title="${addrColumn}"/>
-	
 	<spring:message code="danceschool.location.province" var="provColumn"/>
 	<display:column property="location.province" title="${provColumn}"/>
 	
 	<spring:message code="danceschool.location.city" var="cityColumn"/>
 	<display:column property="location.city" title="${cityColumn}"/>
+	
+	<spring:message code="danceschool.location.address" var="addrColumn"/>
+	<display:column property="location.address" title="${addrColumn}"/>
 	
 	<spring:message code="danceschool.phone" var="phoneColumn"/>
 	<display:column property="phone" title="${phoneColumn}"/>

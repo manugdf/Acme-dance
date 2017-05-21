@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -24,7 +25,7 @@ public class DanceSchool extends DomainEntity {
 	private Location	location;
 	private String		phone;
 	private String		picture;
-	private State		state;
+	private String		state;
 
 
 	@NotBlank
@@ -68,11 +69,12 @@ public class DanceSchool extends DomainEntity {
 		this.picture = picture;
 	}
 
-	@NotNull
-	public State getState() {
+	@NotBlank
+	@Pattern(regexp = "^PENDING$|^ACCEPTED$|^REJECTED$")
+	public String getState() {
 		return this.state;
 	}
-	public void setState(final State state) {
+	public void setState(final String state) {
 		this.state = state;
 	}
 

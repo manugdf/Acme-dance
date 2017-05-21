@@ -590,27 +590,27 @@
 	<!-- Locations -->
 
 	<bean id="location1" class="domain.Location">
-		<property name="address" value="Address1" />
-		<property name="city" value="City1" />
-		<property name="province" value="Province1" />
+		<property name="address" value="Calle real 67" />
+		<property name="city" value="Utrera" />
+		<property name="province" value="Sevilla" />
 	</bean>
 
 	<bean id="location2" class="domain.Location">
-		<property name="address" value="Address2" />
-		<property name="city" value="City2" />
-		<property name="province" value="Province2" />
+		<property name="address" value="Calle tolondro1" />
+		<property name="city" value="Dos Hermanas" />
+		<property name="province" value="Sevilla" />
 	</bean>
 
 	<bean id="location3" class="domain.Location">
-		<property name="address" value="Address3" />
-		<property name="city" value="City3" />
-		<property name="province" value="Province3" />
+		<property name="address" value="Calle leonardo 4" />
+		<property name="city" value="Camas" />
+		<property name="province" value="Sevilla" />
 	</bean>
 
 	<bean id="location4" class="domain.Location">
-		<property name="address" value="Address4" />
-		<property name="city" value="City4" />
-		<property name="province" value="Province4" />
+		<property name="address" value="Paseo Maritimo 55" />
+		<property name="city" value="Chiclana" />
+		<property name="province" value="Cadiz" />
 	</bean>
 
 	<!-- Competitions -->
@@ -694,16 +694,16 @@
 		<property name="danceClasses">
 			<list></list>
 		</property>
-		<property name="description" value="Description1" />
+		<property name="description" value="Baila hasta el anochecer." />
 		<property name="events">
 			<list></list>
 		</property>
 		<property name="location" ref="location1" />
 		<property name="manager" ref="manager1" />
-		<property name="name" value="Name1" />
+		<property name="name" value="Dance and Go" />
 		<property name="phone" value="955667553" />
 		<property name="picture" value="http://www.image.com/index.png" />
-		<property name="state" value="PENDING" />
+		<property name="state" value="ACCEPTED" />
 	</bean>
 
 	<bean id="danceSchool2" class="domain.DanceSchool">
@@ -716,7 +716,7 @@
 		<property name="danceClasses">
 			<list></list>
 		</property>
-		<property name="description" value="Description2" />
+		<property name="description" value="Si te gusta bailar, esta es tu escuela. Buenos precios." />
 		<property name="events">
 			<list>
 				<ref bean="event1"/>
@@ -726,7 +726,7 @@
 		</property>
 		<property name="location" ref="location2" />
 		<property name="manager" ref="manager2" />
-		<property name="name" value="Name2" />
+		<property name="name" value="Let's Dance Academy" />
 		<property name="phone" value="955262553" />
 		<property name="picture" value="http://www.image.com/index.png" />
 		<property name="state" value="ACCEPTED" />
@@ -742,13 +742,13 @@
 		<property name="danceClasses">
 			<list></list>
 		</property>
-		<property name="description" value="Description3" />
+		<property name="description" value="¡Aqui puedes bailar todo lo que quieras!" />
 		<property name="events">
 			<list></list>
 		</property>
 		<property name="location" ref="location3" />
 		<property name="manager" ref="manager3" />
-		<property name="name" value="Name3" />
+		<property name="name" value="Amador's Dance Floor" />
 		<property name="phone" value="953663553" />
 		<property name="picture" value="http://www.image.com/index.png" />
 		<property name="state" value="PENDING" />
@@ -764,7 +764,7 @@
 		<property name="danceClasses">
 			<list></list>
 		</property>
-		<property name="description" value="Description4" />
+		<property name="description" value="Conoce nuestra escuela, tenemos muchos tipos de baile." />
 		<property name="events">
 			<list>
 				<ref bean="event3"/>
@@ -772,7 +772,7 @@
 		</property>
 		<property name="location" ref="location4" />
 		<property name="manager" ref="manager1" />
-		<property name="name" value="Name4" />
+		<property name="name" value="Dance with Lula" />
 		<property name="phone" value="955467453" />
 		<property name="picture" value="http://www.image.com/index.png" />
 		<property name="state" value="ACCEPTED" />
