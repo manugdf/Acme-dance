@@ -30,6 +30,7 @@
 		<value>/views/teacher/tiles.xml</value>
 		<value>/views/danceClass/tiles.xml</value>
 		<value>/views/schedule/tiles.xml</value>
+		<value>/views/award/tiles.xml</value>
 		
 	</util:list>
 

@@ -30,6 +30,7 @@
 		<value>/views/teacher/messages</value>
 		<value>/views/danceClass/messages</value>
 		<value>/views/schedule/messages</value>
+		<value>/views/award/messages</value>
 		
 	</util:list>
 

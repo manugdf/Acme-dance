@@ -61,7 +61,7 @@
 	<spring:message code="danceschool.awards" var="awardColumn"/>
 	<display:column  title="${awardColumn}">
 	
-	<input	onclick="javascript: window.location.replace('award/list.do?danceSchoolId=${row.id}');"
+	<input	onclick="javascript: window.location.replace('award/list.do?schoolId=${row.id}');"
 					value="<spring:message code="danceschool.view.awards" />" type="button" />
 	</display:column>
 		
