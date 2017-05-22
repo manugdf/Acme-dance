@@ -48,7 +48,7 @@ public class AlumnController extends AbstractController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
 	public ModelAndView register(@Valid final AlumnForm alumnForm, final BindingResult bindingResult) {
-		ModelAndView res = new ModelAndView("teacher/register");
+		ModelAndView res = new ModelAndView("alumn/register");
 
 		if (alumnForm.getPassword().equals(alumnForm.getConfirmPassword())) {
 			final Alumn alumn = this.alumnService.reconstruct(alumnForm);

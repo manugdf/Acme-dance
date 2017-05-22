@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import domain.Alumn;
+import domain.CreditCard;
 import domain.DanceCertificate;
 import domain.DanceClass;
 import domain.DanceTest;
@@ -120,7 +121,16 @@ public class AlumnService {
 		alumn.setSurname(alumnForm.getSurname());
 		alumn.setEmail(alumnForm.getEmail());
 		alumn.setPhone(alumnForm.getPhone());
-		alumn.setCreditCard(alumnForm.getCreditCard());
+
+		final CreditCard creditcard = new CreditCard();
+		creditcard.setBrandName(alumnForm.getBrandName());
+		creditcard.setCvvCode(alumnForm.getCvvCode());
+		creditcard.setExpirationMonth(alumnForm.getExpirationMonth());
+		creditcard.setExpirationYear(alumnForm.getExpirationYear());
+		creditcard.setHolderName(alumnForm.getHolderName());
+		creditcard.setNumber(alumnForm.getNumber());
+
+		alumn.setCreditCard(creditcard);
 
 		return alumn;
 	}

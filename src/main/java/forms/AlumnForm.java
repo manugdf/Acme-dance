@@ -2,39 +2,83 @@
 package forms;
 
 import javax.persistence.Column;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-
-import domain.CreditCard;
+import org.hibernate.validator.constraints.Range;
 
 public class AlumnForm {
 
-	private String		name;
-	private String		surname;
-	private String		email;
-	private String		phone;
-	private boolean		acceptTerms;
-	private String		username;
-	private String		password;
-	private String		confirmPassword;
-	private String		newpassword;
-	private String		repeatnewpassword;
-	private CreditCard	creditCard;
+	private String	name;
+	private String	surname;
+	private String	email;
+	private String	phone;
+	private boolean	acceptTerms;
+	private String	username;
+	private String	password;
+	private String	confirmPassword;
+	private String	newpassword;
+	private String	repeatnewpassword;
+	private String	holderName;
+	private String	brandName;
+	private String	number;
+	private int		expirationMonth;
+	private int		expirationYear;
+	private int		cvvCode;
 
 
-	@NotNull
-	@Valid
-	public CreditCard getCreditCard() {
-		return this.creditCard;
+	@NotBlank
+	public String getHolderName() {
+		return this.holderName;
+	}
+	public void setHolderName(final String holderName) {
+		this.holderName = holderName;
 	}
 
-	public void setCreditCard(final CreditCard creditCard) {
-		this.creditCard = creditCard;
+	@Pattern(regexp = "^VISA$|^MASTERCARD$|^DISCOVER$|^DINNERS$|^AMEX$")
+	public String getBrandName() {
+		return this.brandName;
 	}
+	public void setBrandName(final String brandName) {
+		this.brandName = brandName;
+	}
+
+	@CreditCardNumber
+	public String getNumber() {
+		return this.number;
+	}
+	public void setNumber(final String number) {
+		this.number = number;
+	}
+
+	@Range(min = 1, max = 12)
+	public int getExpirationMonth() {
+		return this.expirationMonth;
+	}
+	public void setExpirationMonth(final int expirationMonth) {
+		this.expirationMonth = expirationMonth;
+	}
+
+	@Min(2017)
+	public int getExpirationYear() {
+		return this.expirationYear;
+	}
+	public void setExpirationYear(final int expirationYear) {
+		this.expirationYear = expirationYear;
+	}
+
+	@Range(min = 100, max = 999)
+	public int getCvvCode() {
+		return this.cvvCode;
+	}
+	public void setCvvCode(final int cvvCode) {
+		this.cvvCode = cvvCode;
+	}
+
 	@NotBlank
 	public String getName() {
 		return this.name;
