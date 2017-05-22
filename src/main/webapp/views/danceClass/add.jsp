@@ -12,9 +12,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<form:form action="${requestUri}" modelAttribute="danceClassAuxForm">
 
-<acme:select items="${myTeachers}" itemLabel="userAccount.username" code="danceClass.teachers" path="receiver" />
+	<form:hidden path="danceClass"/>
+	
+	<acme:select items="${myTeachers}" itemLabel="userAccount.username" code="danceClass.teachers" path="teacher" />
 
-<acme:submit code="danceClass.save" name="save"/>
+	<acme:submit code="danceClass.save" name="save"/>
 	
 	<acme:cancel url="welcome/index.do" code="danceClass.cancel"/>
+	
+	</form:form>

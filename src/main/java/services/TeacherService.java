@@ -19,6 +19,7 @@ import domain.Material;
 import domain.Message;
 import domain.Review;
 import domain.Teacher;
+import forms.DanceClassAuxForm;
 import forms.TeacherForm;
 import repositories.TeacherRepository;
 import security.Authority;
@@ -120,6 +121,7 @@ public class TeacherService {
 
 		return teacher;
 	}
+	
 	
 //	public TeacherForm reconstructForm(final Teacher teacher) {
 //		final TeacherForm teacherForm = new TeacherForm();

@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import controllers.AbstractController;
-import domain.DanceClass;
-import domain.Manager;
 import domain.Teacher;
+import forms.DanceClassAuxForm;
 import forms.TeacherForm;
 import services.DanceClassService;
 import services.ManagerService;
@@ -100,20 +99,5 @@ public class TeacherManagerController extends AbstractController{
 
 	}
 	
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView add(@RequestParam final int danceClassId) {
-		ModelAndView res = new ModelAndView("teacher/add");
-		Collection<Teacher> myTeachers=managerService.findByPrincipal().getTeachers();
-		Collection<Teacher> danceClassTeachers=danceClassService.findOne(danceClassId).getTeachers();
-		for(Teacher t:myTeachers){
-			if(danceClassTeachers.contains(t)){
-				myTeachers.remove(t);
-			}
-		}
-			res.addObject("requestUri", "teacher/manager/add.do");
-			res.addObject("myTeachers", myTeachers);
-		
-		return res;
 
-	}
 }

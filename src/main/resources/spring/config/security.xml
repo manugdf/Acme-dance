@@ -42,7 +42,7 @@
 	    <security:intercept-url pattern="/schedule/list.do" access="permitAll" />
 	    <security:intercept-url pattern="/award/list.do" access="permitAll" />
 	    <security:intercept-url pattern="/danceSchool/manager/list.do" access="hasRole('MANAGER')" />
-	    <security:intercept-url pattern="/teacher/manager/register.do" access="hasRole('MANAGER')" />
+	    <security:intercept-url pattern="/teacher/manager/**" access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/danceClass/manager/**" access="hasRole('MANAGER')" />
 	    
 	    <security:intercept-url pattern="/danceSchool/search.do" access="permitAll" />

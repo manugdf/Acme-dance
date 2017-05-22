@@ -12,6 +12,7 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <form:form action="${requestUri}" modelAttribute="teacherForm">
+	<form:hidden path="danceClass"/>
 	
 	<jstl:if test="${edit==false}">
 	<fieldset>

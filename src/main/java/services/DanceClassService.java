@@ -7,6 +7,7 @@ import java.util.Collection;
 import javax.transaction.Transactional;
 
 import domain.*;
+import forms.DanceClassAuxForm;
 import forms.DanceClassForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
-import domain.Manager;
+
 import repositories.DanceClassRepository;
 
 @Service
@@ -27,6 +28,8 @@ public class DanceClassService {
 	private DanceSchoolService		danceSchoolService;
 	@Autowired
 	private ManagerService 			managerService;
+	@Autowired
+	private TeacherService			teacherService;
 	@Autowired
 	private Validator validator;
 
@@ -107,5 +110,13 @@ public class DanceClassService {
 
 		this.validator.validate(res, binding);
 		return res;
+	}
+	
+	public DanceClass reconstructAux(final DanceClassAuxForm danceClassAuxForm){
+		DanceClass aux=danceClassAuxForm.getDanceClass();
+		aux.getTeachers().add(danceClassAuxForm.getTeacher());
+		
+		return aux;
+		
 	}
 }

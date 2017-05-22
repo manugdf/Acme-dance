@@ -3,9 +3,17 @@ package controllers.manager;
 import controllers.AbstractController;
 import domain.DanceClass;
 import domain.DanceSchool;
+import domain.Teacher;
 import forms.DanceClassForm;
 import forms.SearchForm;
+import forms.DanceClassAuxForm;
+
+import java.util.Collection;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -92,4 +100,56 @@ public class DanceClassManagerController  extends AbstractController {
 
         return res;
     }
+    
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public ModelAndView add(@RequestParam final int danceClassId) {
+		ModelAndView res = new ModelAndView("danceClass/add");
+		Collection<Teacher> myTeachers=managerService.findByPrincipal().getTeachers();
+		Collection<Teacher> danceClassTeachers=danceClassService.findOne(danceClassId).getTeachers();
+		for(Teacher t:myTeachers){
+			if(danceClassTeachers.contains(t)){
+				myTeachers.remove(t);
+			}
+		}
+		final DanceClassAuxForm danceClassAuxForm = new DanceClassAuxForm();
+		danceClassAuxForm.setDanceClass(danceClassService.findOne(danceClassId));
+			res.addObject("danceClassAuxForm", danceClassAuxForm);
+			res.addObject("requestUri", "danceClass/manager/add.do");
+			res.addObject("myTeachers", myTeachers);
+	
+		
+		return res;
+
+	}
+	
+	@RequestMapping(value = "/add", method = RequestMethod.POST, params = "save")
+	public ModelAndView add(@Valid final DanceClassAuxForm danceClassAuxForm,final BindingResult bindingResult) {
+		ModelAndView res = new ModelAndView("teacher/add");	
+			DanceClass auxDanceClass=danceClassService.reconstructAux(danceClassAuxForm);
+
+			if (bindingResult.hasErrors()) {
+				System.out.println(bindingResult.getAllErrors());
+				res.addObject("requestUri", "teacher/manager/add.do");
+				res.addObject("danceClassAuxForm", danceClassAuxForm);
+			}else
+				try {
+					
+					this.danceClassService.save(auxDanceClass);
+					
+					res = new ModelAndView("redirect:/welcome/index.do");
+
+				} catch (final DataIntegrityViolationException oops) {
+
+					res = new ModelAndView("teacher/add");
+					res.addObject("danceClassAuxForm", danceClassAuxForm);
+					res.addObject("message", "teacher.error.exists");
+
+				} catch (final Throwable e) {
+
+					System.out.println(e.getMessage());
+					res.addObject("message", "teacher.commit.error");
+
+		} 
+		return res;
+	}
 }
