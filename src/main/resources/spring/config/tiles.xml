@@ -31,6 +31,8 @@
 		<value>/views/danceClass/tiles.xml</value>
 		<value>/views/schedule/tiles.xml</value>
 		<value>/views/award/tiles.xml</value>
+		<value>/views/competitionPlanner/tiles.xml</value>
+		
 		
 	</util:list>
 
