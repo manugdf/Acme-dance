@@ -26,7 +26,7 @@ public class DanceClassController extends AbstractController {
 		final ModelAndView res = new ModelAndView("danceClass/list");
 		res.addObject("danceClasses", this.danceClassService.findDanceClassesBySchool(danceSchoolId));
 		res.addObject("requestURI", "danceClass/list.do");
-		res.addObject("danceschool", this.danceSchoolService.findOne(danceSchoolId).getName());
+		res.addObject("danceschool", this.danceSchoolService.findOne(danceSchoolId));
 		return res;
 
 	}
