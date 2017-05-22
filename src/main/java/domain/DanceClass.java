@@ -1,6 +1,7 @@
 
 package domain;
 
+
 import java.util.Collection;
 
 import javax.persistence.Access;
@@ -26,13 +27,6 @@ public class DanceClass extends DomainEntity {
 	private String	description;
 
 
-	@NotBlank
-	public String getStyle() {
-		return this.style;
-	}
-	public void setStyle(final String style) {
-		this.style = style;
-	}
 
 	@Min(1)
 	public int getMaxAlumns() {
@@ -40,6 +34,14 @@ public class DanceClass extends DomainEntity {
 	}
 	public void setMaxAlumns(final int maxAlumns) {
 		this.maxAlumns = maxAlumns;
+	}
+
+	@NotBlank
+	public String getStyle() {
+		return this.style;
+	}
+	public void setStyle(final String style) {
+		this.style = style;
 	}
 
 	@Min(0)
@@ -54,7 +56,6 @@ public class DanceClass extends DomainEntity {
 	public double getYearlyPrice() {
 		return this.yearlyPrice;
 	}
-
 	public void setYearlyPrice(final double yearlyPrice) {
 		this.yearlyPrice = yearlyPrice;
 	}

@@ -13,7 +13,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<b><spring:message code="danceclass.danceschool.name"/>: </b>${danceschool}
+<b><spring:message code="danceclass.danceschool.name"/>: </b>${danceschool.name}
 
 <display:table name="danceClasses" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
@@ -58,3 +58,8 @@
 	
 		
 </display:table>
+
+<security:authorize access="hasRole('MANAGER')">
+	<input	onclick="javascript: window.location.replace('danceClass/manager/create.do?id=${danceschool.id}');"
+	value="<spring:message code="danceclass.create" />" type="button" />
+</security:authorize>
