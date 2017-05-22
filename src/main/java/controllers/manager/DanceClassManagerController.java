@@ -54,13 +54,12 @@ public class DanceClassManagerController  extends AbstractController {
     @RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
     public ModelAndView save(@RequestParam final int id, final DanceClassForm danceClassForm, final BindingResult bindingResult){
         ModelAndView res;
-
+        DanceClass danceClass = danceClassService.reconstruct(danceClassForm, bindingResult);
         if(bindingResult.hasErrors()){
             res = this.createEditModelAndView(danceClassForm, id);
             System.out.println(bindingResult.getAllErrors());
         }else{
             try{
-                DanceClass danceClass = danceClassService.reconstruct(danceClassForm, bindingResult);
                 danceClass.setDanceSchool(danceSchoolService.findOne(id));
                 danceClassService.save(danceClass);
                 res = new ModelAndView("danceClass/list");
@@ -87,9 +86,9 @@ public class DanceClassManagerController  extends AbstractController {
 
         res = new ModelAndView("danceClass/edit");
         res.addObject("requestUri", "danceClass/manager/create.do?id="+id);
+        res.addObject("dance", this.danceSchoolService.findOne(id));
         res.addObject("danceClassForm", danceClassForm);
         res.addObject("message", message);
-        res.addObject("danceschool", this.danceSchoolService.findOne(id));
 
         return res;
     }
