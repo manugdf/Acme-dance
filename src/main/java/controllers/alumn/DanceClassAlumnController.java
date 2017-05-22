@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import controllers.AbstractController;
 import domain.Alumn;
 import domain.DanceClass;
 import services.AlumnService;
@@ -17,7 +18,7 @@ import services.DanceSchoolService;
 
 @Controller
 @RequestMapping("/danceClass/alumn")
-public class DanceClassAlumnController {
+public class DanceClassAlumnController extends AbstractController {
 
 	@Autowired
 	private DanceClassService	danceClassService;

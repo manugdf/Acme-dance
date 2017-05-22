@@ -17,8 +17,11 @@ public interface DanceSchoolRepository extends JpaRepository<DanceSchool, Intege
 
 	@Query("select d from DanceSchool d where d.state = 'ACCEPTED' ")
 	Collection<DanceSchool> findAllAccepted();
-	
+
 	@Query("select d from DanceSchool d where d.manager.id = ?1")
 	Collection<DanceSchool> findAllByManager(int managerId);
+
+	@Query("select d from DanceSchool d join d.danceClasses c join c.alumns a where a.id = ?1")
+	Collection<DanceSchool> findSchoolsByAlumn(int alumnId);
 
 }

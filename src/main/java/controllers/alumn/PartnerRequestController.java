@@ -40,6 +40,18 @@ public class PartnerRequestController extends AbstractController {
 
 	}
 
+	//	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	//	public ModelAndView listFromSchool() {
+	//		final ModelAndView res = new ModelAndView("partnerRequest/list");
+	//		final Alumn alumn = this.alumnService.findByPrincipal();
+	//		//Me traigo las danceSchools a las que estoy apuntado, y de cada una me traigo sus alumnos, y los que tengan Partner Request los meto en la lista
+	//		Collection<DanceSchool> danceSchools = 
+	//		res.addObject("partnerRequests", alumn.getPartnerRequests());
+	//		res.addObject("requestURI", "partnerRequest/alumn/list.do");
+	//		return res;
+	//
+	//	}
+
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		final ModelAndView res = new ModelAndView("partnerRequest/create");
