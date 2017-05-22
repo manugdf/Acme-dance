@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
-
+import domain.Manager;
 import repositories.DanceClassRepository;
 
 @Service
@@ -111,12 +111,23 @@ public class DanceClassService {
 		this.validator.validate(res, binding);
 		return res;
 	}
-	
+
+	public DanceClass reconstructEdit(DanceClass danceClassForm, DanceClass res){
+
+		res.setStyle(danceClassForm.getStyle());
+		res.setMaxAlumns(danceClassForm.getMaxAlumns());
+		res.setMonthlyPrice(danceClassForm.getMonthlyPrice());
+		res.setYearlyPrice(danceClassForm.getYearlyPrice());
+		res.setDescription(danceClassForm.getDescription());
+
+		return res;
+	}
+
 	public DanceClass reconstructAux(final DanceClassAuxForm danceClassAuxForm){
 		DanceClass aux=danceClassAuxForm.getDanceClass();
 		aux.getTeachers().add(danceClassAuxForm.getTeacher());
-		
+
 		return aux;
-		
+
 	}
 }

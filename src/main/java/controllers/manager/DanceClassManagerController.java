@@ -54,7 +54,7 @@ public class DanceClassManagerController  extends AbstractController {
         DanceClassForm danceClassForm = new DanceClassForm();
         danceClassForm.setDanceSchool(danceSchool);
 
-        res = createEditModelAndView(danceClassForm, id);
+        res = createModelAndView(danceClassForm, id);
 
         return res;
     }
@@ -64,8 +64,7 @@ public class DanceClassManagerController  extends AbstractController {
         ModelAndView res;
         DanceClass danceClass = danceClassService.reconstruct(danceClassForm, bindingResult);
         if(bindingResult.hasErrors()){
-            res = this.createEditModelAndView(danceClassForm, id);
-            System.out.println(bindingResult.getAllErrors());
+            res = this.createModelAndView(danceClassForm, id);
         }else{
             try{
                 danceClass.setDanceSchool(danceSchoolService.findOne(id));
@@ -75,21 +74,65 @@ public class DanceClassManagerController  extends AbstractController {
                 res.addObject("requestURI", "danceClass/list.do");
                 res.addObject("danceschool", this.danceSchoolService.findOne(id));
             }catch (Throwable oops){
-                res = this.createEditModelAndView(danceClassForm, id, "danceClass.commit.error");
+                res = this.createModelAndView(danceClassForm, id, "danceClass.commit.error");
             }
         }
         return res;
     }
 
-    public ModelAndView createEditModelAndView(DanceClassForm danceClassForm, int id){
+    //Edit
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public ModelAndView edit(@RequestParam final int danceClassId) {
         ModelAndView res;
 
-        res = createEditModelAndView(danceClassForm,id, null);
+        DanceClass danceClass = danceClassService.findOne(danceClassId);
+        DanceClassForm danceClassForm = new DanceClassForm();
+
+        danceClassForm.setDanceSchool(danceClass.getDanceSchool());
+        danceClassForm.setDescription(danceClass.getDescription());
+        danceClassForm.setMaxAlumns(danceClass.getMaxAlumns());
+        danceClassForm.setMonthlyPrice(danceClass.getMonthlyPrice());
+        danceClassForm.setStyle(danceClass.getStyle());
+        danceClassForm.setYearlyPrice(danceClass.getYearlyPrice());
+
+        res = editModelAndView(danceClassForm, danceClassId);
+        return res;
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+    public ModelAndView saveEdit(@RequestParam final int danceClassId, final DanceClassForm danceClassForm, final BindingResult bindingResult) {
+        ModelAndView modelAndView;
+
+        danceClassForm.setDanceSchool(danceClassService.findOne(danceClassId).getDanceSchool());
+        DanceClass danceClass = danceClassService.reconstruct(danceClassForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            modelAndView = this.editModelAndView(danceClassForm, danceClassId);
+        } else {
+            try {
+                DanceClass res = danceClassService.reconstructEdit(danceClass, danceClassService.findOne(danceClassId));
+                danceClassService.save(res);
+
+                modelAndView = new ModelAndView("danceClass/list");
+                modelAndView.addObject("danceClasses", this.danceClassService.findDanceClassesBySchool(res.getDanceSchool().getId()));
+                modelAndView.addObject("requestURI", "danceClass/list.do");
+                modelAndView.addObject("danceschool", this.danceSchoolService.findOne(res.getDanceSchool().getId()));
+            } catch (Throwable oops) {
+                modelAndView = this.editModelAndView(danceClassForm, danceClassId, "danceClass.commit.error");
+            }
+        }
+        return modelAndView;
+    }
+
+    public ModelAndView createModelAndView(DanceClassForm danceClassForm, int id){
+        ModelAndView res;
+
+        res = createModelAndView(danceClassForm,id, null);
 
         return res;
     }
 
-    public ModelAndView createEditModelAndView(DanceClassForm danceClassForm,int id, String message){
+    public ModelAndView createModelAndView(DanceClassForm danceClassForm,int id, String message){
         ModelAndView res;
 
         res = new ModelAndView("danceClass/edit");
@@ -100,7 +143,27 @@ public class DanceClassManagerController  extends AbstractController {
 
         return res;
     }
-    
+
+    public ModelAndView editModelAndView(DanceClassForm danceClassForm, int id){
+        ModelAndView res;
+
+        res = editModelAndView(danceClassForm, id, null);
+
+        return res;
+    }
+
+    public ModelAndView editModelAndView(DanceClassForm danceClassForm, int danceClassId, String message){
+        ModelAndView res;
+
+        res = new ModelAndView("danceClass/edit");
+        res.addObject("requestUri", "danceClass/manager/edit.do?danceClassId="+danceClassId);
+        res.addObject("danceClassForm",danceClassForm);
+        res.addObject("message", message);
+        res.addObject("dance", danceClassService.findOne(danceClassId).getDanceSchool());
+
+        return res;
+    }
+
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView add(@RequestParam final int danceClassId) {
 		ModelAndView res = new ModelAndView("danceClass/add");
@@ -116,15 +179,15 @@ public class DanceClassManagerController  extends AbstractController {
 			res.addObject("danceClassAuxForm", danceClassAuxForm);
 			res.addObject("requestUri", "danceClass/manager/add.do");
 			res.addObject("myTeachers", myTeachers);
-	
-		
+
+
 		return res;
 
 	}
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST, params = "save")
 	public ModelAndView add(@Valid final DanceClassAuxForm danceClassAuxForm,final BindingResult bindingResult) {
-		ModelAndView res = new ModelAndView("teacher/add");	
+		ModelAndView res = new ModelAndView("teacher/add");
 			DanceClass auxDanceClass=danceClassService.reconstructAux(danceClassAuxForm);
 
 			if (bindingResult.hasErrors()) {
@@ -133,9 +196,9 @@ public class DanceClassManagerController  extends AbstractController {
 				res.addObject("danceClassAuxForm", danceClassAuxForm);
 			}else
 				try {
-					
+
 					this.danceClassService.save(auxDanceClass);
-					
+
 					res = new ModelAndView("redirect:/welcome/index.do");
 
 				} catch (final DataIntegrityViolationException oops) {
@@ -149,7 +212,7 @@ public class DanceClassManagerController  extends AbstractController {
 					System.out.println(e.getMessage());
 					res.addObject("message", "teacher.commit.error");
 
-		} 
+		}
 		return res;
 	}
 }

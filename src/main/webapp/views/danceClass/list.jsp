@@ -41,21 +41,31 @@
 					value="<spring:message code="danceclass.schedule.view" />" type="button" />
 	
 	</display:column>
-	
+
+	<security:authorize access="hasRole('MANAGER')">
+	<spring:message code="danceclass.add" var="add"/>
 	<display:column title="${add}">
-	
+
 	<input	onclick="javascript: window.location.replace('danceClass/manager/add.do?danceClassId=${row.id}');"
 					value="<spring:message code="danceclass.add" />" type="button" />
-	
+
 	</display:column>
-	
+
+	<spring:message code="danceclass.remove" var="remove"/>
 	<display:column title="${remove}">
 	
 	<input	onclick="javascript: window.location.replace('danceClass/manager/remove.do?classId=${row.id}');"
 					value="<spring:message code="danceclass.remove" />" type="button" />
 	
 	</display:column>
-	
+
+	<spring:message code="danceclass.edit" var="edit"/>
+	<display:column title="${edit}">
+		<input	onclick="javascript: window.location.replace('danceClass/manager/edit.do?danceClassId=${row.id}');"
+				  value="<spring:message code="danceclass.edit" />" type="button" />
+
+	</display:column>
+	</security:authorize>
 		
 </display:table>
 
