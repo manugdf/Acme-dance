@@ -59,6 +59,8 @@
 					<li class="arrow"></li>
 					<li><a href="alumn/register.do"><spring:message
 								code="master.page.register.alumn" /></a></li>
+					<li><a href="manager/register.do"><spring:message
+								code="master.page.register.manager" /></a></li>
 				</ul></li>
 
 		</security:authorize>

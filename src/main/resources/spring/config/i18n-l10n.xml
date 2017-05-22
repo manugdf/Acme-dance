@@ -16,7 +16,6 @@
 		<value>/views/misc/messages</value>
 		<value>/views/security/messages</value>
 		<value>/views/welcome/messages</value>
-
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
@@ -29,6 +28,7 @@
 		<value>/views/event/messages</value>
 		<value>/views/danceTest/messages</value>
 		<value>/views/material/messages</value>
+		<value>/views/manager/messages</value>
 
 	</util:list>
 

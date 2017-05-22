@@ -29,6 +29,7 @@
 		<value>/views/event/tiles.xml</value>
 		<value>/views/danceTest/tiles.xml</value>
 		<value>/views/material/tiles.xml</value>
+		<value>/views/manager/tiles.xml</value>
 
 	</util:list>
 

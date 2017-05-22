@@ -11,12 +11,12 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 
 import domain.Banner;
 import domain.CreditCard;
 import domain.DanceSchool;
 import domain.Manager;
+import domain.Message;
 import domain.Teacher;
 import forms.ManagerForm;
 import repositories.ManagerRepository;
@@ -29,10 +29,7 @@ import security.UserAccount;
 public class ManagerService {
 
 	@Autowired
-	private ManagerRepository	managerRepository;
-
-	@Autowired
-	private Validator			validator;
+	private ManagerRepository managerRepository;
 
 
 	// Constructor
@@ -56,9 +53,16 @@ public class ManagerService {
 		res.setDanceSchools(new ArrayList<DanceSchool>());
 		res.setBanner(new ArrayList<Banner>());
 		res.setTeachers(new ArrayList<Teacher>());
+		res.setMessagesReceived(new ArrayList<Message>());
+		res.setMessagesSended(new ArrayList<Message>());
 		res.setFee(0.0);
 
 		return res;
+	}
+
+	public Manager modify(final Manager manager) {
+		Assert.isTrue(manager.getId() == this.findByPrincipal().getId());
+		return this.managerRepository.saveAndFlush(manager);
 	}
 
 	public Manager findOne(final int managerId) {
@@ -175,8 +179,6 @@ public class ManagerService {
 		creditcard.setNumber(managerForm.getNumber());
 
 		manager.setCreditCard(creditcard);
-
-		this.validator.validate(manager, binding);
 		return manager;
 	}
 }
