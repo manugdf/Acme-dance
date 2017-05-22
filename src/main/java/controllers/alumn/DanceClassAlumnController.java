@@ -32,7 +32,7 @@ public class DanceClassAlumnController extends AbstractController {
 	public ModelAndView list() {
 		final ModelAndView res = new ModelAndView("danceClass/list");
 		final Alumn alumn = this.alumnService.findByPrincipal();
-		//res.addObject("danceClasses", alumn.getDanceClasses());
+		res.addObject("danceClasses", alumn.getDanceClasses());
 		res.addObject("requestURI", "danceClass/listMyClasses.do");
 		res.addObject("myClasses", true);
 		return res;
@@ -47,15 +47,15 @@ public class DanceClassAlumnController extends AbstractController {
 		try {
 			final DanceClass dc = this.danceClassService.findOne(classId);
 			final Alumn al = this.alumnService.findByPrincipal();
-			//Assert.isTrue(dc.getAlumns().contains(al));
-			//dc.getAlumns().remove(al);
+			Assert.isTrue(dc.getAlumns().contains(al));
+			dc.getAlumns().remove(al);
 			this.danceClassService.save(dc);
-			//res.addObject("danceClasses", al.getDanceClasses());
+			res.addObject("danceClasses", al.getDanceClasses());
 			res.addObject("requestURI", "danceClass/listMyClasses.do");
 			res.addObject("myClasses", true);
 		} catch (final Throwable oops) {
 			final Alumn alumn = this.alumnService.findByPrincipal();
-			//res.addObject("danceClasses", alumn.getDanceClasses());
+			res.addObject("danceClasses", alumn.getDanceClasses());
 			res.addObject("requestURI", "danceClass/listMyClasses.do");
 			res.addObject("myClasses", true);
 			res.addObject("message", "danceclass.commit.error");

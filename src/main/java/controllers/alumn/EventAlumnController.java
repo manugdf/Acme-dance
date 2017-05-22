@@ -41,10 +41,10 @@ public class EventAlumnController extends AbstractController {
 
 		final Alumn alumn = this.alumnService.findByPrincipal();
 
-//		for (final DanceClass d : dancesc.getDanceClasses())
-//			for (final Alumn a : d.getAlumns())
-//				if (a.getId() == alumn.getId())
-//					inClass = true;
+		for (final DanceClass d : dancesc.getDanceClasses())
+			for (final Alumn a : d.getAlumns())
+				if (a.getId() == alumn.getId())
+					inClass = true;
 
 		res.addObject("inClass", inClass);
 		res.addObject("alumnId", alumn.getId());
@@ -72,10 +72,10 @@ public class EventAlumnController extends AbstractController {
 			res.addObject("requestURI", "event/alumn/list.do");
 			res.addObject("danceschool", dancesc.getName());
 			res.addObject("logged", alumn);
-			//for (final DanceClass d : dancesc.getDanceClasses())
-			//	for (final Alumn a : d.getAlumns())
-			//		if (a.getId() == alumn.getId())
-			//			inClass = true;
+			for (final DanceClass d : dancesc.getDanceClasses())
+				for (final Alumn a : d.getAlumns())
+					if (a.getId() == alumn.getId())
+						inClass = true;
 
 			res.addObject("inClass", inClass);
 			res.addObject("alumnId", alumn.getId());
@@ -89,10 +89,10 @@ public class EventAlumnController extends AbstractController {
 			res.addObject("danceschool", dancesc.getName());
 			res.addObject("logged", alumn);
 
-			//for (final DanceClass d : dancesc.getDanceClasses())
-				//for (final Alumn a : d.getAlumns())
-					//if (a.getId() == alumn.getId())
-						//inClass = true;
+			for (final DanceClass d : dancesc.getDanceClasses())
+				for (final Alumn a : d.getAlumns())
+					if (a.getId() == alumn.getId())
+						inClass = true;
 
 			res.addObject("inClass", inClass);
 			res.addObject("alumnId", alumn.getId());

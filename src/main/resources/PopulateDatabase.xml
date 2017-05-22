@@ -186,6 +186,12 @@
 		<property name="surname" value="Lopez" />
 		<property name="phone" value="650180424" />
 		<property name="email" value="alumn1@dance.com" />
+		<property name="danceClasses">
+			<list>
+				<ref bean="danceClass1"/>
+				<ref bean="danceClass2"/>
+			</list>
+		</property>
 		<property name="messagesSended">
 			<list></list>
 		</property>
@@ -247,6 +253,11 @@
 		<property name="surname" value="Gil" />
 		<property name="phone" value="620280423" />
 		<property name="email" value="alumn2@dance.com" />
+		<property name="danceClasses">
+			<list>
+				<ref bean="danceClass2"/>
+			</list>
+		</property>
 		<property name="messagesSended">
 			<list></list>
 		</property>
@@ -302,6 +313,11 @@
 		<property name="surname" value="Boixader" />
 		<property name="phone" value="640484423" />
 		<property name="email" value="alumn3@dance.com" />
+		<property name="danceClasses">
+			<list>
+				<ref bean="danceClass3"/>
+			</list>
+		</property>
 		<property name="messagesSended">
 			<list></list>
 		</property>
@@ -881,6 +897,11 @@
 
 	<bean id="danceClass1" class="domain.DanceClass">
 		<property name="danceSchool" ref="danceSchool1" />
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
 		<property name="danceTests">
 			<list>
 				<ref bean="danceTest1"/>
@@ -918,6 +939,12 @@
 
 	<bean id="danceClass2" class="domain.DanceClass">
 		<property name="danceSchool" ref="danceSchool2" />
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+				<ref bean="alumn2"/>
+			</list>
+		</property>
 		<property name="danceTests">
 			<list>
 				<ref bean="danceTest2"/>
@@ -952,6 +979,11 @@
 
 	<bean id="danceClass3" class="domain.DanceClass">
 		<property name="danceSchool" ref="danceSchool3" />
+		<property name="alumns">
+			<list>
+				<ref bean="alumn3"/>
+			</list>
+		</property>
 		<property name="danceTests">
 			<list>
 				<ref bean="danceTest3"/>
@@ -985,6 +1017,10 @@
 
 	<bean id="danceClass4" class="domain.DanceClass">
 		<property name="danceSchool" ref="danceSchool1" />
+		<property name="alumns">
+			<list>
+			</list>
+		</property>
 		<property name="danceTests">
 			<list>
 			</list>
