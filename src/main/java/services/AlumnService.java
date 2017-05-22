@@ -54,7 +54,6 @@ public class AlumnService {
 		alumn.setEvents(new ArrayList<Event>());
 		alumn.setReviews(new ArrayList<Review>());
 		alumn.setDanceCertificates(new ArrayList<DanceCertificate>());
-		alumn.setDanceClasses(new ArrayList<DanceClass>());
 		alumn.setMessagesReceived(new ArrayList<Message>());
 		alumn.setMessagesSended(new ArrayList<Message>());
 		alumn.setDanceTests(new ArrayList<DanceTest>());

@@ -74,7 +74,6 @@ public class DanceClass extends DomainEntity {
 	private Collection<Schedule>	schedules;
 	private Collection<Teacher>		teachers;
 	private Collection<Material>	materials;
-	private Collection<Alumn>		alumns;
 	private Collection<DanceTest>	danceTests;
 	private Collection<Payment>		payments;
 
@@ -126,14 +125,6 @@ public class DanceClass extends DomainEntity {
 		this.materials = materials;
 	}
 
-	@NotNull
-	@ManyToMany
-	public Collection<Alumn> getAlumns() {
-		return this.alumns;
-	}
-	public void setAlumns(final Collection<Alumn> alumns) {
-		this.alumns = alumns;
-	}
 
 	@NotNull
 	@OneToMany(mappedBy = "danceClass")
