@@ -12,6 +12,18 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<script>
+	function myFunction(id,t) {
+	   
+	    var r = confirm(t);
+	    if (r == true) {
+	    	document.location.href='danceClass/alumn/quit.do?classId='+id;
+	    } else {
+	        
+	    }
+	    
+	}
+	</script>
 
 <b><spring:message code="danceclass.danceschool.name"/>: </b>${danceschool.name}
 
@@ -41,6 +53,45 @@
 					value="<spring:message code="danceclass.schedule.view" />" type="button" />
 	
 	</display:column>
+	
+	
+	<jstl:if test="${myClasses==true}">
+	<security:authorize access="hasRole('ALUMN')">
+	<spring:message code="danceClass.teachers" var="teach"/>
+	<display:column title="${teach}">
+	
+	<input	onclick="javascript: window.location.replace('teacher/listByClass.do?classId=${row.id}');"
+					value="<spring:message code="danceclass.schedule.view" />" type="button" />
+	
+	</display:column>
+
+<spring:message code="danceClass.danceTests" var="tests"/>
+	<display:column title="${tests}">
+	
+	<input	onclick="javascript: window.location.replace('danceTest/alumn/list.do?classId=${row.id}');"
+					value="<spring:message code="danceclass.schedule.view" />" type="button" />
+	
+	</display:column>
+	
+	<spring:message code="danceClass.materials" var="mat"/>
+	<display:column title="${mat}">
+	
+	<input	onclick="javascript: window.location.replace('material/alumn/list.do?classId=${row.id}');"
+					value="<spring:message code="danceclass.schedule.view" />" type="button" />
+	
+	</display:column>
+	
+	<spring:message code="danceClass.quit" var="quit"/>
+	<display:column title="${quit}">
+	
+	<spring:message code="danceClass.quit.sure" var="sure"/>
+	<input	onclick="myFunction(${row.id},'${sure}')"
+					value="<spring:message code="danceClass.quit.quit" />" type="button" />
+	
+	</display:column>
+	
+	</security:authorize>
+</jstl:if>
 
 	<security:authorize access="hasRole('MANAGER')">
 	<spring:message code="danceclass.add" var="add"/>

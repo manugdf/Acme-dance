@@ -29,10 +29,11 @@ public class DanceClassAlumnController {
 
 	@RequestMapping(value = "/listMyClasses", method = RequestMethod.GET)
 	public ModelAndView list() {
-		final ModelAndView res = new ModelAndView("danceClass/listMyClasses");
+		final ModelAndView res = new ModelAndView("danceClass/list");
 		final Alumn alumn = this.alumnService.findByPrincipal();
 		res.addObject("danceClasses", alumn.getDanceClasses());
 		res.addObject("requestURI", "danceClass/listMyClasses.do");
+		res.addObject("myClasses", true);
 		return res;
 
 	}
@@ -40,7 +41,7 @@ public class DanceClassAlumnController {
 	@RequestMapping(value = "/quit", method = RequestMethod.GET)
 	public ModelAndView save(@RequestParam final int classId) {
 
-		final ModelAndView res = new ModelAndView("danceClass/listMyClasses");
+		final ModelAndView res = new ModelAndView("danceClass/list");
 
 		try {
 			final DanceClass dc = this.danceClassService.findOne(classId);
@@ -50,10 +51,12 @@ public class DanceClassAlumnController {
 			this.danceClassService.save(dc);
 			res.addObject("danceClasses", al.getDanceClasses());
 			res.addObject("requestURI", "danceClass/listMyClasses.do");
+			res.addObject("myClasses", true);
 		} catch (final Throwable oops) {
 			final Alumn alumn = this.alumnService.findByPrincipal();
 			res.addObject("danceClasses", alumn.getDanceClasses());
 			res.addObject("requestURI", "danceClass/listMyClasses.do");
+			res.addObject("myClasses", true);
 			res.addObject("message", "danceclass.commit.error");
 			System.out.println(oops.getMessage());
 		}
