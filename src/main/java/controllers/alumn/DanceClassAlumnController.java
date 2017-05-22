@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import domain.Alumn;
@@ -32,5 +33,20 @@ public class DanceClassAlumnController {
 		res.addObject("requestURI", "danceClass/listMyClasses.do");
 		return res;
 
+	}
+
+	@RequestMapping(value = "/quit", method = RequestMethod.GET)
+	public ModelAndView save(@RequestParam final int classId) {
+
+		final ModelAndView res = new ModelAndView("danceClass/listMyClasses");
+
+		try {
+
+		} catch (final Throwable oops) {
+
+			res.addObject("message", "event.commit.error");
+			System.out.println(oops.getMessage());
+		}
+		return res;
 	}
 }

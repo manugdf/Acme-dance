@@ -67,5 +67,13 @@
 	
 	</display:column>
 	
+	<spring:message code="danceClass.quit" var="quit"/>
+	<display:column title="${quit}">
+	
+	<input	onclick="javascript: window.location.replace('danceClass/alumn/quit.do?classId=${row.id}');"
+					value="<spring:message code="danceclass.schedule.view" />" type="button" />
+	
+	</display:column>
+	
 		
 </display:table>
