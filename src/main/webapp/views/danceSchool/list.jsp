@@ -12,14 +12,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<security:authorize access="isAnonymous()">
 	<form:form action="danceSchool/search.do" modelAttribute="searchForm">
 	
 			<form:input path="word"/>
 
 				<acme:submit code="danceschool.search" name="search" />
 	</form:form>
-</security:authorize>
+
 <display:table name="danceSchools" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
 	

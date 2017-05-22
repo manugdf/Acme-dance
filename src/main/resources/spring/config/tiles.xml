@@ -26,6 +26,7 @@
 		<value>/views/schedule/tiles.xml</value>
 		<value>/views/award/tiles.xml</value>
 		<value>/views/alumn/tiles.xml</value>
+		<value>/views/event/tiles.xml</value>
 
 	</util:list>
 

@@ -100,6 +100,7 @@ public class AlumnService {
 		final Alumn alumn = this.alumnRepository.findByPrincipal(userAccount.getId());
 		Assert.isTrue(alumn.getUserAccount().equals(userAccount));
 		return alumn;
+
 	}
 
 	public void register(final Alumn alumn) {

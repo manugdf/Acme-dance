@@ -804,6 +804,7 @@
 	<bean id="danceClass1" class="domain.DanceClass">
 		<property name="alumns">
 			<list>
+			 <ref bean="alumn1"/>
 			</list>
 		</property>
 		<property name="danceSchool" ref="danceSchool1" />
@@ -908,6 +909,7 @@
 	<bean id="danceClass4" class="domain.DanceClass">
 		<property name="alumns">
 			<list>
+			 <ref bean="alumn1"/>
 			</list>
 		</property>
 		<property name="danceSchool" ref="danceSchool1" />
@@ -1089,9 +1091,11 @@
 		<property name="startDate" value="2017/06/28"/>
 		<property name="duration" value="2"/>
 		<property name="description" value="Bachata por nuestor experto"/>
-		<property name="danceSchool" ref="danceSchool2"/>
+		<property name="danceSchool" ref="danceSchool1"/>
 		<property name="alumns">
 			<list>
+			<ref bean="alumn2"/>
+			<ref bean="alumn3"/>
 			</list>
 		</property>
 	</bean>
@@ -1105,7 +1109,6 @@
 		<property name="danceSchool" ref="danceSchool2"/>
 		<property name="alumns">
 			<list>
-				<ref bean="alumn1"/>
 				<ref bean="alumn2"/>
 			</list>
 		</property>
@@ -1131,11 +1134,12 @@
 		<property name="startDate" value="2016/01/28"/>
 		<property name="duration" value="3"/>
 		<property name="description" value="Introducción a bailes modernos latinos"/>
-		<property name="danceSchool" ref="danceSchool2"/>
+		<property name="danceSchool" ref="danceSchool1"/>
 		<property name="alumns">
 			<list>
-				<ref bean="alumn3"/>
 				<ref bean="alumn1"/>
+				<ref bean="alumn2"/>
+				
 			</list>
 		</property>
 	</bean>
