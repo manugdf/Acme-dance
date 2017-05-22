@@ -29,6 +29,7 @@
 		<value>/views/danceTest/messages</value>
 		<value>/views/material/messages</value>
 		<value>/views/manager/messages</value>
+		<value>/views/partnerRequest/messages</value>
 
 	</util:list>
 

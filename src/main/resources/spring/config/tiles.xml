@@ -30,6 +30,7 @@
 		<value>/views/danceTest/tiles.xml</value>
 		<value>/views/material/tiles.xml</value>
 		<value>/views/manager/tiles.xml</value>
+		<value>/views/partnerRequest/tiles.xml</value>
 
 	</util:list>
 

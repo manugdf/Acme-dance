@@ -29,7 +29,7 @@ public class MaterialAlumnController extends AbstractController {
 		final DanceClass dc = this.danceClassService.findOne(classId);
 
 		res.addObject("materials", dc.getMaterials());
-		res.addObject("requestURI", "material/list.do");
+		res.addObject("requestURI", "material/alumn/list.do");
 		return res;
 
 	}

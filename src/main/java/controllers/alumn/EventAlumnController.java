@@ -69,7 +69,7 @@ public class EventAlumnController extends AbstractController {
 			final DanceSchool dancesc = this.danceSchoolService.findOne(idSchool);
 			boolean inClass = false;
 			res.addObject("events", dancesc.getEvents());
-			res.addObject("requestURI", "event/list.do");
+			res.addObject("requestURI", "event/alumn/list.do");
 			res.addObject("danceschool", dancesc.getName());
 			res.addObject("logged", alumn);
 			for (final DanceClass d : dancesc.getDanceClasses())
@@ -85,7 +85,7 @@ public class EventAlumnController extends AbstractController {
 			final Alumn alumn = this.alumnService.findByPrincipal();
 			boolean inClass = false;
 			res.addObject("events", dancesc.getEvents());
-			res.addObject("requestURI", "event/list.do");
+			res.addObject("requestURI", "event/alumn/list.do");
 			res.addObject("danceschool", dancesc.getName());
 			res.addObject("logged", alumn);
 
