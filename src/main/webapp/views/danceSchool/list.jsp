@@ -65,5 +65,16 @@
 	<input	onclick="javascript: window.location.replace('award/list.do?schoolId=${row.id}');"
 					value="<spring:message code="danceschool.view.awards" />" type="button" />
 	</display:column>
+	
+	<security:authorize access="hasRole('ALUMN')">
+		<spring:message code="danceschool.events" var="events" />
+		<display:column title="${events}">
+
+			<input
+				onclick="javascript: window.location.replace('event/alumn/list.do?id=${row.id}');"
+				value="<spring:message code="danceschool.view.awards" />"
+				type="button" />
+		</display:column>
+	</security:authorize>
 		
 </display:table>
