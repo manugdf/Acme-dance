@@ -25,6 +25,7 @@
 		<value>/views/danceClass/tiles.xml</value>
 		<value>/views/schedule/tiles.xml</value>
 		<value>/views/award/tiles.xml</value>
+		<value>/views/competitionPlanner/tiles.xml</value>
 		<value>/views/alumn/tiles.xml</value>
 		<value>/views/event/tiles.xml</value>
 		<value>/views/danceTest/tiles.xml</value>
