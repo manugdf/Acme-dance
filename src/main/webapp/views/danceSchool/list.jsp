@@ -75,6 +75,7 @@
 				value="<spring:message code="danceschool.view.awards" />"
 				type="button" />
 		</display:column>
+		
 	</security:authorize>
 		
 </display:table>
