@@ -9,19 +9,27 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class DanceTest extends DomainEntity {
 
-	private Date		testDate;
-	private DanceLevel	danceLevel;
-	private Date		limitInscription;
+	private Date	testDate;
+	private String	danceLevel;
+	private Date	limitInscription;
 
 
 	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	public Date getTestDate() {
 		return this.testDate;
 	}
@@ -29,15 +37,18 @@ public class DanceTest extends DomainEntity {
 		this.testDate = testDate;
 	}
 
-	@NotNull
-	public DanceLevel getDanceLevel() {
+	@NotBlank
+	@Pattern(regexp = "^BASIC$|^MEDIUM$|^HIGH$")
+	public String getDanceLevel() {
 		return this.danceLevel;
 	}
-	public void setDanceLevel(final DanceLevel danceLevel) {
+	public void setDanceLevel(final String danceLevel) {
 		this.danceLevel = danceLevel;
 	}
 
 	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	public Date getLimitInscription() {
 		return this.limitInscription;
 	}

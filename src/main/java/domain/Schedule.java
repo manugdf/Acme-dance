@@ -7,11 +7,14 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -33,6 +36,8 @@ public class Schedule extends DomainEntity {
 	}
 
 	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -41,6 +46,8 @@ public class Schedule extends DomainEntity {
 	}
 
 	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	public Date getEndTime() {
 		return this.endTime;
 	}
@@ -58,7 +65,7 @@ public class Schedule extends DomainEntity {
 
 	//Relationship
 
-	private DanceClass	danceClass;
+	private DanceClass danceClass;
 
 
 	@NotNull

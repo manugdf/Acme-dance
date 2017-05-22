@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.DanceClassService;
 import services.DanceSchoolService;
 import services.TeacherService;
 
@@ -19,6 +20,8 @@ public class TeacherController extends AbstractController {
 	private TeacherService		teacherService;
 	@Autowired
 	private DanceSchoolService	danceSchoolService;
+	@Autowired
+	private DanceClassService	danceClassService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -27,6 +30,17 @@ public class TeacherController extends AbstractController {
 		res.addObject("teachers", this.teacherService.findTeachersBySchool(danceSchoolId));
 		res.addObject("requestURI", "teacher/list.do");
 		res.addObject("danceschool", this.danceSchoolService.findOne(danceSchoolId).getName());
+		return res;
+
+	}
+
+	@RequestMapping(value = "/listByClass", method = RequestMethod.GET)
+	public ModelAndView listclasses(@RequestParam final int classId) {
+		final ModelAndView res = new ModelAndView("teacher/list");
+		res.addObject("teachers", this.teacherService.findTeachersByClass(classId));
+		res.addObject("requestURI", "teacher/listByClass.do");
+		res.addObject("danceschool", this.danceClassService.findOne(classId).getDanceSchool().getName());
+
 		return res;
 
 	}

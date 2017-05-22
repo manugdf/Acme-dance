@@ -39,6 +39,7 @@ public class Manager extends Actor {
 
 	private Collection<DanceSchool>	danceSchools;
 	private Collection<Banner>		banner;
+	private Collection<Teacher>		teachers;
 
 
 	@NotNull
@@ -57,6 +58,15 @@ public class Manager extends Actor {
 	}
 	public void setBanner(final Collection<Banner> banner) {
 		this.banner = banner;
+	}
+	
+	@NotNull
+	@OneToMany
+	public Collection<Teacher> getTeachers(){
+		return this.teachers;
+	}
+	public void setTeachers(final Collection<Teacher> teachers){
+		this.teachers=teachers;
 	}
 
 }

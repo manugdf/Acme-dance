@@ -67,4 +67,8 @@ public class DanceSchoolService {
 		}
 		return res;
 	}
+	
+	public Collection<DanceSchool> findAllByManager(int managerId){
+		return danceSchoolRepository.findAllByManager(managerId);
+	}
 }

@@ -12,11 +12,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="danceSchool/search.do" modelAttribute="searchForm">
-	<form:input path="word"/>
+	<form:form action="danceSchool/search.do" modelAttribute="searchForm">
+	
+			<form:input path="word"/>
 
-	<acme:submit code="danceschool.search" name="search" />
-</form:form>
+				<acme:submit code="danceschool.search" name="search" />
+	</form:form>
 
 <display:table name="danceSchools" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
@@ -64,5 +65,17 @@
 	<input	onclick="javascript: window.location.replace('award/list.do?schoolId=${row.id}');"
 					value="<spring:message code="danceschool.view.awards" />" type="button" />
 	</display:column>
+	
+	<security:authorize access="hasRole('ALUMN')">
+		<spring:message code="danceschool.events" var="events" />
+		<display:column title="${events}">
+
+			<input
+				onclick="javascript: window.location.replace('event/alumn/list.do?id=${row.id}');"
+				value="<spring:message code="danceschool.view.awards" />"
+				type="button" />
+		</display:column>
+		
+	</security:authorize>
 		
 </display:table>

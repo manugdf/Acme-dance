@@ -365,6 +365,9 @@
 		<property name="banner">
 			<list></list>
 		</property>
+		<property name="teachers">
+			<list></list>
+		</property>
 		<property name="creditCard">
 			<bean class="domain.CreditCard">
 				<property name="holderName" value="Cordelia Amaya Fernández" />
@@ -396,6 +399,9 @@
 		<property name="banner">
 			<list></list>
 		</property>
+		<property name="teachers">
+			<list></list>
+		</property>
 		<property name="creditCard">
 			<bean class="domain.CreditCard">
 				<property name="holderName" value="Cordelia Amaya Fernández" />
@@ -425,6 +431,9 @@
 			<list></list>
 		</property>
 		<property name="banner">
+			<list></list>
+		</property>
+		<property name="teachers">
 			<list></list>
 		</property>
 		<property name="creditCard">
@@ -795,11 +804,13 @@
 	<bean id="danceClass1" class="domain.DanceClass">
 		<property name="alumns">
 			<list>
+			 <ref bean="alumn1"/>
 			</list>
 		</property>
 		<property name="danceSchool" ref="danceSchool1" />
 		<property name="danceTests">
 			<list>
+			<ref bean="danceTest1"/>
 			</list>
 		</property>
 		<property name="description" value="Description1" />
@@ -899,6 +910,7 @@
 	<bean id="danceClass4" class="domain.DanceClass">
 		<property name="alumns">
 			<list>
+			 <ref bean="alumn1"/>
 			</list>
 		</property>
 		<property name="danceSchool" ref="danceSchool1" />
@@ -1080,9 +1092,11 @@
 		<property name="startDate" value="2017/06/28"/>
 		<property name="duration" value="2"/>
 		<property name="description" value="Bachata por nuestor experto"/>
-		<property name="danceSchool" ref="danceSchool2"/>
+		<property name="danceSchool" ref="danceSchool1"/>
 		<property name="alumns">
 			<list>
+			<ref bean="alumn2"/>
+			<ref bean="alumn3"/>
 			</list>
 		</property>
 	</bean>
@@ -1096,7 +1110,6 @@
 		<property name="danceSchool" ref="danceSchool2"/>
 		<property name="alumns">
 			<list>
-				<ref bean="alumn1"/>
 				<ref bean="alumn2"/>
 			</list>
 		</property>
@@ -1122,14 +1135,100 @@
 		<property name="startDate" value="2016/01/28"/>
 		<property name="duration" value="3"/>
 		<property name="description" value="Introducción a bailes modernos latinos"/>
-		<property name="danceSchool" ref="danceSchool2"/>
+		<property name="danceSchool" ref="danceSchool1"/>
 		<property name="alumns">
 			<list>
-				<ref bean="alumn3"/>
 				<ref bean="alumn1"/>
+				<ref bean="alumn2"/>
+				
 			</list>
 		</property>
 	</bean>
 	
+	<!-- DanceTests -->
+		<bean id="danceTest1" class="domain.DanceTest">
+		<property name="testDate" value="2017/12/10 10:00"/>
+		<property name="danceLevel" value="BASIC"/>
+		<property name="limitInscription" value="2017/12/09 10:00"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
+		<property name="danceClass" ref="danceClass1"/>
+		
+		</bean>
+		
+		<bean id="danceTest2" class="domain.DanceTest">
+		<property name="testDate" value="2017/10/10 11:00"/>
+		<property name="danceLevel" value="MEDIUM"/>
+		<property name="limitInscription" value="2017/10/09 11:00"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
+		<property name="danceClass" ref="danceClass1"/>
+		
+		</bean>
+		
+		<bean id="danceTest3" class="domain.DanceTest">
+		<property name="testDate" value="2017/12/10 21:00"/>
+		<property name="danceLevel" value="HIGH"/>
+		<property name="limitInscription" value="2017/12/08 21:00"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
+		<property name="danceClass" ref="danceClass1"/>
+		
+		</bean>
+	
+	<bean id="danceTest4" class="domain.DanceTest">
+		<property name="testDate" value="2017/12/19 13:00"/>
+		<property name="danceLevel" value="BASIC"/>
+		<property name="limitInscription" value="2017/12/15 13:00"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
+		<property name="danceClass" ref="danceClass1"/>
+		
+		</bean>
+	<!-- Materials -->
+		<bean id="material1" class="domain.Material">
+		<property name="title" value="Video de Mathieu Domenec"/>
+		<property name="description" value="Un video de este gran bailarin para que aprendais de él."/>
+		<property name="link" value="http://www.youtube.com/video"/>
+		<property name="teacher" ref="teacher1"/>
+		<property name="danceClass" ref="danceClass1"/>	
+		</bean>
+		
+		<bean id="material2" class="domain.Material">
+		<property name="title" value="Foto de pasos de baile"/>
+		<property name="description" value="Diferentes pasos de baile en una foto"/>
+		<property name="link" value="http://www.dance.com/dance.jpg"/>
+		<property name="teacher" ref="teacher1"/>
+		<property name="danceClass" ref="danceClass1"/>	
+		</bean>
+		
+			<!-- PartnerRequests -->
+	<bean id="partnerRequest1" class="domain.PartnerRequest">
+		<property name="description" value="Busco pareja para salsa"/>
+		<property name="danceStyle" value="Salsa"/>
+		<property name="alumn" ref="alumn1"/>
+		</bean>
+	<bean id="partnerRequest2" class="domain.PartnerRequest">
+		<property name="description" value="Busco pareja para bachata"/>
+		<property name="danceStyle" value="Bachata"/>
+		<property name="alumn" ref="alumn1"/>
+		</bean>
+		
 </beans>
+
+
+
+		
 
