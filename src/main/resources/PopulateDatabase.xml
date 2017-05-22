@@ -365,6 +365,9 @@
 		<property name="banner">
 			<list></list>
 		</property>
+		<property name="teachers">
+			<list></list>
+		</property>
 		<property name="creditCard">
 			<bean class="domain.CreditCard">
 				<property name="holderName" value="Cordelia Amaya Fernández" />
@@ -396,6 +399,9 @@
 		<property name="banner">
 			<list></list>
 		</property>
+		<property name="teachers">
+			<list></list>
+		</property>
 		<property name="creditCard">
 			<bean class="domain.CreditCard">
 				<property name="holderName" value="Cordelia Amaya Fernández" />
@@ -425,6 +431,9 @@
 			<list></list>
 		</property>
 		<property name="banner">
+			<list></list>
+		</property>
+		<property name="teachers">
 			<list></list>
 		</property>
 		<property name="creditCard">

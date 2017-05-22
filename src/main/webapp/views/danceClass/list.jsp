@@ -42,6 +42,19 @@
 	
 	</display:column>
 	
+	<display:column title="${add}">
+	<jstl:if test="${not empty myTeachers}">
+	<input	onclick="javascript: window.location.replace('teacher/manager/add.do?danceClassId=${row.id}');"
+					value="<spring:message code="danceclass.add" />" type="button" />
+	</jstl:if>
+	</display:column>
+	
+	<display:column title="${remove}">
+	
+	<input	onclick="javascript: window.location.replace('teacher/manager/remove.do?classId=${row.id}');"
+					value="<spring:message code="danceclass.remove" />" type="button" />
+	
+	</display:column>
 	
 		
 </display:table>

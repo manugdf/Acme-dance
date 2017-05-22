@@ -42,3 +42,8 @@
 	
 		
 </display:table>
+
+<security:authorize access="hasRole('MANAGER')">
+	<a href="teacher/manager/register.do"> <spring:message code="teacher.register" />
+	</a>
+</security:authorize>

@@ -21,4 +21,14 @@
 		<put-attribute name="body" value="/views/danceClass/list.jsp" />
 	</definition>
 	
+	<definition name="danceClass/add" extends="master.page">	
+		<put-attribute name="title" value="Add teacher" />
+		<put-attribute name="body" value="/views/danceClass/add.jsp" />
+	</definition>
+	
+	<definition name="danceClass/remove" extends="master.page">	
+		<put-attribute name="title" value="Remove teacher" />
+		<put-attribute name="body" value="/views/danceClass/remove.jsp" />
+	</definition>
+	
 </tiles-definitions>

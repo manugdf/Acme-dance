@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import domain.DanceClass;
 import domain.DanceSchool;
+import domain.Manager;
 import repositories.DanceClassRepository;
 
 @Service
@@ -20,6 +22,8 @@ public class DanceClassService {
 	private DanceClassRepository	danceClassRepository;
 	@Autowired
 	private DanceSchoolService		danceSchoolService;
+	@Autowired
+	private ManagerService 			managerService;
 
 
 	// Constructor
@@ -44,4 +48,21 @@ public class DanceClassService {
 		final Collection<DanceClass> classes = school.getDanceClasses();
 		return classes;
 	}
+	
+	public Collection<DanceClass> findDanceClassesByManager(int managerId){
+		final Manager manager=managerService.findOne(managerId);
+		final Collection<DanceClass> danceClasses=new ArrayList<DanceClass>();
+		final Collection<DanceSchool> danceSchools=manager.getDanceSchools();
+		for(final DanceSchool d:danceSchools){
+			for(final DanceClass da:d.getDanceClasses()){
+				if(!danceClasses.contains(da)){
+					danceClasses.add(da);
+				}
+			}
+		}
+		return danceClasses;
+	}
+
+	
+	
 }

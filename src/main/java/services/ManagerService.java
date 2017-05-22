@@ -25,9 +25,16 @@ public class ManagerService {
 	
 	// Simple CRUD methods
 
+	public Manager findOne(final int managerId) {
+		Manager result=this.managerRepository.findOne(managerId);
+		return result;
+	}
 	
-	
-	
+	public Manager save(final Manager manager) {
+		Assert.notNull(manager);
+		final Manager managerSaved = this.managerRepository.save(manager);
+		return managerSaved;
+	}
 	
 	
 	public Manager findByPrincipal() {
