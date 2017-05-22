@@ -27,6 +27,7 @@ public class DanceClassController extends AbstractController {
 		res.addObject("danceClasses", this.danceClassService.findDanceClassesBySchool(danceSchoolId));
 		res.addObject("requestURI", "danceClass/list.do");
 		res.addObject("danceschool", this.danceSchoolService.findOne(danceSchoolId));
+		res.addObject("myClasses", false);
 		return res;
 
 	}

@@ -22,5 +22,14 @@
 	<spring:message code="partnerRequest.danceStyle" var="dance"/>
 	<display:column property="danceStyle" title="${dance}"/>
 	
+	<spring:message code="partnerRequest.delete" var="delete"/>
+	<display:column title="${delete}">
+	<input	onclick="javascript: window.location.replace('partnerRequest/alumn/delete.do?partnerRequestId=${row.id}');"
+					value="<spring:message code="partnerRequest.delete" />" type="button" />
+	</display:column>
+	
 		
 </display:table>
+
+<input	onclick="javascript: window.location.replace('partnerRequest/alumn/create.do');"
+					value="<spring:message code="partnerRequest.create" />" type="button" />
