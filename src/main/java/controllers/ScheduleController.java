@@ -15,7 +15,7 @@ import services.ScheduleService;
 public class ScheduleController extends AbstractController {
 
 	@Autowired
-	private ScheduleService scheduleService;
+	private ScheduleService	scheduleService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -26,4 +26,5 @@ public class ScheduleController extends AbstractController {
 		return res;
 
 	}
+
 }

@@ -29,8 +29,8 @@
 	<spring:message code="schedule.classroom" var="classroom"/>
 	<display:column property="classroom" title="${classroom}"/>
 	
-	
-	
-	
-		
+
 </display:table>
+
+	<input	onclick="javascript: window.location.replace('manager/schedule/create.do?classId=${row.danceClass.id}');"
+					value="<spring:message code="schedule.create" />" type="button" />

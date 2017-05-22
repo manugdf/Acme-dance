@@ -6,17 +6,24 @@ import java.util.Collection;
 
 import javax.transaction.Transactional;
 
-import domain.*;
-import forms.DanceClassAuxForm;
-import forms.DanceClassForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
-import domain.Manager;
+
 import repositories.DanceClassRepository;
+import domain.Alumn;
+import domain.DanceClass;
+import domain.DanceSchool;
+import domain.DanceTest;
+import domain.Manager;
+import domain.Material;
+import domain.Payment;
+import domain.Schedule;
+import domain.Teacher;
+import forms.DanceClassAuxForm;
+import forms.DanceClassForm;
 
 @Service
 @Transactional
@@ -27,11 +34,11 @@ public class DanceClassService {
 	@Autowired
 	private DanceSchoolService		danceSchoolService;
 	@Autowired
-	private ManagerService 			managerService;
+	private ManagerService			managerService;
 	@Autowired
 	private TeacherService			teacherService;
 	@Autowired
-	private Validator validator;
+	private Validator				validator;
 
 
 	// Constructor
@@ -41,8 +48,8 @@ public class DanceClassService {
 
 	// Simple CRUD methods
 
-	public DanceClass create(){
-		DanceClass res = new DanceClass();
+	public DanceClass create() {
+		final DanceClass res = new DanceClass();
 
 		res.setAlumns(new ArrayList<Alumn>());
 		res.setTeachers(new ArrayList<Teacher>());
@@ -64,13 +71,13 @@ public class DanceClassService {
 		return result;
 	}
 
-	public DanceClass save(DanceClass danceClass){
+	public DanceClass save(final DanceClass danceClass) {
 		Assert.notNull(danceClass);
 
 		return this.danceClassRepository.save(danceClass);
 	}
 
-	public void delete(DanceClass danceClass){
+	public void delete(final DanceClass danceClass) {
 		Assert.notNull(danceClass);
 		this.danceClassRepository.delete(danceClass);
 	}
@@ -80,26 +87,28 @@ public class DanceClassService {
 		final Collection<DanceClass> classes = school.getDanceClasses();
 		return classes;
 	}
-	
-	public Collection<DanceClass> findDanceClassesByManager(int managerId){
-		final Manager manager=managerService.findOne(managerId);
-		final Collection<DanceClass> danceClasses=new ArrayList<DanceClass>();
-		final Collection<DanceSchool> danceSchools=manager.getDanceSchools();
-		for(final DanceSchool d:danceSchools){
-			for(final DanceClass da:d.getDanceClasses()){
-				if(!danceClasses.contains(da)){
+
+	public Collection<DanceClass> findDanceClassesByManager(final int managerId) {
+		final Manager manager = this.managerService.findOne(managerId);
+		final Collection<DanceClass> danceClasses = new ArrayList<DanceClass>();
+		final Collection<DanceSchool> danceSchools = manager.getDanceSchools();
+		for (final DanceSchool d : danceSchools)
+			for (final DanceClass da : d.getDanceClasses())
+				if (!danceClasses.contains(da))
 					danceClasses.add(da);
-				}
-			}
-		}
 		return danceClasses;
 	}
 
-	
-	
+	public Collection<DanceClass> findAllByManager(final int managerId) {
 
-	public DanceClass reconstruct(DanceClassForm danceClassForm, BindingResult binding){
-		DanceClass res = create();
+		final Collection<DanceClass> res = this.danceClassRepository.findAllByManagerId(managerId);
+
+		return res;
+
+	}
+
+	public DanceClass reconstruct(final DanceClassForm danceClassForm, final BindingResult binding) {
+		final DanceClass res = this.create();
 
 		res.setDanceSchool(danceClassForm.getDanceSchool());
 		res.setStyle(danceClassForm.getStyle());
@@ -112,7 +121,7 @@ public class DanceClassService {
 		return res;
 	}
 
-	public DanceClass reconstructEdit(DanceClass danceClassForm, DanceClass res){
+	public DanceClass reconstructEdit(final DanceClass danceClassForm, final DanceClass res) {
 
 		res.setStyle(danceClassForm.getStyle());
 		res.setMaxAlumns(danceClassForm.getMaxAlumns());
@@ -123,8 +132,8 @@ public class DanceClassService {
 		return res;
 	}
 
-	public DanceClass reconstructAux(final DanceClassAuxForm danceClassAuxForm){
-		DanceClass aux=danceClassAuxForm.getDanceClass();
+	public DanceClass reconstructAux(final DanceClassAuxForm danceClassAuxForm) {
+		final DanceClass aux = danceClassAuxForm.getDanceClass();
 		aux.getTeachers().add(danceClassAuxForm.getTeacher());
 
 		return aux;
