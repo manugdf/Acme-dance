@@ -3,12 +3,14 @@ package controllers.alumn;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import domain.Alumn;
+import domain.DanceClass;
 import services.AlumnService;
 import services.DanceClassService;
 import services.DanceSchoolService;
@@ -41,10 +43,18 @@ public class DanceClassAlumnController {
 		final ModelAndView res = new ModelAndView("danceClass/listMyClasses");
 
 		try {
-
+			final DanceClass dc = this.danceClassService.findOne(classId);
+			final Alumn al = this.alumnService.findByPrincipal();
+			Assert.isTrue(dc.getAlumns().contains(al));
+			dc.getAlumns().remove(al);
+			this.danceClassService.save(dc);
+			res.addObject("danceClasses", al.getDanceClasses());
+			res.addObject("requestURI", "danceClass/listMyClasses.do");
 		} catch (final Throwable oops) {
-
-			res.addObject("message", "event.commit.error");
+			final Alumn alumn = this.alumnService.findByPrincipal();
+			res.addObject("danceClasses", alumn.getDanceClasses());
+			res.addObject("requestURI", "danceClass/listMyClasses.do");
+			res.addObject("message", "danceclass.commit.error");
 			System.out.println(oops.getMessage());
 		}
 		return res;

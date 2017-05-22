@@ -12,6 +12,19 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<script>
+	function myFunction(id,t) {
+	   
+	    var r = confirm(t);
+	    if (r == true) {
+	    	document.location.href='danceClass/alumn/quit.do?classId='+id;
+	    } else {
+	        
+	    }
+	    
+	}
+	</script>
+
 <display:table name="danceClasses" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
 	
@@ -70,8 +83,9 @@
 	<spring:message code="danceClass.quit" var="quit"/>
 	<display:column title="${quit}">
 	
-	<input	onclick="javascript: window.location.replace('danceClass/alumn/quit.do?classId=${row.id}');"
-					value="<spring:message code="danceclass.schedule.view" />" type="button" />
+	<spring:message code="danceClass.quit.sure" var="sure"/>
+	<input	onclick="myFunction(${row.id},'${sure}')"
+					value="<spring:message code="danceClass.quit.quit" />" type="button" />
 	
 	</display:column>
 	
