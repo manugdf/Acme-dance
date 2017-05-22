@@ -16,6 +16,8 @@
        
 <tiles-definitions>
 
+	
+	
 	<definition name="danceSchool/list" extends="master.page">	
 		<put-attribute name="title" value="Dance Schools" />
 		<put-attribute name="body" value="/views/danceSchool/list.jsp" />
@@ -25,5 +27,7 @@
 		<put-attribute name="title" value="My Dance Schools" />
 		<put-attribute name="body" value="/views/danceSchool/list.jsp" />
 	</definition>
+	
+	
 	
 </tiles-definitions>

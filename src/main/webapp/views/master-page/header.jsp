@@ -38,6 +38,11 @@
 			<li><a class="fNiv" href="danceSchool/manager/list.do"><spring:message
 						code="master.page.schoolsByManager" /></a></li>
 		</security:authorize>
+		
+		<security:authorize access="hasRole('ALUMN')">
+			<li><a class="fNiv" href="danceClass/alumn/listMyClasses.do"><spring:message
+						code="master.page.myClasses" /></a></li>
+		</security:authorize>
 
 		<security:authorize access="isAnonymous()">
 

@@ -15,15 +15,10 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
       
 <tiles-definitions>
-<definition name="danceSchool/list" extends="master.page">	
-		<put-attribute name="title" value="Escuelas de baile" />
-		<put-attribute name="body" value="/views/danceSchool/list.jsp" />
+
+	<definition name="material/list" extends="master.page">	
+		<put-attribute name="title" value="Palmarés" />
+		<put-attribute name="body" value="/views/material/list.jsp" />
 	</definition>
-	
-	<definition name="danceSchool/listByManager" extends="master.page">	
-		<put-attribute name="title" value="Mis escuelas de baile" />
-		<put-attribute name="body" value="/views/danceSchool/list.jsp" />
-	</definition>
-	
 	
 </tiles-definitions>

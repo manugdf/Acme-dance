@@ -810,6 +810,7 @@
 		<property name="danceSchool" ref="danceSchool1" />
 		<property name="danceTests">
 			<list>
+			<ref bean="danceTest1"/>
 			</list>
 		</property>
 		<property name="description" value="Description1" />
@@ -1144,5 +1145,79 @@
 		</property>
 	</bean>
 	
+	<!-- DanceTests -->
+		<bean id="danceTest1" class="domain.DanceTest">
+		<property name="testDate" value="2017/12/10 10:00"/>
+		<property name="danceLevel" value="BASIC"/>
+		<property name="limitInscription" value="2017/12/09 10:00"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
+		<property name="danceClass" ref="danceClass1"/>
+		
+		</bean>
+		
+		<bean id="danceTest2" class="domain.DanceTest">
+		<property name="testDate" value="2017/10/10 11:00"/>
+		<property name="danceLevel" value="MEDIUM"/>
+		<property name="limitInscription" value="2017/10/09 11:00"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
+		<property name="danceClass" ref="danceClass1"/>
+		
+		</bean>
+		
+		<bean id="danceTest3" class="domain.DanceTest">
+		<property name="testDate" value="2017/12/10 21:00"/>
+		<property name="danceLevel" value="HIGH"/>
+		<property name="limitInscription" value="2017/12/08 21:00"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
+		<property name="danceClass" ref="danceClass1"/>
+		
+		</bean>
+	
+	<bean id="danceTest4" class="domain.DanceTest">
+		<property name="testDate" value="2017/12/19 13:00"/>
+		<property name="danceLevel" value="BASIC"/>
+		<property name="limitInscription" value="2017/12/15 13:00"/>
+		<property name="alumns">
+			<list>
+				<ref bean="alumn1"/>
+			</list>
+		</property>
+		<property name="danceClass" ref="danceClass1"/>
+		
+		</bean>
+	<!-- Materials -->
+		<bean id="material1" class="domain.Material">
+		<property name="title" value="Video de Mathieu Domenec"/>
+		<property name="description" value="Un video de este gran bailarin para que aprendais de él."/>
+		<property name="link" value="http://www.youtube.com/video"/>
+		<property name="teacher" ref="teacher1"/>
+		<property name="danceClass" ref="danceClass1"/>	
+		</bean>
+		
+		<bean id="material2" class="domain.Material">
+		<property name="title" value="Foto de pasos de baile"/>
+		<property name="description" value="Diferentes pasos de baile en una foto"/>
+		<property name="link" value="http://www.dance.com/dance.jpg"/>
+		<property name="teacher" ref="teacher1"/>
+		<property name="danceClass" ref="danceClass1"/>	
+		</bean>
+		
+		
 </beans>
+
+
+
+		
 

@@ -15,8 +15,8 @@
 <display:table name="danceClasses" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
 	
-	<spring:message code="danceclass.description" var="desc"/>
-	<display:column title="${desc}">
+	<spring:message code="danceclass.school" var="sch"/>
+	<display:column title="${sch}">
 	${row.danceSchool.name}
 	</display:column>
 	
@@ -51,6 +51,21 @@
 	
 	</display:column>
 
+<spring:message code="danceClass.danceTests" var="tests"/>
+	<display:column title="${tests}">
+	
+	<input	onclick="javascript: window.location.replace('danceTest/alumn/list.do?classId=${row.id}');"
+					value="<spring:message code="danceclass.schedule.view" />" type="button" />
+	
+	</display:column>
+	
+	<spring:message code="danceClass.materials" var="mat"/>
+	<display:column title="${mat}">
+	
+	<input	onclick="javascript: window.location.replace('material/alumn/list.do?classId=${row.id}');"
+					value="<spring:message code="danceclass.schedule.view" />" type="button" />
+	
+	</display:column>
 	
 		
 </display:table>

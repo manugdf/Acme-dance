@@ -27,6 +27,8 @@
 		<value>/views/award/messages</value>
 		<value>/views/alumn/messages</value>
 		<value>/views/event/messages</value>
+		<value>/views/danceTest/messages</value>
+		<value>/views/material/messages</value>
 
 	</util:list>
 
