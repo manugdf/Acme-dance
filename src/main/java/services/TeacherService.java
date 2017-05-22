@@ -19,7 +19,6 @@ import domain.Material;
 import domain.Message;
 import domain.Review;
 import domain.Teacher;
-import forms.DanceClassAuxForm;
 import forms.TeacherForm;
 import repositories.TeacherRepository;
 import security.Authority;
@@ -35,7 +34,9 @@ public class TeacherService {
 	@Autowired
 	private DanceSchoolService	danceSchoolService;
 	@Autowired
-	private ManagerService 		managerService;
+	private DanceClassService	danceClassService;
+	@Autowired
+	private ManagerService		managerService;
 
 
 	// Constructor
@@ -44,7 +45,7 @@ public class TeacherService {
 	}
 
 	// Simple CRUD methods
-	public Teacher create(){
+	public Teacher create() {
 
 		final UserAccount userAccount = new UserAccount();
 		final Authority aut = new Authority();
@@ -52,7 +53,7 @@ public class TeacherService {
 		final Collection<Authority> authorities = userAccount.getAuthorities();
 		authorities.add(aut);
 		userAccount.setAuthorities(authorities);
-		
+
 		final Teacher res = new Teacher();
 		res.setUserAccount(userAccount);
 		res.setAverageScore(0.0);
@@ -62,10 +63,10 @@ public class TeacherService {
 		res.setMaterials(new ArrayList<Material>());
 		res.setMessagesReceived(new ArrayList<Message>());
 		res.setMessagesSended(new ArrayList<Message>());
-		
+
 		return res;
 	}
-	
+
 	public Collection<Teacher> findAll() {
 		return this.teacherRepository.findAll();
 	}
@@ -91,7 +92,7 @@ public class TeacherService {
 					teachers.add(t);
 		return teachers;
 	}
-	
+
 	public void register(Teacher teacher) {
 		Assert.notNull(teacher);
 		UserAccount userAccount;
@@ -101,12 +102,12 @@ public class TeacherService {
 		teacher.setUserAccount(userAccount);
 		teacher = this.save(teacher);
 
-		Teacher aux=this.save(teacher);
-		Manager manager=managerService.findByPrincipal();
+		final Teacher aux = this.save(teacher);
+		final Manager manager = this.managerService.findByPrincipal();
 		manager.getTeachers().add(aux);
-		managerService.save(manager);
+		this.managerService.save(manager);
 	}
-	
+
 	public Teacher reconstruct(final TeacherForm teacherForm) {
 		final Teacher teacher = this.create();
 		teacher.getUserAccount().setUsername(teacherForm.getUsername());
@@ -117,25 +118,31 @@ public class TeacherService {
 		teacher.setPhone(teacherForm.getPhone());
 		teacher.setPicture(teacherForm.getPicture());
 		teacher.setPresentationVideo(teacherForm.getPresentationVideo());
-//		teacher.getDanceClasses().add(teacherForm.getDanceClass());
+		//		teacher.getDanceClasses().add(teacherForm.getDanceClass());
 
 		return teacher;
 	}
-	
-	
-//	public TeacherForm reconstructForm(final Teacher teacher) {
-//		final TeacherForm teacherForm = new TeacherForm();
-//		teacherForm.setAcceptTerms(true);
-//		
-//		teacherForm.setName(teacher.getName());
-//		teacherForm.setSurname(teacher.getSurname());
-//		teacherForm.setEmail(teacher.getEmail());
-//		teacherForm.setPhone(teacher.getPhone());
-//		teacherForm.setPicture(teacher.getPicture());
-//		teacherForm.setPresentationVideo(teacher.getPresentationVideo());
-//		teacherForm.setUsername(teacher.getUserAccount().getUsername());
-//
-//		return teacherForm;
-//	}
+
+	public Collection<Teacher> findTeachersByClass(final int classId) {
+		final DanceClass d = this.danceClassService.findOne(classId);
+		final Collection<Teacher> teachers = d.getTeachers();
+
+		return teachers;
+	}
+
+	//	public TeacherForm reconstructForm(final Teacher teacher) {
+	//		final TeacherForm teacherForm = new TeacherForm();
+	//		teacherForm.setAcceptTerms(true);
+	//
+	//		teacherForm.setName(teacher.getName());
+	//		teacherForm.setSurname(teacher.getSurname());
+	//		teacherForm.setEmail(teacher.getEmail());
+	//		teacherForm.setPhone(teacher.getPhone());
+	//		teacherForm.setPicture(teacher.getPicture());
+	//		teacherForm.setPresentationVideo(teacher.getPresentationVideo());
+	//		teacherForm.setUsername(teacher.getUserAccount().getUsername());
+	//
+	//		return teacherForm;
+	//	}
 
 }
