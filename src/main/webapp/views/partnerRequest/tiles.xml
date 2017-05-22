@@ -21,4 +21,9 @@
 		<put-attribute name="body" value="/views/partnerRequest/list.jsp" />
 	</definition>
 	
+	<definition name="partnerRequest/create" extends="master.page">	
+		<put-attribute name="title" value="Create partner request" />
+		<put-attribute name="body" value="/views/partnerRequest/edit.jsp" />
+	</definition>
+	
 </tiles-definitions>

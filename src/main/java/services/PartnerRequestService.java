@@ -16,7 +16,10 @@ import repositories.PartnerRequestRepository;
 public class PartnerRequestService {
 
 	@Autowired
-	private PartnerRequestRepository partnerRequestRepository;
+	private PartnerRequestRepository	partnerRequestRepository;
+
+	@Autowired
+	private AlumnService				alumnService;
 
 
 	// Constructor
@@ -25,6 +28,12 @@ public class PartnerRequestService {
 	}
 
 	// Simple CRUD methods
+
+	public PartnerRequest create() {
+		final PartnerRequest res = new PartnerRequest();
+		res.setAlumn(this.alumnService.findByPrincipal());
+		return res;
+	}
 
 	public Collection<PartnerRequest> findAll() {
 		return this.partnerRequestRepository.findAll();
@@ -39,6 +48,10 @@ public class PartnerRequestService {
 	public PartnerRequest save(final PartnerRequest partnerRequest) {
 
 		return this.partnerRequestRepository.save(partnerRequest);
+	}
+
+	public void delete(final PartnerRequest pr) {
+		this.partnerRequestRepository.delete(pr);
 	}
 
 }
