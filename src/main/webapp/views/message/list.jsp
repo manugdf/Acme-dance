@@ -12,15 +12,15 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <spring:message code="message.actor.received" />
+<br />
 <display:table name="received" id="row" requestURI="${requestURI}"
-	class="displaytag" keepStatus="true" pagesize="5"
-	style="background-color:green;">
+	class="displaytag" keepStatus="true" pagesize="5">
 
 	<spring:message code="message.sender" var="sender" />
-	<display:column property="sender" title="${sender}" />
+	<display:column property="sender.name" title="${sender}" />
 
 	<spring:message code="message.receiver" var="receiver" />
-	<display:column property="receiver" title="${receiver}" />
+	<display:column property="receiver.name" title="${receiver}" />
 
 	<spring:message code="message.moment" var="moment" />
 	<display:column property="moment" title="${moment}" />
@@ -46,15 +46,15 @@
 </display:table>
 
 <spring:message code="message.actor.sent" />
+<br />
 <display:table name="sent" id="row" requestURI="${requestURI}"
-	class="displaytag" keepStatus="true" pagesize="5"
-	style="background-color:red;">
+	class="displaytag" keepStatus="true" pagesize="5">
 
 	<spring:message code="message.sender" var="sender" />
-	<display:column property="sender" title="${sender}" />
+	<display:column property="sender.name" title="${sender}" />
 
 	<spring:message code="message.receiver" var="receiver" />
-	<display:column property="receiver" title="${receiver}" />
+	<display:column property="receiver.name" title="${receiver}" />
 
 	<spring:message code="message.moment" var="moment" />
 	<display:column property="moment" title="${moment}" />
@@ -74,9 +74,7 @@
 </display:table>
 
 <div>
-	<display:column>
-		<input
-			onclick="javascript: window.location.replace('message/actor/create.do');"
-			value="<spring:message code="message.create" />" type="button" />
-	</display:column>
+	<input
+		onclick="javascript: window.location.replace('message/actor/create.do');"
+		value="<spring:message code="message.create" />" type="button" />
 </div>
