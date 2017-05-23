@@ -86,6 +86,7 @@
 		<security:intercept-url pattern="/alumn/register.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/manager/register.do" access="isAnonymous()" /> 
 
+	<security:intercept-url pattern="/message/actor/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/profile/action-1.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
 		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
