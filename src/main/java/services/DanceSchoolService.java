@@ -6,6 +6,8 @@ import java.util.Collection;
 
 import javax.transaction.Transactional;
 
+import domain.Competition;
+import forms.SelectDanceSchoolForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ public class DanceSchoolService {
 
 	@Autowired
 	private DanceSchoolRepository danceSchoolRepository;
+
+	@Autowired
+	private CompetitionService competitionService;
 
 
 	// Constructor
@@ -75,4 +80,5 @@ public class DanceSchoolService {
 	public Collection<DanceSchool> findSchoolsByCompetition(int competitionId){
 		return danceSchoolRepository.findSchoolsByCompetition(competitionId);
 	}
+
 }

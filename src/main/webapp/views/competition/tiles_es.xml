@@ -19,6 +19,11 @@
 		<put-attribute name="title" value="Lista de competiciones" />
 		<put-attribute name="body" value="/views/competition/list.jsp" />
 	</definition>
+
+	<definition name="competition/signup" extends="master.page">
+		<put-attribute name="title" value="Apuntar escuela de baile" />
+		<put-attribute name="body" value="/views/competition/signup.jsp" />
+	</definition>
 	
 	
 </tiles-definitions>

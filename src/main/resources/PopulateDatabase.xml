@@ -743,10 +743,10 @@
 			</list>
 		</property>
 		<property name="description" value="Description3" />
-		<property name="limitInscription" value="2018/12/03 00:00" />
-		<property name="limitSchool" value="100" />
+		<property name="limitInscription" value="2016/12/03 00:00" />
+		<property name="limitSchool" value="1" />
 		<property name="place" ref="location3" />
-		<property name="startDate" value="2018/12/06 00:00" />
+		<property name="startDate" value="2016/12/06 00:00" />
 
 	</bean>
 
@@ -765,7 +765,7 @@
 		</property>
 		<property name="description" value="Description4" />
 		<property name="limitInscription" value="2018/12/04 00:00" />
-		<property name="limitSchool" value="100" />
+		<property name="limitSchool" value="1" />
 		<property name="place" ref="location4" />
 		<property name="startDate" value="2018/12/08 00:00" />
 	</bean>

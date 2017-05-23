@@ -53,11 +53,20 @@
                   value="<spring:message code="competition.view" />" type="button" />
     </display:column>
 
-    <spring:message code="competition.signup" var="signup"/>
-    <display:column title="${signup}">
-        <input	onclick="javascript: window.location.replace('competition/manager/signup.do?competitionId=${row.id}');"
-                  value="<spring:message code="competition.signup" />" type="button" />
-    </display:column>
+    <security:authorize access="hasRole('MANAGER')">
+        <spring:message code="competition.signup" var="signup"/>
+        <display:column title="${signup}">
+            <jstl:choose>
+                <jstl:when test="${actualDate<=row.limitInscription && fn:length(row.danceSchools) < row.limitSchool}">
+                    <input	onclick="javascript: window.location.replace('competition/manager/signup.do?competitionId=${row.id}');"
+                              value="<spring:message code="competition.signup" />" type="button" />
+                </jstl:when>
+                <jstl:otherwise>
+                    <font color="red"><spring:message code="competition.cantSignup" /></font>
+                </jstl:otherwise>
+            </jstl:choose>
+        </display:column>
+    </security:authorize>
 
 
 </display:table>
