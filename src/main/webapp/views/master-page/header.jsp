@@ -42,6 +42,7 @@
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ALUMN')">
+			<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message code="master.page.schools" /></a></li>
 		<li><a class="fNiv"><spring:message
 						code="master.page.partners" /></a>
 				<ul>
@@ -77,7 +78,6 @@
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">
-		<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message code="master.page.schools" /></a></li>
 			<li><a class="fNiv"> <spring:message
 						code="master.page.profile" /> (<security:authentication
 						property="principal.username" />)
