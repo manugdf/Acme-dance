@@ -25,4 +25,15 @@
 	<spring:message code="dancetest.limitInscription" var="limitInscription"/>
 	<display:column property="limitInscription" title="${limitInscription}"/>
 	
+	<security:authorize access="hasRole('TEACHER')">
+	<spring:message code="teacher.selectAlum" var="selectAlum"/>
+	<display:column title="${selectAlum}">
+	<jsp:useBean id="now" class="java.util.Date"/>
+			<jstl:if test="${row.testDate le now}">
+				<input	onclick="javascript: window.location.replace('alumn/teacher/list.do?danceTestId=${row.id}');"
+				  	value="<spring:message code="teacher.select" />" type="button" />
+			</jstl:if>
+	</display:column>
+	</security:authorize>
+	
 </display:table>
