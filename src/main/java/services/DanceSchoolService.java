@@ -8,8 +8,16 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
+import domain.Award;
+import domain.Competition;
+import domain.DanceClass;
 import domain.DanceSchool;
+import domain.Event;
+import domain.Manager;
 import repositories.DanceSchoolRepository;
 
 @Service
@@ -22,6 +30,12 @@ public class DanceSchoolService {
 	@Autowired
 	private CompetitionService		competitionService;
 
+	@Autowired
+	private ManagerService			managerService;
+
+	@Autowired
+	private Validator				validator;
+
 
 	// Constructor
 	public DanceSchoolService() {
@@ -29,6 +43,17 @@ public class DanceSchoolService {
 	}
 
 	// Simple CRUD methods
+
+	public DanceSchool create() {
+		final DanceSchool res = new DanceSchool();
+		res.setState("PENDING");
+		res.setManager(this.managerService.findByPrincipal());
+		res.setDanceClasses(new ArrayList<DanceClass>());
+		res.setEvents(new ArrayList<Event>());
+		res.setCompetitions(new ArrayList<Competition>());
+		res.setAwards(new ArrayList<Award>());
+		return res;
+	}
 
 	public Collection<DanceSchool> findAll() {
 		return this.danceSchoolRepository.findAll();
@@ -69,6 +94,45 @@ public class DanceSchoolService {
 
 		}
 		return res;
+	}
+
+	public DanceSchool newDanceSchool(DanceSchool danceSchool) {
+
+		Assert.isTrue(this.managerService.LoggedIsManager());
+		final Manager logged = this.managerService.findByPrincipal();
+		Assert.isTrue(danceSchool.getManager().equals(logged));
+
+		danceSchool = this.save(danceSchool);
+		this.managerService.save(logged);
+
+		return danceSchool;
+	}
+
+	public DanceSchool editDanceSchool(DanceSchool danceSchool) {
+		final Manager logged = this.managerService.findByPrincipal();
+		Assert.isTrue(danceSchool.getManager().equals(logged));
+		danceSchool = this.save(danceSchool);
+		return danceSchool;
+	}
+
+	public DanceSchool reconstruct(final DanceSchool danceSchool, final BindingResult binding) {
+		DanceSchool res;
+
+		if (danceSchool.getId() == 0)
+			res = danceSchool;
+		else {
+			res = this.danceSchoolRepository.findOne(danceSchool.getId());
+			res.setName(danceSchool.getName());
+			res.setDescription(danceSchool.getDescription());
+			res.setLocation(danceSchool.getLocation());
+			res.setPhone(danceSchool.getPhone());
+			res.setPicture(danceSchool.getPicture());
+			res.setState(danceSchool.getState());
+
+			this.validator.validate(res, binding);
+		}
+		return res;
+
 	}
 
 	public Collection<DanceSchool> findAllByManager(final int managerId) {

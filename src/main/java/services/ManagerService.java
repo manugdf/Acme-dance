@@ -12,10 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 
-import repositories.ManagerRepository;
-import security.Authority;
-import security.LoginService;
-import security.UserAccount;
 import domain.Banner;
 import domain.CreditCard;
 import domain.DanceSchool;
@@ -23,13 +19,17 @@ import domain.Manager;
 import domain.Message;
 import domain.Teacher;
 import forms.ManagerForm;
+import repositories.ManagerRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
 
 @Service
 @Transactional
 public class ManagerService {
 
 	@Autowired
-	private ManagerRepository	managerRepository;
+	private ManagerRepository managerRepository;
 
 
 	// Constructor
@@ -88,7 +88,7 @@ public class ManagerService {
 		return manager;
 	}
 
-	public Boolean isManager() {
+	public Boolean LoggedIsManager() {
 		Boolean res = false;
 		try {
 			final Authority aut = new Authority();
