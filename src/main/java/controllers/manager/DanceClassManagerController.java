@@ -1,6 +1,7 @@
 
 package controllers.manager;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -166,25 +167,31 @@ public class DanceClassManagerController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView add(@RequestParam final int danceClassId) {
-		final ModelAndView res = new ModelAndView("danceClass/add");
-		final Collection<Teacher> myTeachers = this.managerService.findByPrincipal().getTeachers();
-		final Collection<Teacher> danceClassTeachers = this.danceClassService.findOne(danceClassId).getTeachers();
-		for (final Teacher t : myTeachers)
-			if (danceClassTeachers.contains(t))
-				myTeachers.remove(t);
-		final DanceClassAuxForm danceClassAuxForm = new DanceClassAuxForm();
+	public ModelAndView add(@RequestParam final int danceClassId,@RequestParam final int danceSchoolId) {
+		ModelAndView res = new ModelAndView("danceClass/add");
+		Collection<Teacher> myTeachers = this.managerService.findByPrincipal().getTeachers();
+		Collection<Teacher> danceClassTeachers = this.danceClassService.findOne(danceClassId).getTeachers();
+		Collection<Teacher> aux=new ArrayList<Teacher>();
+		for(Teacher t:myTeachers){
+			if(!danceClassTeachers.contains(t)){
+				aux.add(t);
+			}
+		}
+		
+		DanceClassAuxForm danceClassAuxForm = new DanceClassAuxForm();
 		danceClassAuxForm.setDanceClass(this.danceClassService.findOne(danceClassId));
 		res.addObject("danceClassAuxForm", danceClassAuxForm);
-		res.addObject("requestUri", "danceClass/manager/add.do");
-		res.addObject("myTeachers", myTeachers);
+		res.addObject("requestUri", "danceClass/manager/add.do?danceSchoolId="+danceSchoolId);
+		res.addObject("myTeachers", aux);
+		res.addObject("danceSchoolId", danceSchoolId);
+		
 
 		return res;
 
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, params = "save")
-	public ModelAndView add(@Valid final DanceClassAuxForm danceClassAuxForm, final BindingResult bindingResult) {
+	public ModelAndView add(@Valid final DanceClassAuxForm danceClassAuxForm, @RequestParam final int danceSchoolId, final BindingResult bindingResult) {
 		ModelAndView res = new ModelAndView("teacher/add");
 		final DanceClass auxDanceClass = this.danceClassService.reconstructAux(danceClassAuxForm);
 
@@ -197,7 +204,7 @@ public class DanceClassManagerController extends AbstractController {
 
 				this.danceClassService.save(auxDanceClass);
 
-				res = new ModelAndView("redirect:/welcome/index.do");
+				res = new ModelAndView("redirect:/danceClass/list.do?danceSchoolId="+danceSchoolId);
 
 			} catch (final DataIntegrityViolationException oops) {
 

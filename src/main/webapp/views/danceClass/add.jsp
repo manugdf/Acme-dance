@@ -20,6 +20,6 @@
 
 	<acme:submit code="danceClass.save" name="save"/>
 	
-	<acme:cancel url="welcome/index.do" code="danceClass.cancel"/>
+	<acme:cancel url="/danceClass/list.do?danceSchoolId=${danceSchoolId}" code="danceClass.cancel"/>
 	
 	</form:form>

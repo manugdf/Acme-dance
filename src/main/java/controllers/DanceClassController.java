@@ -24,9 +24,11 @@ public class DanceClassController extends AbstractController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam final int danceSchoolId) {
 		final ModelAndView res = new ModelAndView("danceClass/list");
+		
 		res.addObject("danceClasses", this.danceClassService.findDanceClassesBySchool(danceSchoolId));
 		res.addObject("requestURI", "danceClass/list.do");
 		res.addObject("danceschool", this.danceSchoolService.findOne(danceSchoolId));
+		res.addObject("danceSchoolId", danceSchoolId);
 		res.addObject("myClasses", false);
 		return res;
 

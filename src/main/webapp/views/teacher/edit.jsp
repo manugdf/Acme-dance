@@ -12,17 +12,30 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <form:form action="${requestUri}" modelAttribute="teacherForm">
-	<form:hidden path="danceClass"/>
 	
 	<jstl:if test="${edit==false}">
 	<fieldset>
+	<legend><spring:message code="teacher.account"/></legend>
 	<acme:textbox code="teacher.username" path="username"/>
 	<acme:password code="teacher.password" path="password"/>
 	<acme:password code="teacher.confirmPassword" path="confirmPassword"/>
 	</fieldset>
 	</jstl:if>
 	
+	<jstl:if test="${edit==true}">
 	<fieldset>
+	<legend><spring:message code="teacher.account"/></legend>
+	<acme:textbox readonly="true" code="teacher.username" path="username"/>
+	<acme:password code="teacher.current.password" path="password"/><b><spring:message code="teacher.passwordinfo"/></b>
+	<acme:password code="teacher.newpassword" path="newpassword"/>
+	<acme:password code="teacher.confirmPassword" path="repeatnewpassword"/>
+	<b><spring:message code="teacher.passwordinfo2"/></b>	
+	
+	</fieldset>
+	</jstl:if>
+	
+	<fieldset>
+	<legend><spring:message code="teacher.personal"/></legend>
 	<acme:textbox code="teacher.name" path="name"/>
 	<acme:textbox code="teacher.surname" path="surname"/>
 	<acme:textbox code="teacher.email" path="email"/>
@@ -47,6 +60,6 @@
 	
 	<acme:submit code="teacher.save" name="save"/>
 	
-	<acme:cancel url="welcome/index.do" code="teacher.cancel"/>
+	<acme:cancel url="teacher/manager/list.do" code="teacher.cancel"/>
 
 </form:form>

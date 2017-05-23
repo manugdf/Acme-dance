@@ -26,4 +26,14 @@
 		<put-attribute name="body" value="/views/teacher/edit.jsp" />
 	</definition>
 	
+	<definition name="teacher/edit" extends="master.page">	
+		<put-attribute name="title" value="Teacher Edit" />
+		<put-attribute name="body" value="/views/teacher/edit.jsp" />
+	</definition>
+	
+	<definition name="teacher/listManager" extends="master.page">	
+		<put-attribute name="title" value="My Teachers" />
+		<put-attribute name="body" value="/views/teacher/list.jsp" />
+	</definition>
+	
 </tiles-definitions>

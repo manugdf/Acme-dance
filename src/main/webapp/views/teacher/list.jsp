@@ -12,7 +12,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<jstl:if test="${managerTeacher==false}">
 <b><spring:message code="teacher.danceschool.name"/>: </b>${danceschool}
+</jstl:if>
 <display:table name="teachers" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
 	
@@ -39,11 +41,24 @@
 	<spring:message code="teacher.video" var="videoColumn"/>
 	<display:column property="presentationVideo" title="${videoColumn}"/>
 	
+	<security:authorize access="hasRole('MANAGER')">
+	<jstl:if test="${managerTeacher==true}">
+	<spring:message code="teacher.edit" var="edit"/>
+	<display:column title="${edit}">
+			<input	onclick="javascript: window.location.replace('teacher/manager/edit.do?teacherId=${row.id}');"
+				  	value="<spring:message code="teacher.edit" />" type="button" />
+		
+	</display:column>
+	</jstl:if>
+	</security:authorize>
+	
 	
 		
 </display:table>
 
 <security:authorize access="hasRole('MANAGER')">
-	<a href="teacher/manager/register.do"> <spring:message code="teacher.register" />
-	</a>
+	<jstl:if test="${managerTeacher==true}">
+		<a href="teacher/manager/register.do"> <spring:message code="teacher.register" />
+		</a>
+	</jstl:if>
 </security:authorize>

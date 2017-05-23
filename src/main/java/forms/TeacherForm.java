@@ -1,6 +1,7 @@
 package forms;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -51,6 +52,8 @@ public class TeacherForm {
 		this.email = email;
 	}
 
+	@NotBlank
+	@Pattern(regexp = "\\+\\d{1,3}?[ -]?\\d{6,14}|\\d{6,14}$")
 	public String getPhone() {
 		return this.phone;
 	}

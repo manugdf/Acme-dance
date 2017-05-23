@@ -96,14 +96,14 @@ public class TeacherService {
 	public void register(Teacher teacher) {
 		Assert.notNull(teacher);
 		UserAccount userAccount;
-		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		userAccount = teacher.getUserAccount();
 		userAccount.setPassword(encoder.encodePassword(userAccount.getPassword(), null));
 		teacher.setUserAccount(userAccount);
-		teacher = this.save(teacher);
 
-		final Teacher aux = this.save(teacher);
-		final Manager manager = this.managerService.findByPrincipal();
+		Teacher aux=this.save(teacher);
+		
+		Manager manager = this.managerService.findByPrincipal();
 		manager.getTeachers().add(aux);
 		this.managerService.save(manager);
 	}
@@ -129,20 +129,41 @@ public class TeacherService {
 
 		return teachers;
 	}
+	
+	public Teacher modify(final Teacher teacher){
+		Assert.isTrue(managerService.findByPrincipal().getTeachers().contains(teacher));
+		return this.teacherRepository.saveAndFlush(teacher);
+	}
 
-	//	public TeacherForm reconstructForm(final Teacher teacher) {
-	//		final TeacherForm teacherForm = new TeacherForm();
-	//		teacherForm.setAcceptTerms(true);
-	//
-	//		teacherForm.setName(teacher.getName());
-	//		teacherForm.setSurname(teacher.getSurname());
-	//		teacherForm.setEmail(teacher.getEmail());
-	//		teacherForm.setPhone(teacher.getPhone());
-	//		teacherForm.setPicture(teacher.getPicture());
-	//		teacherForm.setPresentationVideo(teacher.getPresentationVideo());
-	//		teacherForm.setUsername(teacher.getUserAccount().getUsername());
-	//
-	//		return teacherForm;
-	//	}
+	public TeacherForm reconstructForm(final Teacher teacher) {
+		final TeacherForm teacherForm = new TeacherForm();
+		teacherForm.setAcceptTerms(true);
 
+		teacherForm.setName(teacher.getName());
+		teacherForm.setSurname(teacher.getSurname());
+		teacherForm.setEmail(teacher.getEmail());
+		teacherForm.setPhone(teacher.getPhone());
+		teacherForm.setPicture(teacher.getPicture());
+		teacherForm.setPresentationVideo(teacher.getPresentationVideo());
+		teacherForm.setUsername(teacher.getUserAccount().getUsername());
+
+		return teacherForm;
+	}
+
+	public Teacher reconstructEdit(final TeacherForm teacherForm,final Teacher teacher){
+		teacher.getUserAccount().setUsername(teacherForm.getUsername());
+
+		if ((teacherForm.getNewpassword().length() > 0 && teacherForm.getRepeatnewpassword().length() > 0 && teacherForm.getNewpassword().equals(teacherForm.getRepeatnewpassword()))) {
+			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			teacher.getUserAccount().setPassword(encoder.encodePassword(teacherForm.getNewpassword(), null));
+		}
+		teacher.setName(teacherForm.getName());
+		teacher.setSurname(teacherForm.getSurname());
+		teacher.setEmail(teacherForm.getEmail());
+		teacher.setPhone(teacherForm.getPhone());
+		teacher.setPicture(teacherForm.getPicture());
+		teacher.setPresentationVideo(teacherForm.getPresentationVideo());
+		
+		return teacher;
+	}
 }

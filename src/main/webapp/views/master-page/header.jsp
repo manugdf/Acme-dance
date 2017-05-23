@@ -35,6 +35,8 @@
 		</security:authorize>
 
 		<security:authorize access="hasRole('MANAGER')">
+			<li><a class="fNiv" href="teacher/manager/list.do"><spring:message
+						code="master.page.teachersByManager" /></a></li>
 			<li><a class="fNiv" href="danceSchool/manager/list.do"><spring:message
 						code="master.page.schoolsByManager" /></a></li>
 		</security:authorize>

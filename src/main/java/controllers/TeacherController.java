@@ -30,6 +30,8 @@ public class TeacherController extends AbstractController {
 		res.addObject("teachers", this.teacherService.findTeachersBySchool(danceSchoolId));
 		res.addObject("requestURI", "teacher/list.do");
 		res.addObject("danceschool", this.danceSchoolService.findOne(danceSchoolId).getName());
+		res.addObject("danceSchoolId", danceSchoolId);
+		res.addObject("managerTeacher", false);
 		return res;
 
 	}

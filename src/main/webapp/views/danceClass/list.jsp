@@ -92,12 +92,12 @@
 	
 	</security:authorize>
 </jstl:if>
-
+	
 	<security:authorize access="hasRole('MANAGER')">
 	<spring:message code="danceclass.add" var="add"/>
 	<display:column title="${add}">
 
-	<input	onclick="javascript: window.location.replace('danceClass/manager/add.do?danceClassId=${row.id}');"
+	<input	onclick="javascript: window.location.replace('danceClass/manager/add.do?danceClassId=${row.id}&danceSchoolId=${danceSchoolId}');"
 					value="<spring:message code="danceclass.add" />" type="button" />
 
 	</display:column>
