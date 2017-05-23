@@ -16,6 +16,12 @@
 	<display:table name="censoredWords" id="row" requestURI="${requestURI}"
 		class="displaytag" keepStatus="true" pagesize="5">
 
+		<display:column>
+			<input
+				onclick="javascript: window.location.replace('censoredWords/administrator/create.do');"
+				value="<spring:message code="cenwor.edit" />" type="button" />
+		</display:column>
+
 		<spring:message code="cenwor.words" var="words" />
 		<display:column property="words" title="${words}">
 			<ul>

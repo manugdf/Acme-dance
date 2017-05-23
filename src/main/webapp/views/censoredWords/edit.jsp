@@ -21,7 +21,7 @@
 		<br />
 
 
-		<acme:textbox code="cenwor" path="words" />
+		<acme:textbox code="cenwor.words" path="words" />
 
 		<br />
 		<acme:submit name="save" code="cenwor.save" />
