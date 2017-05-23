@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 
 import domain.Award;
 import domain.Competition;
@@ -30,13 +29,7 @@ public class DanceSchoolService {
 	private DanceSchoolRepository	danceSchoolRepository;
 
 	@Autowired
-	private CompetitionService		competitionService;
-
-	@Autowired
 	private ManagerService			managerService;
-
-	@Autowired
-	private Validator				validator;
 
 
 	// Constructor
@@ -103,6 +96,7 @@ public class DanceSchoolService {
 		Assert.isTrue(this.managerService.LoggedIsManager());
 		final Manager logged = this.managerService.findByPrincipal();
 		Assert.isTrue(danceSchool.getManager().equals(logged));
+		danceSchool.setState("PENDING");
 
 		danceSchool = this.save(danceSchool);
 		this.managerService.save(logged);
@@ -123,7 +117,6 @@ public class DanceSchoolService {
 		danceSchoolForm.setDescription(danceSchool.getDescription());
 		danceSchoolForm.setPhone(danceSchool.getPhone());
 		danceSchoolForm.setPicture(danceSchool.getPicture());
-		danceSchoolForm.setState(danceSchool.getState());
 		danceSchoolForm.setDanceSchoolId(danceSchool.getId());
 
 		danceSchoolForm.setAddress(danceSchool.getLocation().getAddress());
@@ -140,15 +133,12 @@ public class DanceSchoolService {
 		res.setDescription(danceSchoolForm.getDescription());
 		res.setPhone(danceSchoolForm.getPhone());
 		res.setPicture(danceSchoolForm.getPicture());
-		res.setState(danceSchoolForm.getState());
 
 		final Location location = new Location();
 		location.setAddress(danceSchoolForm.getAddress());
 		location.setCity(danceSchoolForm.getCity());
 		location.setProvince(danceSchoolForm.getProvince());
 		res.setLocation(location);
-
-		this.validator.validate(res, binding);
 		return res;
 	}
 
@@ -158,7 +148,6 @@ public class DanceSchoolService {
 		danceSchool.setDescription(danceSchoolForm.getDescription());
 		danceSchool.setPhone(danceSchoolForm.getPhone());
 		danceSchool.setPicture(danceSchoolForm.getPicture());
-		danceSchool.setState(danceSchoolForm.getState());
 
 		final Location location = new Location();
 		location.setAddress(danceSchoolForm.getAddress());

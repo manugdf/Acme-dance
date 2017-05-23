@@ -43,6 +43,8 @@
 						code="master.page.schoolsByManager" /></a></li>
 			<li><a class="fNiv" href="competition/list.do"><spring:message
 						code="master.page.competitions" /></a></li>
+			<li><a class="fNiv" href="danceSchool/manager/create.do"><spring:message
+						code="master.page.createDanceSchool" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="hasRole('TEACHER')">
@@ -68,11 +70,11 @@
 
 		<security:authorize access="isAnonymous()">
 
-			<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message
-						code="master.page.schools" /></a></li>
-
 			<li><a class="fNiv" href="security/login.do"><spring:message
 						code="master.page.login" /></a></li>
+
+			<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message
+						code="master.page.schools" /></a></li>
 
 			<li><a class="fNiv"> <spring:message
 						code="master.page.register" />

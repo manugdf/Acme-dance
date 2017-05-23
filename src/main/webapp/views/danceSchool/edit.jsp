@@ -13,7 +13,6 @@
 
 <form:form action="${requestURI}" modelAttribute="danceSchoolForm">
 	<form:hidden path="danceSchoolId" />
-	<form:hidden path="state" />
 
 	<jstl:if test="${edit==false}">
 	<fieldset>
@@ -27,12 +26,12 @@
 	<acme:textbox code="danceschool.description" path="description"/>
 	<acme:textbox code="danceschool.phone" path="phone"/>
 	<acme:textbox code="danceschool.picture" path="picture"/>
-	<acme:textbox code="danceschool.adress" path="adress"/>
-	<acme:textbox code="danceschool.city" path="city"/>
-	<acme:textbox code="danceschool.province" path="province"/>
+	<acme:textbox code="danceschool.location.address" path="address"/>
+	<acme:textbox code="danceschool.location.city" path="city"/>
+	<acme:textbox code="danceschool.location.province" path="province"/>
 	</fieldset>
 	
-	<acme:submit code="manager.save" name="save"/>
+	<acme:submit code="danceschool.save" name="save"/>
 	
 	<acme:cancel url="welcome/index.do" code="manager.cancel"/>
 

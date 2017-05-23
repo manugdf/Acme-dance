@@ -58,7 +58,7 @@ public class DanceSchoolManagerController extends AbstractController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView create(@Valid final DanceSchoolForm danceSchoolForm, final BindingResult bindingResult) {
-		ModelAndView res = new ModelAndView("danceSchool/register");
+		ModelAndView res = new ModelAndView("danceSchool/create");
 
 		final DanceSchool danceSchool = this.danceSchoolService.reconstruct(danceSchoolForm, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -69,7 +69,7 @@ public class DanceSchoolManagerController extends AbstractController {
 		} else
 			try {
 				this.danceSchoolService.newDanceSchool(danceSchool);
-				res = new ModelAndView("redirect:../welcome/index.do");
+				res = new ModelAndView("redirect:list.do");
 
 			} catch (final DataIntegrityViolationException oops) {
 
@@ -114,7 +114,7 @@ public class DanceSchoolManagerController extends AbstractController {
 			} else {
 				this.danceSchoolService.editDanceSchool(danceSchool);
 
-				res = new ModelAndView("redirect:../welcome/index.do");
+				res = new ModelAndView("redirect:list.do");
 			}
 		} catch (final Throwable e) {
 

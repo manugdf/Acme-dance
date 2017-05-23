@@ -12,7 +12,6 @@ public class DanceSchoolForm {
 	private String	description;
 	private String	phone;
 	private String	picture;
-	private String	state;
 	private String	address;
 	private String	province;
 	private String	city;
@@ -45,7 +44,6 @@ public class DanceSchoolForm {
 		this.description = description;
 	}
 
-	@NotBlank
 	@Pattern(regexp = "\\+\\d{1,3}?[ -]?\\d{6,14}|\\d{6,14}$")
 	public String getPhone() {
 		return this.phone;
@@ -62,16 +60,6 @@ public class DanceSchoolForm {
 
 	public void setPicture(final String picture) {
 		this.picture = picture;
-	}
-
-	@NotBlank
-	@Pattern(regexp = "^PENDING$|^ACCEPTED$|^REJECTED$")
-	public String getState() {
-		return this.state;
-	}
-
-	public void setState(final String state) {
-		this.state = state;
 	}
 
 	@NotBlank
