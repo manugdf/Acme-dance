@@ -87,18 +87,26 @@ public class DanceSchoolManagerController extends AbstractController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int id) {
-		final Manager logged = this.managerService.findByPrincipal();
-		Assert.isTrue(this.danceSchoolService.findOne(id).getManager().getId() == logged.getId());
 
-		final ModelAndView res = new ModelAndView("danceSchool/edit");
-		DanceSchoolForm danceSchoolForm = new DanceSchoolForm();
-		final DanceSchool danceSchool = this.danceSchoolService.findOne(id);
+		ModelAndView res = new ModelAndView("danceSchool/edit");
+		try {
+			final Manager logged = this.managerService.findByPrincipal();
+			Assert.isTrue(this.danceSchoolService.findOne(id).getManager().getId() == logged.getId());
+			Assert.isTrue(this.danceSchoolService.findOne(id).getState().equals("ACCEPTED"));
 
-		danceSchoolForm = this.danceSchoolService.reconstructForm(danceSchool);
+			DanceSchoolForm danceSchoolForm = new DanceSchoolForm();
+			final DanceSchool danceSchool = this.danceSchoolService.findOne(id);
+			danceSchoolForm = this.danceSchoolService.reconstructForm(danceSchool);
 
-		res.addObject("requestUri", "danceSchool/manager/edit.do?id=" + id);
-		res.addObject("danceSchoolForm", danceSchoolForm);
-		res.addObject("edit", true);
+			res.addObject("requestUri", "danceSchool/manager/edit.do?id=" + id);
+			res.addObject("danceSchoolForm", danceSchoolForm);
+			res.addObject("edit", true);
+
+		} catch (final Throwable e) {
+			res = this.list();
+			res.addObject("message", "danceschool.error.cant.edit");
+		}
+
 		return res;
 	}
 
