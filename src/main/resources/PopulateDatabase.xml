@@ -1318,6 +1318,15 @@
 		<property name="alumn" ref="alumn2"/>
 		</bean>
 		
+			<!-- PartnerInvitation -->
+		<bean id="partnerInvitation1" class="domain.PartnerInvitation">
+		<property name="state" value="PENDING"/>
+		<property name="danceStyle" value="Regueton"/>
+		<property name="comment" value="¿Te gustaria que bailaramos regueton?"/>
+		<property name="invitationSender" ref="alumn1"/>
+		<property name="invitationReceiver" ref="alumn2"/>
+		</bean>
+		
 		
 		
 </beans>
