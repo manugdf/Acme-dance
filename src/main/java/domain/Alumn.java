@@ -45,7 +45,6 @@ public class Alumn extends Actor {
 	private Collection<DanceCertificate>	danceCertificates;
 	private Collection<Event>				events;
 	private Collection<DanceTest>			danceTests;
-	private Collection<DanceClass>			danceClasses;
 	private Collection<Payment>				payments;
 
 
@@ -110,15 +109,6 @@ public class Alumn extends Actor {
 	}
 	public void setDanceTests(final Collection<DanceTest> danceTests) {
 		this.danceTests = danceTests;
-	}
-
-	@NotNull
-	@ManyToMany(mappedBy = "alumns")
-	public Collection<DanceClass> getDanceClasses() {
-		return this.danceClasses;
-	}
-	public void setDanceClasses(final Collection<DanceClass> danceClasses) {
-		this.danceClasses = danceClasses;
 	}
 
 	@NotNull

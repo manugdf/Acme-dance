@@ -14,7 +14,6 @@ import org.springframework.util.Assert;
 import domain.Alumn;
 import domain.CreditCard;
 import domain.DanceCertificate;
-import domain.DanceClass;
 import domain.DanceTest;
 import domain.Event;
 import domain.Message;
@@ -54,7 +53,7 @@ public class AlumnService {
 		alumn.setEvents(new ArrayList<Event>());
 		alumn.setReviews(new ArrayList<Review>());
 		alumn.setDanceCertificates(new ArrayList<DanceCertificate>());
-		alumn.setDanceClasses(new ArrayList<DanceClass>());
+		//alumn.setDanceClasses(new ArrayList<DanceClass>());
 		alumn.setMessagesReceived(new ArrayList<Message>());
 		alumn.setMessagesSended(new ArrayList<Message>());
 		alumn.setDanceTests(new ArrayList<DanceTest>());

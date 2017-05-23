@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import controllers.AbstractController;
 import domain.Alumn;
-import domain.DanceClass;
 import domain.DanceSchool;
 import domain.Event;
 import services.AlumnService;
@@ -34,17 +33,17 @@ public class EventAlumnController extends AbstractController {
 	public ModelAndView list(@RequestParam final int id) {
 		final ModelAndView res = new ModelAndView("event/list");
 		final DanceSchool dancesc = this.danceSchoolService.findOne(id);
-		boolean inClass = false;
+		final boolean inClass = false;
 		res.addObject("events", dancesc.getEvents());
 		res.addObject("requestURI", "event/list.do");
 		res.addObject("danceschool", dancesc.getName());
 
 		final Alumn alumn = this.alumnService.findByPrincipal();
 
-		for (final DanceClass d : dancesc.getDanceClasses())
-			for (final Alumn a : d.getAlumns())
-				if (a.getId() == alumn.getId())
-					inClass = true;
+		//		for (final DanceClass d : dancesc.getDanceClasses())
+		//			for (final Alumn a : d.getAlumns())
+		//				if (a.getId() == alumn.getId())
+		//					inClass = true;
 
 		res.addObject("inClass", inClass);
 		res.addObject("alumnId", alumn.getId());
@@ -67,15 +66,15 @@ public class EventAlumnController extends AbstractController {
 			event.getAlumns().add(alumn);
 			this.eventService.save(event);
 			final DanceSchool dancesc = this.danceSchoolService.findOne(idSchool);
-			boolean inClass = false;
+			final boolean inClass = false;
 			res.addObject("events", dancesc.getEvents());
 			res.addObject("requestURI", "event/alumn/list.do");
 			res.addObject("danceschool", dancesc.getName());
 			res.addObject("logged", alumn);
-			for (final DanceClass d : dancesc.getDanceClasses())
-				for (final Alumn a : d.getAlumns())
-					if (a.getId() == alumn.getId())
-						inClass = true;
+			//			for (final DanceClass d : dancesc.getDanceClasses())
+			//				for (final Alumn a : d.getAlumns())
+			//					if (a.getId() == alumn.getId())
+			//						inClass = true;
 
 			res.addObject("inClass", inClass);
 			res.addObject("alumnId", alumn.getId());
@@ -83,16 +82,16 @@ public class EventAlumnController extends AbstractController {
 		} catch (final Throwable oops) {
 			final DanceSchool dancesc = this.danceSchoolService.findOne(idSchool);
 			final Alumn alumn = this.alumnService.findByPrincipal();
-			boolean inClass = false;
+			final boolean inClass = false;
 			res.addObject("events", dancesc.getEvents());
 			res.addObject("requestURI", "event/alumn/list.do");
 			res.addObject("danceschool", dancesc.getName());
 			res.addObject("logged", alumn);
 
-			for (final DanceClass d : dancesc.getDanceClasses())
-				for (final Alumn a : d.getAlumns())
-					if (a.getId() == alumn.getId())
-						inClass = true;
+			//			for (final DanceClass d : dancesc.getDanceClasses())
+			//				for (final Alumn a : d.getAlumns())
+			//					if (a.getId() == alumn.getId())
+			//						inClass = true;
 
 			res.addObject("inClass", inClass);
 			res.addObject("alumnId", alumn.getId());

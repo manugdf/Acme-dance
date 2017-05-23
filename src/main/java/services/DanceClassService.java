@@ -12,8 +12,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import repositories.DanceClassRepository;
-import domain.Alumn;
 import domain.DanceClass;
 import domain.DanceSchool;
 import domain.DanceTest;
@@ -24,6 +22,7 @@ import domain.Schedule;
 import domain.Teacher;
 import forms.DanceClassAuxForm;
 import forms.DanceClassForm;
+import repositories.DanceClassRepository;
 
 @Service
 @Transactional
@@ -49,7 +48,7 @@ public class DanceClassService {
 	public DanceClass create() {
 		final DanceClass res = new DanceClass();
 
-		res.setAlumns(new ArrayList<Alumn>());
+		//res.setAlumns(new ArrayList<Alumn>());
 		res.setTeachers(new ArrayList<Teacher>());
 		res.setMaterials(new ArrayList<Material>());
 		res.setSchedules(new ArrayList<Schedule>());
