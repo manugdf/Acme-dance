@@ -1,6 +1,8 @@
 
 package controllers.alumn;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -33,19 +35,17 @@ public class EventAlumnController extends AbstractController {
 	public ModelAndView list(@RequestParam final int id) {
 		final ModelAndView res = new ModelAndView("event/list");
 		final DanceSchool dancesc = this.danceSchoolService.findOne(id);
-		final boolean inClass = false;
+		boolean inSchool = false;
 		res.addObject("events", dancesc.getEvents());
 		res.addObject("requestURI", "event/list.do");
 		res.addObject("danceschool", dancesc.getName());
 
 		final Alumn alumn = this.alumnService.findByPrincipal();
+		final Collection<DanceSchool> alumnSchools = this.danceSchoolService.findSchoolsByAlumn(alumn.getId());
+		if (alumnSchools.contains(dancesc))
+			inSchool = true;
 
-		//		for (final DanceClass d : dancesc.getDanceClasses())
-		//			for (final Alumn a : d.getAlumns())
-		//				if (a.getId() == alumn.getId())
-		//					inClass = true;
-
-		res.addObject("inClass", inClass);
+		res.addObject("inSchool", inSchool);
 		res.addObject("alumnId", alumn.getId());
 		res.addObject("idSchool", dancesc.getId());
 
@@ -66,34 +66,33 @@ public class EventAlumnController extends AbstractController {
 			event.getAlumns().add(alumn);
 			this.eventService.save(event);
 			final DanceSchool dancesc = this.danceSchoolService.findOne(idSchool);
-			final boolean inClass = false;
+			boolean inSchool = false;
 			res.addObject("events", dancesc.getEvents());
 			res.addObject("requestURI", "event/alumn/list.do");
 			res.addObject("danceschool", dancesc.getName());
 			res.addObject("logged", alumn);
-			//			for (final DanceClass d : dancesc.getDanceClasses())
-			//				for (final Alumn a : d.getAlumns())
-			//					if (a.getId() == alumn.getId())
-			//						inClass = true;
 
-			res.addObject("inClass", inClass);
+			final Collection<DanceSchool> alumnSchools = this.danceSchoolService.findSchoolsByAlumn(alumn.getId());
+			if (alumnSchools.contains(dancesc))
+				inSchool = true;
+
+			res.addObject("inSchool", inSchool);
 			res.addObject("alumnId", alumn.getId());
 			res.addObject("idSchool", dancesc.getId());
 		} catch (final Throwable oops) {
 			final DanceSchool dancesc = this.danceSchoolService.findOne(idSchool);
 			final Alumn alumn = this.alumnService.findByPrincipal();
-			final boolean inClass = false;
+			boolean inSchool = false;
 			res.addObject("events", dancesc.getEvents());
 			res.addObject("requestURI", "event/alumn/list.do");
 			res.addObject("danceschool", dancesc.getName());
 			res.addObject("logged", alumn);
 
-			//			for (final DanceClass d : dancesc.getDanceClasses())
-			//				for (final Alumn a : d.getAlumns())
-			//					if (a.getId() == alumn.getId())
-			//						inClass = true;
+			final Collection<DanceSchool> alumnSchools = this.danceSchoolService.findSchoolsByAlumn(alumn.getId());
+			if (alumnSchools.contains(dancesc))
+				inSchool = true;
 
-			res.addObject("inClass", inClass);
+			res.addObject("inSchool", inSchool);
 			res.addObject("alumnId", alumn.getId());
 			res.addObject("idSchool", dancesc.getId());
 			res.addObject("message", "event.commit.error");

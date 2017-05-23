@@ -42,8 +42,7 @@
 
 
 	<display:column>
-		<c:set var="assisted" value="${false}"/>
-		<jstl:if test="${inClass==true}">
+		<jstl:if test="${inSchool==true}">
 		
 		<jstl:if test="${row.maxAlumns - fn:length(row.alumns)>0}">
 						

@@ -6,8 +6,6 @@ import java.util.Collection;
 
 import javax.transaction.Transactional;
 
-import domain.Competition;
-import forms.SelectDanceSchoolForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +17,10 @@ import repositories.DanceSchoolRepository;
 public class DanceSchoolService {
 
 	@Autowired
-	private DanceSchoolRepository danceSchoolRepository;
+	private DanceSchoolRepository	danceSchoolRepository;
 
 	@Autowired
-	private CompetitionService competitionService;
+	private CompetitionService		competitionService;
 
 
 	// Constructor
@@ -72,13 +70,17 @@ public class DanceSchoolService {
 		}
 		return res;
 	}
-	
-	public Collection<DanceSchool> findAllByManager(int managerId){
-		return danceSchoolRepository.findAllByManager(managerId);
+
+	public Collection<DanceSchool> findAllByManager(final int managerId) {
+		return this.danceSchoolRepository.findAllByManager(managerId);
 	}
 
-	public Collection<DanceSchool> findSchoolsByCompetition(int competitionId){
-		return danceSchoolRepository.findSchoolsByCompetition(competitionId);
+	public Collection<DanceSchool> findSchoolsByCompetition(final int competitionId) {
+		return this.danceSchoolRepository.findSchoolsByCompetition(competitionId);
+	}
+
+	public Collection<DanceSchool> findSchoolsByAlumn(final int alumnId) {
+		return this.danceSchoolRepository.findSchoolsByAlumn(alumnId);
 	}
 
 }
