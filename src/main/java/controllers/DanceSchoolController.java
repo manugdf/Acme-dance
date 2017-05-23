@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import domain.DanceSchool;
@@ -39,8 +40,20 @@ public class DanceSchoolController extends AbstractController {
 		return res;
 
 	}
-	
-	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search")
+
+	@RequestMapping(value = "/listByCompetition", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam int competitionId) {
+		ModelAndView res = new ModelAndView("danceSchool/list");
+		res.addObject("danceSchools", this.danceSchoolService.findSchoolsByCompetition(competitionId));
+		res.addObject("requestURI", "danceSchool/listByCompetition.do");
+		res.addObject("searchForm", new SearchForm());
+
+		return res;
+	}
+
+
+
+		@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search")
 	public ModelAndView save(@Valid final SearchForm searchForm, final BindingResult binding) {
 
 		final ModelAndView res = new ModelAndView("danceSchool/list");

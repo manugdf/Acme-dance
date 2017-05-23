@@ -48,4 +48,9 @@ public class AwardService {
 		return this.danceSchoolService.findOne(schoolId).getAwards();
 	}
 
+	//Other methods
+	public Collection<Award> awardsByCompetition(int competitionId){
+		return awardRepository.awardsByCompetition(competitionId);
+	}
+
 }

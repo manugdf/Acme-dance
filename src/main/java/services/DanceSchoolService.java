@@ -71,4 +71,8 @@ public class DanceSchoolService {
 	public Collection<DanceSchool> findAllByManager(int managerId){
 		return danceSchoolRepository.findAllByManager(managerId);
 	}
+
+	public Collection<DanceSchool> findSchoolsByCompetition(int competitionId){
+		return danceSchoolRepository.findSchoolsByCompetition(competitionId);
+	}
 }
