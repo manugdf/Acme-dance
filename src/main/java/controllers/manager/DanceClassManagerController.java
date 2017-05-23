@@ -24,6 +24,7 @@ import domain.DanceSchool;
 import domain.Teacher;
 import forms.DanceClassAuxForm;
 import forms.DanceClassForm;
+import services.PaymentService;
 
 @Controller
 @RequestMapping("/danceClass/manager")
@@ -38,6 +39,9 @@ public class DanceClassManagerController extends AbstractController {
 
 	@Autowired
 	private ManagerService		managerService;
+
+	@Autowired
+	private PaymentService paymentService;
 
 
 	//Constructor
@@ -65,7 +69,8 @@ public class DanceClassManagerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@RequestParam final int id, final DanceClassForm danceClassForm, final BindingResult bindingResult) {
 		ModelAndView res;
-		final DanceClass danceClass = this.danceClassService.reconstruct(danceClassForm, bindingResult);
+		danceClassForm.setDanceSchool(this.danceSchoolService.findOne(id));
+		DanceClass danceClass = this.danceClassService.reconstruct(danceClassForm, bindingResult);
 		if (bindingResult.hasErrors())
 			res = this.createModelAndView(danceClassForm, id);
 		else
@@ -123,6 +128,43 @@ public class DanceClassManagerController extends AbstractController {
 				modelAndView = this.editModelAndView(danceClassForm, danceClassId, "danceClass.commit.error");
 			}
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView delete(@RequestParam int danceClassId ){
+		ModelAndView res;
+		DanceClass danceClass = danceClassService.findOne(danceClassId);
+		try{
+			if(danceClass.getTeachers().isEmpty() && paymentService.paymentsActivesFromDanceClass(danceClassId).isEmpty()){
+				danceClassService.delete(danceClass);
+
+				res = deleteModelAndView(danceClass);
+			}else{
+				res = deleteModelAndView(danceClass, "danceClass.delete.error");
+			}
+		}catch (Throwable oops){
+			res = deleteModelAndView(danceClass, "danceClass.commit.error");
+		}
+		return res;
+	}
+
+	public ModelAndView deleteModelAndView(DanceClass danceClass){
+		ModelAndView res;
+
+		res = this.deleteModelAndView(danceClass, null);
+		return res;
+	}
+
+	public ModelAndView deleteModelAndView(DanceClass danceClass, String message){
+		ModelAndView res;
+
+		res = new ModelAndView("danceClass/list");
+		res.addObject("danceClasses", this.danceClassService.findDanceClassesBySchool(danceClass.getDanceSchool().getId()));
+		res.addObject("requestURI", "danceClass/list.do");
+		res.addObject("danceschool", this.danceSchoolService.findOne(danceClass.getDanceSchool().getId()));
+		res.addObject("message", message);
+
+		return res;
 	}
 
 	public ModelAndView createModelAndView(final DanceClassForm danceClassForm, final int id) {
@@ -213,6 +255,7 @@ public class DanceClassManagerController extends AbstractController {
 			}
 		return res;
 	}
+
 
 	@RequestMapping("/list")
 	public ModelAndView list() {

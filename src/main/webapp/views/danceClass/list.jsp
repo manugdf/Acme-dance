@@ -3,7 +3,6 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"
@@ -116,6 +115,13 @@
 				  value="<spring:message code="danceclass.edit" />" type="button" />
 
 	</display:column>
+
+		<spring:message code="danceclass.delete" var="delete"/>
+		<display:column title="${delete}">
+			<input	onclick="javascript: window.location.replace('danceClass/manager/delete.do?danceClassId=${row.id}');"
+					  value="<spring:message code="danceclass.delete" />" type="button" />
+
+		</display:column>
 	</security:authorize>
 		
 </display:table>

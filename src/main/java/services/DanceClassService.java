@@ -36,8 +36,6 @@ public class DanceClassService {
 	@Autowired
 	private ManagerService			managerService;
 	@Autowired
-	private TeacherService			teacherService;
-	@Autowired
 	private Validator				validator;
 
 
