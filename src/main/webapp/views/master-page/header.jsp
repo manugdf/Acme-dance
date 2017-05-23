@@ -56,8 +56,8 @@
 					<li class="arrow"></li>
 					<li><a href="partnerRequest/alumn/list.do"><spring:message
 								code="master.page.partners.mypartners" /></a></li>
-					<li><a href="administrator/action-2.do"><spring:message
-								code="master.page.administrator.action.2" /></a></li>
+					<li><a href="danceSchool/alumn/list.do"><spring:message
+								code="master.page.partners.find" /></a></li>
 				</ul></li>
 			<li><a class="fNiv" href="danceClass/alumn/listMyClasses.do"><spring:message
 						code="master.page.myClasses" /></a></li>

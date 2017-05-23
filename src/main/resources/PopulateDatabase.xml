@@ -1297,6 +1297,29 @@
 		<property name="alumn" ref="alumn1"/>
 		</bean>
 		
+		<bean id="partnerRequest3" class="domain.PartnerRequest">
+		<property name="description" value="Busco pareja para baile"/>
+		<property name="danceStyle" value="Salsa"/>
+		<property name="alumn" ref="alumn2"/>
+		</bean>
+	<bean id="partnerRequest4" class="domain.PartnerRequest">
+		<property name="description" value="Soy novato bailando"/>
+		<property name="danceStyle" value="Bachata"/>
+		<property name="alumn" ref="alumn3"/>
+		</bean>
+		<bean id="partnerRequest5" class="domain.PartnerRequest">
+		<property name="description" value="Experto en tango"/>
+		<property name="danceStyle" value="Tango"/>
+		<property name="alumn" ref="alumn3"/>
+		</bean>
+		<bean id="partnerRequest6" class="domain.PartnerRequest">
+		<property name="description" value="Soy timido"/>
+		<property name="danceStyle" value="Regueton"/>
+		<property name="alumn" ref="alumn2"/>
+		</bean>
+		
+		
+		
 </beans>
 
 

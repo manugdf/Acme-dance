@@ -13,8 +13,18 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
+<b><spring:message code="partnerRequest.danceschool.name"/>: </b>${schoolName}
+
 <display:table name="partnerRequests" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
+	
+	
+<jstl:if test="${viewing == true }">
+<spring:message code="partnerRequest.alumn" var="alumn"/>
+	<display:column title="${alumn}">
+	${row.alumn.name }
+	</display:column>
+</jstl:if>
 	
 	<spring:message code="partnerRequest.description" var="desc"/>
 	<display:column property="description" title="${desc}"/>
@@ -22,14 +32,25 @@
 	<spring:message code="partnerRequest.danceStyle" var="dance"/>
 	<display:column property="danceStyle" title="${dance}"/>
 	
+	<jstl:if test="${viewing == false}">
 	<spring:message code="partnerRequest.delete" var="delete"/>
 	<display:column title="${delete}">
 	<input	onclick="javascript: window.location.replace('partnerRequest/alumn/delete.do?partnerRequestId=${row.id}');"
 					value="<spring:message code="partnerRequest.delete" />" type="button" />
 	</display:column>
+	</jstl:if>
 	
+	<jstl:if test="${viewing == true}">
+	<spring:message code="partnerRequest.invitation" var="inv"/>
+	<display:column title="${inv}">
+	<input	onclick="javascript: window.location.replace('partnerInvitation/alumn/create.do?alumnId=${row.alumn.id}');"
+					value="<spring:message code="partnerRequest.invitation" />" type="button" />
+	</display:column>
+	</jstl:if>
 		
 </display:table>
 
+<jstl:if test="${viewing == false }">
 <input	onclick="javascript: window.location.replace('partnerRequest/alumn/create.do');"
 					value="<spring:message code="partnerRequest.create" />" type="button" />
+</jstl:if>

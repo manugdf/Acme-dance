@@ -21,6 +21,9 @@
 	</form:form>
 </jstl:if>
 
+<jstl:if test="${partnerview == true}">
+<spring:message code="${chooseSchool}"/>
+</jstl:if>
 <display:table name="danceSchools" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
 	

@@ -7,6 +7,7 @@ import java.util.Collection;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import controllers.AbstractController;
 import domain.Alumn;
 import domain.PartnerRequest;
 import services.AlumnService;
+import services.DanceSchoolService;
 import services.PartnerRequestService;
 
 @Controller
@@ -30,6 +32,8 @@ public class PartnerRequestController extends AbstractController {
 
 	@Autowired
 	private AlumnService			alumnService;
+	@Autowired
+	private DanceSchoolService		danceSchoolService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -39,6 +43,7 @@ public class PartnerRequestController extends AbstractController {
 
 		res.addObject("partnerRequests", alumn.getPartnerRequests());
 		res.addObject("requestURI", "partnerRequest/alumn/list.do");
+		res.addObject("viewing", false);
 		return res;
 
 	}
@@ -71,18 +76,26 @@ public class PartnerRequestController extends AbstractController {
 
 		if (binding.hasErrors()) {
 			final PartnerRequest pr = this.partnerRequestService.create();
-			res = new ModelAndView("event/create");
-			res.addObject("requestURI", "artnerRequest/alumn/create.do");
+			res = new ModelAndView("partnerRequest/create");
+			res.addObject("requestURI", "partnerRequest/alumn/create.do");
 			res.addObject("partnerRequest", pr);
-
-		} else {
-			this.partnerRequestService.save(partnerRequest);
-			res = new ModelAndView("partnerRequest/list");
-			final Alumn alumn = this.alumnService.findByPrincipal();
-			res.addObject("partnerRequests", alumn.getPartnerRequests());
-			res.addObject("requestURI", "partnerRequest/alumn/list.do");
-
-		}
+			res.addObject("message", "partnerRequest.commit.error");
+			System.out.println(binding.getAllErrors());
+		} else
+			try {
+				this.partnerRequestService.save(partnerRequest);
+				res = new ModelAndView("partnerRequest/list");
+				final Alumn alumn = this.alumnService.findByPrincipal();
+				res.addObject("partnerRequests", alumn.getPartnerRequests());
+				res.addObject("requestURI", "partnerRequest/alumn/list.do");
+				res.addObject("viewing", false);
+			} catch (final DataIntegrityViolationException oops) {
+				final PartnerRequest pr = this.partnerRequestService.create();
+				res = new ModelAndView("partnerRequest/create");
+				res.addObject("requestURI", "partnerRequest/alumn/create.do");
+				res.addObject("partnerRequest", pr);
+				res.addObject("message", "partnerRequest.commit.error");
+			}
 		return res;
 
 	}
@@ -101,10 +114,12 @@ public class PartnerRequestController extends AbstractController {
 
 			res.addObject("partnerRequests", alumn.getPartnerRequests());
 			res.addObject("requestURI", "partnerRequest/alumn/list.do");
+			res.addObject("viewing", false);
 		} catch (final Throwable oops) {
 			res = new ModelAndView("partnerRequest/list");
 			res.addObject("partnerRequests", alumn.getPartnerRequests());
 			res.addObject("requestURI", "partnerRequest/alumn/list.do");
+			res.addObject("viewing", false);
 			res.addObject("message", "partnerRequest.commit.error");
 		}
 		return res;
@@ -124,6 +139,8 @@ public class PartnerRequestController extends AbstractController {
 			pr.addAll(a.getPartnerRequests());
 		res.addObject("partnerRequests", pr);
 		res.addObject("requestURI", "partnerRequest/alumn/view.do");
+		res.addObject("viewing", true);
+		res.addObject("schoolName", this.danceSchoolService.findOne(schoolId).getName());
 		return res;
 
 	}

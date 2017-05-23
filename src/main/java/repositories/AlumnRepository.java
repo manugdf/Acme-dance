@@ -15,7 +15,7 @@ public interface AlumnRepository extends JpaRepository<Alumn, Integer> {
 	@Query("select a from Alumn a where a.userAccount.id=?1")
 	public Alumn findByPrincipal(int alumnId);
 
-	@Query("select a from Alumn a join a.payments p join p.danceClass d where d.danceSchool = ?1")
+	@Query("select a from Alumn a join a.payments p join p.danceClass d where d.danceSchool.id=?1")
 	public Collection<Alumn> findAlumnsBySchoolId(int schoolId);
 
 }
