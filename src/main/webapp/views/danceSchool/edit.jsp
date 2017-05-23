@@ -20,6 +20,7 @@
 	<jstl:if test="${edit==false}">
 	<acme:textbox code="danceschool.name" path="name"/>
 	</jstl:if>
+	<acme:textbox code="danceschool.name" path="name"  readonly="true"/>
 	<acme:textarea code="danceschool.description" path="description"/>
 	</fieldset>
 	

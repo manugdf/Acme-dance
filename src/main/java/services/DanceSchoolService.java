@@ -104,11 +104,10 @@ public class DanceSchoolService {
 		return danceSchool;
 	}
 
-	public DanceSchool editDanceSchool(DanceSchool danceSchool) {
+	public DanceSchool editDanceSchool(final DanceSchool danceSchool) {
 		final Manager logged = this.managerService.findByPrincipal();
-		Assert.isTrue(danceSchool.getManager().equals(logged));
-		danceSchool = this.save(danceSchool);
-		return danceSchool;
+		Assert.isTrue(danceSchool.getManager().getId() == logged.getId());
+		return this.danceSchoolRepository.saveAndFlush(danceSchool);
 	}
 
 	public DanceSchoolForm reconstructForm(final DanceSchool danceSchool) {
@@ -155,6 +154,7 @@ public class DanceSchoolService {
 		location.setProvince(danceSchoolForm.getProvince());
 		danceSchool.setLocation(location);
 		return danceSchool;
+
 	}
 
 	public Collection<DanceSchool> findAllByManager(final int managerId) {
