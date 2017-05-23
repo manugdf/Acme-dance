@@ -139,5 +139,6 @@ public class AlumnService {
 		final Collection<Alumn> alumns = this.alumnRepository.findAlumnsBySchoolId(schoolId);
 		return alumns;
 	}
+	
 
 }

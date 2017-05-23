@@ -26,5 +26,25 @@
 	<spring:message code="alumn.phone" var="phoneColumn"/>
 	<display:column property="phone" title="${phoneColumn}"/>
 
+	<spring:message code="alumn.viewDanceCertificate" var="danceCertificate" />
+	<display:column title="${danceCertificate}">
+
+		<input
+			onclick="javascript: window.location.replace('danceCertificate/teacher/list.do?alumnId=${row.id}');"
+			value="<spring:message code="alumn.danceCertificate.view" />"
+			type="button" />
+	</display:column>
+
+	<security:authorize access="hasRole('TEACHER')">
+	
+	<spring:message code="alumn.danceCertificate" var="danceCertificate"/>
+		<display:column title="${danceCertificate}">
+	
+			<input	onclick="javascript: window.location.replace('danceCertificate/teacher/create.do?alumnId=${row.id}&danceTestId=${danceTestId}');"
+					value="<spring:message code="alumn.danceCertificate.add" />" type="button" />
+		</display:column>
+		
+	</security:authorize>
+
 
 </display:table>

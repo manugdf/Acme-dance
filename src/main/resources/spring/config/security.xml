@@ -61,6 +61,7 @@
 		<security:intercept-url pattern="/danceClass/teacher/**" access="hasRole('TEACHER')" />
 		<security:intercept-url pattern="/danceTest/teacher/**" access="hasRole('TEACHER')" />
 		<security:intercept-url pattern="/alumn/teacher/**" access="hasRole('TEACHER')" />
+		<security:intercept-url pattern="/danceCertificate/teacher/**" access="hasRole('TEACHER')" />
 		
 		<security:intercept-url pattern="/event/alumn/list.do" access="hasRole('ALUMN')" /> 
 		<security:intercept-url pattern="/event/alumn/assist.do" access="hasRole('ALUMN')" /> 
