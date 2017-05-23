@@ -41,6 +41,11 @@
 	<definition name="danceClass/remove" extends="master.page">	
 		<put-attribute name="title" value="Remove teacher" />
 		<put-attribute name="body" value="/views/danceClass/remove.jsp" />
+		
 	</definition>
 	
+	<definition name="danceClass/listByTeacher" extends="master.page">	
+		<put-attribute name="title" value="My Classes" />
+		<put-attribute name="body" value="/views/danceClass/list.jsp" />
+	</definition>
 </tiles-definitions>

@@ -20,4 +20,10 @@
 		<put-attribute name="title" value="Dance Tests" />
 		<put-attribute name="body" value="/views/danceTest/list.jsp" />
 	</definition>
+	
+	<definition name="danceTest/create" extends="master.page">	
+		<put-attribute name="title" value="Create Dance Test" />
+		<put-attribute name="body" value="/views/danceTest/edit.jsp" />
+	</definition>
+	
 </tiles-definitions>

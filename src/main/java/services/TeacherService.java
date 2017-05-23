@@ -22,6 +22,7 @@ import domain.Teacher;
 import forms.TeacherForm;
 import repositories.TeacherRepository;
 import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 
 @Service
@@ -91,6 +92,14 @@ public class TeacherService {
 				if (!teachers.contains(t))
 					teachers.add(t);
 		return teachers;
+	}
+	
+	public Teacher findByPrincipal() {
+
+		final UserAccount userAccount = LoginService.getPrincipal();
+		final Teacher teacher = this.teacherRepository.findByPrincipal(userAccount.getId());
+		Assert.isTrue(teacher.getUserAccount().equals(userAccount));
+		return teacher;
 	}
 
 	public void register(Teacher teacher) {

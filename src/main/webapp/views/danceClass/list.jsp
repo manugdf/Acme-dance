@@ -45,6 +45,7 @@
 	<spring:message code="danceclass.yearly" var="year"/>
 	<display:column property="yearlyPrice" title="${year}"/>
 	
+	
 	<spring:message code="danceclass.schedule" var="schedule"/>
 	<display:column title="${schedule}">
 	
@@ -53,6 +54,16 @@
 	
 	</display:column>
 	
+	<security:authorize access="hasRole('TEACHER')">
+	
+	<spring:message code="danceclass.danceTest" var="danceTest"/>
+		<display:column title="${danceTest}">
+	
+			<input	onclick="javascript: window.location.replace('danceTest/teacher/list.do?danceClassId=${row.id}');"
+					value="<spring:message code="danceclass.danceTest.view" />" type="button" />
+		</display:column>
+	</security:authorize>
+
 	
 	<jstl:if test="${myClasses==true}">
 	<security:authorize access="hasRole('ALUMN')">
@@ -123,6 +134,14 @@
 
 		</display:column>
 	</security:authorize>
+	
+	<security:authorize access="hasRole('TEACHER')">
+		<spring:message code="danceclass.addDanceTest" var="addDanceTest"/>
+		<display:column title="${addDanceTest}">
+			<input	onclick="javascript: window.location.replace('danceTest/teacher/create.do?danceClassId=${row.id}');"
+			value="<spring:message code="danceClass.addDanceTest" />" type="button" />
+		</display:column>
+	</security:authorize>
 		
 </display:table>
 
@@ -130,3 +149,4 @@
 	<input	onclick="javascript: window.location.replace('danceClass/manager/create.do?id=${danceschool.id}');"
 	value="<spring:message code="danceclass.create" />" type="button" />
 </security:authorize>
+

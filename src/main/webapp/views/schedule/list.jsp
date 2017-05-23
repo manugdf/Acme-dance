@@ -32,5 +32,7 @@
 
 </display:table>
 
+<security:authorize access="hasRole('MANAGER')">
 	<input	onclick="javascript: window.location.replace('manager/schedule/create.do?classId=${row.danceClass.id}');"
 					value="<spring:message code="schedule.create" />" type="button" />
+</security:authorize>

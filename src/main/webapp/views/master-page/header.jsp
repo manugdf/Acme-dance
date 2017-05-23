@@ -41,6 +41,11 @@
 						code="master.page.schoolsByManager" /></a></li>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('TEACHER')">
+			<li><a class="fNiv" href="danceClass/teacher/list.do"><spring:message
+						code="master.page.danceClassessByTeacher" /></a></li>
+		</security:authorize>
+		
 		<security:authorize access="hasRole('ALUMN')">
 			<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message code="master.page.schools" /></a></li>
 		<li><a class="fNiv"><spring:message
