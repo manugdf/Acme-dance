@@ -12,12 +12,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<jstl:if test="${partnerview == false}">
 	<form:form action="danceSchool/search.do" modelAttribute="searchForm">
 	
 			<form:input path="word"/>
 
 				<acme:submit code="danceschool.search" name="search" />
 	</form:form>
+</jstl:if>
 
 <display:table name="danceSchools" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
@@ -44,6 +46,20 @@
 	<display:column  title="${pictureColumn}">
 	<img src="${row.picture}" />
 	</display:column>
+	
+	
+<jstl:if test="${partnerview == true}">
+<spring:message code="danceschool.partners" var="part" />
+		<display:column title="${part}">
+
+			<input
+				onclick="javascript: window.location.replace('partnerRequest/alumn/view.do?schoolId=${row.id}');"
+				value="<spring:message code="danceschool.view.awards" />"
+				type="button" />
+		</display:column>
+</jstl:if>
+	
+<jstl:if test="${partnerview == false}">
 	
 	<spring:message code="danceschool.teachers" var="teachersColumn"/>
 	<display:column  title="${teachersColumn}">
@@ -77,5 +93,5 @@
 		</display:column>
 		
 	</security:authorize>
-		
+	</jstl:if>
 </display:table>

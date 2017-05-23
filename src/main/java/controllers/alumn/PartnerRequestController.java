@@ -1,6 +1,9 @@
 
 package controllers.alumn;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +48,7 @@ public class PartnerRequestController extends AbstractController {
 	//		final ModelAndView res = new ModelAndView("partnerRequest/list");
 	//		final Alumn alumn = this.alumnService.findByPrincipal();
 	//		//Me traigo las danceSchools a las que estoy apuntado, y de cada una me traigo sus alumnos, y los que tengan Partner Request los meto en la lista
-	//		Collection<DanceSchool> danceSchools = 
+	//		Collection<DanceSchool> danceSchools =
 	//		res.addObject("partnerRequests", alumn.getPartnerRequests());
 	//		res.addObject("requestURI", "partnerRequest/alumn/list.do");
 	//		return res;
@@ -104,6 +107,23 @@ public class PartnerRequestController extends AbstractController {
 			res.addObject("requestURI", "partnerRequest/alumn/list.do");
 			res.addObject("message", "partnerRequest.commit.error");
 		}
+		return res;
+
+	}
+
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public ModelAndView view(@RequestParam final int schoolId) {
+		final ModelAndView res = new ModelAndView("partnerRequest/list");
+		final Alumn alumn = this.alumnService.findByPrincipal();
+		final Collection<Alumn> alumns = this.alumnService.findAlumnsBySchoolId(schoolId);
+
+		if (alumns.contains(alumn))
+			alumns.remove(alumn);
+		final Collection<PartnerRequest> pr = new ArrayList<PartnerRequest>();
+		for (final Alumn a : alumns)
+			pr.addAll(a.getPartnerRequests());
+		res.addObject("partnerRequests", pr);
+		res.addObject("requestURI", "partnerRequest/alumn/view.do");
 		return res;
 
 	}

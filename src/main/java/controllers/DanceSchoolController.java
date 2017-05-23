@@ -17,7 +17,6 @@ import domain.DanceSchool;
 import forms.SearchForm;
 import services.DanceSchoolService;
 
-
 @Controller
 @RequestMapping("/danceSchool")
 public class DanceSchoolController extends AbstractController {
@@ -25,7 +24,6 @@ public class DanceSchoolController extends AbstractController {
 	@Autowired
 	private DanceSchoolService danceSchoolService;
 
-	
 
 	public DanceSchoolController() {
 		super();
@@ -37,23 +35,25 @@ public class DanceSchoolController extends AbstractController {
 		res.addObject("danceSchools", this.danceSchoolService.findAllAccepted());
 		res.addObject("requestURI", "danceSchool/listAll.do");
 		res.addObject("searchForm", new SearchForm());
+
+		res.addObject("partnerview", false);
 		return res;
 
 	}
 
 	@RequestMapping(value = "/listByCompetition", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam int competitionId) {
-		ModelAndView res = new ModelAndView("danceSchool/list");
+	public ModelAndView list(@RequestParam final int competitionId) {
+		final ModelAndView res = new ModelAndView("danceSchool/list");
 		res.addObject("danceSchools", this.danceSchoolService.findSchoolsByCompetition(competitionId));
 		res.addObject("requestURI", "danceSchool/listByCompetition.do");
 		res.addObject("searchForm", new SearchForm());
 
+		res.addObject("partnerview", false);
+
 		return res;
 	}
 
-
-
-		@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search")
+	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search")
 	public ModelAndView save(@Valid final SearchForm searchForm, final BindingResult binding) {
 
 		final ModelAndView res = new ModelAndView("danceSchool/list");

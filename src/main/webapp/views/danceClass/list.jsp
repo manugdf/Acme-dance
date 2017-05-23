@@ -12,13 +12,12 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <script>
-	function myFunction(id,t) {
+	function myFunction(f1,f2) {
 	   
-	    var r = confirm(t);
-	    if (r == true) {
-	    	document.location.href='danceClass/alumn/quit.do?classId='+id;
+	    if (f1<f2) {
+	    	return true;
 	    } else {
-	        
+	        return false;
 	    }
 	    
 	}
@@ -72,7 +71,6 @@
 	
 	<input	onclick="javascript: window.location.replace('teacher/listByClass.do?classId=${row.id}');"
 					value="<spring:message code="danceclass.schedule.view" />" type="button" />
-	
 	</display:column>
 
 <spring:message code="danceClass.danceTests" var="tests"/>
@@ -91,14 +89,6 @@
 	
 	</display:column>
 	
-	<spring:message code="danceClass.quit" var="quit"/>
-	<display:column title="${quit}">
-	
-	<spring:message code="danceClass.quit.sure" var="sure"/>
-	<input	onclick="myFunction(${row.id},'${sure}')"
-					value="<spring:message code="danceClass.quit.quit" />" type="button" />
-	
-	</display:column>
 	
 	</security:authorize>
 </jstl:if>
