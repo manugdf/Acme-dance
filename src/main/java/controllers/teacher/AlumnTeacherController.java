@@ -29,6 +29,7 @@ public class AlumnTeacherController extends AbstractController{
 
 		res.addObject("alumns", danceTest.getAlumns());
 		res.addObject("requestURI", "alumn/teacher/list.do");
+		res.addObject("danceTestId", danceTestId);
 		return res;
 	}
 

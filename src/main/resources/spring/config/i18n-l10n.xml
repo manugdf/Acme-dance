@@ -18,7 +18,6 @@
 		<value>/views/welcome/messages</value>
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>
-		<value>/views/censoredWords/messages</value>
 		<value>/views/profile/messages</value>
 		<value>/views/danceSchool/messages</value>
 		<value>/views/teacher/messages</value>
@@ -34,6 +33,7 @@
 		<value>/views/material/messages</value>
 		<value>/views/manager/messages</value>
 		<value>/views/partnerRequest/messages</value>
+		<value>/views/danceCertificate/messages</value>
 		<value>/views/partnerInvitation/messages</value>
 
 	</util:list>
