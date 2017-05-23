@@ -23,6 +23,8 @@
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
 		<security:authorize access="hasRole('ADMIN')">
+			<li><a class="fNiv" href="censoredWords/administrator/list.do"><spring:message
+						code="master.page.censored" /></a></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.administrator" /></a>
 				<ul>
@@ -40,17 +42,18 @@
 			<li><a class="fNiv" href="danceSchool/manager/list.do"><spring:message
 						code="master.page.schoolsByManager" /></a></li>
 			<li><a class="fNiv" href="competition/list.do"><spring:message
-					code="master.page.competitions" /></a></li>
+						code="master.page.competitions" /></a></li>
 		</security:authorize>
-		
+
 		<security:authorize access="hasRole('TEACHER')">
 			<li><a class="fNiv" href="danceClass/teacher/list.do"><spring:message
 						code="master.page.danceClassessByTeacher" /></a></li>
 		</security:authorize>
-		
+
 		<security:authorize access="hasRole('ALUMN')">
-			<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message code="master.page.schools" /></a></li>
-		<li><a class="fNiv"><spring:message
+			<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message
+						code="master.page.schools" /></a></li>
+			<li><a class="fNiv"><spring:message
 						code="master.page.partners" /></a>
 				<ul>
 					<li class="arrow"></li>
