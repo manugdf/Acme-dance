@@ -16,7 +16,16 @@ public class DanceSchoolForm {
 	private String	address;
 	private String	province;
 	private String	city;
+	private int		danceSchoolId;
 
+
+	public int getDanceSchoolId() {
+		return this.danceSchoolId;
+	}
+
+	public void setDanceSchoolId(final int danceSchoolId) {
+		this.danceSchoolId = danceSchoolId;
+	}
 
 	@NotBlank
 	public String getName() {
