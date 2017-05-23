@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import services.CompetitionService;
 
+import java.util.Date;
+
 @Controller
 @RequestMapping("/competition")
 public class CompetitionController extends AbstractController {
@@ -23,6 +25,7 @@ public class CompetitionController extends AbstractController {
         ModelAndView res = new ModelAndView("competition/list");
         res.addObject("competitions", competitionService.findAll());
         res.addObject("requestURI", "competition/list.do");
+        res.addObject("actualDate", new Date());
 
         return res;
     }

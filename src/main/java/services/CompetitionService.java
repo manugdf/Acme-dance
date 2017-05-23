@@ -1,6 +1,8 @@
 package services;
 
 import domain.Competition;
+import domain.DanceSchool;
+import forms.SelectDanceSchoolForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -42,5 +44,14 @@ public class CompetitionService {
     public void delete(final Competition competition) {
         Assert.notNull(competition);
         this.competitionRepository.delete(competition);
+    }
+
+    public Competition signupDanceSchool(SelectDanceSchoolForm selectDanceSchoolForm, int competitionId){
+        Competition competition = this.competitionRepository.findOne(competitionId);
+        DanceSchool danceSchool = selectDanceSchoolForm.getDanceSchool();
+        //if(danceSchool!=null){
+            competition.getDanceSchools().add(danceSchool);
+        //}
+        return competition;
     }
 }

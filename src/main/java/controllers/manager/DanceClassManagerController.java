@@ -238,7 +238,6 @@ public class DanceClassManagerController extends AbstractController {
 		final DanceClass auxDanceClass = this.danceClassService.reconstructAux(danceClassAuxForm);
 
 		if (bindingResult.hasErrors()) {
-			System.out.println(bindingResult.getAllErrors());
 			res.addObject("requestUri", "teacher/manager/add.do");
 			res.addObject("danceClassAuxForm", danceClassAuxForm);
 		} else
