@@ -39,6 +39,8 @@
 						code="master.page.teachersByManager" /></a></li>
 			<li><a class="fNiv" href="danceSchool/manager/list.do"><spring:message
 						code="master.page.schoolsByManager" /></a></li>
+			<li><a class="fNiv" href="competition/list.do"><spring:message
+					code="master.page.competitions" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('TEACHER')">

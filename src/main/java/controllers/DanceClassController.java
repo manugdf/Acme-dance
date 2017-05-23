@@ -33,4 +33,5 @@ public class DanceClassController extends AbstractController {
 		return res;
 
 	}
+
 }

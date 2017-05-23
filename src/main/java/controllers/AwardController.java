@@ -32,4 +32,13 @@ public class AwardController extends AbstractController {
 
 	}
 
-}
+	@RequestMapping(value = "/listByCompetition", method = RequestMethod.GET)
+	public ModelAndView listByCompetition(@RequestParam int competitionId) {
+		ModelAndView res = new ModelAndView("award/list");
+		res.addObject("awards", this.awardService.awardsByCompetition(competitionId));
+		res.addObject("requestURI", "award/listByCompetition.do");
+
+		return res;
+	}
+
+	}

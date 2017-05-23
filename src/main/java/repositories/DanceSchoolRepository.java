@@ -24,4 +24,7 @@ public interface DanceSchoolRepository extends JpaRepository<DanceSchool, Intege
 	@Query("select d from DanceSchool d join d.danceClasses c join c.alumns a where a.id = ?1")
 	Collection<DanceSchool> findSchoolsByAlumn(int alumnId);
 
+	@Query("select d from DanceSchool d join d.competitions c where c.id=?1")
+	Collection<DanceSchool> findSchoolsByCompetition(int competitionId);
+
 }
