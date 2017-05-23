@@ -14,21 +14,22 @@
 <form:form action="${requestURI}" modelAttribute="danceSchoolForm">
 	<form:hidden path="danceSchoolId" />
 
-	<jstl:if test="${edit==false}">
-	<fieldset>
-	<legend><spring:message code="danceschool.account"/></legend>
-	<acme:textbox code="danceschool.name" path="name"/>
-	</fieldset>
-	</jstl:if>
 	
 	<fieldset>
 	<legend><spring:message code="danceschool.basics"/></legend>
-	<acme:textbox code="danceschool.description" path="description"/>
+	<jstl:if test="${edit==false}">
+	<acme:textbox code="danceschool.name" path="name"/>
+	</jstl:if>
+	<acme:textarea code="danceschool.description" path="description"/>
+	</fieldset>
+	
+	<fieldset>
+	<legend><spring:message code="danceschool.others"/></legend>
 	<acme:textbox code="danceschool.phone" path="phone"/>
-	<acme:textbox code="danceschool.picture" path="picture"/>
 	<acme:textbox code="danceschool.location.address" path="address"/>
 	<acme:textbox code="danceschool.location.city" path="city"/>
 	<acme:textbox code="danceschool.location.province" path="province"/>
+	<acme:textbox code="danceschool.picture" path="picture"/>
 	</fieldset>
 	
 	<acme:submit code="danceschool.save" name="save"/>
