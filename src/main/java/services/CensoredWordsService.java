@@ -2,6 +2,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.transaction.Transactional;
 
@@ -25,33 +26,35 @@ public class CensoredWordsService {
 
 	public CensoredWords create() {
 		final CensoredWords censoredWords = new CensoredWords();
+		final ArrayList<String> words = new ArrayList<>();
+		words.add("sex");
+		words.add("viagra");
 		censoredWords.setWords(new ArrayList<String>());
 
 		return censoredWords;
 	}
 
-	public CensoredWords findCenWords() {
-		return this.censoredWordsRepository.findOne(74);
+	public CensoredWords findOne(final int id) {
+		return this.censoredWordsRepository.findOne(id);
 	}
 
-	public CensoredWords save(final String string) {
-		Assert.notNull(string);
-		final CensoredWords censoredWords = this.findCenWords();
-		censoredWords.getWords().add(string);
-		final CensoredWords words = this.censoredWordsRepository.save(censoredWords);
-
-		return words;
+	public Collection<CensoredWords> findAll() {
+		return this.censoredWordsRepository.findAll();
 	}
 
-	public CensoredWords delete(final String string) {
-		Assert.notNull(string);
-		final CensoredWords censoredWords = this.findCenWords();
-		censoredWords.getWords().remove(string);
-		final CensoredWords words = this.censoredWordsRepository.save(censoredWords);
-
-		return words;
+	public CensoredWords save(final CensoredWords censoredWords) {
+		Assert.notNull(censoredWords);
+		final CensoredWords res = this.censoredWordsRepository.save(censoredWords);
+		return res;
 	}
 
 	//Other Methods-----------------------------------------------------------------
+	public CensoredWords add(final String string, final int id) {
+		Assert.notNull(string);
+		final CensoredWords censoredWords = this.findOne(id);
+		censoredWords.getWords().add(string);
+		final CensoredWords words = this.save(censoredWords);
+		return words;
+	}
 
 }

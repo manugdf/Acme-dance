@@ -41,7 +41,7 @@ public class MessageService {
 		final String[] subject = message.getSubject().split(" ");
 		final String[] body = message.getBody().split(" ");
 		final String aux = "****";
-		final CensoredWords censoredWords = this.censoredWordsService.findCenWords();
+		final CensoredWords censoredWords = new ArrayList<>(this.censoredWordsService.findAll()).get(0);
 		final ArrayList<String> subAL = new ArrayList<>();
 		final ArrayList<String> bodAL = new ArrayList<>();
 

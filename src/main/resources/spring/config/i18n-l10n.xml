@@ -33,6 +33,7 @@
 		<value>/views/manager/messages</value>
 		<value>/views/partnerRequest/messages</value>
 		<value>/views/danceCertificate/messages</value>
+		<value>/views/partnerInvitation/messages</value>
 
 	</util:list>
 

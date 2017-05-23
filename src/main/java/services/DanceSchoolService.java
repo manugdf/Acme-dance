@@ -10,14 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 
 import domain.Award;
 import domain.Competition;
 import domain.DanceClass;
 import domain.DanceSchool;
 import domain.Event;
+import domain.Location;
 import domain.Manager;
+import forms.DanceSchoolForm;
 import repositories.DanceSchoolRepository;
 
 @Service
@@ -28,13 +29,7 @@ public class DanceSchoolService {
 	private DanceSchoolRepository	danceSchoolRepository;
 
 	@Autowired
-	private CompetitionService		competitionService;
-
-	@Autowired
 	private ManagerService			managerService;
-
-	@Autowired
-	private Validator				validator;
 
 
 	// Constructor
@@ -101,6 +96,7 @@ public class DanceSchoolService {
 		Assert.isTrue(this.managerService.LoggedIsManager());
 		final Manager logged = this.managerService.findByPrincipal();
 		Assert.isTrue(danceSchool.getManager().equals(logged));
+		danceSchool.setState("PENDING");
 
 		danceSchool = this.save(danceSchool);
 		this.managerService.save(logged);
@@ -115,24 +111,50 @@ public class DanceSchoolService {
 		return danceSchool;
 	}
 
-	public DanceSchool reconstruct(final DanceSchool danceSchool, final BindingResult binding) {
-		DanceSchool res;
+	public DanceSchoolForm reconstructForm(final DanceSchool danceSchool) {
+		final DanceSchoolForm danceSchoolForm = new DanceSchoolForm();
+		danceSchoolForm.setName(danceSchool.getName());
+		danceSchoolForm.setDescription(danceSchool.getDescription());
+		danceSchoolForm.setPhone(danceSchool.getPhone());
+		danceSchoolForm.setPicture(danceSchool.getPicture());
+		danceSchoolForm.setDanceSchoolId(danceSchool.getId());
 
-		if (danceSchool.getId() == 0)
-			res = danceSchool;
-		else {
-			res = this.danceSchoolRepository.findOne(danceSchool.getId());
-			res.setName(danceSchool.getName());
-			res.setDescription(danceSchool.getDescription());
-			res.setLocation(danceSchool.getLocation());
-			res.setPhone(danceSchool.getPhone());
-			res.setPicture(danceSchool.getPicture());
-			res.setState(danceSchool.getState());
+		danceSchoolForm.setAddress(danceSchool.getLocation().getAddress());
+		danceSchoolForm.setCity(danceSchool.getLocation().getCity());
+		danceSchoolForm.setProvince(danceSchool.getLocation().getProvince());
 
-			this.validator.validate(res, binding);
-		}
+		return danceSchoolForm;
+	}
+
+	public DanceSchool reconstruct(final DanceSchoolForm danceSchoolForm, final BindingResult binding) {
+		final DanceSchool res = this.create();
+
+		res.setName(danceSchoolForm.getName());
+		res.setDescription(danceSchoolForm.getDescription());
+		res.setPhone(danceSchoolForm.getPhone());
+		res.setPicture(danceSchoolForm.getPicture());
+
+		final Location location = new Location();
+		location.setAddress(danceSchoolForm.getAddress());
+		location.setCity(danceSchoolForm.getCity());
+		location.setProvince(danceSchoolForm.getProvince());
+		res.setLocation(location);
 		return res;
+	}
 
+	public DanceSchool reconstructEdit(final DanceSchoolForm danceSchoolForm, final DanceSchool danceSchool) {
+
+		danceSchool.setName(danceSchoolForm.getName());
+		danceSchool.setDescription(danceSchoolForm.getDescription());
+		danceSchool.setPhone(danceSchoolForm.getPhone());
+		danceSchool.setPicture(danceSchoolForm.getPicture());
+
+		final Location location = new Location();
+		location.setAddress(danceSchoolForm.getAddress());
+		location.setCity(danceSchoolForm.getCity());
+		location.setProvince(danceSchoolForm.getProvince());
+		danceSchool.setLocation(location);
+		return danceSchool;
 	}
 
 	public Collection<DanceSchool> findAllByManager(final int managerId) {
