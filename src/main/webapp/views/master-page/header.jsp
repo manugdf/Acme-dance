@@ -63,6 +63,10 @@
 								code="master.page.partners.mypartners" /></a></li>
 					<li><a href="danceSchool/alumn/list.do"><spring:message
 								code="master.page.partners.find" /></a></li>
+					<li><a href="partnerInvitation/alumn/listReceived.do"><spring:message
+								code="master.page.partners.received" /></a></li>
+					<li><a href="partnerInvitation/alumn/listSended.do"><spring:message
+								code="master.page.partners.sended" /></a></li>
 				</ul></li>
 			<li><a class="fNiv" href="danceClass/alumn/listMyClasses.do"><spring:message
 						code="master.page.myClasses" /></a></li>

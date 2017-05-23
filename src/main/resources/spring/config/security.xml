@@ -79,8 +79,8 @@
 		<security:intercept-url pattern="/partnerInvitation/alumn/listSended.do" access="hasRole('ALUMN')" /> 
 		<security:intercept-url pattern="/partnerInvitation/alumn/view.do" access="hasRole('ALUMN')" /> 
 		<security:intercept-url pattern="/partnerInvitation/alumn/create.do" access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/partnerInvitation/alumn/reject.do" access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/partnerInvitation/alumn/accept.do" access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/partnerInvitation/alumn/deny.do" access="hasRole('ALUMN')" />
 		
 		<security:intercept-url pattern="/censoredWords/administrator/**" access="hasRole('ADMIN')" /> 
 
