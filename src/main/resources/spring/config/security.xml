@@ -74,6 +74,12 @@
 		<security:intercept-url pattern="/partnerRequest/alumn/view.do" access="hasRole('ALUMN')" /> 
 		<security:intercept-url pattern="/partnerRequest/alumn/create.do" access="hasRole('ALUMN')" /> 
 		<security:intercept-url pattern="/danceSchool/alumn/list.do" access="hasRole('ALUMN')" /> 
+		<security:intercept-url pattern="/partnerInvitation/alumn/listReceived.do" access="hasRole('ALUMN')" /> 
+		<security:intercept-url pattern="/partnerInvitation/alumn/listSended.do" access="hasRole('ALUMN')" /> 
+		<security:intercept-url pattern="/partnerInvitation/alumn/view.do" access="hasRole('ALUMN')" /> 
+		<security:intercept-url pattern="/partnerInvitation/alumn/create.do" access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/partnerInvitation/alumn/accept.do" access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/partnerInvitation/alumn/deny.do" access="hasRole('ALUMN')" />
 		
 		<security:intercept-url pattern="/censoredWords/administrator/**" access="hasRole('ADMIN')" /> 
 

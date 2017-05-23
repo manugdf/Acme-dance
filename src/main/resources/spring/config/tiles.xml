@@ -33,6 +33,7 @@
 		<value>/views/material/tiles.xml</value>
 		<value>/views/manager/tiles.xml</value>
 		<value>/views/partnerRequest/tiles.xml</value>
+		<value>/views/partnerInvitation/tiles.xml</value>
 
 	</util:list>
 
