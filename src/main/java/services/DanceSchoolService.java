@@ -31,6 +31,9 @@ public class DanceSchoolService {
 	@Autowired
 	private ManagerService			managerService;
 
+	@Autowired
+	private AdminService			adminService;
+
 
 	// Constructor
 	public DanceSchoolService() {
@@ -67,6 +70,10 @@ public class DanceSchoolService {
 
 	public Collection<DanceSchool> findAllAccepted() {
 		return this.danceSchoolRepository.findAllAccepted();
+	}
+
+	public Collection<DanceSchool> findAllPending() {
+		return this.danceSchoolRepository.findAllPending();
 	}
 
 	public Collection<DanceSchool> findSchoolsByKeyword(final String word) {
@@ -155,6 +162,24 @@ public class DanceSchoolService {
 		danceSchool.setLocation(location);
 		return danceSchool;
 
+	}
+
+	public DanceSchool rejectDanceSchool(final int id) {
+		final boolean admin = this.adminService.isAdministrator();
+		Assert.isTrue(admin == true);
+
+		final DanceSchool danceSchool = this.findOne(id);
+		danceSchool.setState("REJECTED");
+		return this.save(danceSchool);
+	}
+
+	public DanceSchool acceptDanceSchool(final int id) {
+		final boolean admin = this.adminService.isAdministrator();
+		Assert.isTrue(admin == true);
+
+		final DanceSchool danceSchool = this.findOne(id);
+		danceSchool.setState("ACCEPTED");
+		return this.save(danceSchool);
 	}
 
 	public Collection<DanceSchool> findAllByManager(final int managerId) {
