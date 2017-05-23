@@ -25,5 +25,15 @@
 		<put-attribute name="body" value="/views/danceSchool/list.jsp" />
 	</definition>
 	
+	<definition name="danceSchool/create" extends="master.page">
+		<put-attribute name="title" value="Registrar nueva escuela" />
+		<put-attribute name="body" value="/views/danceSchool/edit.jsp" />
+	</definition>
+
+	<definition name="danceSchool/edit" extends="master.page">
+		<put-attribute name="title" value="Editar escuela" />
+		<put-attribute name="body" value="/views/danceSchool/edit.jsp" />
+	</definition>
+	
 	
 </tiles-definitions>
