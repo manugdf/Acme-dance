@@ -27,7 +27,8 @@
 						code="master.page.managers" /></a></li>
 			<li><a class="fNiv" href="censoredWords/administrator/list.do"><spring:message
 						code="master.page.censored" /></a></li>
-			<li><a class="fNiv" href="danceSchool/administrator/listPending.do"><spring:message
+			<li><a class="fNiv"
+				href="danceSchool/administrator/listPending.do"><spring:message
 						code="master.page.listPendingSchools" /></a></li>
 			<li><a class="fNiv" href="banner/administrator/list.do"><spring:message
 						code="master.page.listBannersAdmin" /></a></li>
@@ -53,6 +54,8 @@
 		<security:authorize access="hasRole('TEACHER')">
 			<li><a class="fNiv" href="danceClass/teacher/list.do"><spring:message
 						code="master.page.danceClassessByTeacher" /></a></li>
+			<li><a class="fNiv" href="material/teacher/list.do"><spring:message
+						code="master.page.teacher.material" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="hasRole('ALUMN')">
@@ -99,7 +102,7 @@
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">
-		<li><a class="fNiv" href="message/actor/list.do"><spring:message
+			<li><a class="fNiv" href="message/actor/list.do"><spring:message
 						code="master.page.messages" /></a></li>
 			<li><a class="fNiv"> <spring:message
 						code="master.page.profile" /> (<security:authentication

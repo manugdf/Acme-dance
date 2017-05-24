@@ -93,7 +93,16 @@ public class TeacherService {
 					teachers.add(t);
 		return teachers;
 	}
-	
+
+	public Boolean isTeacher() {
+		Boolean res = false;
+		final Authority aut = new Authority();
+		aut.setAuthority(Authority.TEACHER);
+		if (LoginService.getPrincipal().getAuthorities().contains(aut))
+			res = true;
+		return res;
+	}
+
 	public Teacher findByPrincipal() {
 
 		final UserAccount userAccount = LoginService.getPrincipal();
@@ -102,17 +111,17 @@ public class TeacherService {
 		return teacher;
 	}
 
-	public void register(Teacher teacher) {
+	public void register(final Teacher teacher) {
 		Assert.notNull(teacher);
 		UserAccount userAccount;
-		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		userAccount = teacher.getUserAccount();
 		userAccount.setPassword(encoder.encodePassword(userAccount.getPassword(), null));
 		teacher.setUserAccount(userAccount);
 
-		Teacher aux=this.save(teacher);
-		
-		Manager manager = this.managerService.findByPrincipal();
+		final Teacher aux = this.save(teacher);
+
+		final Manager manager = this.managerService.findByPrincipal();
 		manager.getTeachers().add(aux);
 		this.managerService.save(manager);
 	}
@@ -138,9 +147,9 @@ public class TeacherService {
 
 		return teachers;
 	}
-	
-	public Teacher modify(final Teacher teacher){
-		Assert.isTrue(managerService.findByPrincipal().getTeachers().contains(teacher));
+
+	public Teacher modify(final Teacher teacher) {
+		Assert.isTrue(this.managerService.findByPrincipal().getTeachers().contains(teacher));
 		return this.teacherRepository.saveAndFlush(teacher);
 	}
 
@@ -159,7 +168,7 @@ public class TeacherService {
 		return teacherForm;
 	}
 
-	public Teacher reconstructEdit(final TeacherForm teacherForm,final Teacher teacher){
+	public Teacher reconstructEdit(final TeacherForm teacherForm, final Teacher teacher) {
 		teacher.getUserAccount().setUsername(teacherForm.getUsername());
 
 		if ((teacherForm.getNewpassword().length() > 0 && teacherForm.getRepeatnewpassword().length() > 0 && teacherForm.getNewpassword().equals(teacherForm.getRepeatnewpassword()))) {
@@ -172,7 +181,7 @@ public class TeacherService {
 		teacher.setPhone(teacherForm.getPhone());
 		teacher.setPicture(teacherForm.getPicture());
 		teacher.setPresentationVideo(teacherForm.getPresentationVideo());
-		
+
 		return teacher;
 	}
 }
