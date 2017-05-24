@@ -25,8 +25,18 @@
 		<put-attribute name="body" value="/views/banner/list.jsp" />
 	</definition>
 	
+	<definition name="banner/listAll" extends="master.page">	
+		<put-attribute name="title" value="Todos los Banners" />
+		<put-attribute name="body" value="/views/banner/listAll.jsp" />
+	</definition>
+	
 	<definition name="banner/create" extends="master.page">
 		<put-attribute name="title" value="Proponer nuevo banner" />
+		<put-attribute name="body" value="/views/banner/edit.jsp" />
+	</definition>
+	
+	<definition name="banner/edit" extends="master.page">
+		<put-attribute name="title" value="Editar banner" />
 		<put-attribute name="body" value="/views/banner/edit.jsp" />
 	</definition>
 	

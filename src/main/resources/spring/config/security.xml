@@ -81,7 +81,7 @@
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/banner/manager/**"
 			access="hasRole('MANAGER')" />
-			
+
 
 		<security:intercept-url pattern="/danceClass/teacher/**"
 			access="hasRole('TEACHER')" />
@@ -90,6 +90,8 @@
 		<security:intercept-url pattern="/alumn/teacher/**"
 			access="hasRole('TEACHER')" />
 		<security:intercept-url pattern="/danceCertificate/teacher/**"
+			access="hasRole('TEACHER')" />
+		<security:intercept-url pattern="/material/teacher/**"
 			access="hasRole('TEACHER')" />
 
 		<security:intercept-url pattern="/event/alumn/list.do"
@@ -146,7 +148,7 @@
 			access="isAnonymous()" />
 		<security:intercept-url pattern="/manager/register.do"
 			access="isAnonymous()" />
-			
+
 		<security:intercept-url pattern="/competitionPlanner/register.do"
 			access="isAnonymous()" />
 

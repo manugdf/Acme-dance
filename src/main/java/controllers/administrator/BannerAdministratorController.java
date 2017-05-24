@@ -3,12 +3,15 @@ package controllers.administrator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import controllers.AbstractController;
+import domain.Banner;
 import services.AdminService;
 import services.BannerService;
 
@@ -37,6 +40,19 @@ public class BannerAdministratorController extends AbstractController {
 		return res;
 	}
 
+	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	public ModelAndView listAll() {
+
+		this.adminService.checkLoggedIsAdmin();
+
+		final ModelAndView res = new ModelAndView("banner/listAll");
+
+		res.addObject("banners", this.bannerService.findAll());
+
+		res.addObject("requestUri", "banner/administrator/listAll.do");
+		return res;
+	}
+
 	@RequestMapping(value = "/reject", method = RequestMethod.GET)
 	public ModelAndView reject(@RequestParam final int id) {
 
@@ -54,7 +70,43 @@ public class BannerAdministratorController extends AbstractController {
 		final ModelAndView res = new ModelAndView("redirect:list.do");
 
 		return res;
+	}
 
+	// Edit
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam final int id) {
+		final ModelAndView res = new ModelAndView("banner/edit");
+
+		final Banner banner = this.bannerService.findOne(id);
+		Assert.notNull(banner);
+		Assert.isTrue(banner.getState().equals("PENDING") == false);
+
+		res.addObject("requestUri", "banner/administrator/edit.do?id=" + id);
+		res.addObject("banner", banner);
+		return res;
+
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView edit(final Banner banner, final BindingResult bindingResult) {
+		ModelAndView res;
+
+		if (bindingResult.hasErrors()) {
+			System.out.println(bindingResult.getAllErrors());
+			res = new ModelAndView("banner/edit");
+			res.addObject("banner", banner);
+		} else
+			try {
+				final Banner bannerAux = this.bannerService.reconstructEdit(banner, bindingResult);
+				res = new ModelAndView("redirect:listAll.do");
+
+				this.bannerService.save(bannerAux);
+
+			} catch (final Throwable oops) {
+				res = new ModelAndView("banner/edit");
+				res.addObject("banner", banner);
+			}
+		return res;
 	}
 
 }

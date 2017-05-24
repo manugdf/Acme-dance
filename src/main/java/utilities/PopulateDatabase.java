@@ -47,7 +47,7 @@ public class PopulateDatabase {
 			System.out.printf("Initialising persistence context `%s'.%n", DatabaseConfig.PersistenceUnit);
 			databaseUtil = new DatabaseUtil();
 			databaseUtil.open();
-
+			
 			System.out.printf("Creating database `%s' (%s).%n", databaseUtil.getDatabaseName(), databaseUtil.getDatabaseDialectName());
 			databaseUtil.recreateDatabase();
 

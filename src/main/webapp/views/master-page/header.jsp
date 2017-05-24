@@ -27,10 +27,20 @@
 						code="master.page.managers" /></a></li>
 			<li><a class="fNiv" href="censoredWords/administrator/list.do"><spring:message
 						code="master.page.censored" /></a></li>
-			<li><a class="fNiv" href="danceSchool/administrator/listPending.do"><spring:message
+			<li><a class="fNiv"
+				href="danceSchool/administrator/listPending.do"><spring:message
 						code="master.page.listPendingSchools" /></a></li>
-			<li><a class="fNiv" href="banner/administrator/list.do"><spring:message
-						code="master.page.listBannersAdmin" /></a></li>
+			<li><a class="fNiv"> <spring:message
+						code="master.page.listBannersAdmin" />
+			</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="banner/administrator/list.do"><spring:message
+								code="master.page.listPendingBanners" /> </a></li>
+					<li><a href="banner/administrator/listAll.do"><spring:message
+								code="master.page.listAllBanners" /> </a></li>
+				</ul></li>
+			
 			<li><a class="fNiv" href="dashboard/administrator.do"><spring:message
 						code="master.page.dashboard" /></a></li>
 		</security:authorize>
@@ -53,6 +63,8 @@
 		<security:authorize access="hasRole('TEACHER')">
 			<li><a class="fNiv" href="danceClass/teacher/list.do"><spring:message
 						code="master.page.danceClassessByTeacher" /></a></li>
+			<li><a class="fNiv" href="material/teacher/list.do"><spring:message
+						code="master.page.teacher.material" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="hasRole('ALUMN')">
@@ -99,7 +111,7 @@
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">
-		<li><a class="fNiv" href="message/actor/list.do"><spring:message
+			<li><a class="fNiv" href="message/actor/list.do"><spring:message
 						code="master.page.messages" /></a></li>
 			<li><a class="fNiv"> <spring:message
 						code="master.page.profile" /> (<security:authentication
