@@ -38,6 +38,7 @@
 		<value>/views/payment/messages</value>
 		<value>/views/censoredWords/messages</value>
 		<value>/views/review/messages</value>
+		<value>/views/banner/messages</value>
 	</util:list>
 
 </beans>

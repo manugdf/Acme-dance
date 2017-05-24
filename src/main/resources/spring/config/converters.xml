@@ -35,6 +35,7 @@
 		<bean class="converters.PatnerRequestToStringConverter" />
 		<bean class="converters.ScheduleToStringConverter" />
 		<bean class="converters.TeacherToStringConverter" />
+		<bean class="converters.FeeToStringConverter" />
 
 		<!-- String To Class Converters -->
 
@@ -58,6 +59,8 @@
 		<bean class="converters.StringToPatnerRequestConverter" />
 		<bean class="converters.StringToScheduleConverter" />
 		<bean class="converters.StringToTeacherConverter" />
+		<bean class="converters.StringToFeeConverter" />
+
 
 	</util:list>
 

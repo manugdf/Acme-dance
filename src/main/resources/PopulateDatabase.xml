@@ -1371,6 +1371,11 @@
 		<property name="score" value="5"/>
 		<property name="comment" value="The best teacher of the world"/>
 	</bean>
+	
+	<!-- Fee -->
+	<bean id="fee" class="domain.Fee">
+		<property name="managerAmount" value="100.0" />
+	</bean>
 
 </beans>
 
