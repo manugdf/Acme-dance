@@ -81,6 +81,8 @@
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/banner/manager/**"
 			access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/manager/**"
+			access="hasRole('MANAGER')" />
 
 
 		<security:intercept-url pattern="/danceClass/teacher/**"
@@ -155,12 +157,6 @@
 			access="isAnonymous()" />
 
 		<security:intercept-url pattern="/message/actor/**"
-			access="isAuthenticated()" />
-		<security:intercept-url pattern="/profile/action-1.do"
-			access="isAuthenticated()" />
-		<security:intercept-url pattern="/profile/action-2.do"
-			access="isAuthenticated()" />
-		<security:intercept-url pattern="/profile/action-3.do"
 			access="isAuthenticated()" />
 
 		<security:intercept-url pattern="/**"

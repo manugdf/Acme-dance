@@ -14,13 +14,18 @@
 <form:form action="${requestURI}" modelAttribute="banner">
 	<form:hidden path="id" />
 	<form:hidden path="manager" />
+	<security:authorize access="hasRole('MANAGER')">
+	<form:hidden path="state" />
+	</security:authorize>
 
 	<acme:textbox code="banner.url" path="url" />
 	
+	<security:authorize access="hasRole('ADMIN')">
 	<form:select path="state">
 			<form:option value="ACCEPTED">ACCEPTED</form:option>
 			<form:option value="REJECTED">REJECTED</form:option>
 		</form:select>
+	</security:authorize>
 	
 	<acme:submit code="danceschool.save" name="save" />
 
