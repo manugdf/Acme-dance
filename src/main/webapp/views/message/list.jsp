@@ -13,6 +13,7 @@
 
 <spring:message code="message.actor.received" />
 <br />
+<br />
 <display:table name="received" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5">
 
@@ -38,14 +39,17 @@
 	</display:column>
 
 	<display:column>
-		<input
+		<input onclick="javascript: return confirm('¿Estas seguro?');"
 			onclick="javascript: window.location.replace('message/actor/delete.do?id=${row.id}');"
 			value="<spring:message code="message.delete" />" type="button" />
 	</display:column>
 
 </display:table>
 
+<br />
+<br />
 <spring:message code="message.actor.sent" />
+<br />
 <br />
 <display:table name="sent" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5">

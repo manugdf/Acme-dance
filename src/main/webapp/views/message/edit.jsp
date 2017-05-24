@@ -11,23 +11,31 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<security:authorize access="hasRole('ADMIN')">
-	<form:form action="${requestURI}" modelAttribute="censoredWords">
-		<form:hidden path="id" />
-		<form:hidden path="version" />
-
-		<spring:message code="cenwor.howtocreate" />
-		<br />
-		<br />
+<form:form action="${requestURI}" modelAttribute="messageForm">
 
 
-		<acme:textbox code="cenwor.words" path="words" />
+	<jstl:if test="${reply == false}">
+		<acme:select items="${users}" itemLabel="userAccount.username"
+			code="message.receiver" path="receiver" />
+	</jstl:if>
 
-		<br />
-		<acme:submit name="save" code="cenwor.save" />
-		<acme:cancel url="welcome/index.do" code="cenwor.cancel" />
-		<br />
+	<jstl:if test="${reply == true}">
+		<form:hidden path="receiver" />
+		<form:label path="receiver">
+			<spring:message code="message.receiver" />
+		</form:label>
+		<form:input disabled="true" path="receiver.userAccount.username"
+			readonly="true" />
+		<br>
+	</jstl:if>
 
-	</form:form>
-</security:authorize>
+	<acme:textbox code="message.subject" path="subject" />
+	<acme:textarea code="message.body" path="body" />
+
+	<br />
+	<acme:submit name="send" code="message.send" />
+	<acme:cancel url="welcome/index.do" code="message.cancel" />
+	<br />
+
+</form:form>
 

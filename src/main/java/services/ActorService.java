@@ -50,6 +50,12 @@ public class ActorService {
 		return result;
 	}
 
+	public Actor save(final Actor actor) {
+		Assert.notNull(actor);
+		final Actor saved = this.actorRepository.save(actor);
+		return actor;
+
+	}
 	// Other business methods
 	/*
 	 * public Actor getLoggedActor() {
@@ -80,10 +86,6 @@ public class ActorService {
 	 * return this.actorRepository.findActorByUsername(username);
 	 * }
 	 */
-
-	public Actor save(final Actor a) {
-		return this.actorRepository.save(a);
-	}
 
 	/*
 	 * public Actor edit(final Actor actor) {

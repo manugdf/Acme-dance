@@ -36,6 +36,7 @@
 		<value>/views/danceCertificate/tiles.xml</value>
 		<value>/views/partnerInvitation/tiles.xml</value>
 		<value>/views/payment/tiles.xml</value>
+		<value>/views/censoredWords/tiles.xml</value>
 	</util:list>
 
 </beans>

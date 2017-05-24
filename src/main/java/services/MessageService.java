@@ -66,7 +66,6 @@ public class MessageService {
 		final Message saved = this.messageRepository.save(message);
 		return saved;
 	}
-
 	public void delete(final Message message) {
 		this.messageRepository.delete(message);
 	}
@@ -75,32 +74,28 @@ public class MessageService {
 
 	public Message spam(final Message message) {
 		Assert.notNull(message);
-		final String[] subject = message.getSubject().split(" ");
-		final String[] body = message.getBody().split(" ");
+		final String[] subject = message.getSubject().toLowerCase().split(" ");
+		final String[] body = message.getBody().toLowerCase().split(" ");
 		final String aux = "****";
 		final CensoredWords censoredWords = new ArrayList<>(this.censoredWordsService.findAll()).get(0);
 		final ArrayList<String> subAL = new ArrayList<>();
 		final ArrayList<String> bodAL = new ArrayList<>();
 
-		for (String string : subject) {
-			if (censoredWords.getWords().contains(string)) {
-				string = aux;
-				subAL.add(string);
-			}
-			subAL.add(string);
-		}
+		for (int i = 0; i < subject.length; i++)
+			if (censoredWords.getWords().contains(subject[i]))
+				subAL.add(aux);
+			else
+				subAL.add(subject[i]);
 
 		String newSub = new String();
 		for (int i = 0; i < subAL.size(); i++)
 			newSub += subAL.get(i) + " ";
 
-		for (String string : body) {
-			if (censoredWords.getWords().contains(string)) {
-				string = aux;
-				bodAL.add(string);
-			}
-			bodAL.add(string);
-		}
+		for (int i = 0; i < body.length; i++)
+			if (censoredWords.getWords().contains(body[i]))
+				bodAL.add(aux);
+			else
+				bodAL.add(body[i]);
 
 		String newBod = new String();
 		for (int i = 0; i < bodAL.size(); i++)
@@ -109,9 +104,7 @@ public class MessageService {
 		message.setBody(newBod);
 		message.setSubject(newSub);
 
-		final Message saved = this.save(message);
-
-		return saved;
+		return message;
 
 	}
 
@@ -122,4 +115,33 @@ public class MessageService {
 		message.setReceiver(messageForm.getReceiver());
 		return message;
 	}
+
+	public void deleteMessage(final int id) {
+		Assert.isTrue(this.actorService.isAuthenticated());
+		final Message message = this.findOne(id);
+		if (message.getReceiver() != null && message.getReceiver().getId() == this.actorService.findByPrincipal().getId())
+			message.setReceiver(null);
+		if (message.getSender() != null && message.getSender().getId() == this.actorService.findByPrincipal().getId())
+			message.setSender(null);
+
+		if (message.getReceiver() == null)
+			if (message.getSender() == null)
+				this.delete(message);
+	}
+
+	public void sendMessage(final Message message) {
+
+		final Actor receiverActor = message.getReceiver();
+
+		receiverActor.getMessagesReceived().add(message);
+		this.actorService.save(receiverActor);
+
+		final Actor senderActor = this.actorService.findByPrincipal();
+		senderActor.getMessagesSended().add(message);
+		this.actorService.save(senderActor);
+
+		this.save(message);
+
+	}
+
 }

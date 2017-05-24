@@ -11,7 +11,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-
 <security:authorize access="hasRole('ADMIN')">
 	<display:table name="censoredWords" id="row" requestURI="${requestURI}"
 		class="displaytag" keepStatus="true" pagesize="5">
