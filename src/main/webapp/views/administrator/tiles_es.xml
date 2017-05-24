@@ -14,15 +14,16 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
       
-   <tiles-definitions>
-      <definition name="administrator/action-1" extends="master.page">	
-		<put-attribute name="title" value="Administrador: Acción 1" />
-		<put-attribute name="body" value="/views/administrator/action-1.jsp" />
+<tiles-definitions>
+
+	<definition name="administrator/dashboard" extends="master.page">
+		<put-attribute name="title" value="Dashboard" />
+		<put-attribute name="body" value="/views/administrator/dashboard.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-2" extends="master.page">	
-		<put-attribute name="title" value="Administrador: Acción 2" />
-		<put-attribute name="body" value="/views/administrator/action-2.jsp" />
+	<definition name="administrator/updateFees" extends="master.page">	
+		<put-attribute name="title" value="Actualizar pagos de Chorbis" />
+		<put-attribute name="body" value="/views/administrator/updateFees.jsp" />
 	</definition>
 
-	</tiles-definitions>
+</tiles-definitions>

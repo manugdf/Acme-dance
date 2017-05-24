@@ -565,7 +565,7 @@
 				<ref bean="message1" />
 			</list>
 		</property>
-		<property name="averageScore" value="0.0" />
+		<property name="averageScore" value="10.0" />
 		<property name="danceClasses">
 			<list>
 				<ref bean="danceClass1" />
@@ -884,7 +884,7 @@
 		<property name="name" value="Dance with Lula" />
 		<property name="phone" value="955467453" />
 		<property name="picture" value="http://www.image.com/index.png" />
-		<property name="state" value="ACCEPTED" />
+		<property name="state" value="REJECTED" />
 	</bean>
 
 

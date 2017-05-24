@@ -88,6 +88,7 @@
 		<security:intercept-url pattern="/manager/administrator/**" access="hasRole('ADMIN')" /> 
 		<security:intercept-url pattern="/censoredWords/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/danceSchool/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/dashboard/administrator.do" access="hasRole('ADMIN')" />
 
 		<security:intercept-url pattern="/alumn/register.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/manager/register.do" access="isAnonymous()" /> 
