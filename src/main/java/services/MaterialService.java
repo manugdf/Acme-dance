@@ -36,6 +36,7 @@ public class MaterialService {
 		final Teacher teacher = this.teacherService.findByPrincipal();
 		Assert.isTrue(this.teacherService.isTeacher());
 		material.setTeacher(teacher);
+		material.setDanceClass(material.getDanceClass());
 		return material;
 	}
 
@@ -58,5 +59,7 @@ public class MaterialService {
 	public void delete(final Material material) {
 		this.materialRepository.delete(material);
 	}
+
+	//Other Methods----------------------------------------------------
 
 }
