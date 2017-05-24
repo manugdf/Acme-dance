@@ -53,7 +53,6 @@ public abstract class Actor extends DomainEntity {
 		this.email = email;
 	}
 
-	@NotBlank
 	@Pattern(regexp = "\\+\\d{1,3}?[ -]?\\d{6,14}|\\d{6,14}$")
 	public String getPhone() {
 		return this.phone;

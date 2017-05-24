@@ -40,21 +40,23 @@ public class DanceSchoolAdministratorController extends AbstractController {
 
 	@RequestMapping(value = "/reject", method = RequestMethod.GET)
 	public ModelAndView reject(@RequestParam final int id) {
-		final ModelAndView result = this.list();
 
+		this.adminService.checkLoggedIsAdmin();
 		this.danceSchoolService.rejectDanceSchool(id);
+		final ModelAndView res = new ModelAndView("redirect:listPending.do");
 
-		return result;
+		return res;
 
 	}
 
 	@RequestMapping(value = "/accept", method = RequestMethod.GET)
 	public ModelAndView accept(@RequestParam final int id) {
-		final ModelAndView result = this.list();
 
+		this.adminService.checkLoggedIsAdmin();
 		this.danceSchoolService.acceptDanceSchool(id);
+		final ModelAndView res = new ModelAndView("redirect:listPending.do");
 
-		return result;
+		return res;
 
 	}
 
