@@ -44,8 +44,9 @@
 	    <security:intercept-url pattern="/danceSchool/search.do" access="permitAll" />
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
-		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
-		
+		<security:intercept-url pattern="/welcome/index.do" access="permitAll" />
+		<security:intercept-url pattern="/review/list.do" access="permitAll" />
+
 		<security:intercept-url pattern="/competitionPlanner/create.do" access="permitAll" /> 
 		
 		<security:intercept-url pattern="/manager/schedule/create.do" access="hasRole('MANAGER')" />

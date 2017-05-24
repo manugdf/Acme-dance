@@ -36,6 +36,7 @@
 		<value>/views/danceCertificate/messages</value>
 		<value>/views/partnerInvitation/messages</value>
 		<value>/views/payment/messages</value>
+		<value>/views/review/messages</value>
 	</util:list>
 
 </beans>
