@@ -119,6 +119,15 @@
 			</a>
 				<ul>
 					<li class="arrow"></li>
+					<security:authorize access="hasRole('ALUMN')">
+						<li><a href="alumn/edit.do"><spring:message
+									code="master.page.profile.edit" /></a></li>
+					</security:authorize>
+					<security:authorize access="hasRole('MANAGER')">
+						<li><a href="manager/edit.do"><spring:message
+									code="master.page.profile.edit" /></a></li>
+					</security:authorize>
+					<li class="arrow"></li>
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>
 				</ul></li>

@@ -29,8 +29,16 @@ public class AlumnForm {
 	private int		expirationMonth;
 	private int		expirationYear;
 	private int		cvvCode;
+	private int		alumnId;
 
 
+	public int getAlumnId() {
+		return this.alumnId;
+	}
+
+	public void setAlumnId(final int alumnId) {
+		this.alumnId = alumnId;
+	}
 	@NotBlank
 	public String getHolderName() {
 		return this.holderName;

@@ -135,10 +135,60 @@ public class AlumnService {
 		return alumn;
 	}
 
+	public AlumnForm reconstructForm(final Alumn alumn) {
+		final AlumnForm alumnForm = new AlumnForm();
+
+		alumnForm.setAcceptTerms(true);
+		alumnForm.setAlumnId(alumn.getId());
+		alumnForm.setUsername(alumn.getUserAccount().getUsername());
+		alumnForm.setName(alumn.getName());
+		alumnForm.setSurname(alumn.getSurname());
+		alumnForm.setEmail(alumn.getEmail());
+		alumnForm.setPhone(alumn.getPhone());
+
+		alumnForm.setBrandName(alumn.getCreditCard().getBrandName());
+		alumnForm.setCvvCode(alumn.getCreditCard().getCvvCode());
+		alumnForm.setExpirationMonth(alumn.getCreditCard().getExpirationMonth());
+		alumnForm.setExpirationYear(alumn.getCreditCard().getExpirationYear());
+		alumnForm.setHolderName(alumn.getCreditCard().getHolderName());
+		alumnForm.setNumber(alumn.getCreditCard().getNumber());
+
+		return alumnForm;
+	}
+
+	public Alumn reconstructEdit(final AlumnForm alumnForm, final Alumn alumn) {
+
+		alumn.getUserAccount().setUsername(alumnForm.getUsername());
+
+		if ((alumnForm.getNewpassword().length() > 0 && alumnForm.getRepeatnewpassword().length() > 0 && alumnForm.getNewpassword().equals(alumnForm.getRepeatnewpassword()))) {
+			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			alumn.getUserAccount().setPassword(encoder.encodePassword(alumnForm.getNewpassword(), null));
+		}
+		alumn.setName(alumnForm.getName());
+		alumn.setSurname(alumnForm.getSurname());
+		alumn.setEmail(alumnForm.getEmail());
+		alumn.setPhone(alumnForm.getPhone());
+
+		final CreditCard creditcard = new CreditCard();
+		creditcard.setBrandName(alumnForm.getBrandName());
+		creditcard.setCvvCode(alumnForm.getCvvCode());
+		creditcard.setExpirationMonth(alumnForm.getExpirationMonth());
+		creditcard.setExpirationYear(alumnForm.getExpirationYear());
+		creditcard.setHolderName(alumnForm.getHolderName());
+		creditcard.setNumber(alumnForm.getNumber());
+
+		alumn.setCreditCard(creditcard);
+		return alumn;
+	}
+
+	public Alumn modify(final Alumn alumn) {
+		Assert.isTrue(alumn.getId() == this.findByPrincipal().getId());
+		return this.alumnRepository.saveAndFlush(alumn);
+	}
+
 	public Collection<Alumn> findAlumnsBySchoolId(final int schoolId) {
 		final Collection<Alumn> alumns = this.alumnRepository.findAlumnsBySchoolId(schoolId);
 		return alumns;
 	}
-	
 
 }
