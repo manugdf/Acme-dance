@@ -198,4 +198,16 @@ public class ManagerService {
 		
 		return res;
 	}
+	
+	public Double getMonthTotalFee(){
+		Manager manager=findByPrincipal();
+		Assert.notNull(manager);
+		int contador=0;
+		for(Banner b : manager.getBanner()){
+			if(b.getState().equals("ACCEPTED")){
+				contador++;
+			}
+		}
+		return contador*manager.getFee();	
+	}
 }

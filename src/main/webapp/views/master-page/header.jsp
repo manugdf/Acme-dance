@@ -40,6 +40,8 @@
 						code="master.page.competitions" /></a></li>
 			<li><a class="fNiv" href="danceSchool/manager/create.do"><spring:message
 						code="master.page.createDanceSchool" /></a></li>
+			<li><a class="fNiv" href="banner/manager/showMonthlyBill.do"><spring:message
+						code="master.page.showMonthlyBill" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="hasRole('TEACHER')">
