@@ -30,5 +30,10 @@
     <put-attribute name="title" value="Editar mi perfil" />
     <put-attribute name="body" value="/views/manager/edit.jsp" />
   </definition>
+  
+  <definition name="manager/editFee" extends="master.page">  
+    <put-attribute name="title" value="Editar Cuota" />
+    <put-attribute name="body" value="/views/manager/edit.jsp" />
+  </definition>
 	
 </tiles-definitions>

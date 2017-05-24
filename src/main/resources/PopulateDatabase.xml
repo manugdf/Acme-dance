@@ -443,7 +443,7 @@
 		<property name="surname" value="Ramirez" />
 		<property name="phone" value="635435325" />
 		<property name="email" value="manager3@dance.com" />
-		<property name="fee" value="5.333" />
+		<property name="fee" value="5.33" />
 		<property name="messagesSended">
 			<list></list>
 		</property>

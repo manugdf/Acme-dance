@@ -11,6 +11,7 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import domain.Banner;
 import domain.CreditCard;
@@ -30,6 +31,9 @@ public class ManagerService {
 
 	@Autowired
 	private ManagerRepository managerRepository;
+	
+	@Autowired
+	private Validator validator;
 
 
 	// Constructor
@@ -180,5 +184,18 @@ public class ManagerService {
 
 		manager.setCreditCard(creditcard);
 		return manager;
+	}
+	
+
+	
+	public Manager reconstructEditFee(Manager manager,final int managerId, BindingResult bindingResult){
+		Manager res;
+		
+		res=managerRepository.findOne(managerId);
+			
+		res.setFee(manager.getFee());
+		validator.validate(res, bindingResult);
+		
+		return res;
 	}
 }
