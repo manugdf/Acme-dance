@@ -63,8 +63,7 @@
 		<security:authorize access="hasRole('TEACHER')">
 			<li><a class="fNiv" href="danceClass/teacher/list.do"><spring:message
 						code="master.page.danceClassessByTeacher" /></a></li>
-			<li><a class="fNiv" href="material/teacher/list.do"><spring:message
-						code="master.page.teacher.material" /></a></li>
+
 		</security:authorize>
 
 		<security:authorize access="hasRole('ALUMN')">
