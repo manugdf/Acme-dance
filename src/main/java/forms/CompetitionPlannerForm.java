@@ -1,6 +1,7 @@
 
 package forms;
 
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -18,6 +19,7 @@ public class CompetitionPlannerForm {
 	private String	repeatPassword;
 	private String	companyName;
 	private String	picture;
+	private boolean	acceptTerms;
 
 
 	@NotBlank
@@ -88,11 +90,19 @@ public class CompetitionPlannerForm {
 		this.email = email;
 	}
 
+	@Pattern(regexp = "\\+\\d{1,3}?[ -]?\\d{6,14}|\\d{6,14}$")
 	public String getPhone() {
 		return this.phone;
 	}
 	public void setPhone(final String phone) {
 		this.phone = phone;
+	}
+
+	public boolean isAcceptTerms() {
+		return this.acceptTerms;
+	}
+	public void setAcceptTerms(final boolean acceptTerms) {
+		this.acceptTerms = acceptTerms;
 	}
 
 }
