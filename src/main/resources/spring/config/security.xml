@@ -83,6 +83,7 @@
 		<security:intercept-url pattern="/partnerInvitation/alumn/reject.do" access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/partnerInvitation/alumn/accept.do" access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/partnerInvitation/alumn/deny.do" access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/payment/alumn/**" access="hasRole('ALUMN')" />
 		
 
 		<security:intercept-url pattern="/manager/administrator/**" access="hasRole('ADMIN')" /> 

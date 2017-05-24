@@ -51,7 +51,24 @@
 					value="<spring:message code="danceclass.schedule.view" />" type="button" />
 	
 	</display:column>
-	
+
+	<security:authorize access="hasRole('ALUMN')">
+		<jstl:if test="${myClasses==false}">
+			<spring:message code="danceClass.joinin" var="join"/>
+			<display:column title="${join}">
+				<jstl:choose>
+					<jstl:when test="${!danceClassesJoinIn.contains(row)}">
+						<input	onclick="javascript: window.location.replace('payment/alumn/joinin.do?danceClassId=${row.id}');"
+					  		value="<spring:message code="danceClass.joinin" />" type="button" />
+					</jstl:when>
+					<jstl:otherwise>
+						<font color="red"><spring:message code="danceClass.cantJoinin" /></font>
+					</jstl:otherwise>
+				</jstl:choose>
+			</display:column>
+		</jstl:if>
+	</security:authorize>
+
 	<security:authorize access="hasRole('TEACHER')">
 	
 	<spring:message code="danceclass.danceTest" var="danceTest"/>
@@ -75,19 +92,27 @@
 <spring:message code="danceClass.danceTests" var="tests"/>
 	<display:column title="${tests}">
 	
-	<input	onclick="javascript: window.location.replace('danceTest/alumn/list.do?classId=${row.id}');"
+		<input	onclick="javascript: window.location.replace('danceTest/alumn/list.do?classId=${row.id}');"
+				  value="<spring:message code="danceclass.schedule.view" />" type="button" />
+	
+		</display:column>
+	
+		<spring:message code="danceClass.materials" var="mat"/>
+		<display:column title="${mat}">
+	
+		<input	onclick="javascript: window.location.replace('material/alumn/list.do?classId=${row.id}');"
 					value="<spring:message code="danceclass.schedule.view" />" type="button" />
 	
-	</display:column>
-	
-	<spring:message code="danceClass.materials" var="mat"/>
-	<display:column title="${mat}">
-	
-	<input	onclick="javascript: window.location.replace('material/alumn/list.do?classId=${row.id}');"
-					value="<spring:message code="danceclass.schedule.view" />" type="button" />
-	
-	</display:column>
-	
+		</display:column>
+
+		<spring:message code="danceClass.materials" var="mat"/>
+		<display:column title="${mat}">
+
+			<input	onclick="javascript: window.location.replace('material/alumn/list.do?classId=${row.id}');"
+					  value="<spring:message code="danceclass.schedule.view" />" type="button" />
+
+		</display:column>
+
 	
 	</security:authorize>
 </jstl:if>

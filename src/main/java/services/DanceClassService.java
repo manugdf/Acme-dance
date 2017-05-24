@@ -136,4 +136,8 @@ public class DanceClassService {
 		return aux;
 
 	}
+
+	public Collection<DanceClass> findDanceClassActiveByAlumn(int alumnId){
+		return danceClassRepository.findDanceClassActiveByAlumn(alumnId);
+	}
 }

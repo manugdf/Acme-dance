@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.Authority;
 import security.LoginService;
+import services.AlumnService;
 import services.DanceClassService;
 import services.DanceSchoolService;
 import services.ManagerService;
@@ -25,6 +26,9 @@ public class DanceClassController extends AbstractController {
 	@Autowired
 	private ManagerService managerService;
 
+	@Autowired
+	private AlumnService alumnService;
+
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam final int danceSchoolId) {
@@ -39,6 +43,8 @@ public class DanceClassController extends AbstractController {
 			for(Authority a: LoginService.getPrincipal().getAuthorities()){
 				if(a.getAuthority().equals("MANAGER")){
 					res.addObject("managerPrincipal", managerService.findByPrincipal());
+				}else if(a.getAuthority().equals("ALUMN")){
+					res.addObject("danceClassesJoinIn", danceClassService.findDanceClassActiveByAlumn(alumnService.findByPrincipal().getId()));
 				}
 			}
 		}catch (Throwable oops){
