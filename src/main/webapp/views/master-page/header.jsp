@@ -30,8 +30,17 @@
 			<li><a class="fNiv"
 				href="danceSchool/administrator/listPending.do"><spring:message
 						code="master.page.listPendingSchools" /></a></li>
-			<li><a class="fNiv" href="banner/administrator/list.do"><spring:message
-						code="master.page.listBannersAdmin" /></a></li>
+			<li><a class="fNiv"> <spring:message
+						code="master.page.listBannersAdmin" />
+			</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="banner/administrator/list.do"><spring:message
+								code="master.page.listPendingBanners" /> </a></li>
+					<li><a href="banner/administrator/listAll.do"><spring:message
+								code="master.page.listAllBanners" /> </a></li>
+				</ul></li>
+			
 			<li><a class="fNiv" href="dashboard/administrator.do"><spring:message
 						code="master.page.dashboard" /></a></li>
 		</security:authorize>
@@ -108,6 +117,15 @@
 						property="principal.username" />)
 			</a>
 				<ul>
+					<li class="arrow"></li>
+					<security:authorize access="hasRole('ALUMN')">
+						<li><a href="alumn/edit.do"><spring:message
+									code="master.page.profile.edit" /></a></li>
+					</security:authorize>
+					<security:authorize access="hasRole('MANAGER')">
+						<li><a href="manager/edit.do"><spring:message
+									code="master.page.profile.edit" /></a></li>
+					</security:authorize>
 					<li class="arrow"></li>
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>

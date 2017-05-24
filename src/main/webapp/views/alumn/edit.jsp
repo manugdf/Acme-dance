@@ -12,6 +12,7 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <form:form action="${requestURI}" modelAttribute="alumnForm">
+	<form:hidden path="alumnId"/>
 
 	<jstl:if test="${edit==false}">
 		<fieldset>
@@ -19,6 +20,18 @@
 			<acme:password code="alumn.password" path="password" />
 			<acme:password code="alumn.confirmPassword" path="confirmPassword" />
 		</fieldset>
+	</jstl:if>
+	
+	<jstl:if test="${edit==true}">
+	<fieldset>
+	<legend><spring:message code="alumn.account"/></legend>
+	<acme:textbox readonly="true" code="alumn.username" path="username"/>
+	<acme:password code="alumn.current.password" path="password"/><b><spring:message code="alumn.passwordinfo"/></b>
+	<acme:password code="alumn.newpassword" path="newpassword"/>
+	<acme:password code="alumn.confirmPassword" path="repeatnewpassword"/>
+	<b><spring:message code="alumn.passwordinfo2"/></b>	
+	
+	</fieldset>
 	</jstl:if>
 
 	<fieldset>

@@ -29,6 +29,12 @@
 	<spring:message code="schedule.classroom" var="classroom"/>
 	<display:column property="classroom" title="${classroom}"/>
 	
+	<security:authorize access="hasRole('MANAGER')">
+		<display:column>
+			<input	onclick="javascript: window.location.replace('manager/schedule/edit.do?scheduleId=${row.id}');"
+							value="<spring:message code="schedule.edit" />" type="button" />
+		</display:column>
+	</security:authorize>
 
 </display:table>
 

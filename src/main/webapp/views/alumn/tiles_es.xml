@@ -19,5 +19,10 @@
 		<put-attribute name="title" value="Lista de Alumnos" />
 		<put-attribute name="body" value="/views/alumn/list.jsp" />
 	</definition>
+	
+	<definition name="alumn/edit" extends="master.page">
+		<put-attribute name="title" value="Editar mis datos" />
+		<put-attribute name="body" value="/views/alumn/edit.jsp" />
+	</definition>
 
 </tiles-definitions>

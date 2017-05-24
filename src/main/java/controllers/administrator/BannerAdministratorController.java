@@ -40,6 +40,19 @@ public class BannerAdministratorController extends AbstractController {
 		return res;
 	}
 
+	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	public ModelAndView listAll() {
+
+		this.adminService.checkLoggedIsAdmin();
+
+		final ModelAndView res = new ModelAndView("banner/listAll");
+
+		res.addObject("banners", this.bannerService.findAll());
+
+		res.addObject("requestUri", "banner/administrator/listAll.do");
+		return res;
+	}
+
 	@RequestMapping(value = "/reject", method = RequestMethod.GET)
 	public ModelAndView reject(@RequestParam final int id) {
 
@@ -66,6 +79,7 @@ public class BannerAdministratorController extends AbstractController {
 
 		final Banner banner = this.bannerService.findOne(id);
 		Assert.notNull(banner);
+		Assert.isTrue(banner.getState().equals("PENDING") == false);
 
 		res.addObject("requestUri", "banner/administrator/edit.do?id=" + id);
 		res.addObject("banner", banner);
@@ -84,7 +98,7 @@ public class BannerAdministratorController extends AbstractController {
 		} else
 			try {
 				final Banner bannerAux = this.bannerService.reconstructEdit(banner, bindingResult);
-				res = this.list();
+				res = new ModelAndView("redirect:listAll.do");
 
 				this.bannerService.save(bannerAux);
 

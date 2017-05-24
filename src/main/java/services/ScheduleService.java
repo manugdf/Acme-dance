@@ -7,11 +7,13 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.ScheduleRepository;
 import domain.Schedule;
+import forms.ScheduleForm;
 
 @Service
 @Transactional
@@ -23,6 +25,10 @@ public class ScheduleService {
 	private DanceClassService	danceClassService;
 	@Autowired
 	private Validator			validator;
+	@Autowired
+	private ActorService		actorService;
+	@Autowired
+	private ManagerService		managerService;
 
 
 	// Constructor
@@ -42,6 +48,13 @@ public class ScheduleService {
 		return this.scheduleRepository.save(s);
 	}
 
+	public Schedule createSchedule(final Schedule s) {
+		Assert.isTrue(this.actorService.isAuthenticated());
+		Assert.isTrue(this.managerService.LoggedIsManager());
+		Assert.isTrue(s.getDanceClass().getDanceSchool().getManager().equals(this.managerService.findByPrincipal()));
+
+		return this.save(s);
+	}
 	public Collection<Schedule> findAll() {
 		return this.scheduleRepository.findAll();
 	}
@@ -57,24 +70,39 @@ public class ScheduleService {
 		return this.danceClassService.findOne(classId).getSchedules();
 	}
 
-	public Schedule reconstruct(final Schedule s, final BindingResult binding) {
+	public Schedule reconstruct(final ScheduleForm s, final BindingResult binding) {
 
-		Schedule res = this.create();
+		Schedule res;
 
-		if (s.getId() == 0)
-			res = s;
-		else {
+		if (s.getScheduleId() == 0) {
+			res = this.create();
+			res.setDanceClass(s.getDanceClass());
+		} else
+			res = this.findOne(s.getScheduleId());
 
-			res.setDayOfWeek(s.getDayOfWeek());
-			res.setStartDate(s.getStartDate());
-			res.setEndTime(s.getEndTime());
-			res.setClassroom(s.getClassroom());
-
-		}
-		this.validator.validate(res, binding);
+		res.setDayOfWeek(s.getDayOfWeek());
+		res.setStartDate(s.getStartDate());
+		res.setEndTime(s.getEndTime());
+		res.setClassroom(s.getClassroom());
+		if (s.getScheduleId() != 0)
+			this.validator.validate(res, binding);
 
 		return res;
 
 	}
 
+	public ScheduleForm createBySchedule(final Schedule s) {
+
+		final ScheduleForm res = new ScheduleForm();
+
+		res.setClassroom(s.getClassroom());
+		res.setDanceClass(s.getDanceClass());
+		res.setDayOfWeek(s.getDayOfWeek());
+		res.setEndTime(s.getEndTime());
+		res.setScheduleId(s.getId());
+		res.setStartDate(s.getStartDate());
+
+		return res;
+
+	}
 }

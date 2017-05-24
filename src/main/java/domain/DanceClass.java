@@ -132,4 +132,10 @@ public class DanceClass extends DomainEntity {
 		this.danceTests = danceTests;
 	}
 
+	@Override
+	public String toString() {
+		final String message = "" + this.description;
+		return message;
+	}
+
 }

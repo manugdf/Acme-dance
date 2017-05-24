@@ -59,6 +59,8 @@
 
 		<security:intercept-url pattern="/manager/schedule/create.do"
 			access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/manager/schedule/edit.do"
+			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/danceClass/manager/list.do"
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/danceSchool/manager/list.do"
@@ -129,6 +131,8 @@
 		<security:intercept-url pattern="/partnerInvitation/alumn/deny.do"
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/payment/alumn/**"
+			access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/alumn/edit.do"
 			access="hasRole('ALUMN')" />
 
 		<security:intercept-url pattern="/censoredWords/administrator/**"
