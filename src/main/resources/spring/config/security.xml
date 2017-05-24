@@ -32,8 +32,37 @@
 		<security:intercept-url pattern="/styles/**"
 			access="permitAll" />
 
+<<<<<<< HEAD
 		<security:intercept-url pattern="/views/misc/index.jsp"
 			access="permitAll" />
+=======
+		<security:intercept-url pattern="/views/misc/index.jsp" access="permitAll" /> 
+		
+	    <security:intercept-url pattern="/danceSchool/listAll.do" access="permitAll" />
+	    <security:intercept-url pattern="/teacher/list.do" access="permitAll" />
+	    <security:intercept-url pattern="/danceClass/list.do" access="permitAll" />
+	    <security:intercept-url pattern="/schedule/list.do" access="permitAll" />
+	    <security:intercept-url pattern="/award/list.do" access="permitAll" />    
+	    <security:intercept-url pattern="/danceSchool/search.do" access="permitAll" />
+		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
+		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
+		<security:intercept-url pattern="/welcome/index.do" access="permitAll" />
+		<security:intercept-url pattern="/review/list.do" access="permitAll" />
+
+		<security:intercept-url pattern="/competitionPlanner/create.do" access="permitAll" /> 
+		
+		<security:intercept-url pattern="/manager/schedule/create.do" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/danceClass/manager/list.do" access="hasRole('MANAGER')" />
+        <security:intercept-url pattern="/danceSchool/manager/list.do" access="hasRole('MANAGER')" />
+	    <security:intercept-url pattern="/teacher/manager/**" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/danceClass/manager/**" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/competition/list.do" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/award/listByCompetition.do" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/danceSchool/listByCompetition.do" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/competition/manager/**" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/danceSchool/manager/**" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/banner/manager/**" access="hasRole('MANAGER')" />
+>>>>>>> refs/remotes/origin/master
 
 		<security:intercept-url pattern="/danceSchool/listAll.do"
 			access="permitAll" />

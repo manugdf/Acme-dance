@@ -3,7 +3,6 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"
@@ -40,7 +39,16 @@
 	
 	<spring:message code="teacher.video" var="videoColumn"/>
 	<display:column property="presentationVideo" title="${videoColumn}"/>
-	
+
+	<spring:message code="teacher.review" var="review"/>
+	<display:column title="${review}">
+
+		<input	onclick="javascript: window.location.replace('review/list.do?teacherId=${row.id}');"
+				  value="<spring:message code="teacher.view" />" type="button" />
+
+	</display:column>
+
+
 	<security:authorize access="hasRole('MANAGER')">
 	<jstl:if test="${managerTeacher==true}">
 	<spring:message code="teacher.edit" var="edit"/>

@@ -36,7 +36,11 @@
 		<value>/views/danceCertificate/tiles.xml</value>
 		<value>/views/partnerInvitation/tiles.xml</value>
 		<value>/views/payment/tiles.xml</value>
+<<<<<<< HEAD
 		<value>/views/censoredWords/tiles.xml</value>
+=======
+		<value>/views/review/tiles.xml</value>
+>>>>>>> refs/remotes/origin/master
 	</util:list>
 
 </beans>

@@ -36,7 +36,11 @@
 		<value>/views/danceCertificate/messages</value>
 		<value>/views/partnerInvitation/messages</value>
 		<value>/views/payment/messages</value>
+<<<<<<< HEAD
 		<value>/views/censoredWords/messages</value>
+=======
+		<value>/views/review/messages</value>
+>>>>>>> refs/remotes/origin/master
 	</util:list>
 
 </beans>
