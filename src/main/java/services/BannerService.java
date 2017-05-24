@@ -81,7 +81,16 @@ public class BannerService {
 		this.validator.validate(res, binding);
 
 		return res;
+	}
 
+	public Banner reconstructEdit(final Banner banner, final BindingResult bindingResult) {
+
+		final Banner res = this.bannerRepository.findOne(banner.getId());
+
+		res.setUrl(banner.getUrl());
+		this.validator.validate(banner, bindingResult);
+
+		return res;
 	}
 
 	public Banner newBanner(Banner banner) {
