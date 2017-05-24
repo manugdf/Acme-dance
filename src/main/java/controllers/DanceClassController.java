@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.Authority;
+import security.LoginService;
 import services.DanceClassService;
 import services.DanceSchoolService;
+import services.ManagerService;
 
 @Controller
 @RequestMapping("/danceClass")
@@ -19,6 +22,8 @@ public class DanceClassController extends AbstractController {
 	private DanceClassService	danceClassService;
 	@Autowired
 	private DanceSchoolService	danceSchoolService;
+	@Autowired
+	private ManagerService managerService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -30,6 +35,16 @@ public class DanceClassController extends AbstractController {
 		res.addObject("danceschool", this.danceSchoolService.findOne(danceSchoolId));
 		res.addObject("danceSchoolId", danceSchoolId);
 		res.addObject("myClasses", false);
+		try{
+			for(Authority a: LoginService.getPrincipal().getAuthorities()){
+				if(a.getAuthority().equals("MANAGER")){
+					res.addObject("managerPrincipal", managerService.findByPrincipal());
+				}
+			}
+		}catch (Throwable oops){
+
+		}
+
 		return res;
 
 	}

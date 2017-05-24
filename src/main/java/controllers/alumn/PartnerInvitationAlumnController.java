@@ -97,4 +97,52 @@ public class PartnerInvitationAlumnController extends AbstractController {
 
 	}
 
+	@RequestMapping(value = "/accept", method = RequestMethod.GET)
+	public ModelAndView accept(@RequestParam final int invitationId) {
+
+		final ModelAndView res = new ModelAndView("partnerInvitation/list");
+		final Alumn alumn = this.alumnService.findByPrincipal();
+
+		final Collection<PartnerInvitation> inv = this.partnerInvitationService.findReceivedByAlumn(alumn.getId());
+		res.addObject("partnerInvitations", inv);
+		res.addObject("requestURI", "partnerInvitation/alumn/listReceived.do");
+		res.addObject("received", true);
+		try {
+
+			final PartnerInvitation pi = this.partnerInvitationService.findOne(invitationId);
+			Assert.isTrue(pi.getState().equals("PENDING"));
+			pi.setState("ACCEPTED");
+			this.partnerInvitationService.save(pi);
+		} catch (final Throwable oops) {
+			res.addObject("message", "partnerInvitation.error.accepted");
+		}
+
+		return res;
+
+	}
+
+	@RequestMapping(value = "/reject", method = RequestMethod.GET)
+	public ModelAndView reject(@RequestParam final int invitationId) {
+
+		final ModelAndView res = new ModelAndView("partnerInvitation/list");
+		final Alumn alumn = this.alumnService.findByPrincipal();
+
+		final Collection<PartnerInvitation> inv = this.partnerInvitationService.findReceivedByAlumn(alumn.getId());
+		res.addObject("partnerInvitations", inv);
+		res.addObject("requestURI", "partnerInvitation/alumn/listReceived.do");
+		res.addObject("received", true);
+		try {
+
+			final PartnerInvitation pi = this.partnerInvitationService.findOne(invitationId);
+			Assert.isTrue(pi.getState().equals("PENDING"));
+			pi.setState("REJECTED");
+			this.partnerInvitationService.save(pi);
+		} catch (final Throwable oops) {
+			res.addObject("message", "partnerInvitation.error.rejected");
+		}
+
+		return res;
+
+	}
+
 }

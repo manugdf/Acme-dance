@@ -36,12 +36,12 @@
 	<jstl:if test="${received==true }">
 	<spring:message code="partnerInvitation.acceptordeny" var="ac"/>
 	<display:column title="${ac}">
-	
+	<jstl:if test="${row.state=='PENDING' }">
 	<input	onclick="javascript: window.location.replace('partnerInvitation/alumn/accept.do?invitationId=${row.id}');"
 					value="<spring:message code="partnerInvitation.accept" />" type="button" />
-	<input	onclick="javascript: window.location.replace('partnerInvitation/alumn/deny.do?invitationId=${row.id}');"
+	<input	onclick="javascript: window.location.replace('partnerInvitation/alumn/reject.do?invitationId=${row.id}');"
 					value="<spring:message code="partnerInvitation.deny" />" type="button" />
-	
+	</jstl:if>
 	</display:column>
 		</jstl:if>
 </display:table>

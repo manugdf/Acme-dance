@@ -28,7 +28,6 @@
 <display:table name="danceClasses" id="row" requestURI="${requestURI}"
 	class="displaytag" keepStatus="true" pagesize="5" >
 	
-	
 	<spring:message code="danceclass.description" var="desc"/>
 	<display:column property="description" title="${desc}"/>
 	
@@ -94,35 +93,37 @@
 </jstl:if>
 	
 	<security:authorize access="hasRole('MANAGER')">
-	<spring:message code="danceclass.add" var="add"/>
-	<display:column title="${add}">
+		<jstl:if test="${managerPrincipal.id==row.danceSchool.manager.id}">
+			<spring:message code="danceclass.add" var="add"/>
+			<display:column title="${add}">
 
-	<input	onclick="javascript: window.location.replace('danceClass/manager/add.do?danceClassId=${row.id}&danceSchoolId=${danceSchoolId}');"
-					value="<spring:message code="danceclass.add" />" type="button" />
+				<input	onclick="javascript: window.location.replace('danceClass/manager/add.do?danceClassId=${row.id}&danceSchoolId=${danceSchoolId}');"
+						  value="<spring:message code="danceclass.add" />" type="button" />
 
-	</display:column>
+			</display:column>
 
-	<spring:message code="danceclass.remove" var="remove"/>
-	<display:column title="${remove}">
-	
-	<input	onclick="javascript: window.location.replace('danceClass/manager/remove.do?classId=${row.id}');"
-					value="<spring:message code="danceclass.remove" />" type="button" />
-	
-	</display:column>
+			<spring:message code="danceclass.remove" var="remove"/>
+			<display:column title="${remove}">
 
-	<spring:message code="danceclass.edit" var="edit"/>
-	<display:column title="${edit}">
-		<input	onclick="javascript: window.location.replace('danceClass/manager/edit.do?danceClassId=${row.id}');"
-				  value="<spring:message code="danceclass.edit" />" type="button" />
+				<input	onclick="javascript: window.location.replace('danceClass/manager/remove.do?classId=${row.id}');"
+						  value="<spring:message code="danceclass.remove" />" type="button" />
 
-	</display:column>
+			</display:column>
 
-		<spring:message code="danceclass.delete" var="delete"/>
-		<display:column title="${delete}">
-			<input	onclick="javascript: window.location.replace('danceClass/manager/delete.do?danceClassId=${row.id}');"
-					  value="<spring:message code="danceclass.delete" />" type="button" />
+			<spring:message code="danceclass.edit" var="edit"/>
+			<display:column title="${edit}">
+				<input	onclick="javascript: window.location.replace('danceClass/manager/edit.do?danceClassId=${row.id}');"
+						  value="<spring:message code="danceclass.edit" />" type="button" />
 
-		</display:column>
+			</display:column>
+
+			<spring:message code="danceclass.delete" var="delete"/>
+			<display:column title="${delete}">
+				<input	onclick="javascript: window.location.replace('danceClass/manager/delete.do?danceClassId=${row.id}');"
+						  value="<spring:message code="danceclass.delete" />" type="button" />
+
+			</display:column>
+		</jstl:if>
 	</security:authorize>
 	
 	<security:authorize access="hasRole('TEACHER')">
@@ -131,12 +132,13 @@
 			<input	onclick="javascript: window.location.replace('danceTest/teacher/create.do?danceClassId=${row.id}');"
 			value="<spring:message code="danceClass.addDanceTest" />" type="button" />
 		</display:column>
+
 	</security:authorize>
-		
 </display:table>
 
 <security:authorize access="hasRole('MANAGER')">
+	<jstl:if test="${managerPrincipal.id==danceschool.manager.id}">
 	<input	onclick="javascript: window.location.replace('danceClass/manager/create.do?id=${danceschool.id}');"
 	value="<spring:message code="danceclass.create" />" type="button" />
+	</jstl:if>
 </security:authorize>
-

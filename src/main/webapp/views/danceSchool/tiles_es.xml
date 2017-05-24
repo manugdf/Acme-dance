@@ -25,6 +25,11 @@
 		<put-attribute name="body" value="/views/danceSchool/list.jsp" />
 	</definition>
 	
+	<definition name="danceSchool/listPending" extends="master.page">	
+		<put-attribute name="title" value="Escuelas de Baile pendientes de aceptación" />
+		<put-attribute name="body" value="/views/danceSchool/listPending.jsp" />
+	</definition>
+	
 	<definition name="danceSchool/create" extends="master.page">
 		<put-attribute name="title" value="Registrar nueva escuela" />
 		<put-attribute name="body" value="/views/danceSchool/edit.jsp" />

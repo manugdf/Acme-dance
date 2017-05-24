@@ -187,16 +187,20 @@
 		<property name="phone" value="650180424" />
 		<property name="email" value="alumn1@dance.com" />
 		<property name="messagesSended">
-			<list></list>
+			<list>
+				<ref bean="message1" />
+			</list>
 		</property>
 		<property name="messagesReceived">
-			<list></list>
+			<list>
+				<ref bean="message2" />
+			</list>
 		</property>
 		<property name="fee" value="0.0" />
 		<property name="danceTests">
 			<list>
-				<ref bean="danceTest1"/>
-				<ref bean="danceTest4"/>
+				<ref bean="danceTest1" />
+				<ref bean="danceTest4" />
 			</list>
 		</property>
 		<property name="danceCertificates">
@@ -204,14 +208,14 @@
 		</property>
 		<property name="events">
 			<list>
-				<ref bean="event2"/>
-				<ref bean="event4"/>
+				<ref bean="event2" />
+				<ref bean="event4" />
 			</list>
 		</property>
 		<property name="payments">
 			<list>
-				<ref bean="payment1"/>
-				<ref bean="payment4"/>
+				<ref bean="payment1" />
+				<ref bean="payment4" />
 			</list>
 		</property>
 		<property name="reviews">
@@ -219,8 +223,8 @@
 		</property>
 		<property name="partnerRequests">
 			<list>
-				<ref bean="partnerRequest1"/>
-				<ref bean="partnerRequest2"/>
+				<ref bean="partnerRequest1" />
+				<ref bean="partnerRequest2" />
 			</list>
 		</property>
 		<property name="partnerInvitationReceives">
@@ -256,7 +260,7 @@
 		<property name="fee" value="1.0" />
 		<property name="danceTests">
 			<list>
-				<ref bean="danceTest2"/>
+				<ref bean="danceTest2" />
 			</list>
 		</property>
 		<property name="danceCertificates">
@@ -264,12 +268,12 @@
 		</property>
 		<property name="events">
 			<list>
-				<ref bean="event2"/>
+				<ref bean="event2" />
 			</list>
 		</property>
 		<property name="payments">
 			<list>
-				<ref bean="payment2"/>
+				<ref bean="payment2" />
 			</list>
 		</property>
 		<property name="reviews">
@@ -302,7 +306,7 @@
 		<property name="surname" value="Boixader" />
 		<property name="phone" value="640484423" />
 		<property name="email" value="alumn3@dance.com" />
-		
+
 		<property name="messagesSended">
 			<list></list>
 		</property>
@@ -312,7 +316,7 @@
 		<property name="fee" value="4.0" />
 		<property name="danceTests">
 			<list>
-				<ref bean="danceTest3"/>
+				<ref bean="danceTest3" />
 			</list>
 		</property>
 		<property name="danceCertificates">
@@ -320,13 +324,13 @@
 		</property>
 		<property name="events">
 			<list>
-				<ref bean="event3"/>
-				<ref bean="event4"/>
+				<ref bean="event3" />
+				<ref bean="event4" />
 			</list>
 		</property>
 		<property name="payments">
 			<list>
-				<ref bean="payment3"/>
+				<ref bean="payment3" />
 			</list>
 		</property>
 		<property name="reviews">
@@ -370,19 +374,19 @@
 		</property>
 		<property name="danceSchools">
 			<list>
-				<ref bean="danceSchool1"/>
-				<ref bean="danceSchool4"/>
+				<ref bean="danceSchool1" />
+				<ref bean="danceSchool4" />
 			</list>
 		</property>
 		<property name="banner">
 			<list>
-				<ref bean="banner1"/>
-				<ref bean="banner4"/>
+				<ref bean="banner1" />
+				<ref bean="banner4" />
 			</list>
 		</property>
 		<property name="teachers">
 			<list>
-				<ref bean="teacher1"/>
+				<ref bean="teacher1" />
 			</list>
 		</property>
 		<property name="creditCard">
@@ -412,17 +416,17 @@
 		</property>
 		<property name="danceSchools">
 			<list>
-				<ref bean="danceSchool2"/>
+				<ref bean="danceSchool2" />
 			</list>
 		</property>
 		<property name="banner">
 			<list>
-				<ref bean="banner2"/>
+				<ref bean="banner2" />
 			</list>
 		</property>
 		<property name="teachers">
 			<list>
-				<ref bean="teacher2"/>
+				<ref bean="teacher2" />
 			</list>
 		</property>
 		<property name="creditCard">
@@ -452,17 +456,17 @@
 		</property>
 		<property name="danceSchools">
 			<list>
-				<ref bean="danceSchool3"/>
+				<ref bean="danceSchool3" />
 			</list>
 		</property>
 		<property name="banner">
 			<list>
-				<ref bean="banner3"/>
+				<ref bean="banner3" />
 			</list>
 		</property>
 		<property name="teachers">
 			<list>
-				<ref bean="teacher3"/>
+				<ref bean="teacher3" />
 			</list>
 		</property>
 		<property name="creditCard">
@@ -493,8 +497,8 @@
 		</property>
 		<property name="competitions">
 			<list>
-				<ref bean="competition1"/>
-				<ref bean="competition4"/>
+				<ref bean="competition1" />
+				<ref bean="competition4" />
 			</list>
 		</property>
 		<property name="picture" value="http://www.image.com/index.png" />
@@ -515,7 +519,7 @@
 		</property>
 		<property name="competitions">
 			<list>
-				<ref bean="competition2"/>
+				<ref bean="competition2" />
 			</list>
 		</property>
 		<property name="picture" value="http://www.image.com/index.png" />
@@ -536,7 +540,7 @@
 		</property>
 		<property name="competitions">
 			<list>
-				<ref bean="competition3"/>
+				<ref bean="competition3" />
 			</list>
 		</property>
 		<property name="picture" value="http://www.image.com/index.png" />
@@ -552,16 +556,20 @@
 		<property name="phone" value="610180124" />
 		<property name="email" value="teacher1@dance.com" />
 		<property name="messagesSended">
-			<list></list>
+			<list>
+				<ref bean="message2" />
+			</list>
 		</property>
 		<property name="messagesReceived">
-			<list></list>
+			<list>
+				<ref bean="message1" />
+			</list>
 		</property>
 		<property name="averageScore" value="0.0" />
 		<property name="danceClasses">
 			<list>
-				<ref bean="danceClass1"/>
-				<ref bean="danceClass4"/>
+				<ref bean="danceClass1" />
+				<ref bean="danceClass4" />
 			</list>
 		</property>
 		<property name="danceCertificates">
@@ -570,8 +578,8 @@
 		<property name="picture" value="http://www.image/index.png" />
 		<property name="materials">
 			<list>
-				<ref bean="material1"/>
-				<ref bean="material2"/>
+				<ref bean="material1" />
+				<ref bean="material2" />
 			</list>
 		</property>
 		<property name="reviews">
@@ -595,7 +603,7 @@
 		<property name="averageScore" value="0.0" />
 		<property name="danceClasses">
 			<list>
-				<ref bean="danceClass2"/>
+				<ref bean="danceClass2" />
 			</list>
 		</property>
 		<property name="danceCertificates">
@@ -626,7 +634,7 @@
 		<property name="averageScore" value="0.0" />
 		<property name="danceClasses">
 			<list>
-				<ref bean="danceClass3"/>
+				<ref bean="danceClass3" />
 			</list>
 		</property>
 		<property name="danceCertificates">
@@ -674,15 +682,15 @@
 		<property name="alumnPerSchool" value="20" />
 		<property name="awards">
 			<list>
-				<ref bean="award1"/>
-				<ref bean="award5"/>
+				<ref bean="award1" />
+				<ref bean="award5" />
 			</list>
 		</property>
 		<property name="competitionPlanner" ref="planner1" />
 		<property name="danceSchools">
 			<list>
-				<ref bean="danceSchool1"/>
-				<ref bean="danceSchool3"/>
+				<ref bean="danceSchool1" />
+				<ref bean="danceSchool3" />
 			</list>
 		</property>
 		<property name="description" value="Description1" />
@@ -697,13 +705,13 @@
 		<property name="alumnPerSchool" value="10" />
 		<property name="awards">
 			<list>
-				<ref bean="award2"/>
+				<ref bean="award2" />
 			</list>
 		</property>
 		<property name="competitionPlanner" ref="planner2" />
 		<property name="danceSchools">
 			<list>
-				<ref bean="danceSchool2"/>
+				<ref bean="danceSchool2" />
 			</list>
 		</property>
 		<property name="description" value="Description2" />
@@ -718,13 +726,13 @@
 		<property name="alumnPerSchool" value="10" />
 		<property name="awards">
 			<list>
-				<ref bean="award3"/>
+				<ref bean="award3" />
 			</list>
 		</property>
 		<property name="competitionPlanner" ref="planner3" />
 		<property name="danceSchools">
 			<list>
-				<ref bean="danceSchool3"/>
+				<ref bean="danceSchool3" />
 			</list>
 		</property>
 		<property name="description" value="Description3" />
@@ -739,13 +747,13 @@
 		<property name="alumnPerSchool" value="15" />
 		<property name="awards">
 			<list>
-				<ref bean="award4"/>
+				<ref bean="award4" />
 			</list>
 		</property>
 		<property name="competitionPlanner" ref="planner1" />
 		<property name="danceSchools">
 			<list>
-				<ref bean="danceSchool4"/>
+				<ref bean="danceSchool4" />
 			</list>
 		</property>
 		<property name="description" value="Description4" />
@@ -760,25 +768,25 @@
 	<bean id="danceSchool1" class="domain.DanceSchool">
 		<property name="awards">
 			<list>
-				<ref bean="award1"/>
+				<ref bean="award1" />
 			</list>
 		</property>
 		<property name="competitions">
 			<list>
-				<ref bean="competition1"/>
+				<ref bean="competition1" />
 			</list>
 		</property>
 		<property name="danceClasses">
 			<list>
-			<ref bean="danceClass1"/>
-			<ref bean="danceClass4"/>
+				<ref bean="danceClass1" />
+				<ref bean="danceClass4" />
 			</list>
 		</property>
 		<property name="description" value="Baila hasta el anochecer." />
 		<property name="events">
 			<list>
-				<ref bean="event1"/>
-				<ref bean="event4"/>
+				<ref bean="event1" />
+				<ref bean="event4" />
 			</list>
 		</property>
 		<property name="location" ref="location1" />
@@ -792,23 +800,24 @@
 	<bean id="danceSchool2" class="domain.DanceSchool">
 		<property name="awards">
 			<list>
-				<ref bean="award2"/>
+				<ref bean="award2" />
 			</list>
 		</property>
 		<property name="competitions">
 			<list>
-				<ref bean="competition2"/>
+				<ref bean="competition2" />
 			</list>
 		</property>
 		<property name="danceClasses">
 			<list>
-			<ref bean="danceClass2"/>
+				<ref bean="danceClass2" />
 			</list>
 		</property>
-		<property name="description" value="Si te gusta bailar, esta es tu escuela. Buenos precios." />
+		<property name="description"
+			value="Si te gusta bailar, esta es tu escuela. Buenos precios." />
 		<property name="events">
 			<list>
-				<ref bean="event2"/>
+				<ref bean="event2" />
 			</list>
 		</property>
 		<property name="location" ref="location2" />
@@ -822,19 +831,19 @@
 	<bean id="danceSchool3" class="domain.DanceSchool">
 		<property name="awards">
 			<list>
-				<ref bean="award3"/>
-				<ref bean="award5"/>
+				<ref bean="award3" />
+				<ref bean="award5" />
 			</list>
 		</property>
 		<property name="competitions">
 			<list>
-				<ref bean="competition1"/>
-				<ref bean="competition3"/>
+				<ref bean="competition1" />
+				<ref bean="competition3" />
 			</list>
 		</property>
 		<property name="danceClasses">
 			<list>
-			<ref bean="danceClass3"/>
+				<ref bean="danceClass3" />
 			</list>
 		</property>
 		<property name="description" value="¡Aqui puedes bailar todo lo que quieras!" />
@@ -852,21 +861,22 @@
 	<bean id="danceSchool4" class="domain.DanceSchool">
 		<property name="awards">
 			<list>
-				<ref bean="award4"/>
+				<ref bean="award4" />
 			</list>
 		</property>
 		<property name="competitions">
 			<list>
-				<ref bean="competition4"/>
+				<ref bean="competition4" />
 			</list>
 		</property>
 		<property name="danceClasses">
 			<list></list>
 		</property>
-		<property name="description" value="Conoce nuestra escuela, tenemos muchos tipos de baile." />
+		<property name="description"
+			value="Conoce nuestra escuela, tenemos muchos tipos de baile." />
 		<property name="events">
 			<list>
-				<ref bean="event3"/>
+				<ref bean="event3" />
 			</list>
 		</property>
 		<property name="location" ref="location4" />
@@ -884,15 +894,15 @@
 		<property name="danceSchool" ref="danceSchool1" />
 		<property name="danceTests">
 			<list>
-				<ref bean="danceTest1"/>
-				<ref bean="danceTest4"/>
+				<ref bean="danceTest1" />
+				<ref bean="danceTest4" />
 			</list>
 		</property>
 		<property name="description" value="Description1" />
 		<property name="materials">
 			<list>
-				<ref bean="material1"/>
-				<ref bean="material2"/>
+				<ref bean="material1" />
+				<ref bean="material2" />
 			</list>
 		</property>
 		<property name="maxAlumns" value="100" />
@@ -901,18 +911,18 @@
 		<property name="style" value="Style1" />
 		<property name="payments">
 			<list>
-				<ref bean="payment1"/>
+				<ref bean="payment1" />
 			</list>
 		</property>
 		<property name="schedules">
 			<list>
-				<ref bean="schedule1"/>
-				<ref bean="schedule5"/>
+				<ref bean="schedule1" />
+				<ref bean="schedule5" />
 			</list>
 		</property>
 		<property name="teachers">
 			<list>
-			<ref bean="teacher1"/>
+				<ref bean="teacher1" />
 			</list>
 		</property>
 	</bean>
@@ -921,7 +931,7 @@
 		<property name="danceSchool" ref="danceSchool2" />
 		<property name="danceTests">
 			<list>
-				<ref bean="danceTest2"/>
+				<ref bean="danceTest2" />
 			</list>
 		</property>
 		<property name="description" value="Description2" />
@@ -935,18 +945,18 @@
 		<property name="style" value="Style2" />
 		<property name="payments">
 			<list>
-				<ref bean="payment2"/>
-				<ref bean="payment4"/>
+				<ref bean="payment2" />
+				<ref bean="payment4" />
 			</list>
 		</property>
 		<property name="schedules">
 			<list>
-				<ref bean="schedule2"/>
+				<ref bean="schedule2" />
 			</list>
 		</property>
 		<property name="teachers">
 			<list>
-			<ref bean="teacher2"/>
+				<ref bean="teacher2" />
 			</list>
 		</property>
 	</bean>
@@ -955,7 +965,7 @@
 		<property name="danceSchool" ref="danceSchool3" />
 		<property name="danceTests">
 			<list>
-				<ref bean="danceTest3"/>
+				<ref bean="danceTest3" />
 			</list>
 		</property>
 		<property name="description" value="Description3" />
@@ -969,17 +979,17 @@
 		<property name="style" value="Style1" />
 		<property name="payments">
 			<list>
-				<ref bean="payment3"/>
+				<ref bean="payment3" />
 			</list>
 		</property>
 		<property name="schedules">
 			<list>
-				<ref bean="schedule3"/>
+				<ref bean="schedule3" />
 			</list>
 		</property>
 		<property name="teachers">
 			<list>
-			<ref bean="teacher3"/>
+				<ref bean="teacher3" />
 			</list>
 		</property>
 	</bean>
@@ -1005,12 +1015,12 @@
 		</property>
 		<property name="schedules">
 			<list>
-				<ref bean="schedule4"/>
+				<ref bean="schedule4" />
 			</list>
 		</property>
 		<property name="teachers">
 			<list>
-			<ref bean="teacher1"/>
+				<ref bean="teacher1" />
 			</list>
 		</property>
 	</bean>
@@ -1097,25 +1107,29 @@
 
 	<bean id="banner1" class="domain.Banner">
 		<property name="state" value="ACCEPTED" />
-		<property name="url" value="http://www.withampublichall.co.uk/img/dance%20text%20banner.jpg" />
+		<property name="url"
+			value="http://www.withampublichall.co.uk/img/dance%20text%20banner.jpg" />
 		<property name="manager" ref="manager1" />
 	</bean>
 
 	<bean id="banner2" class="domain.Banner">
 		<property name="state" value="ACCEPTED" />
-		<property name="url" value="http://ohiodance.org/wp-content/uploads/2012/01/banner_toledo_ballet_01.jpg" />
+		<property name="url"
+			value="http://ohiodance.org/wp-content/uploads/2012/01/banner_toledo_ballet_01.jpg" />
 		<property name="manager" ref="manager2" />
 	</bean>
 
 	<bean id="banner3" class="domain.Banner">
 		<property name="state" value="REJECTED" />
-		<property name="url" value="http://www.crystalmn.gov/images/youth_dance_banner.png" />
+		<property name="url"
+			value="http://www.crystalmn.gov/images/youth_dance_banner.png" />
 		<property name="manager" ref="manager3" />
 	</bean>
 
 	<bean id="banner4" class="domain.Banner">
 		<property name="state" value="PENDING" />
-		<property name="url" value="http://www.nolimitsdancehouse.com.au/logo.JPG" />
+		<property name="url"
+			value="http://www.nolimitsdancehouse.com.au/logo.JPG" />
 		<property name="manager" ref="manager1" />
 	</bean>
 
@@ -1155,180 +1169,197 @@
 		<property name="competition" ref="competition1" />
 		<property name="danceSchool" ref="danceSchool3" />
 	</bean>
-	
+
 	<!-- Events -->
-	
+
 	<bean id="event1" class="domain.Event">
-		<property name="title" value="Master Class bachata"/>
-		<property name="maxAlumns" value="10"/>
-		<property name="startDate" value="2017/06/28"/>
-		<property name="duration" value="2"/>
-		<property name="description" value="Bachata por nuestor experto"/>
-		<property name="danceSchool" ref="danceSchool1"/>
+		<property name="title" value="Master Class bachata" />
+		<property name="maxAlumns" value="10" />
+		<property name="startDate" value="2017/06/28" />
+		<property name="duration" value="2" />
+		<property name="description" value="Bachata por nuestor experto" />
+		<property name="danceSchool" ref="danceSchool1" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn3"/>
+				<ref bean="alumn3" />
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="event2" class="domain.Event">
-		<property name="title" value="Master class de zumba"/>
-		<property name="maxAlumns" value="2"/>
-		<property name="startDate" value="2015/06/28"/>
-		<property name="duration" value="1"/>
-		<property name="description" value="Zumba por nuestor experto"/>
-		<property name="danceSchool" ref="danceSchool2"/>
+		<property name="title" value="Master class de zumba" />
+		<property name="maxAlumns" value="2" />
+		<property name="startDate" value="2015/06/28" />
+		<property name="duration" value="1" />
+		<property name="description" value="Zumba por nuestor experto" />
+		<property name="danceSchool" ref="danceSchool2" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn1"/>
-				<ref bean="alumn2"/>
+				<ref bean="alumn1" />
+				<ref bean="alumn2" />
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="event3" class="domain.Event">
-		<property name="title" value="Master class de zumba"/>
-		<property name="maxAlumns" value="10"/>
-		<property name="startDate" value="2018/06/28"/>
-		<property name="duration" value="1"/>
-		<property name="description" value="Zumba por nuestor experto"/>
-		<property name="danceSchool" ref="danceSchool4"/>
+		<property name="title" value="Master class de zumba" />
+		<property name="maxAlumns" value="10" />
+		<property name="startDate" value="2018/06/28" />
+		<property name="duration" value="1" />
+		<property name="description" value="Zumba por nuestor experto" />
+		<property name="danceSchool" ref="danceSchool4" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn3"/>
+				<ref bean="alumn3" />
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="event4" class="domain.Event">
-		<property name="title" value="Introducción a bailes modernos"/>
-		<property name="maxAlumns" value="20"/>
-		<property name="startDate" value="2016/01/28"/>
-		<property name="duration" value="3"/>
-		<property name="description" value="Introducción a bailes modernos latinos"/>
-		<property name="danceSchool" ref="danceSchool1"/>
+		<property name="title" value="Introducción a bailes modernos" />
+		<property name="maxAlumns" value="20" />
+		<property name="startDate" value="2016/01/28" />
+		<property name="duration" value="3" />
+		<property name="description" value="Introducción a bailes modernos latinos" />
+		<property name="danceSchool" ref="danceSchool1" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn3"/>
-				<ref bean="alumn1"/>
+				<ref bean="alumn3" />
+				<ref bean="alumn1" />
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- DanceTests -->
-		<bean id="danceTest1" class="domain.DanceTest">
-		<property name="testDate" value="2016/12/10 10:00"/>
-		<property name="danceLevel" value="MEDIUM"/>
-		<property name="limitInscription" value="2017/12/09 10:00"/>
+	<bean id="danceTest1" class="domain.DanceTest">
+		<property name="testDate" value="2016/12/10 10:00" />
+		<property name="danceLevel" value="MEDIUM" />
+		<property name="limitInscription" value="2017/12/09 10:00" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn1"/>
+				<ref bean="alumn1" />
 			</list>
 		</property>
-		<property name="danceClass" ref="danceClass1"/>
-		
-		</bean>
-		
-		<bean id="danceTest2" class="domain.DanceTest">
-		<property name="testDate" value="2017/10/10 11:00"/>
-		<property name="danceLevel" value="MEDIUM"/>
-		<property name="limitInscription" value="2017/10/09 11:00"/>
+		<property name="danceClass" ref="danceClass1" />
+
+	</bean>
+
+	<bean id="danceTest2" class="domain.DanceTest">
+		<property name="testDate" value="2017/10/10 11:00" />
+		<property name="danceLevel" value="MEDIUM" />
+		<property name="limitInscription" value="2017/10/09 11:00" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn2"/>
+				<ref bean="alumn2" />
 			</list>
 		</property>
-		<property name="danceClass" ref="danceClass2"/>
-		
-		</bean>
-		
-		<bean id="danceTest3" class="domain.DanceTest">
-		<property name="testDate" value="2017/12/10 21:00"/>
-		<property name="danceLevel" value="HIGH"/>
-		<property name="limitInscription" value="2017/12/08 21:00"/>
+		<property name="danceClass" ref="danceClass2" />
+
+	</bean>
+
+	<bean id="danceTest3" class="domain.DanceTest">
+		<property name="testDate" value="2017/12/10 21:00" />
+		<property name="danceLevel" value="HIGH" />
+		<property name="limitInscription" value="2017/12/08 21:00" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn3"/>
+				<ref bean="alumn3" />
 			</list>
 		</property>
-		<property name="danceClass" ref="danceClass3"/>
-		
-		</bean>
-	
+		<property name="danceClass" ref="danceClass3" />
+
+	</bean>
+
 	<bean id="danceTest4" class="domain.DanceTest">
-		<property name="testDate" value="2017/12/19 13:00"/>
-		<property name="danceLevel" value="BASIC"/>
-		<property name="limitInscription" value="2017/12/15 13:00"/>
+		<property name="testDate" value="2017/12/19 13:00" />
+		<property name="danceLevel" value="BASIC" />
+		<property name="limitInscription" value="2017/12/15 13:00" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn1"/>
+				<ref bean="alumn1" />
 			</list>
 		</property>
-		<property name="danceClass" ref="danceClass1"/>
-		
-		</bean>
+		<property name="danceClass" ref="danceClass1" />
+
+	</bean>
 	<!-- Materials -->
-		<bean id="material1" class="domain.Material">
-		<property name="title" value="Video de Mathieu Domenec"/>
-		<property name="description" value="Un video de este gran bailarin para que aprendais de él."/>
-		<property name="link" value="http://www.youtube.com/video"/>
-		<property name="teacher" ref="teacher1"/>
-		<property name="danceClass" ref="danceClass1"/>	
-		</bean>
-		
-		<bean id="material2" class="domain.Material">
-		<property name="title" value="Foto de pasos de baile"/>
-		<property name="description" value="Diferentes pasos de baile en una foto"/>
-		<property name="link" value="http://www.dance.com/dance.jpg"/>
-		<property name="teacher" ref="teacher1"/>
-		<property name="danceClass" ref="danceClass1"/>	
-		</bean>
-		
-			<!-- PartnerRequests -->
+	<bean id="material1" class="domain.Material">
+		<property name="title" value="Video de Mathieu Domenec" />
+		<property name="description"
+			value="Un video de este gran bailarin para que aprendais de él." />
+		<property name="link" value="http://www.youtube.com/video" />
+		<property name="teacher" ref="teacher1" />
+		<property name="danceClass" ref="danceClass1" />
+	</bean>
+
+	<bean id="material2" class="domain.Material">
+		<property name="title" value="Foto de pasos de baile" />
+		<property name="description" value="Diferentes pasos de baile en una foto" />
+		<property name="link" value="http://www.dance.com/dance.jpg" />
+		<property name="teacher" ref="teacher1" />
+		<property name="danceClass" ref="danceClass1" />
+	</bean>
+
+	<!-- PartnerRequests -->
 	<bean id="partnerRequest1" class="domain.PartnerRequest">
-		<property name="description" value="Busco pareja para salsa"/>
-		<property name="danceStyle" value="Salsa"/>
-		<property name="alumn" ref="alumn1"/>
-		</bean>
+		<property name="description" value="Busco pareja para salsa" />
+		<property name="danceStyle" value="Salsa" />
+		<property name="alumn" ref="alumn1" />
+	</bean>
 	<bean id="partnerRequest2" class="domain.PartnerRequest">
-		<property name="description" value="Busco pareja para bachata"/>
-		<property name="danceStyle" value="Bachata"/>
-		<property name="alumn" ref="alumn1"/>
-		</bean>
-		
-		<bean id="partnerRequest3" class="domain.PartnerRequest">
-		<property name="description" value="Busco pareja para baile"/>
-		<property name="danceStyle" value="Salsa"/>
-		<property name="alumn" ref="alumn2"/>
-		</bean>
+		<property name="description" value="Busco pareja para bachata" />
+		<property name="danceStyle" value="Bachata" />
+		<property name="alumn" ref="alumn1" />
+	</bean>
+
+	<bean id="partnerRequest3" class="domain.PartnerRequest">
+		<property name="description" value="Busco pareja para baile" />
+		<property name="danceStyle" value="Salsa" />
+		<property name="alumn" ref="alumn2" />
+	</bean>
 	<bean id="partnerRequest4" class="domain.PartnerRequest">
-		<property name="description" value="Soy novato bailando"/>
-		<property name="danceStyle" value="Bachata"/>
-		<property name="alumn" ref="alumn3"/>
-		</bean>
-		<bean id="partnerRequest5" class="domain.PartnerRequest">
-		<property name="description" value="Experto en tango"/>
-		<property name="danceStyle" value="Tango"/>
-		<property name="alumn" ref="alumn3"/>
-		</bean>
-		<bean id="partnerRequest6" class="domain.PartnerRequest">
-		<property name="description" value="Soy timido"/>
-		<property name="danceStyle" value="Regueton"/>
-		<property name="alumn" ref="alumn2"/>
-		</bean>
-		
-			<!-- PartnerInvitation -->
-		<bean id="partnerInvitation1" class="domain.PartnerInvitation">
-		<property name="state" value="PENDING"/>
-		<property name="danceStyle" value="Regueton"/>
-		<property name="comment" value="¿Te gustaria que bailaramos regueton?"/>
-		<property name="invitationSender" ref="alumn1"/>
-		<property name="invitationReceiver" ref="alumn2"/>
-		</bean>
-		
-		
-		
+		<property name="description" value="Soy novato bailando" />
+		<property name="danceStyle" value="Bachata" />
+		<property name="alumn" ref="alumn3" />
+	</bean>
+	<bean id="partnerRequest5" class="domain.PartnerRequest">
+		<property name="description" value="Experto en tango" />
+		<property name="danceStyle" value="Tango" />
+		<property name="alumn" ref="alumn3" />
+	</bean>
+	<bean id="partnerRequest6" class="domain.PartnerRequest">
+		<property name="description" value="Soy timido" />
+		<property name="danceStyle" value="Regueton" />
+		<property name="alumn" ref="alumn2" />
+	</bean>
+
+	<!-- PartnerInvitation -->
+	<bean id="partnerInvitation1" class="domain.PartnerInvitation">
+		<property name="state" value="PENDING" />
+		<property name="danceStyle" value="Regueton" />
+		<property name="comment" value="¿Te gustaria que bailaramos regueton?" />
+		<property name="invitationSender" ref="alumn1" />
+		<property name="invitationReceiver" ref="alumn2" />
+	</bean>
+
+	<!-- Messages -->
+
+	<bean id="message1" class="domain.Message">
+		<property name="sender" ref="alumn1" />
+		<property name="receiver" ref="teacher1" />
+		<property name="moment" value="2016/12/11 00:00" />
+		<property name="subject" value="Subject1" />
+		<property name="body" value="Body1" />
+	</bean>
+
+	<bean id="message2" class="domain.Message">
+		<property name="sender" ref="teacher1" />
+		<property name="receiver" ref="alumn1" />
+		<property name="moment" value="2016/12/11 01:00" />
+		<property name="subject" value="Subject2" />
+		<property name="body" value="Body2" />
+	</bean>
+
 </beans>
 
 

@@ -24,6 +24,7 @@
 		<value>/views/danceClass/messages</value>
 		<value>/views/schedule/messages</value>
 		<value>/views/award/messages</value>
+		<value>/views/message/messages</value>
 		<value>/views/competitionPlanner/messages</value>
 		<value>/views/competition/messages</value>
 		<value>/views/alumn/messages</value>

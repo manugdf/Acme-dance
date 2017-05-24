@@ -31,6 +31,9 @@ public class DanceSchoolService {
 	@Autowired
 	private ManagerService			managerService;
 
+	@Autowired
+	private AdminService			adminService;
+
 
 	// Constructor
 	public DanceSchoolService() {
@@ -69,6 +72,10 @@ public class DanceSchoolService {
 		return this.danceSchoolRepository.findAllAccepted();
 	}
 
+	public Collection<DanceSchool> findAllPending() {
+		return this.danceSchoolRepository.findAllPending();
+	}
+
 	public Collection<DanceSchool> findSchoolsByKeyword(final String word) {
 
 		//return this.danceSchoolRepository.findSchoolByKeyword(word);
@@ -104,11 +111,10 @@ public class DanceSchoolService {
 		return danceSchool;
 	}
 
-	public DanceSchool editDanceSchool(DanceSchool danceSchool) {
+	public DanceSchool editDanceSchool(final DanceSchool danceSchool) {
 		final Manager logged = this.managerService.findByPrincipal();
-		Assert.isTrue(danceSchool.getManager().equals(logged));
-		danceSchool = this.save(danceSchool);
-		return danceSchool;
+		Assert.isTrue(danceSchool.getManager().getId() == logged.getId());
+		return this.danceSchoolRepository.saveAndFlush(danceSchool);
 	}
 
 	public DanceSchoolForm reconstructForm(final DanceSchool danceSchool) {
@@ -155,6 +161,25 @@ public class DanceSchoolService {
 		location.setProvince(danceSchoolForm.getProvince());
 		danceSchool.setLocation(location);
 		return danceSchool;
+
+	}
+
+	public DanceSchool rejectDanceSchool(final int id) {
+		final boolean admin = this.adminService.isAdministrator();
+		Assert.isTrue(admin == true);
+
+		final DanceSchool danceSchool = this.findOne(id);
+		danceSchool.setState("REJECTED");
+		return this.save(danceSchool);
+	}
+
+	public DanceSchool acceptDanceSchool(final int id) {
+		final boolean admin = this.adminService.isAdministrator();
+		Assert.isTrue(admin == true);
+
+		final DanceSchool danceSchool = this.findOne(id);
+		danceSchool.setState("ACCEPTED");
+		return this.save(danceSchool);
 	}
 
 	public Collection<DanceSchool> findAllByManager(final int managerId) {

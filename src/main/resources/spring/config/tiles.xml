@@ -27,6 +27,7 @@
 		<value>/views/competitionPlanner/tiles.xml</value>
 		<value>/views/competition/tiles.xml</value>
 		<value>/views/alumn/tiles.xml</value>
+		<value>/views/message/tiles.xml</value>
 		<value>/views/event/tiles.xml</value>
 		<value>/views/danceTest/tiles.xml</value>
 		<value>/views/material/tiles.xml</value>

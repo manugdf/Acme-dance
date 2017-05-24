@@ -97,4 +97,14 @@
 		
 	</security:authorize>
 	</jstl:if>
+	<security:authorize access="hasRole('MANAGER')">
+		<display:column>
+
+			<input
+				onclick="javascript: window.location.replace('danceSchool/manager/edit.do?id=${row.id}');"
+				value="<spring:message code="danceschool.edit" />"
+				type="button" />
+		</display:column>
+		
+	</security:authorize>
 </display:table>
