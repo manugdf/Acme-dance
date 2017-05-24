@@ -117,16 +117,23 @@ public class MessageService {
 	}
 
 	public void deleteMessage(final int id) {
-		Assert.isTrue(this.actorService.isAuthenticated());
 		final Message message = this.findOne(id);
-		if (message.getReceiver() != null && message.getReceiver().getId() == this.actorService.findByPrincipal().getId())
+		if (message.getReceiver() != null && message.getReceiver().getId() == this.actorService.findByPrincipal().getId()) {
+			final Actor receiver = message.getReceiver();
+			final Collection<Message> received = receiver.getMessagesReceived();
+			received.remove(message);
 			message.setReceiver(null);
-		if (message.getSender() != null && message.getSender().getId() == this.actorService.findByPrincipal().getId())
-			message.setSender(null);
 
-		if (message.getReceiver() == null)
-			if (message.getSender() == null)
-				this.delete(message);
+		} else if (message.getSender() != null && message.getSender().getId() == this.actorService.findByPrincipal().getId()) {
+			final Actor sender = message.getSender();
+			final Collection<Message> sent = sender.getMessagesReceived();
+			sent.remove(message);
+			message.setSender(null);
+		}
+
+		if (message.getReceiver() == null && message.getSender() == null)
+			this.delete(message);
+
 	}
 
 	public void sendMessage(final Message message) {

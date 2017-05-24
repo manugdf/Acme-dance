@@ -39,8 +39,10 @@
 	</display:column>
 
 	<display:column>
-		<input onclick="javascript: return confirm('¿Estas seguro?');"
-			onclick="javascript: window.location.replace('message/actor/delete.do?id=${row.id}');"
+		<input
+			onclick="javascript:
+			confirm('<spring:message code="message.confirm.delete" />');
+			 window.location.replace('message/actor/delete.do?id=${row.id}');"
 			value="<spring:message code="message.delete" />" type="button" />
 	</display:column>
 
@@ -71,7 +73,9 @@
 
 	<display:column>
 		<input
-			onclick="javascript: window.location.replace('message/actor/delete.do?id=${row.id}');"
+			onclick="javascript:
+			confirm('<spring:message code="message.confirm.delete" />');
+			window.location.replace('message/actor/delete.do?id=${row.id}');"
 			value="<spring:message code="message.delete" />" type="button" />
 	</display:column>
 
