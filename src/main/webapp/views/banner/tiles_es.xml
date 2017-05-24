@@ -16,7 +16,12 @@
       
 <tiles-definitions>
 <definition name="banner/list" extends="master.page">	
-		<put-attribute name="title" value="Banners" />
+		<put-attribute name="title" value="Mis Banners" />
+		<put-attribute name="body" value="/views/banner/list.jsp" />
+	</definition>
+	
+	<definition name="banner/listAdmin" extends="master.page">	
+		<put-attribute name="title" value="Banners Pendientes" />
 		<put-attribute name="body" value="/views/banner/list.jsp" />
 	</definition>
 	

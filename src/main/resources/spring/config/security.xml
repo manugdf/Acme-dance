@@ -182,10 +182,11 @@
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/manager/administrator/**"
 			access="hasRole('ADMIN')" />
-
 		<security:intercept-url pattern="/danceSchool/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/dashboard/administrator.do"
+			access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/banner/administrator/**"
 			access="hasRole('ADMIN')" />
 
 		<security:intercept-url pattern="/alumn/register.do"

@@ -100,5 +100,8 @@ public class BannerService {
 	public Collection<Banner> findAllByManager(final int managerId) {
 		return this.bannerRepository.findAllByManager(managerId);
 	}
+	public Collection<Banner> findAllPending() {
+		return this.bannerRepository.findAllPending();
+	}
 
 }

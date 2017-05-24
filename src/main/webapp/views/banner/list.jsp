@@ -12,7 +12,6 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<h2><spring:message code="banner.url"/></h2>
 <display:table name="banners" id="row" requestURI="${requestURI}"
 	pagesize="10" class="displaytag" >
 
@@ -21,5 +20,29 @@
 
 	<spring:message code="banner.state" var="state" />
 	<display:column property="state" title="${state}"/>
-
+	
+	<security:authorize access="hasRole('ADMIN')">
+	
+		<display:column>
+			<input
+				onclick="javascript: window.location.replace('banner/administrator/reject.do?id=${row.id}');"
+				value="<spring:message code="danceschool.reject" />"
+				type="button" />
+		</display:column>
+		<display:column>
+			<input
+				onclick="javascript: window.location.replace('banner/administrator/accept.do?id=${row.id}');"
+				value="<spring:message code="danceschool.accept" />"
+				type="button" />
+		</display:column>
+		</security:authorize>
+	
+	
 </display:table>
+<security:authorize access="hasRole('MANAGER')">
+			<input
+				onclick="javascript: window.location.replace('banner/manager/create.do');"
+				value="<spring:message code="banner.create" />"
+				type="button" />
+</security:authorize>
+	
