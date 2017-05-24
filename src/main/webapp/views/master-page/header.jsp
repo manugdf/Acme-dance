@@ -25,12 +25,14 @@
 		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv" href="manager/administrator/list.do"><spring:message
 						code="master.page.managers" /></a></li>
-			<li><a class="fNiv" href="dashboard/administrator.do"><spring:message
-						code="master.page.dashboard" /></a></li>
 			<li><a class="fNiv" href="censoredWords/administrator/list.do"><spring:message
 						code="master.page.censored" /></a></li>
 			<li><a class="fNiv" href="danceSchool/administrator/listPending.do"><spring:message
 						code="master.page.listPendingSchools" /></a></li>
+			<li><a class="fNiv" href="banner/administrator/list.do"><spring:message
+						code="master.page.listBannersAdmin" /></a></li>
+			<li><a class="fNiv" href="dashboard/administrator.do"><spring:message
+						code="master.page.dashboard" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="hasRole('MANAGER')">
@@ -42,6 +44,8 @@
 						code="master.page.competitions" /></a></li>
 			<li><a class="fNiv" href="danceSchool/manager/create.do"><spring:message
 						code="master.page.createDanceSchool" /></a></li>
+			<li><a class="fNiv" href="banner/manager/list.do"><spring:message
+						code="master.page.myBanners" /></a></li>
 			<li><a class="fNiv" href="banner/manager/showMonthlyBill.do"><spring:message
 						code="master.page.showMonthlyBill" /></a></li>
 		</security:authorize>

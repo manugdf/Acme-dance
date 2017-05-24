@@ -35,6 +35,9 @@ public class BannerService {
 	@Autowired
 	private ActorService		actorService;
 
+	@Autowired
+	private AdminService		adminService;
+
 
 	// Constructor
 	public BannerService() {
@@ -95,6 +98,24 @@ public class BannerService {
 		this.managerService.save(logged);
 
 		return banner;
+	}
+
+	public Banner rejectBanner(final int id) {
+		final boolean admin = this.adminService.isAdministrator();
+		Assert.isTrue(admin == true);
+
+		final Banner banner = this.findOne(id);
+		banner.setState("REJECTED");
+		return this.save(banner);
+	}
+
+	public Banner acceptBanner(final int id) {
+		final boolean admin = this.adminService.isAdministrator();
+		Assert.isTrue(admin == true);
+
+		final Banner banner = this.findOne(id);
+		banner.setState("ACCEPTED");
+		return this.save(banner);
 	}
 
 	public Collection<Banner> findAllByManager(final int managerId) {

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import controllers.AbstractController;
@@ -34,6 +35,26 @@ public class BannerAdministratorController extends AbstractController {
 
 		res.addObject("requestUri", "banner/administrator/list.do");
 		return res;
+	}
+
+	@RequestMapping(value = "/reject", method = RequestMethod.GET)
+	public ModelAndView reject(@RequestParam final int id) {
+
+		this.bannerService.rejectBanner(id);
+		final ModelAndView res = new ModelAndView("redirect:list.do");
+
+		return res;
+
+	}
+
+	@RequestMapping(value = "/accept", method = RequestMethod.GET)
+	public ModelAndView accept(@RequestParam final int id) {
+
+		this.bannerService.acceptBanner(id);
+		final ModelAndView res = new ModelAndView("redirect:list.do");
+
+		return res;
+
 	}
 
 }
