@@ -22,19 +22,19 @@ public class CompetitionPlannerController extends AbstractController {
 	private CompetitionPlannerService	competitionPlannerService;
 
 
-	@RequestMapping("create")
+	@RequestMapping("register")
 	public ModelAndView create() {
 		final ModelAndView res = new ModelAndView("competitionPlanner/edit");
 
 		final CompetitionPlannerForm c = new CompetitionPlannerForm();
 		res.addObject("competitionPlannerForm", c);
-		res.addObject("requestUri", "competitionPlanner/create.do");
+		res.addObject("requestUri", "competitionPlanner/register.do");
 
 		return res;
 
 	}
 
-	@RequestMapping(value = "create", params = "save")
+	@RequestMapping(value = "register", params = "save")
 	public ModelAndView create(@Valid final CompetitionPlannerForm c, final BindingResult binding) {
 		ModelAndView res = new ModelAndView("competitionPlanner/edit");
 
@@ -42,7 +42,7 @@ public class CompetitionPlannerController extends AbstractController {
 
 		if (binding.hasErrors()) {
 			System.out.println(binding.getAllErrors());
-			res.addObject("requestUri", "competitionPlanner/create.do");
+			res.addObject("requestUri", "competitionPlanner/register.do");
 			res.addObject("competitionPlannerForm", c);
 		} else if (c.isAcceptTerms() != true) {
 			res.addObject("competitionPlannerForm", c);

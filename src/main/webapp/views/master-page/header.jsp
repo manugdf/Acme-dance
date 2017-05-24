@@ -92,6 +92,8 @@
 								code="master.page.register.alumn" /></a></li>
 					<li><a href="manager/register.do"><spring:message
 								code="master.page.register.manager" /></a></li>
+					<li><a href="competitionPlanner/register.do"><spring:message
+								code="master.page.register.competitionPlanner" /></a></li>
 				</ul></li>
 
 		</security:authorize>

@@ -55,8 +55,7 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/review/list.do"
 			access="permitAll" />
-		<security:intercept-url pattern="/competitionPlanner/create.do"
-			access="permitAll" />
+
 
 		<security:intercept-url pattern="/manager/schedule/create.do"
 			access="hasRole('MANAGER')" />
@@ -144,6 +143,9 @@
 		<security:intercept-url pattern="/alumn/register.do"
 			access="isAnonymous()" />
 		<security:intercept-url pattern="/manager/register.do"
+			access="isAnonymous()" />
+			
+		<security:intercept-url pattern="/competitionPlanner/register.do"
 			access="isAnonymous()" />
 
 		<security:intercept-url pattern="/message/actor/**"
