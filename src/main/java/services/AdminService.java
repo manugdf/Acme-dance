@@ -1,13 +1,18 @@
 
 package services;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import domain.Actor;
 import domain.Admin;
+import domain.Alumn;
+import domain.Teacher;
 import repositories.AdminRepository;
 import security.Authority;
 import security.LoginService;
@@ -61,5 +66,53 @@ public class AdminService {
 	}
 	
 	//Dashboard
-
+	public Collection<Object> managerMoreDanceSchoolAccepted() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.managerMoreDanceSchoolAccepted();
+	}
+	
+	public Integer acceptedDeniedRatio() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.acceptedDeniedRatio();
+	}
+	
+	public Collection<Teacher> bestRating() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.bestRating();
+	}
+	
+	public Double messagesUsersRatio() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.messagesUsersRatio();
+	}
+	
+	public Collection<Actor> actorMoreMessageSend() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.actorMoreMessageSend();
+	}
+	
+	public Collection<Alumn> alumnsMoreClasses() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.alumnsMoreClasses();
+	}
+	
+	public Collection<Object> managerMoreBannersAccepted() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.managerMoreBannersAccepted();
+	}
+	
+	public Collection<Teacher> teachersOrderedByRatio() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.teachersOrderedByRatio();
+	}
+	
+	public Object[] minAvgMaxClassesPerTeacher() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.minAvgMaxClassesPerTeacher();
+	}
+	
+	public Double eventAverageDuration() {
+		this.checkLoggedIsAdmin();
+		return this.adminRepository.eventAverageDuration();
+	}
 }
