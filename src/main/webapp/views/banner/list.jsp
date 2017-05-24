@@ -12,6 +12,12 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<security:authorize access="hasRole('MANAGER')">
+<spring:message code="banner.fee" />
+<jstl:out value="${fee.managerAmount}" /> Euros
+</security:authorize>
+<br />
+
 <display:table name="banners" id="row" requestURI="${requestURI}"
 	pagesize="10" class="displaytag" >
 

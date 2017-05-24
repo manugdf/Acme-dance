@@ -13,6 +13,7 @@ import controllers.AbstractController;
 import domain.Banner;
 import domain.Manager;
 import services.BannerService;
+import services.FeeService;
 import services.ManagerService;
 
 @Controller
@@ -25,6 +26,9 @@ public class BannerManagerController extends AbstractController {
 	@Autowired
 	private BannerService	bannerService;
 
+	@Autowired
+	private FeeService		feeService;
+
 
 	public BannerManagerController() {
 		super();
@@ -36,6 +40,7 @@ public class BannerManagerController extends AbstractController {
 		Assert.isTrue(this.managerService.LoggedIsManager());
 
 		final ModelAndView res = new ModelAndView("banner/list");
+		res.addObject("fee", this.feeService.selectFee());
 		res.addObject("banners", this.bannerService.findAllByManager(this.managerService.findByPrincipal().getId()));
 		res.addObject("requestURI", "banner/manager/list.do");
 		return res;
