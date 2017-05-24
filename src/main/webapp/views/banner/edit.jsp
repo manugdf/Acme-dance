@@ -14,9 +14,13 @@
 <form:form action="${requestURI}" modelAttribute="banner">
 	<form:hidden path="id" />
 	<form:hidden path="manager" />
-	<form:hidden path="state" />
 
 	<acme:textbox code="banner.url" path="url" />
+	
+	<form:select path="state">
+			<form:option value="ACCEPTED">ACCEPTED</form:option>
+			<form:option value="REJECTED">REJECTED</form:option>
+		</form:select>
 	
 	<acme:submit code="danceschool.save" name="save" />
 

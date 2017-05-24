@@ -88,6 +88,7 @@ public class BannerService {
 		final Banner res = this.bannerRepository.findOne(banner.getId());
 
 		res.setUrl(banner.getUrl());
+		res.setState(banner.getState());
 		this.validator.validate(banner, bindingResult);
 
 		return res;

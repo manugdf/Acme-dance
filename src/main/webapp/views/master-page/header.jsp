@@ -30,8 +30,17 @@
 			<li><a class="fNiv"
 				href="danceSchool/administrator/listPending.do"><spring:message
 						code="master.page.listPendingSchools" /></a></li>
-			<li><a class="fNiv" href="banner/administrator/list.do"><spring:message
-						code="master.page.listBannersAdmin" /></a></li>
+			<li><a class="fNiv"> <spring:message
+						code="master.page.listBannersAdmin" />
+			</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="banner/administrator/list.do"><spring:message
+								code="master.page.listPendingBanners" /> </a></li>
+					<li><a href="banner/administrator/listAll.do"><spring:message
+								code="master.page.listAllBanners" /> </a></li>
+				</ul></li>
+			
 			<li><a class="fNiv" href="dashboard/administrator.do"><spring:message
 						code="master.page.dashboard" /></a></li>
 		</security:authorize>
