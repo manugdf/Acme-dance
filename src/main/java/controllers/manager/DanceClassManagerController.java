@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.Authority;
+import security.LoginService;
 import services.DanceClassService;
 import services.DanceSchoolService;
 import services.ManagerService;
@@ -82,6 +84,11 @@ public class DanceClassManagerController extends AbstractController {
 				res.addObject("danceClasses", this.danceClassService.findDanceClassesBySchool(id));
 				res.addObject("requestURI", "danceClass/list.do");
 				res.addObject("danceschool", this.danceSchoolService.findOne(id));
+				for(Authority a: LoginService.getPrincipal().getAuthorities()){
+					if(a.getAuthority().equals("MANAGER")){
+						res.addObject("managerPrincipal", managerService.findByPrincipal());
+					}
+				}
 			} catch (final Throwable oops) {
 				res = this.createModelAndView(danceClassForm, id, "danceClass.commit.error");
 			}
@@ -125,6 +132,11 @@ public class DanceClassManagerController extends AbstractController {
 				modelAndView.addObject("danceClasses", this.danceClassService.findDanceClassesBySchool(res.getDanceSchool().getId()));
 				modelAndView.addObject("requestURI", "danceClass/list.do");
 				modelAndView.addObject("danceschool", this.danceSchoolService.findOne(res.getDanceSchool().getId()));
+				for(Authority a: LoginService.getPrincipal().getAuthorities()){
+					if(a.getAuthority().equals("MANAGER")){
+						modelAndView.addObject("managerPrincipal", managerService.findByPrincipal());
+					}
+				}
 			} catch (final Throwable oops) {
 				modelAndView = this.editModelAndView(danceClassForm, danceClassId, "danceClass.commit.error");
 			}

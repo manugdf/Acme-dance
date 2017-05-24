@@ -42,6 +42,8 @@ public class DanceSchoolManagerController extends AbstractController {
 		res.addObject("danceSchools", this.danceSchoolService.findAllByManager(this.managerService.findByPrincipal().getId()));
 		res.addObject("requestURI", "danceSchool/manager/list.do");
 		res.addObject("searchForm", new SearchForm());
+
+		res.addObject("partnerview", false);
 		return res;
 
 	}
