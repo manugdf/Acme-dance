@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -95,10 +96,10 @@ public class CompetitionPlannerController extends AbstractController {
 	public ModelAndView edit(@Valid final CompetitionPlannerForm c, final BindingResult binding) {
 		ModelAndView res = new ModelAndView("competitionPlanner/edit");
 
-		final CompetitionPlanner logged = this.competitionPlannerService.findByPrincipal();
-		this.competitionPlannerService.reconstructEdit(logged, c);
+		CompetitionPlanner logged = this.competitionPlannerService.findByPrincipal();
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		System.out.println(encoder.encodePassword(c.getPassword(), null).equals(logged.getUserAccount().getPassword()));
+
 		if (c.getPassword() == null || c.getPassword().length() == 0 || encoder.encodePassword(c.getPassword(), null).equals(logged.getUserAccount().getPassword()) == false) {
 
 			res.addObject("competitionPlannerForm", c);
@@ -109,16 +110,17 @@ public class CompetitionPlannerController extends AbstractController {
 
 			return res;
 		}
-		if (!c.getNewPassword().equals(c.getRepeatNewPassword()) || c.getNewPassword().length() < 5 || c.getRepeatNewPassword().length() < 5 || c.getRepeatPassword().length() > 32 || c.getRepeatNewPassword().length() > 32) {
-
-			res.addObject("competitionPlannerForm", c);
-			res.addObject("requestUri", "competitionPlanner/edit.do");
-			res.addObject("message", "cp.passwordmatch.error");
-
-			res.addObject("edit", true);
-
-			return res;
-		}
+		//		if ((c.getNewPassword().length() == 0 || c.getRepeatNewPassword().length() == 0 || c.getNewPassword().equals(c.getRepeatNewPassword()) == false) && c.getNewPassword().length() <= 4 || c.getRepeatNewPassword().length() <= 4
+		//			|| c.getNewPassword().length() >= 31 || c.getRepeatNewPassword().length() >= 31) {
+		//
+		//			res.addObject("competitionPlannerForm", c);
+		//			res.addObject("requestUri", "competitionPlanner/edit.do");
+		//			res.addObject("message", "cp.passwordmatch.error");
+		//
+		//			res.addObject("edit", true);
+		//
+		//			return res;
+		//		}
 
 		if (binding.hasErrors()) {
 			System.out.println(binding.getAllErrors());
@@ -127,6 +129,12 @@ public class CompetitionPlannerController extends AbstractController {
 			res.addObject("edit", true);
 		} else
 			try {
+				if (c.getNewPassword().length() > 0 && c.getRepeatNewPassword().length() > 0) {
+					Assert.isTrue(c.getNewPassword().equals(c.getRepeatNewPassword()) == true);
+					Assert.isTrue(c.getNewPassword().length() >= 5 && c.getRepeatNewPassword().length() >= 5);
+				}
+				logged = this.competitionPlannerService.reconstructEdit(logged, c);
+
 				this.competitionPlannerService.save(logged);
 
 				res = new ModelAndView("redirect:/welcome/index.do");
