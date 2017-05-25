@@ -32,6 +32,23 @@ public class PartnerInvitationAlumnController extends AbstractController {
 	private AlumnService				alumnService;
 
 
+	@RequestMapping(value = "/listPartners", method = RequestMethod.GET)
+	public ModelAndView listPartners() {
+		final ModelAndView res = new ModelAndView("partnerInvitation/listPartners");
+		final Alumn alumn = this.alumnService.findByPrincipal();
+
+		final Collection<PartnerInvitation> sended = this.partnerInvitationService.findSendedAndAcceptedByAlumn(alumn.getId());
+		final Collection<PartnerInvitation> received = this.partnerInvitationService.findReceivedAndAcceptedByAlumn(alumn.getId());
+
+		received.addAll(sended);
+
+		res.addObject("partnerInvitations", received);
+		res.addObject("requestURI", "partnerInvitation/alumn/listPartners.do");
+		res.addObject("received", true);
+		return res;
+
+	}
+
 	@RequestMapping(value = "/listReceived", method = RequestMethod.GET)
 	public ModelAndView list() {
 		final ModelAndView res = new ModelAndView("partnerInvitation/list");

@@ -137,6 +137,8 @@
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/partnerInvitation/alumn/deny.do"
 			access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/partnerInvitation/alumn/listPartners.do"
+			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/payment/alumn/**"
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/alumn/edit.do"
