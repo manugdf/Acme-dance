@@ -21,9 +21,4 @@
         <put-attribute name="body" value="/views/administrator/dashboard.jsp" />
     </definition>
 
-<definition name="administrator/updateFees" extends="master.page">
-<put-attribute name="title" value="Update Chorbies fees" />
-<put-attribute name="body" value="/views/administrator/updateFees.jsp" />
-</definition>
-
 </tiles-definitions>
