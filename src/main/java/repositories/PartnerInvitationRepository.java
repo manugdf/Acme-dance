@@ -18,4 +18,10 @@ public interface PartnerInvitationRepository extends JpaRepository<PartnerInvita
 	@Query("select p from PartnerInvitation p where p.invitationSender.id = ?1")
 	Collection<PartnerInvitation> findSendedByAlumn(int id);
 
+	@Query("select p from PartnerInvitation p where p.invitationSender.id = ?1 and p.state = 'ACCEPTED' ")
+	Collection<PartnerInvitation> findSendedAndAcceptedByAlumn(int id);
+
+	@Query("select p from PartnerInvitation p where p.invitationReceiver.id = ?1 and p.state = 'ACCEPTED' ")
+	Collection<PartnerInvitation> findReceivedAndAcceptedByAlumn(int id);
+
 }

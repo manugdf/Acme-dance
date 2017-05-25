@@ -191,4 +191,16 @@ public class AlumnService {
 		return alumns;
 	}
 
+	public Collection<Alumn> findPartnersOfAlumn(final Alumn alumn) {
+		final Collection<PartnerInvitation> allSent = alumn.getPartnerInvitationSends();
+		final Collection<PartnerInvitation> accepted = new ArrayList<>();
+		for (final PartnerInvitation p : allSent)
+			if (p.getState().equals("ACCEPTED"))
+				accepted.add(p);
+		final Collection<Alumn> partners = new ArrayList<>();
+		for (final PartnerInvitation p : accepted)
+			partners.add(p.getInvitationReceiver());
+		return partners;
+	}
+
 }

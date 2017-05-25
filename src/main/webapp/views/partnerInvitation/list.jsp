@@ -28,7 +28,7 @@
 	<display:column property="danceStyle" title="${danceStyle}"/>
 	
 	<spring:message code="partnerInvitation.invitationReceiver" var="invitationReceiver"/>
-	<display:column property="invitationReceiver.name" title="${invitationReceiver}"/>
+	<display:column property="invitationReceiver.name + invitationReceiver.surname" title="${invitationReceiver}"/>
 	
 	<spring:message code="partnerInvitation.invitationSender" var="sender"/>
 	<display:column property="invitationSender.name" title="${sender}"/>
