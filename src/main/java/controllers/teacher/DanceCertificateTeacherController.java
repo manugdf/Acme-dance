@@ -17,6 +17,7 @@ import domain.DanceTest;
 import services.AlumnService;
 import services.DanceCertificateService;
 import services.DanceClassService;
+import services.DanceTestService;
 import services.TeacherService;
 
 @Controller
@@ -29,6 +30,8 @@ public class DanceCertificateTeacherController extends AbstractController{
 	private AlumnService alumnService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private DanceTestService danceTestService;
 	
 	// List
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -77,6 +80,9 @@ public class DanceCertificateTeacherController extends AbstractController{
 				alumn.getDanceCertificates().add(aux);
 				alumnService.save(alumn);
 
+				DanceTest danceTest=danceTestService.findOne(danceTestId);
+				danceTest.getDanceCertificates().add(aux);
+				danceTestService.save(danceTest);
 
 				res.addObject("danceCertificates", alumn.getDanceCertificates());
 				

@@ -9,6 +9,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -60,6 +61,7 @@ public class DanceTest extends DomainEntity {
 	//Relationship
 	private Collection<Alumn>	alumns;
 	private DanceClass			danceClass;
+	private Collection<DanceCertificate>	danceCertificates;
 
 
 	@NotNull
@@ -79,6 +81,15 @@ public class DanceTest extends DomainEntity {
 	}
 	public void setDanceClass(final DanceClass danceClass) {
 		this.danceClass = danceClass;
+	}
+	
+	@NotNull
+	@OneToMany
+	public Collection<DanceCertificate> getDanceCertificates(){
+		return this.danceCertificates;
+	}
+	public void setDanceCertificates(final Collection<DanceCertificate> danceCertificates){
+		this.danceCertificates=danceCertificates;
 	}
 
 }

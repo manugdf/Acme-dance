@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import domain.Alumn;
+import domain.DanceCertificate;
 import domain.DanceTest;
 import repositories.DanceTestRepository;
 
@@ -39,6 +40,7 @@ public class DanceTestService {
 		DanceTest res=new DanceTest();
 		
 		res.setAlumns(new ArrayList<Alumn>());
+		res.setDanceCertificates(new ArrayList<DanceCertificate>());
 
 		return res;
 	}
@@ -65,6 +67,7 @@ public class DanceTestService {
 		if(danceTest.getId()==0){
 			res=danceTest;
 			res.setAlumns(new ArrayList<Alumn>());
+			res.setDanceCertificates(new ArrayList<DanceCertificate>());
 			res.setDanceClass(danceClassService.findOne(danceClassId));
 		}else{
 			res=danceTestRepository.findOne(danceTest.getId());
