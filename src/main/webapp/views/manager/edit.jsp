@@ -11,7 +11,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<jstl:if test="${editFee==false}">
 <form:form action="${requestUri}" modelAttribute="managerForm">
 	<form:hidden path="managerId"/>
 	
@@ -87,23 +86,5 @@
 	
 	<acme:cancel url="welcome/index.do" code="manager.cancel"/>
 
-	</form:form>
-</jstl:if>
+</form:form>
 
-<jstl:if test="${editFee==true}">
-
-	<form:form action="${requestUri}" modelAttribute="manager">
-		<form:hidden path="name"/>
-		<form:hidden path="surname"/>
-		<form:hidden path="email"/>
-		<form:hidden path="phone"/>
-		
-   		<acme:textbox path="fee" code="manager.fee"/>
-
-    	<acme:submit code="manager.save" name="save"/>
-
-    	<acme:cancel code="manager.cancel" url="/manager/administrator/list.do"/>
-
-	</form:form>
-
-</jstl:if>

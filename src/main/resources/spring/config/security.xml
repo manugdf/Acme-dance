@@ -21,6 +21,7 @@
 	<!-- Access control -->
 
 	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/manager/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/" access="permitAll" />
 
 		<security:intercept-url pattern="/favicon.ico"
@@ -139,13 +140,13 @@
 
 		<security:intercept-url pattern="/censoredWords/administrator/**"
 			access="hasRole('ADMIN')" />
-		<security:intercept-url pattern="/manager/administrator/**"
-			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/danceSchool/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/dashboard/administrator.do"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/banner/administrator/**"
+			access="hasRole('ADMIN')" />
+			<security:intercept-url pattern="/fee/administrator/**"
 			access="hasRole('ADMIN')" />
 
 		<security:intercept-url pattern="/alumn/register.do"

@@ -35,7 +35,6 @@ public class ManagerController extends AbstractController {
 		res.addObject("requestUri", "manager/register.do");
 		res.addObject("managerForm", managerForm);
 		res.addObject("edit", false);
-		res.addObject("editFee", false);
 		return res;
 
 	}
@@ -51,7 +50,6 @@ public class ManagerController extends AbstractController {
 		res.addObject("requestUri", "manager/edit.do");
 		res.addObject("managerForm", managerForm);
 		res.addObject("edit", true);
-		res.addObject("editFee", false);
 		return res;
 
 	}
@@ -66,12 +64,10 @@ public class ManagerController extends AbstractController {
 				System.out.println(bindingResult.getAllErrors());
 				res.addObject("requestUri", "manager/register.do");
 				res.addObject("edit", false);
-				res.addObject("editFee", false);
 				res.addObject("managerForm", managerForm);
 			} else if (managerForm.isAcceptTerms() != true) {
 				res.addObject("managerForm", managerForm);
 				res.addObject("edit", false);
-				res.addObject("editFee", false);
 				res.addObject("requestUri", "manager/register.do");
 				res.addObject("message", "manager.acceptTerms.error");
 			} else
@@ -84,7 +80,6 @@ public class ManagerController extends AbstractController {
 					res = new ModelAndView("manager/register");
 					res.addObject("managerForm", managerForm);
 					res.addObject("edit", false);
-					res.addObject("editFee", false);
 					res.addObject("message", "manager.error.exists");
 
 				}
@@ -92,7 +87,6 @@ public class ManagerController extends AbstractController {
 		} else {
 			res.addObject("managerForm", managerForm);
 			res.addObject("edit", false);
-			res.addObject("editFee", false);
 			res.addObject("message", "manager.password.error");
 		}
 		return res;
@@ -112,7 +106,6 @@ public class ManagerController extends AbstractController {
 			} catch (final Throwable oops) {
 				res.addObject("managerForm", managerForm);
 				res.addObject("edit", true);
-				res.addObject("editFee", false);
 
 				res.addObject("message", "manager.password.error2");
 				return res;
@@ -127,7 +120,6 @@ public class ManagerController extends AbstractController {
 					res.addObject("requestUri", "manager/edit.do");
 					res.addObject("managerForm", managerForm);
 					res.addObject("edit", true);
-					res.addObject("editFee", false);
 				} else {
 					this.managerService.modify(manager);
 
@@ -138,21 +130,18 @@ public class ManagerController extends AbstractController {
 				res = new ModelAndView("manager/edit");
 				res.addObject("managerForm", managerForm);
 				res.addObject("edit", true);
-				res.addObject("editFee", false);
 				res.addObject("message", "manager.error.exists");
 
 			} catch (final Throwable e) {
 
 				System.out.println(e.getMessage());
 				res.addObject("edit", true);
-				res.addObject("editFee", false);
 				res.addObject("message", "manager.password.new");
 
 			}
 		} else {
 			res.addObject("managerForm", managerForm);
 			res.addObject("edit", true);
-			res.addObject("editFee", false);
 
 			res.addObject("message", "manager.password.error");
 		}

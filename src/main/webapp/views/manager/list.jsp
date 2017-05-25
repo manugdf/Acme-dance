@@ -28,16 +28,5 @@
 	<spring:message code="manager.fee" var="feeColumn"/>
 	<display:column property="fee" title="${feeColumn}"/>
 
-	<security:authorize access="hasRole('ADMIN')">
 	
-	<spring:message code="manager.editFee" var="editFee"/>
-		<display:column title="${editFee}">
-	
-			<input	onclick="javascript: window.location.replace('manager/administrator/editFee.do?managerId=${row.id}');"
-					value="<spring:message code="manager.fee.edit" />" type="button" />
-		</display:column>
-		
-	</security:authorize>
-
-
 </display:table>

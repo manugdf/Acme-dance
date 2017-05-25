@@ -25,6 +25,8 @@
 		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv" href="manager/administrator/list.do"><spring:message
 						code="master.page.managers" /></a></li>
+			<li><a class="fNiv" href="fee/administrator/edit.do"><spring:message
+						code="master.page.editFee" /></a></li>
 			<li><a class="fNiv" href="censoredWords/administrator/list.do"><spring:message
 						code="master.page.censored" /></a></li>
 			<li><a class="fNiv"
