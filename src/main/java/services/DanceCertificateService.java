@@ -11,6 +11,8 @@ import org.springframework.validation.Validator;
 import domain.DanceCertificate;
 import repositories.DanceCertificateRepository;
 
+import java.util.Collection;
+
 @Service
 @Transactional
 public class DanceCertificateService {
@@ -61,4 +63,7 @@ public class DanceCertificateService {
 		return res;
 	}
 
+	public Collection<DanceCertificate> findDanceCertificatesByAlumn(int alumnId){
+		return danceCertificateRepository.findDanceCertificatesByAlumn(alumnId);
+	}
 }

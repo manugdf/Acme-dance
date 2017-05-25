@@ -1,5 +1,6 @@
 package controllers.teacher;
 
+import controllers.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -20,7 +21,7 @@ import services.TeacherService;
 
 @Controller
 @RequestMapping("/danceCertificate/teacher")
-public class DanceCertificateTeacherController {
+public class DanceCertificateTeacherController extends AbstractController{
 
 	@Autowired
 	private DanceCertificateService danceCertificateService;
@@ -36,7 +37,6 @@ public class DanceCertificateTeacherController {
 		final Alumn alumn=alumnService.findOne(alumnId);
 
 		res.addObject("danceCertificates", alumn.getDanceCertificates());
-//		res.addObject("requestURI", "danceCertificate/teacher/list.do?alumnId=" + alumnId);
 		return res;
 
 	}
@@ -51,7 +51,6 @@ public class DanceCertificateTeacherController {
 
 		res = new ModelAndView("danceCertificate/create");
 		res.addObject("danceCertificate", new DanceCertificate());
-//		res.addObject("requestUri", "danceCertificate/teacher/create.do?alumnId=" + alumnId);
 		res.addObject("danceTestId", danceTestId);
 
 		return res;
@@ -66,7 +65,6 @@ public class DanceCertificateTeacherController {
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.getAllErrors());
 			res= new ModelAndView("danceCertificate/create");
-//			res.addObject("requestUri", "danceCertificate/teacher/create.do?alumnId=" + alumnId);
 			res.addObject("danceCertificate", danceCertificate);
 			res.addObject("alumnId", alumnId);
 			res.addObject("danceTestId", danceTestId);
@@ -79,13 +77,11 @@ public class DanceCertificateTeacherController {
 				alumn.getDanceCertificates().add(aux);
 				alumnService.save(alumn);
 
-				
-//				res.addObject("requestUri", "danceCertificate/teacher/list.do?alumnId=" + alumnId);
+
 				res.addObject("danceCertificates", alumn.getDanceCertificates());
 				
 			} catch (final Throwable oops) {
 				res= new ModelAndView("danceCertificate/create");
-//				res.addObject("requestUri", "danceCertificate/teacher/create.do?alumnId=" + alumnId);
 				res.addObject("danceCertificate", danceCertificate);
 				res.addObject("danceTestId", danceTestId);
 			}

@@ -1256,7 +1256,7 @@
 	<bean id="danceTest1" class="domain.DanceTest">
 		<property name="testDate" value="2016/12/10 10:00" />
 		<property name="danceLevel" value="MEDIUM" />
-		<property name="limitInscription" value="2017/12/09 10:00" />
+		<property name="limitInscription" value="2016/12/05 10:00" />
 		<property name="alumns">
 			<list>
 				<ref bean="alumn1" />

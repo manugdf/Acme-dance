@@ -138,6 +138,7 @@
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/review/alumn/**"
 								access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/danceCertificate/alumn/**" access="hasRole('ALUMN')"/>
 
 		<security:intercept-url pattern="/censoredWords/administrator/**"
 			access="hasRole('ADMIN')" />
