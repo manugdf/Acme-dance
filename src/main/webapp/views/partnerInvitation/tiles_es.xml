@@ -21,6 +21,11 @@
 		<put-attribute name="body" value="/views/partnerInvitation/list.jsp" />
 	</definition>
 	
+	<definition name="partnerInvitation/listPartners" extends="master.page">	
+		<put-attribute name="title" value="Parejas de baile" />
+		<put-attribute name="body" value="/views/partnerInvitation/listPartners.jsp" />
+	</definition>
+	
 	<definition name="partnerInvitation/create" extends="master.page">	
 		<put-attribute name="title" value="Crear invitación" />
 		<put-attribute name="body" value="/views/partnerInvitation/edit.jsp" />
