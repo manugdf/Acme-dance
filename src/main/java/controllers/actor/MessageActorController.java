@@ -187,10 +187,11 @@ public class MessageActorController extends AbstractController {
 		final Message message = this.messageService.findOne(id);
 
 		try {
-			this.messageService.delete(message);
+			this.messageService.deleteMessage(message);
 			modelAndView = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
 			modelAndView = new ModelAndView("redirect:list.do");
+			System.out.println(oops.getMessage());
 		}
 		return modelAndView;
 

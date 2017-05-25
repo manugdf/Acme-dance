@@ -16,6 +16,7 @@ import domain.CensoredWords;
 import domain.Message;
 import forms.MessageForm;
 import repositories.MessageRepository;
+import security.LoginService;
 
 @Service
 @Transactional
@@ -63,8 +64,8 @@ public class MessageService {
 
 	public Message save(final Message message) {
 		Assert.notNull(message);
-		final Message saved = this.messageRepository.save(message);
-		return saved;
+
+		return this.messageRepository.save(message);
 	}
 	public void delete(final Message message) {
 		this.messageRepository.delete(message);
@@ -116,25 +117,40 @@ public class MessageService {
 		return message;
 	}
 
-	public void deleteMessage(final int id) {
-		final Message message = this.findOne(id);
-		if (message.getReceiver() != null && message.getReceiver().getId() == this.actorService.findByPrincipal().getId()) {
-			final Actor receiver = message.getReceiver();
-			final Collection<Message> received = receiver.getMessagesReceived();
-			received.remove(message);
+	public void deleteMessage(Message message) {
+		if (message.getReceiver() != null && message.getReceiver().getUserAccount().getId() == LoginService.getPrincipal().getId()) {
 			message.setReceiver(null);
-
-		} else if (message.getSender() != null && message.getSender().getId() == this.actorService.findByPrincipal().getId()) {
-			final Actor sender = message.getSender();
-			final Collection<Message> sent = sender.getMessagesReceived();
-			sent.remove(message);
-			message.setSender(null);
+			message = this.save(message);
 		}
-
-		if (message.getReceiver() == null && message.getSender() == null)
-			this.delete(message);
+		if (message.getSender() != null && message.getSender().getUserAccount().getId() == LoginService.getPrincipal().getId()) {
+			message.setSender(null);
+			message = this.save(message);
+		}
+		if (message.getReceiver() == null)
+			if (message.getSender() == null)
+				this.delete(message);
 
 	}
+
+	//	public void deleteMessage(final int id) {
+	//		Message message = this.findOne(id);
+	//		if (message.getReceiver() != null && message.getReceiver().getId() == this.actorService.findByPrincipal().getId()) {
+	//			final Actor receiver = message.getReceiver();
+	//			final Collection<Message> received = receiver.getMessagesReceived();
+	//			received.remove(message);
+	//			message.setReceiver(null);
+	//
+	//		} else if (message.getSender() != null && message.getSender().getId() == this.actorService.findByPrincipal().getId()) {
+	//			final Actor sender = message.getSender();
+	//			final Collection<Message> sent = sender.getMessagesReceived();
+	//			sent.remove(message);
+	//			message.setSender(null);
+	//		}
+	//
+	//		if (message.getReceiver() == null && message.getSender() == null)
+	//			this.delete(message);
+	//
+	//	}
 
 	public void sendMessage(final Message message) {
 

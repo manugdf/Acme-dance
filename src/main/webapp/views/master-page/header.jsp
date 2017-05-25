@@ -130,6 +130,10 @@
 						<li><a href="manager/edit.do"><spring:message
 									code="master.page.profile.edit" /></a></li>
 					</security:authorize>
+					<security:authorize access="hasRole('COMPETITIONPLANNER')">
+						<li><a href="competitionPlanner/edit.do"><spring:message
+									code="master.page.profile.edit" /></a></li>
+					</security:authorize>
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>
 				</ul></li>

@@ -129,9 +129,11 @@ public class CompetitionPlannerController extends AbstractController {
 			res.addObject("edit", true);
 		} else
 			try {
-				if (c.getNewPassword().length() > 0 && c.getRepeatNewPassword().length() > 0) {
+				if (c.getNewPassword().length() > 0 || c.getRepeatNewPassword().length() > 0) {
 					Assert.isTrue(c.getNewPassword().equals(c.getRepeatNewPassword()) == true);
 					Assert.isTrue(c.getNewPassword().length() >= 5 && c.getRepeatNewPassword().length() >= 5);
+					Assert.isTrue(c.getNewPassword().length() <= 32 && c.getRepeatNewPassword().length() >= 32);
+
 				}
 				logged = this.competitionPlannerService.reconstructEdit(logged, c);
 
@@ -150,7 +152,7 @@ public class CompetitionPlannerController extends AbstractController {
 
 				System.out.println(e);
 				res.addObject("competitionPlannerForm", c);
-				res.addObject("message", "alumn.commit.error");
+				res.addObject("message", "cp.passwordmatch.error");
 
 				res.addObject("edit", true);
 			}
