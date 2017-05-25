@@ -3,7 +3,6 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"
@@ -34,6 +33,22 @@
 				  	value="<spring:message code="teacher.select" />" type="button" />
 			</jstl:if>
 	</display:column>
+	</security:authorize>
+
+	<security:authorize access="hasRole('ALUMN')">
+		<spring:message code="danceTest.joinin" var="joinin"/>
+		<display:column title="${joinin}">
+			<jstl:choose>
+				<jstl:when test="${!myDanceTests.contains(row)}">
+					<input	onclick="javascript: window.location.replace('danceTest/alumn/joinin.do?danceTestId=${row.id}');"
+							  value="<spring:message code="danceTest.joinin" />" type="button" />
+				</jstl:when>
+				<jstl:otherwise>
+					<font color="red"><spring:message
+							code="danceTest.testRepeat" /></font>
+				</jstl:otherwise>
+			</jstl:choose>
+		</display:column>
 	</security:authorize>
 	
 </display:table>
