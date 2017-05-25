@@ -20,5 +20,15 @@
 		<put-attribute name="title" value="Eventos" />
 		<put-attribute name="body" value="/views/event/list.jsp" />
 	</definition>
+
+	<definition name="event/create" extends="master.page">	
+		<put-attribute name="title" value="Crear evento" />
+		<put-attribute name="body" value="/views/event/edit.jsp" />
+	</definition>
+	
+		<definition name="event/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar evento" />
+		<put-attribute name="body" value="/views/event/edit.jsp" />
+	</definition>
 	
 </tiles-definitions>

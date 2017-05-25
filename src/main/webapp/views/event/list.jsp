@@ -40,21 +40,41 @@
 	${fn:length(row.alumns)}
 	</display:column>
 
+	<security:authorize access="hasRole('MANAGER')">
+		<jstl:if test="${row.danceSchool.manager == logged }">
+			<display:column>
+				<input
+								onclick="javascript: window.location.replace('manager/event/edit.do?eventId=${row.id}');"
+								value="<spring:message code="event.edit" />" type="button"/>
+			</display:column>
+			
+			<display:column>
+				<input
+								onclick="javascript: window.location.replace('manager/event/delete.do?eventId=${row.id}');"
+								value="<spring:message code="event.delete" />" type="button"/>
+			</display:column>
+		</jstl:if>
+	
+	</security:authorize>
 
-	<display:column>
 		<jstl:if test="${inSchool==true}">
 		
-		<jstl:if test="${row.maxAlumns - fn:length(row.alumns)>0}">
-						
-			<input
-					onclick="javascript: window.location.replace('event/alumn/assist.do?idEvent=${row.id}&idSchool=${idSchool}');"
-					value="<spring:message code="event.assist" />" type="button"/>
+			<jstl:if test="${row.maxAlumns - fn:length(row.alumns)>0}">
+				<display:column>		
+					<input
+							onclick="javascript: window.location.replace('event/alumn/assist.do?idEvent=${row.id}&idSchool=${idSchool}');"
+							value="<spring:message code="event.assist" />" type="button"/>
+				</display:column>
 			</jstl:if>
-			</jstl:if>
-		
-	</display:column>
-
-
-
+		</jstl:if>
 
 </display:table>
+
+	<security:authorize access="hasRole('MANAGER')">
+
+				<input
+								onclick="javascript: window.location.replace('manager/event/create.do?danceSchoolId=${danceSchool.id}');"
+								value="<spring:message code="event.create" />" type="button"/>
+
+	
+	</security:authorize>

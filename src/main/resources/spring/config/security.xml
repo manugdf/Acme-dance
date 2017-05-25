@@ -57,8 +57,16 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/review/list.do"
 			access="permitAll" />
-
-
+			
+			
+		<security:intercept-url pattern="/manager/event/delete.do"
+			access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/manager/event/edit.do"
+			access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/manager/event/create.do"
+			access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/manager/event/list.do"
+			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/manager/schedule/create.do"
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/manager/schedule/edit.do"
