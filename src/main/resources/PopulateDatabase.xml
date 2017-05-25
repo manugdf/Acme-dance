@@ -177,6 +177,24 @@
 		</property>
 
 	</bean>
+	
+	<!-- Admin -->
+
+	<bean id="admin" class="domain.Admin">
+		<property name="UserAccount" ref="userAccount1" />
+		<property name="name" value="admin" />
+		<property name="surname" value="surnameAdmin" />
+		<property name="email" value="admin@g.com" />
+		<property name="phone" value="+34 955844532" />
+		<property name="messagesSended">
+			<list>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+	</bean>
 
 	<!--Alumns -->
 
