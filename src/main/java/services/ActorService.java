@@ -57,18 +57,16 @@ public class ActorService {
 
 	}
 	// Other business methods
-	/*
-	 * public Actor getLoggedActor() {
-	 * Actor result;
-	 * UserAccount user;
-	 * if (this.isAuthenticated() == true) {
-	 * user = LoginService.getPrincipal();
-	 * result = this.actorRepository.findActorByUsername(user.getUsername());
-	 * } else
-	 * result = null;
-	 * return result;
-	 * }
-	 */
+	public Actor getLoggedActor() {
+		Actor result;
+		UserAccount user;
+		if (this.isAuthenticated() == true) {
+			user = LoginService.getPrincipal();
+			result = this.actorRepository.findActorByUsername(user.getUsername());
+		} else
+			result = null;
+		return result;
+	}
 
 	public Boolean isAuthenticated() {
 		Boolean res = true;
