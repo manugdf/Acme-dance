@@ -26,6 +26,22 @@
 </display:table>
 
 <security:authorize access="hasRole('ALUMN')">
-    <input	onclick="javascript: window.location.replace('review/alumn/create.do?teacherId=${teacher.id}');"
-              value="<spring:message code="review.create" />" type="button" />
+    <jstl:choose>
+        <jstl:when test="${!teachersReview.contains(teacher)}">
+            <jstl:choose>
+                <jstl:when test="${teachersCanReview.contains(teacher)}">
+                    <input	onclick="javascript: window.location.replace('review/alumn/create.do?teacherId=${teacher.id}');"
+                              value="<spring:message code="review.create" />" type="button" />
+                </jstl:when>
+                <jstl:otherwise>
+                    <font color="red"><spring:message
+                            code="review.cantReview2" /></font>
+                </jstl:otherwise>
+            </jstl:choose>
+        </jstl:when>
+        <jstl:otherwise>
+            <font color="red"><spring:message
+                    code="review.cantReview" /></font>
+        </jstl:otherwise>
+    </jstl:choose>
 </security:authorize>

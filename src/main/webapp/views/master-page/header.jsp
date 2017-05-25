@@ -86,6 +86,8 @@
 				</ul></li>
 			<li><a class="fNiv" href="danceClass/alumn/listMyClasses.do"><spring:message
 						code="master.page.myClasses" /></a></li>
+			<li><a class="fNiv" href="danceCertificate/alumn/list.do"><spring:message
+					code="master.page.myCertificates" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="isAnonymous()">
