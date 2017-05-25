@@ -143,28 +143,24 @@
 		<jstl:if test="${managerPrincipal.id==row.danceSchool.manager.id}">
 			<spring:message code="danceclass.add" var="add" />
 			<display:column title="${add}">
-
 				<input
 					onclick="javascript: window.location.replace('danceClass/manager/add.do?danceClassId=${row.id}&danceSchoolId=${danceSchoolId}');"
 					value="<spring:message code="danceclass.add" />" type="button" />
-
 			</display:column>
 
 			<spring:message code="danceclass.remove" var="remove" />
 			<display:column title="${remove}">
-
 				<input
-					onclick="javascript: window.location.replace('danceClass/manager/remove.do?classId=${row.id}');"
+					onclick="javascript: window.location.replace('danceClass/manager/remove.do?danceClassId=${row.id}&danceSchoolId=${danceSchoolId}');"
 					value="<spring:message code="danceclass.remove" />" type="button" />
-
 			</display:column>
 
 			<spring:message code="danceclass.edit" var="edit" />
 			<display:column title="${edit}">
+				
 				<input
 					onclick="javascript: window.location.replace('danceClass/manager/edit.do?danceClassId=${row.id}');"
 					value="<spring:message code="danceclass.edit" />" type="button" />
-
 			</display:column>
 
 			<spring:message code="danceclass.delete" var="delete" />

@@ -12,7 +12,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<jstl:if test="${partnerview == false}">
+<jstl:if test="${partnerview == false && isManager==false}">
 	<form:form action="danceSchool/search.do" modelAttribute="searchForm">
 	
 			<form:input path="word"/>

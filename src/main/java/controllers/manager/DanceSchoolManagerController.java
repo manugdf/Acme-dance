@@ -44,6 +44,7 @@ public class DanceSchoolManagerController extends AbstractController {
 		res.addObject("searchForm", new SearchForm());
 
 		res.addObject("partnerview", false);
+		res.addObject("isManager", true);
 		return res;
 
 	}
