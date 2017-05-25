@@ -37,6 +37,7 @@ public class Competition extends DomainEntity {
 	}
 
 	@NotNull
+	@Valid
 	public Location getPlace() {
 		return this.place;
 	}

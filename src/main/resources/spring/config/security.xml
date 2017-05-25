@@ -96,7 +96,12 @@
 		
 		<security:intercept-url pattern="/competitionPlanner/edit.do"
 			access="hasRole('COMPETITIONPLANNER')" />
-
+			
+		<security:intercept-url pattern="/competition/competitionPlanner/list.do"
+			access="hasRole('COMPETITIONPLANNER')" />
+			
+		<security:intercept-url pattern="/competition/competitionPlanner/**"
+			access="hasRole('COMPETITIONPLANNER')" />
 
 		<security:intercept-url pattern="/danceClass/teacher/**"
 			access="hasRole('TEACHER')" />
@@ -142,6 +147,9 @@
 		<security:intercept-url pattern="/danceCertificate/alumn/**"
 			access="hasRole('ALUMN')" />
 
+		<security:intercept-url pattern="/competition/competitionPlanner/create.do"
+			access="hasRole('COMPETITIONPLANNER')" />
+		
 		<security:intercept-url pattern="/censoredWords/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/danceSchool/administrator/**"

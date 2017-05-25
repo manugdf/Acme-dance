@@ -28,7 +28,15 @@
 		<put-attribute name="body" value="/views/competition/signup.jsp" />
 	</definition>
 
-
+	<definition name="competition/create" extends="master.page">
+		<put-attribute name="title" value="Create competition" />
+		<put-attribute name="body" value="/views/competition/edit.jsp" />
+	</definition>
+	
+	<definition name="competition/myList" extends="master.page">
+		<put-attribute name="title" value="My competition list" />
+		<put-attribute name="body" value="/views/competition/list.jsp" />
+	</definition>
 
 
 </tiles-definitions>

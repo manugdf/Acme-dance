@@ -11,21 +11,21 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import domain.Competition;
-import domain.CompetitionPlanner;
-import domain.Message;
-import forms.CompetitionPlannerForm;
 import repositories.CompetitionPlannerRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import domain.Competition;
+import domain.CompetitionPlanner;
+import domain.Message;
+import forms.CompetitionPlannerForm;
 
 @Service
 @Transactional
 public class CompetitionPlannerService {
 
 	@Autowired
-	private CompetitionPlannerRepository competitionPlannerRepository;
+	private CompetitionPlannerRepository	competitionPlannerRepository;
 
 
 	public CompetitionPlanner create() {
@@ -72,6 +72,20 @@ public class CompetitionPlannerService {
 
 		return res;
 
+	}
+
+	public Boolean LoggedIsCompetitionPlanner() {
+		Boolean res = false;
+		try {
+			final Authority aut = new Authority();
+			aut.setAuthority(Authority.COMPETITIONPLANNER);
+
+			res = LoginService.getPrincipal().getAuthorities().contains(aut);
+		} catch (final Exception e) {
+			res = false;
+		}
+
+		return res;
 	}
 
 	public CompetitionPlanner findByPrincipal() {

@@ -46,6 +46,11 @@
 			<li><a class="fNiv" href="dashboard/administrator.do"><spring:message
 						code="master.page.dashboard" /></a></li>
 		</security:authorize>
+		
+		<security:authorize access="hasRole('COMPETITIONPLANNER')">
+			<li><a class="fNiv" href="competition/competitionPlanner/list.do"><spring:message
+						code="master.page.competitionPlanner.myCompetitions" /></a></li>
+		</security:authorize>
 
 		<security:authorize access="hasRole('MANAGER')">
 			<li><a class="fNiv" href="teacher/manager/list.do"><spring:message
