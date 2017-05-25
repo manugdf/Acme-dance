@@ -71,7 +71,7 @@
 		<security:authorize access="hasRole('ALUMN')">
 			<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message
 						code="master.page.schools" /></a></li>
-			<li><a class="fNiv"><spring:message
+			<li><a class="fNiv" href="partnerInvitation/alumn/listPartners.do"><spring:message
 						code="master.page.partners" /></a>
 				<ul>
 					<li class="arrow"></li>

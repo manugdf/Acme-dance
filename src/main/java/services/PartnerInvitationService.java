@@ -61,4 +61,11 @@ public class PartnerInvitationService {
 		return this.partnerInvitationRepository.findSendedByAlumn(id);
 	}
 
+	public Collection<PartnerInvitation> findSendedAndAcceptedByAlumn(final int id) {
+		return this.partnerInvitationRepository.findSendedAndAcceptedByAlumn(id);
+	}
+	public Collection<PartnerInvitation> findReceivedAndAcceptedByAlumn(final int id) {
+		return this.partnerInvitationRepository.findReceivedAndAcceptedByAlumn(id);
+	}
+
 }
