@@ -21,7 +21,8 @@
 	<!-- Access control -->
 
 	<security:http auto-config="true" use-expressions="true">
-		<security:intercept-url pattern="/manager/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/manager/administrator/**"
+			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/" access="permitAll" />
 
 		<security:intercept-url pattern="/favicon.ico"
@@ -84,6 +85,9 @@
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/manager/**"
 			access="hasRole('MANAGER')" />
+		
+		<security:intercept-url pattern="/competitionPlanner/edit.do"
+			access="hasRole('COMPETITIONPLANNER')" />
 
 
 		<security:intercept-url pattern="/danceClass/teacher/**"
@@ -138,8 +142,9 @@
 		<security:intercept-url pattern="/alumn/edit.do"
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/review/alumn/**"
-								access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/danceCertificate/alumn/**" access="hasRole('ALUMN')"/>
+			access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/danceCertificate/alumn/**"
+			access="hasRole('ALUMN')" />
 
 		<security:intercept-url pattern="/censoredWords/administrator/**"
 			access="hasRole('ADMIN')" />
@@ -149,7 +154,7 @@
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/banner/administrator/**"
 			access="hasRole('ADMIN')" />
-			<security:intercept-url pattern="/fee/administrator/**"
+		<security:intercept-url pattern="/fee/administrator/**"
 			access="hasRole('ADMIN')" />
 
 		<security:intercept-url pattern="/alumn/register.do"

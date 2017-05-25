@@ -17,6 +17,9 @@ public class CompetitionPlannerForm {
 	private String	username;
 	private String	password;
 	private String	repeatPassword;
+	private String	repeatNewPassword;
+
+	private String	newPassword;
 	private String	companyName;
 	private String	picture;
 	private boolean	acceptTerms;
@@ -103,6 +106,20 @@ public class CompetitionPlannerForm {
 	}
 	public void setAcceptTerms(final boolean acceptTerms) {
 		this.acceptTerms = acceptTerms;
+	}
+
+	public String getNewPassword() {
+		return this.newPassword;
+	}
+	public void setNewPassword(final String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	public String getRepeatNewPassword() {
+		return this.repeatNewPassword;
+	}
+	public void setRepeatNewPassword(final String repeatNewPassword) {
+		this.repeatNewPassword = repeatNewPassword;
 	}
 
 }

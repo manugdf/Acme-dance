@@ -9,21 +9,23 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
-import repositories.CompetitionPlannerRepository;
-import security.Authority;
-import security.UserAccount;
 import domain.Competition;
 import domain.CompetitionPlanner;
 import domain.Message;
 import forms.CompetitionPlannerForm;
+import repositories.CompetitionPlannerRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
 
 @Service
 @Transactional
 public class CompetitionPlannerService {
 
 	@Autowired
-	private CompetitionPlannerRepository	competitionPlannerRepository;
+	private CompetitionPlannerRepository competitionPlannerRepository;
 
 
 	public CompetitionPlanner create() {
@@ -70,5 +72,41 @@ public class CompetitionPlannerService {
 
 		return res;
 
+	}
+
+	public CompetitionPlanner findByPrincipal() {
+
+		final UserAccount userAccount = LoginService.getPrincipal();
+		final CompetitionPlanner cp = this.competitionPlannerRepository.findByPrincipal(userAccount.getId());
+		Assert.isTrue(cp.getUserAccount().equals(userAccount));
+		return cp;
+
+	}
+
+	public CompetitionPlannerForm reconstructForm(final CompetitionPlanner logged, final CompetitionPlannerForm c) {
+
+		c.setCompanyName(logged.getCompanyName());
+		c.setEmail(logged.getEmail());
+		c.setName(logged.getName());
+		c.setPhone(logged.getPhone());
+		c.setPicture(logged.getPicture());
+		c.setSurname(logged.getSurname());
+		c.setUsername(logged.getUserAccount().getUsername());
+
+		return c;
+	}
+
+	public void reconstructEdit(final CompetitionPlanner logged, final CompetitionPlannerForm c) {
+		if ((c.getNewPassword().length() > 0 && c.getRepeatNewPassword().length() > 0 && c.getNewPassword().equals(c.getRepeatNewPassword()))) {
+			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			logged.getUserAccount().setPassword(encoder.encodePassword(c.getNewPassword(), null));
+		}
+		logged.setCompanyName(c.getCompanyName());
+		logged.setEmail(c.getEmail());
+		logged.setName(c.getName());
+		logged.setPhone(c.getPhone());
+		logged.setPicture(c.getPicture());
+		logged.setSurname(c.getSurname());
+		logged.getUserAccount().setUsername(c.getUsername());
 	}
 }
