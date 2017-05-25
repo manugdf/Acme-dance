@@ -105,7 +105,7 @@
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/teacher/listByClass.do"
 			access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/danceTest/alumn/list.do"
+		<security:intercept-url pattern="/danceTest/alumn/**"
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/material/alumn/list.do"
 			access="hasRole('ALUMN')" />

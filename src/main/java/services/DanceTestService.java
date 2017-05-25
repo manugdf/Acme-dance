@@ -25,6 +25,9 @@ public class DanceTestService {
 	
 	@Autowired
 	private DanceClassService danceClassService;
+
+	@Autowired
+	private AlumnService alumnService;
 	@Autowired
 	private Validator validator;
 
@@ -76,6 +79,24 @@ public class DanceTestService {
 		validator.validate(res, bindingResult);
 		
 		return res;
+	}
+
+	public Collection<DanceTest> findDanceTestsAvailableByDanceClass(int danceClassId){
+		return danceTestRepository.findDanceTestsAvailableByDanceClass(danceClassId);
+	}
+
+	public void joinInDanceTest(int danceTestId){
+		DanceTest danceTest = findOne(danceTestId);
+		danceTest.getAlumns().add(alumnService.findByPrincipal());
+		save(danceTest);
+	}
+
+	public Collection<DanceTest> findDanceTestsByAlumn(int alumnId){
+		return danceTestRepository.findDanceTestsByAlumn(alumnId);
+	}
+
+	public Collection<DanceTest> danceTestsCanJoinIn(int alumnId){
+		return danceTestRepository.danceTestsCanJoinIn(alumnId);
 	}
 
 }

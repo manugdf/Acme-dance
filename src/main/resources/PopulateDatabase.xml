@@ -218,7 +218,6 @@
 		<property name="danceTests">
 			<list>
 				<ref bean="danceTest1" />
-				<ref bean="danceTest4" />
 			</list>
 		</property>
 		<property name="danceCertificates">
@@ -1298,7 +1297,6 @@
 		<property name="limitInscription" value="2017/12/15 13:00" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn1" />
 			</list>
 		</property>
 		<property name="danceClass" ref="danceClass1" />
