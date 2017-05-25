@@ -121,7 +121,7 @@ public class CompetitionPlannerController extends AbstractController {
 		//
 		//			return res;
 		//		}
-
+		//
 		if (binding.hasErrors()) {
 			System.out.println(binding.getAllErrors());
 			res.addObject("requestUri", "competitionPlanner/edit.do");

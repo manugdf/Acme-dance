@@ -95,7 +95,7 @@ public class CompetitionPlannerService {
 
 		return c;
 	}
-
+	//
 	public CompetitionPlanner reconstructEdit(final CompetitionPlanner logged, final CompetitionPlannerForm c) {
 		if ((c.getNewPassword().length() > 0 && c.getRepeatNewPassword().length() > 0 && c.getNewPassword().equals(c.getRepeatNewPassword()))) {
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
