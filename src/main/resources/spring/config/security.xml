@@ -21,6 +21,8 @@
 	<!-- Access control -->
 
 	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/manager/administrator/**"
+			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/" access="permitAll" />
 
 		<security:intercept-url pattern="/favicon.ico"
@@ -55,8 +57,16 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/review/list.do"
 			access="permitAll" />
-
-
+			
+			
+		<security:intercept-url pattern="/manager/event/delete.do"
+			access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/manager/event/edit.do"
+			access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/manager/event/create.do"
+			access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/manager/event/list.do"
+			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/manager/schedule/create.do"
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/manager/schedule/edit.do"
@@ -81,7 +91,17 @@
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/banner/manager/**"
 			access="hasRole('MANAGER')" />
-
+		<security:intercept-url pattern="/manager/**"
+			access="hasRole('MANAGER')" />
+		
+		<security:intercept-url pattern="/competitionPlanner/edit.do"
+			access="hasRole('COMPETITIONPLANNER')" />
+			
+		<security:intercept-url pattern="/competition/competitionPlanner/list.do"
+			access="hasRole('COMPETITIONPLANNER')" />
+			
+		<security:intercept-url pattern="/competition/competitionPlanner/**"
+			access="hasRole('COMPETITIONPLANNER')" />
 
 		<security:intercept-url pattern="/danceClass/teacher/**"
 			access="hasRole('TEACHER')" />
@@ -102,7 +122,7 @@
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/teacher/listByClass.do"
 			access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/danceTest/alumn/list.do"
+		<security:intercept-url pattern="/danceTest/alumn/**"
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/material/alumn/list.do"
 			access="hasRole('ALUMN')" />
@@ -116,34 +136,29 @@
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/danceSchool/alumn/list.do"
 			access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/partnerInvitation/alumn/listReceived.do"
-			access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/partnerInvitation/alumn/listSended.do"
-			access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/partnerInvitation/alumn/view.do"
-			access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/partnerInvitation/alumn/create.do"
-			access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/partnerInvitation/alumn/reject.do"
-			access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/partnerInvitation/alumn/accept.do"
-			access="hasRole('ALUMN')" />
-		<security:intercept-url pattern="/partnerInvitation/alumn/deny.do"
+		<security:intercept-url pattern="/partnerInvitation/alumn/**"
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/payment/alumn/**"
 			access="hasRole('ALUMN')" />
 		<security:intercept-url pattern="/alumn/edit.do"
 			access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/review/alumn/**"
+			access="hasRole('ALUMN')" />
+		<security:intercept-url pattern="/danceCertificate/alumn/**"
+			access="hasRole('ALUMN')" />
 
+		<security:intercept-url pattern="/competition/competitionPlanner/create.do"
+			access="hasRole('COMPETITIONPLANNER')" />
+		
 		<security:intercept-url pattern="/censoredWords/administrator/**"
-			access="hasRole('ADMIN')" />
-		<security:intercept-url pattern="/manager/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/danceSchool/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/dashboard/administrator.do"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/banner/administrator/**"
+			access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/fee/administrator/**"
 			access="hasRole('ADMIN')" />
 
 		<security:intercept-url pattern="/alumn/register.do"
@@ -155,12 +170,6 @@
 			access="isAnonymous()" />
 
 		<security:intercept-url pattern="/message/actor/**"
-			access="isAuthenticated()" />
-		<security:intercept-url pattern="/profile/action-1.do"
-			access="isAuthenticated()" />
-		<security:intercept-url pattern="/profile/action-2.do"
-			access="isAuthenticated()" />
-		<security:intercept-url pattern="/profile/action-3.do"
 			access="isAuthenticated()" />
 
 		<security:intercept-url pattern="/**"

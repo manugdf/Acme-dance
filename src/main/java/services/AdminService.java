@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 import domain.Actor;
 import domain.Admin;
 import domain.Alumn;
+import domain.Manager;
 import domain.Teacher;
 import repositories.AdminRepository;
 import security.Authority;
@@ -66,7 +67,7 @@ public class AdminService {
 	}
 	
 	//Dashboard
-	public Collection<Object> managerMoreDanceSchoolAccepted() {
+	public Collection<Manager> managerMoreDanceSchoolAccepted() {
 		this.checkLoggedIsAdmin();
 		return this.adminRepository.managerMoreDanceSchoolAccepted();
 	}
@@ -96,7 +97,7 @@ public class AdminService {
 		return this.adminRepository.alumnsMoreClasses();
 	}
 	
-	public Collection<Object> managerMoreBannersAccepted() {
+	public Collection<Manager> managerMoreBannersAccepted() {
 		this.checkLoggedIsAdmin();
 		return this.adminRepository.managerMoreBannersAccepted();
 	}

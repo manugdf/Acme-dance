@@ -177,6 +177,24 @@
 		</property>
 
 	</bean>
+	
+	<!-- Admin -->
+
+	<bean id="admin" class="domain.Admin">
+		<property name="UserAccount" ref="userAccount1" />
+		<property name="name" value="admin" />
+		<property name="surname" value="surnameAdmin" />
+		<property name="email" value="admin@g.com" />
+		<property name="phone" value="+34 955844532" />
+		<property name="messagesSended">
+			<list>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+	</bean>
 
 	<!-- Admin -->
 	<bean id="admin" class="domain.Admin">
@@ -217,7 +235,6 @@
 		<property name="danceTests">
 			<list>
 				<ref bean="danceTest1" />
-				<ref bean="danceTest4" />
 			</list>
 		</property>
 		<property name="danceCertificates">
@@ -1255,10 +1272,14 @@
 	<bean id="danceTest1" class="domain.DanceTest">
 		<property name="testDate" value="2016/12/10 10:00" />
 		<property name="danceLevel" value="MEDIUM" />
-		<property name="limitInscription" value="2017/12/09 10:00" />
+		<property name="limitInscription" value="2016/12/05 10:00" />
 		<property name="alumns">
 			<list>
 				<ref bean="alumn1" />
+			</list>
+		</property>
+		<property name="danceCertificates">
+			<list>
 			</list>
 		</property>
 		<property name="danceClass" ref="danceClass1" />
@@ -1274,6 +1295,10 @@
 				<ref bean="alumn2" />
 			</list>
 		</property>
+		<property name="danceCertificates">
+			<list>
+			</list>
+		</property>
 		<property name="danceClass" ref="danceClass2" />
 
 	</bean>
@@ -1287,6 +1312,10 @@
 				<ref bean="alumn3" />
 			</list>
 		</property>
+		<property name="danceCertificates">
+			<list>
+			</list>
+		</property>
 		<property name="danceClass" ref="danceClass3" />
 
 	</bean>
@@ -1297,7 +1326,10 @@
 		<property name="limitInscription" value="2017/12/15 13:00" />
 		<property name="alumns">
 			<list>
-				<ref bean="alumn1" />
+			</list>
+		</property>
+		<property name="danceCertificates">
+			<list>
 			</list>
 		</property>
 		<property name="danceClass" ref="danceClass1" />

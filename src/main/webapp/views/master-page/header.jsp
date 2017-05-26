@@ -25,6 +25,8 @@
 		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv" href="manager/administrator/list.do"><spring:message
 						code="master.page.managers" /></a></li>
+			<li><a class="fNiv" href="fee/administrator/edit.do"><spring:message
+						code="master.page.editFee" /></a></li>
 			<li><a class="fNiv" href="censoredWords/administrator/list.do"><spring:message
 						code="master.page.censored" /></a></li>
 			<li><a class="fNiv"
@@ -43,6 +45,11 @@
 			
 			<li><a class="fNiv" href="dashboard/administrator.do"><spring:message
 						code="master.page.dashboard" /></a></li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('COMPETITIONPLANNER')">
+			<li><a class="fNiv" href="competition/competitionPlanner/list.do"><spring:message
+						code="master.page.competitionPlanner.myCompetitions" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="hasRole('MANAGER')">
@@ -69,7 +76,7 @@
 		<security:authorize access="hasRole('ALUMN')">
 			<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message
 						code="master.page.schools" /></a></li>
-			<li><a class="fNiv"><spring:message
+			<li><a class="fNiv" href="partnerInvitation/alumn/listPartners.do"><spring:message
 						code="master.page.partners" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -84,6 +91,8 @@
 				</ul></li>
 			<li><a class="fNiv" href="danceClass/alumn/listMyClasses.do"><spring:message
 						code="master.page.myClasses" /></a></li>
+			<li><a class="fNiv" href="danceCertificate/alumn/list.do"><spring:message
+					code="master.page.myCertificates" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="isAnonymous()">
@@ -126,7 +135,10 @@
 						<li><a href="manager/edit.do"><spring:message
 									code="master.page.profile.edit" /></a></li>
 					</security:authorize>
-					<li class="arrow"></li>
+					<security:authorize access="hasRole('COMPETITIONPLANNER')">
+						<li><a href="competitionPlanner/edit.do"><spring:message
+									code="master.page.profile.edit" /></a></li>
+					</security:authorize>
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>
 				</ul></li>

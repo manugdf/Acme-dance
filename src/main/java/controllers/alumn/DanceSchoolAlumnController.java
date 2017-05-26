@@ -33,6 +33,7 @@ public class DanceSchoolAlumnController extends AbstractController {
 		res.addObject("requestURI", "danceSchool/alumn/list.do");
 		res.addObject("searchForm", new SearchForm());
 		res.addObject("partnerview", true);
+		res.addObject("isManager", false);
 		res.addObject("chooseSchool", "danceSchool.choose");
 		return res;
 

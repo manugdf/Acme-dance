@@ -4,6 +4,8 @@ import domain.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import repositories.ReviewRepository;
 
 import javax.transaction.Transactional;
@@ -20,6 +22,11 @@ public class ReviewService {
     @Autowired
     private AlumnService alumnService;
 
+    @Autowired
+    private TeacherService teacherService;
+
+    @Autowired
+    private Validator validator;
     //Constructor
     public ReviewService(){super();}
 
@@ -55,5 +62,17 @@ public class ReviewService {
     //Other methods
     public Collection<Review> findReviewByTeacher(int teacherId){
         return reviewRepository.findReviewByTeacher(teacherId);
+    }
+
+    public Review reconstruct(Review review, int teacherId, BindingResult bindingResult){
+        Review res = create();
+
+        res.setTeacher(teacherService.findOne(teacherId));
+        res.setScore(review.getScore());
+        res.setComment(review.getComment());
+
+        validator.validate(res, bindingResult);
+
+        return res;
     }
 }

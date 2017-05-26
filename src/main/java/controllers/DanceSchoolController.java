@@ -37,6 +37,7 @@ public class DanceSchoolController extends AbstractController {
 		res.addObject("searchForm", new SearchForm());
 
 		res.addObject("partnerview", false);
+		res.addObject("isManager", false);
 		return res;
 
 	}
@@ -49,6 +50,7 @@ public class DanceSchoolController extends AbstractController {
 		res.addObject("searchForm", new SearchForm());
 
 		res.addObject("partnerview", false);
+		res.addObject("isManager", false);
 
 		return res;
 	}

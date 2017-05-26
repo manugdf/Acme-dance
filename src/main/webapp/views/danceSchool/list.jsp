@@ -12,7 +12,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<jstl:if test="${partnerview == false}">
+<jstl:if test="${partnerview == false && isManager==false}">
 	<form:form action="danceSchool/search.do" modelAttribute="searchForm">
 	
 			<form:input path="word"/>
@@ -85,14 +85,22 @@
 					value="<spring:message code="danceschool.view.awards" />" type="button" />
 	</display:column>
 	
-	<security:authorize access="hasRole('ALUMN')">
+	<security:authorize access="hasAnyRole('ALUMN','MANAGER')">
 		<spring:message code="danceschool.events" var="events" />
 		<display:column title="${events}">
-
+		<security:authorize access="hasRole('ALUMN')">
 			<input
 				onclick="javascript: window.location.replace('event/alumn/list.do?id=${row.id}');"
 				value="<spring:message code="danceschool.view.awards" />"
 				type="button" />
+		</security:authorize>
+		
+		<security:authorize access="hasRole('MANAGER')">
+			<input
+				onclick="javascript: window.location.replace('manager/event/list.do?danceSchoolId=${row.id}');"
+				value="<spring:message code="danceschool.view.awards" />"
+				type="button" />
+		</security:authorize>
 		</display:column>
 		
 	</security:authorize>

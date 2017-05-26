@@ -28,10 +28,14 @@
 	<display:column property="danceStyle" title="${danceStyle}"/>
 	
 	<spring:message code="partnerInvitation.invitationReceiver" var="invitationReceiver"/>
-	<display:column property="invitationReceiver.name" title="${invitationReceiver}"/>
+	<display:column title="${invitationReceiver}">
+	${row.invitationReceiver.name} ${row.invitationReceiver.surname}
+	</display:column>
 	
 	<spring:message code="partnerInvitation.invitationSender" var="sender"/>
-	<display:column property="invitationSender.name" title="${sender}"/>
+	<display:column property="invitationSender.name" title="${sender}">
+	${row.invitationSender.name} ${row.invitationSender.surname}
+	</display:column>
 	
 	<jstl:if test="${received==true }">
 	<spring:message code="partnerInvitation.acceptordeny" var="ac"/>

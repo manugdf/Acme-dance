@@ -33,6 +33,8 @@ public class ManagerService {
 	private ManagerRepository managerRepository;
 	
 	@Autowired
+	private FeeService feeService;
+	@Autowired
 	private Validator validator;
 
 
@@ -186,19 +188,6 @@ public class ManagerService {
 		return manager;
 	}
 	
-
-	
-	public Manager reconstructEditFee(Manager manager,final int managerId, BindingResult bindingResult){
-		Manager res;
-		
-		res=managerRepository.findOne(managerId);
-			
-		res.setFee(manager.getFee());
-		validator.validate(res, bindingResult);
-		
-		return res;
-	}
-	
 	public Double getMonthTotalFee(){
 		Manager manager=findByPrincipal();
 		Assert.notNull(manager);
@@ -208,6 +197,6 @@ public class ManagerService {
 				contador++;
 			}
 		}
-		return contador*manager.getFee();	
+		return contador*feeService.selectFee().getManagerAmount();	
 	}
 }

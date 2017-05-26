@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import domain.Alumn;
+import domain.DanceCertificate;
 import domain.DanceTest;
 import repositories.DanceTestRepository;
 
@@ -25,6 +26,9 @@ public class DanceTestService {
 	
 	@Autowired
 	private DanceClassService danceClassService;
+
+	@Autowired
+	private AlumnService alumnService;
 	@Autowired
 	private Validator validator;
 
@@ -39,6 +43,7 @@ public class DanceTestService {
 		DanceTest res=new DanceTest();
 		
 		res.setAlumns(new ArrayList<Alumn>());
+		res.setDanceCertificates(new ArrayList<DanceCertificate>());
 
 		return res;
 	}
@@ -65,6 +70,7 @@ public class DanceTestService {
 		if(danceTest.getId()==0){
 			res=danceTest;
 			res.setAlumns(new ArrayList<Alumn>());
+			res.setDanceCertificates(new ArrayList<DanceCertificate>());
 			res.setDanceClass(danceClassService.findOne(danceClassId));
 		}else{
 			res=danceTestRepository.findOne(danceTest.getId());
@@ -76,6 +82,24 @@ public class DanceTestService {
 		validator.validate(res, bindingResult);
 		
 		return res;
+	}
+
+	public Collection<DanceTest> findDanceTestsAvailableByDanceClass(int danceClassId){
+		return danceTestRepository.findDanceTestsAvailableByDanceClass(danceClassId);
+	}
+
+	public void joinInDanceTest(int danceTestId){
+		DanceTest danceTest = findOne(danceTestId);
+		danceTest.getAlumns().add(alumnService.findByPrincipal());
+		save(danceTest);
+	}
+
+	public Collection<DanceTest> findDanceTestsByAlumn(int alumnId){
+		return danceTestRepository.findDanceTestsByAlumn(alumnId);
+	}
+
+	public Collection<DanceTest> danceTestsCanJoinIn(int alumnId){
+		return danceTestRepository.danceTestsCanJoinIn(alumnId);
 	}
 
 }

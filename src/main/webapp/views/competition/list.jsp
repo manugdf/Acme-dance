@@ -70,3 +70,8 @@
 
 
 </display:table>
+
+  <security:authorize access="hasRole('COMPETITIONPLANNER')">
+	  <input	onclick="javascript: window.location.replace('competition/competitionPlanner/create.do');"
+	                              value="<spring:message code="competition.create" />" type="button" />
+  </security:authorize>

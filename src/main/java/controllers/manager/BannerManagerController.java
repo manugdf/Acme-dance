@@ -66,11 +66,16 @@ public class BannerManagerController extends AbstractController {
 			res.addObject("requestURI", "banner/manager/create.do");
 			res.addObject("banner", banner);
 
-		} else {
-
-			this.bannerService.newBanner(banner);
-			res = this.list();
-		}
+		} else
+			try {
+				this.bannerService.newBanner(banner);
+				res = this.list();
+			} catch (final Throwable oops) {
+				res = new ModelAndView("banner/create");
+				res.addObject("requestURI", "banner/manager/create.do");
+				res.addObject("banner", banner);
+				res.addObject("message", "banner.error.creditcard");
+			}
 		return res;
 
 	}

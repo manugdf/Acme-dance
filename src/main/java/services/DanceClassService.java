@@ -129,9 +129,18 @@ public class DanceClassService {
 		return res;
 	}
 
-	public DanceClass reconstructAux(final DanceClassAuxForm danceClassAuxForm) {
+	public DanceClass reconstructAdd(final DanceClassAuxForm danceClassAuxForm) {
 		final DanceClass aux = danceClassAuxForm.getDanceClass();
 		aux.getTeachers().add(danceClassAuxForm.getTeacher());
+
+		return aux;
+
+	}
+	
+	public DanceClass reconstructRemove(final DanceClassAuxForm danceClassAuxForm) {
+		final DanceClass aux = danceClassAuxForm.getDanceClass();
+		Assert.notNull(danceClassAuxForm.getTeacher());
+		aux.getTeachers().remove(danceClassAuxForm.getTeacher());
 
 		return aux;
 

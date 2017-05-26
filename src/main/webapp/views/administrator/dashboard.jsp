@@ -10,150 +10,75 @@
 
 <security:authorize access="hasRole('ADMIN')">
 
-    <%-- <!-- A listing with the number of chorbies per country and city: -->
-    <h2><spring:message code = "administrator.dashboard.1.1"/></h2>
-    <jstl:forEach items="${chorbiesByCity}" var="cbc">
-        <jstl:if test="${cbc!=null }">
-            <li>${cbc}</li>
-        </jstl:if>
-    </jstl:forEach>
-    <h2><spring:message code = "administrator.dashboard.1.2"/></h2>
-    <jstl:forEach items="${chorbiesByCountry}" var="cbc">
-        <jstl:if test="${cbc!=null }">
-            <li>${cbc}</li>
+    <!-- a.	El empresario o empresarios con más escuelas aceptadas. -->
+    <h2><spring:message code = "administrator.dashboard.1"/></h2>
+    <jstl:forEach items="${managerMoreDanceSchoolAccepted}" var="manager">
+        <jstl:if test="${manager!=null }">
+            <li><jstl:out value="${manager.userAccount.username}"/></li>
         </jstl:if>
     </jstl:forEach>
 
-    <!-- The minimum, the maximum, and the average ages of the chorbies: -->
+
+     <!-- b. El ratio de escuelas aceptadas respecto a las que han sido rechazadas. -->
     <h2><spring:message code = "administrator.dashboard.2"/></h2>
-    <jstl:forEach items="${minMaxAvgAgesChorbies}" var="mma">
-        <jstl:if test="${mma!=null}">
-            <li>${mma}</li>
-        </jstl:if>
-    </jstl:forEach>
+    <jstl:out value="${acceptedDeniedRatio}" />
 
-    <!-- The ratio of chorbies who have not registered a credit card or have registered an invalid credit card: -->
+     <!-- c. El profesor o profesores con el mejor rating de opiniones. -->
     <h2><spring:message code = "administrator.dashboard.3"/></h2>
-    <jstl:out value="${ratioChorbiesInvalidCreditCard}" />
+    <jstl:forEach items="${bestRating}" var="teacher">
+        <jstl:if test="${teacher!=null}">
+            <li><jstl:out value="${teacher.userAccount.username}"/></li>
+        </jstl:if>
+    </jstl:forEach>
 
-    <!-- The ratios of chorbies who search for ?activities?, ?friendship?, and ?love?: -->
-    <h2><spring:message code = "administrator.dashboard.4.1"/></h2>
-    <jstl:out value="${ratioChorbiesSearchActivites}" />
+    <!-- d.	El ratio de mensajes enviados por usuario. -->
+    <h2><spring:message code = "administrator.dashboard.4"/></h2>
+    <jstl:out value="${messagesUsersRatio}" />
+	
 
-    <h2><spring:message code = "administrator.dashboard.4.2"/></h2>
-    <jstl:out value="${ratioChorbiesSearchFriendShip}" />
-
-    <h2><spring:message code = "administrator.dashboard.4.3"/></h2>
-    <jstl:out value="${ratioChorbiesSearchLove}" />
-
-    <!-- The list of chorbies, sorted by the number of likes they have got: -->
+     <!-- e.	El usuario o usuarios que más mensajes ha enviado. -->
     <h2><spring:message code = "administrator.dashboard.5"/></h2>
-    <jstl:forEach items="${chorbiesSortedByLikes}" var="csl">
-        <jstl:if test="${csl!=null }">
-            <li><jstl:out value="${csl.userAccount.username}"/></li>
+    <jstl:forEach items="${actorMoreMessageSend}" var="actor">
+        <jstl:if test="${actor!=null }">
+            <li><jstl:out value="${actor.userAccount.username}"/></li>
         </jstl:if>
     </jstl:forEach>
 
-    <!-- The minimum, the maximum, and the average number of likes per chorbi: -->
+    <!-- f.	El alumno o alumnos que se han apuntado a más clases. -->
     <h2><spring:message code = "administrator.dashboard.6"/></h2>
-    <jstl:forEach items="${minMaxAvgLikesPerChorbi}" var="mml">
-        <jstl:if test="${mml!=null}">
-            <li>${mml}</li>
+    <jstl:forEach items="${alumnsMoreClasses}" var="alumn">
+        <jstl:if test="${alumn!=null}">
+            <li><jstl:out value="${alumn.userAccount.username}"/></li>
         </jstl:if>
     </jstl:forEach>
 
-    <!-- The minimum, the maximum, and the average number of chirps that a chorbi receives from other chorbies: -->
+   <!-- g.El empresario que ha propuesto más banners aceptados. -->
     <h2><spring:message code = "administrator.dashboard.7"/></h2>
-    <jstl:forEach items="${minMaxAvgChirpsRecieved}" var="mmc">
-        <jstl:if test="${mmc!=null}">
-            <li>${mmc}</li>
+    <jstl:forEach items="${managerMoreBannersAccepted}" var="manager">
+        <jstl:if test="${manager!=null}">
+            <li><jstl:out value="${manager.userAccount.username}"/></li>
         </jstl:if>
     </jstl:forEach>
 
-    <!-- The minimum, the maximum, and the average number of chirps that a chorbi sends to other chorbies: -->
+    <!-- h.	Una lista de profesores, ordenada de mejor a peor ratio de opiniones. -->
     <h2><spring:message code = "administrator.dashboard.8"/></h2>
-    <jstl:forEach items="${minMaxAvgChirpsSended}" var="mmc">
-        <jstl:if test="${mmc!=null}">
-            <li>${mmc}</li>
+    <jstl:forEach items="${teachersOrderedByRatio}" var="teacher">
+        <jstl:if test="${teacher!=null}">
+            <li><jstl:out value="${teacher.userAccount.username}"/></li>
         </jstl:if>
     </jstl:forEach>
 
-    <!-- The chorbies who have got more chirps: -->
+    <!-- i.	El mínimo, el máximo y la media de clases impartidas por profesores. -->
     <h2><spring:message code = "administrator.dashboard.9"/></h2>
-    <jstl:forEach items="${chorbiMoreChirpsRecieved}" var="cmc">
-        <jstl:if test="${cmc!=null }">
-            <li><jstl:out value="${cmc.userAccount.username}"/></li>
+    <jstl:forEach items="${minAvgMaxClassesPerTeacher}" var="x">
+        <jstl:if test="${x!=null}">
+            <li>${x}</li>
         </jstl:if>
     </jstl:forEach>
-
-    <!-- The chorbies who have sent more chirps:-->
+    
+     <!-- j.La media de duración de todos los eventos. -->
     <h2><spring:message code = "administrator.dashboard.10"/></h2>
-    <jstl:forEach items="${chorbiMoreChirpsSended}" var="cmc">
-        <jstl:if test="${cmc!=null }">
-            <li><jstl:out value="${cmc.userAccount.username}"/></li>
-        </jstl:if>
-    </jstl:forEach>
+    <jstl:out value="${eventAverageDuration}" /> 
     
-     <!-- A listing of managers sorted by the number of events that they organise: -->
-    <h2><spring:message code = "administrator.dashboard.11"/></h2>
-    <jstl:forEach items="${sortedManagersByEvents}" var="csl">
-        <jstl:if test="${csl!=null }">
-            <li><jstl:out value="${csl.userAccount.username}"/></li>
-        </jstl:if>
-    </jstl:forEach>
-    
-     <!-- A listing of managers that includes the amount that they due in fees: -->
-	
-	<h2>
-		<spring:message code="administrator.dashboard.12" />
-		:
-	</h2>
-	<jstl:forEach items="${managersAndFees}" var="r">
-		<jstl:if test="${r==null }">
-			<li>0</li>
-		</jstl:if>
-		<jstl:if test="${r!=null }">
-			<li>${r}</li>
-		</jstl:if>
-	</jstl:forEach>
-	
-	<!-- A listing of chorbies sorted by the number of events to which they have registered:-->
-    <h2><spring:message code = "administrator.dashboard.13"/></h2>
-    <jstl:forEach items="${sortedChorbiesByEvents}" var="cmc">
-        <jstl:if test="${cmc!=null }">
-            <li><jstl:out value="${cmc.userAccount.username}"/></li>
-        </jstl:if>
-    </jstl:forEach>
-    
-    <!-- A listing of chorbies that includes the amount that they due in fees: -->
-	
-	<h2>
-		<spring:message code="administrator.dashboard.14" />
-		:
-	</h2>
-	<jstl:forEach items="${chorbiesAndFees}" var="r">
-		<jstl:if test="${r==null }">
-			<li>0</li>
-		</jstl:if>
-		<jstl:if test="${r!=null }">
-			<li>${r}</li>
-		</jstl:if>
-	</jstl:forEach>
-	
-	  <!-- The minimum, the maximum, and the average number of stars per chorbi -->
-    <h2><spring:message code = "administrator.dashboard.15"/></h2>
-    <jstl:forEach items="${minAvgMaxStarsPerChorbi}" var="mml">
-        <jstl:if test="${mml!=null}">
-            <li>${mml}</li>
-        </jstl:if>
-    </jstl:forEach>
-    
-     <!-- The list of chorbies, sorted by the average number of stars that they've got: -->
-    <h2><spring:message code = "administrator.dashboard.16"/></h2>
-    <jstl:forEach items="${sortedChorbiesByStars}" var="csl">
-        <jstl:if test="${csl!=null }">
-            <li><jstl:out value="${csl.userAccount.username}"/></li>
-        </jstl:if>
-    </jstl:forEach> --%>
 
 </security:authorize>

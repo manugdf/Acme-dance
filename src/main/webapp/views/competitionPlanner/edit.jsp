@@ -13,11 +13,23 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <form:form modelAttribute="competitionPlannerForm" action="${requestUri }">
+	
+	<jstl:if test="${edit==false}">
 	<fieldset>
 		<acme:textbox code="cp.username" path="username"/>
 		<acme:password code="cp.password" path="password"/>
 		<acme:password code="cp.repeatPassword" path="repeatPassword"/>
 	</fieldset>
+	</jstl:if>
+	
+	<jstl:if test="${edit==true}">
+	<fieldset>
+		<acme:textbox code="cp.username" path="username"/>
+		<acme:password code="cp.password" path="password"/>
+		<acme:password code="cp.newPassword" path="newPassword"/>	
+		<acme:password code="cp.repeatPassword" path="repeatNewPassword"/>
+	</fieldset>
+	</jstl:if>
 	
 	<fieldset>
 		<acme:textbox code="cp.name" path="name"/>
@@ -28,6 +40,7 @@
 		<acme:textbox code="cp.picture" path="picture"/>
 	</fieldset>	
 	
+	<jstl:if test="${edit==false}">
 	<form:label path="acceptTerms">
 			<b><spring:message code="alumn.acceptTerms" /></b>
 	</form:label>
@@ -35,6 +48,7 @@
 		<form:option value="true">Yes</form:option>
 		<form:option value="false">No</form:option>
 	</form:select>
+	</jstl:if>
 	<br>	
 	
 	<acme:submit name="save" code="cp.save"/>

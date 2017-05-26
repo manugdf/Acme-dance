@@ -235,7 +235,7 @@ public class DanceClassManagerController extends AbstractController {
 		DanceClassAuxForm danceClassAuxForm = new DanceClassAuxForm();
 		danceClassAuxForm.setDanceClass(this.danceClassService.findOne(danceClassId));
 		res.addObject("danceClassAuxForm", danceClassAuxForm);
-		res.addObject("requestUri", "danceClass/manager/add.do?danceSchoolId="+danceSchoolId);
+		res.addObject("requestUri", "danceClass/manager/add.do?danceClassId="+danceClassId+"&danceSchoolId="+danceSchoolId);
 		res.addObject("myTeachers", aux);
 		res.addObject("danceSchoolId", danceSchoolId);
 		
@@ -245,15 +245,21 @@ public class DanceClassManagerController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, params = "save")
-	public ModelAndView add(@Valid final DanceClassAuxForm danceClassAuxForm, @RequestParam final int danceSchoolId, final BindingResult bindingResult) {
+	public ModelAndView add(@Valid final DanceClassAuxForm danceClassAuxForm, @RequestParam final int danceClassId,@RequestParam final int danceSchoolId, final BindingResult bindingResult) {
 		ModelAndView res = new ModelAndView("teacher/add");
-		final DanceClass auxDanceClass = this.danceClassService.reconstructAux(danceClassAuxForm);
 
-		if (bindingResult.hasErrors()) {
-			res.addObject("requestUri", "teacher/manager/add.do");
+		if(danceClassAuxForm.getTeacher()==null){
+			res=add(danceClassId,danceSchoolId);
+			res.addObject("message", "addTeacher.null");
+			res.addObject("danceSchoolId",danceSchoolId);
+			res.addObject("bindingResult", bindingResult);
+			res.addObject("danceClassAuxForm", danceClassAuxForm);
+		}
+		else if(bindingResult.hasErrors()) {
 			res.addObject("danceClassAuxForm", danceClassAuxForm);
 		} else
 			try {
+				final DanceClass auxDanceClass = this.danceClassService.reconstructAdd(danceClassAuxForm);
 
 				this.danceClassService.save(auxDanceClass);
 
@@ -276,13 +282,74 @@ public class DanceClassManagerController extends AbstractController {
 
 
 	@RequestMapping("/list")
-	public ModelAndView list() {
+	public ModelAndView list(@RequestParam final int danceSchoolId) {
 		final ModelAndView res = new ModelAndView("danceClass/list");
 		final int id = this.managerService.findByPrincipal().getId();
 		final Collection<DanceClass> ds = this.danceClassService.findAllByManager(id);
-
+		
 		res.addObject("danceClasses", ds);
+		res.addObject("requestURI", "danceClass/manager/list.do");
+		res.addObject("danceschool", this.danceSchoolService.findOne(danceSchoolId));
+		res.addObject("danceSchoolId", danceSchoolId);
+		res.addObject("partnerview", false);
+		
+		return res;
+	}
+	
+
+	@RequestMapping(value = "/remove", method = RequestMethod.GET)
+	public ModelAndView remove(@RequestParam final int danceClassId,@RequestParam final int danceSchoolId) {
+		ModelAndView res = new ModelAndView("danceClass/remove");
+		
+		Collection<Teacher> danceClassTeachers = this.danceClassService.findOne(danceClassId).getTeachers();
+
+		DanceClassAuxForm danceClassAuxForm = new DanceClassAuxForm();
+		danceClassAuxForm.setDanceClass(this.danceClassService.findOne(danceClassId));
+		
+		res.addObject("danceClassAuxForm", danceClassAuxForm);
+		res.addObject("requestUri", "danceClass/manager/remove.do?danceClassId="+danceClassId+"&danceSchoolId="+danceSchoolId);
+		res.addObject("danceClassTeachers", danceClassTeachers);
+		res.addObject("danceSchoolId", danceSchoolId);
+		res.addObject("danceClassId", danceClassId);
+		
 
 		return res;
 	}
+	
+	@RequestMapping(value = "/remove", method = RequestMethod.POST, params = "save")
+	public ModelAndView remove(@Valid final DanceClassAuxForm danceClassAuxForm, @RequestParam final int danceClassId, @RequestParam final int danceSchoolId, final BindingResult bindingResult) {
+		ModelAndView res = new ModelAndView("teacher/remove");
+		
+		if(danceClassAuxForm.getTeacher()==null){
+			res=remove(danceClassId,danceSchoolId);
+			res.addObject("message", "addTeacher.null");
+			res.addObject("danceSchoolId",danceSchoolId);
+			res.addObject("bindingResult", bindingResult);
+			res.addObject("danceClassAuxForm", danceClassAuxForm);
+		}
+		
+		else if (bindingResult.hasErrors()) {
+			res.addObject("danceClassAuxForm", danceClassAuxForm);
+		} else
+			try {
+				final DanceClass auxDanceClass = this.danceClassService.reconstructRemove(danceClassAuxForm);
+				this.danceClassService.save(auxDanceClass);
+
+				res = new ModelAndView("redirect:/danceClass/list.do?danceSchoolId="+danceSchoolId);
+
+			} catch (final DataIntegrityViolationException oops) {
+
+				res = new ModelAndView("teacher/remove");
+				res.addObject("danceClassAuxForm", danceClassAuxForm);
+				res.addObject("message", "teacher.error.exists");
+
+			} catch (final Throwable e) {
+
+				System.out.println(e.getMessage());
+				res.addObject("message", "teacher.commit.error");
+
+			}
+		return res;
+	}
+	
 }

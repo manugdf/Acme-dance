@@ -39,6 +39,7 @@
 		<value>/views/censoredWords/tiles.xml</value>
 		<value>/views/review/tiles.xml</value>
 		<value>/views/banner/tiles.xml</value>
+		<value>/views/fee/tiles.xml</value>
 	</util:list>
 
 </beans>

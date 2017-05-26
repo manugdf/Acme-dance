@@ -184,4 +184,12 @@ public class TeacherService {
 
 		return teacher;
 	}
+
+	public Collection<Teacher> findTeachersByAlumnReview(int alumnId){
+		return teacherRepository.findTeachersByAlumnReview(alumnId);
+	}
+
+	public Collection<Teacher> teachersCanReview(int alumnId){
+		return teacherRepository.teachersCanReview(alumnId);
+	}
 }
