@@ -1,6 +1,5 @@
-package controllers.teacher;
 
-import java.util.ArrayList;
+package controllers.teacher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import controllers.AbstractController;
-import domain.Alumn;
 import domain.DanceClass;
 import domain.DanceTest;
 import services.DanceClassService;
@@ -21,14 +19,14 @@ import services.TeacherService;
 
 @Controller
 @RequestMapping("/danceTest/teacher")
-public class DanceTestTeacherController extends AbstractController{
-	
+public class DanceTestTeacherController extends AbstractController {
+
 	@Autowired
-	private DanceTestService danceTestService;
+	private DanceTestService	danceTestService;
 	@Autowired
-	private DanceClassService danceClassService;
+	private DanceClassService	danceClassService;
 	@Autowired
-	private TeacherService teacherService;
+	private TeacherService		teacherService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -41,7 +39,7 @@ public class DanceTestTeacherController extends AbstractController{
 		return res;
 
 	}
-	
+
 	// Create
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(@RequestParam final int danceClassId) {
@@ -51,43 +49,40 @@ public class DanceTestTeacherController extends AbstractController{
 		Assert.notNull(danceClass);
 
 		res = new ModelAndView("danceTest/create");
-		res.addObject("danceTest", danceTestService.create());
-		res.addObject("requestUri", "danceTest/teacher/create.do?danceClassId=" + danceClassId);
+		res.addObject("danceTest", this.danceTestService.create());
+		res.addObject("requestURI", "danceTest/teacher/create.do?danceClassId=" + danceClassId);
 
 		return res;
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@RequestParam final int danceClassId, DanceTest danceTest,final BindingResult bindingResult) {
-		ModelAndView res= new ModelAndView("danceTest/create");
-		
-		danceTest=danceTestService.reconstruct(danceTest,danceClassId,bindingResult);
+	public ModelAndView save(@RequestParam final int danceClassId, DanceTest danceTest, final BindingResult bindingResult) {
+		ModelAndView res = new ModelAndView("danceTest/create");
 
-		if (bindingResult.hasErrors()){
+		danceTest = this.danceTestService.reconstruct(danceTest, danceClassId, bindingResult);
+
+		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.getAllErrors());
-			res.addObject("requestUri", "danceTest/teacher/create.do?danceClassId=" + danceClassId);
+			res.addObject("requestURI", "danceTest/teacher/create.do?danceClassId=" + danceClassId);
 			res.addObject("danceTest", danceTest);
 			res.addObject("danceClassId", danceClassId);
-		}
-		else{
+		} else
 			try {
-				DanceTest aux=danceTestService.save(danceTest);
-				
-				DanceClass danceClass=danceClassService.findOne(danceClassId);
+				final DanceTest aux = this.danceTestService.save(danceTest);
+
+				final DanceClass danceClass = this.danceClassService.findOne(danceClassId);
 				danceClass.getDanceTests().add(aux);
-				danceClassService.save(danceClass);
-				
-				res = list(danceClassId);
-				res.addObject("requestUri", "danceTest/teacher/create.do?danceClassId=" + danceClassId);
-				res.addObject("danceClasses", teacherService.findByPrincipal().getDanceClasses());
-				res.addObject("danceTests",danceClass.getDanceTests());
+				this.danceClassService.save(danceClass);
+
+				res = this.list(danceClassId);
+				res.addObject("requestURI", "danceTest/teacher/create.do?danceClassId=" + danceClassId);
+				res.addObject("danceClasses", this.teacherService.findByPrincipal().getDanceClasses());
+				res.addObject("danceTests", danceClass.getDanceTests());
 			} catch (final Throwable oops) {
-				res.addObject("requestUri", "danceTest/teacher/create.do?danceClassId=" + danceClassId);
+				res.addObject("requestURI", "danceTest/teacher/create.do?danceClassId=" + danceClassId);
 				res.addObject("danceTest", danceTest);
 			}
-		}
 		return res;
 	}
-
 
 }

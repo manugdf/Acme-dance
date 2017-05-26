@@ -177,7 +177,7 @@
 		</property>
 
 	</bean>
-	
+
 	<!-- Admin -->
 
 	<bean id="admin" class="domain.Admin">
@@ -196,22 +196,6 @@
 		</property>
 	</bean>
 
-	<!-- Admin -->
-	<bean id="admin" class="domain.Admin">
-		<property name="UserAccount" ref="userAccount1" />
-		<property name="name" value="Rafael" />
-		<property name="surname" value="Manrique" />
-		<property name="phone" value="655180524" />
-		<property name="email" value="admin@dance.com" />
-		<property name="messagesSended">
-			<list>
-			</list>
-		</property>
-		<property name="messagesReceived">
-			<list>
-			</list>
-		</property>
-	</bean>
 
 	<!--Alumns -->
 

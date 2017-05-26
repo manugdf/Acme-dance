@@ -1,8 +1,8 @@
 /*
  * PopulateDatabase.java
- * 
+ *
  * Copyright (C) 2017 Universidad de Sevilla
- * 
+ *
  * The use of this project is hereby constrained to the conditions of the
  * TDG Licence, a copy of which you may download from
  * http://www.tdg-seville.info/License.html
@@ -22,10 +22,10 @@ import org.apache.log4j.LogManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import domain.DomainEntity;
 import utilities.internal.DatabaseUtil;
 import utilities.internal.EclipseConsole;
 import utilities.internal.ThrowablePrinter;
-import domain.DomainEntity;
 
 public class PopulateDatabase {
 
@@ -47,7 +47,7 @@ public class PopulateDatabase {
 			System.out.printf("Initialising persistence context `%s'.%n", DatabaseConfig.PersistenceUnit);
 			databaseUtil = new DatabaseUtil();
 			databaseUtil.open();
-			
+
 			System.out.printf("Creating database `%s' (%s).%n", databaseUtil.getDatabaseName(), databaseUtil.getDatabaseDialectName());
 			databaseUtil.recreateDatabase();
 
@@ -131,8 +131,8 @@ public class PopulateDatabase {
 			System.out.printf("> %s", name);
 			databaseUtil.persist(entity);
 			System.out.printf(": %s%n", entity.toString());
-			// TODO: print the entity using SchemaPrinter.  This should get a map in which 
-			// every persisted entity is mapped onto the corresponding bean name in the 
+			// TODO: print the entity using SchemaPrinter.  This should get a map in which
+			// every persisted entity is mapped onto the corresponding bean name in the
 			// PopulateDatabase.xml file; otherwise traceability will be a nightmare.
 		}
 		databaseUtil.closeTransaction();
