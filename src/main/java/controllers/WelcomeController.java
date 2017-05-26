@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import domain.Actor;
 import domain.Banner;
+import services.ActorService;
 import services.BannerService;
 
 @Controller
@@ -28,7 +30,10 @@ import services.BannerService;
 public class WelcomeController extends AbstractController {
 
 	@Autowired
-	private BannerService bannerService;
+	private BannerService	bannerService;
+
+	@Autowired
+	private ActorService	actorService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -40,10 +45,13 @@ public class WelcomeController extends AbstractController {
 	// Index ------------------------------------------------------------------
 
 	@RequestMapping(value = "/index")
-	public ModelAndView index(@RequestParam(required = false, defaultValue = "John Doe") final String name) {
+	public ModelAndView index(@RequestParam(required = false, defaultValue = "welcome.greeting.stranger") String name) {
 		ModelAndView result;
 		SimpleDateFormat formatter;
 		String moment;
+
+		formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		moment = formatter.format(new Date());
 
 		Banner banner = new Banner();
 		final ArrayList<Banner> banners = (ArrayList<Banner>) this.bannerService.findAll();
@@ -52,11 +60,14 @@ public class WelcomeController extends AbstractController {
 		banner = banners.get(valorEntero);
 		final String url = banner.getUrl();
 
-		formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		moment = formatter.format(new Date());
-
+		final Actor loged = this.actorService.getLoggedActor();
+		if (loged != null)
+			name = loged.getName();
+		else
+			name = "welcome.greeting.stranger";
 		result = new ModelAndView("welcome/index");
 		result.addObject("name", name);
+		result.addObject("banner", banner);
 		result.addObject("moment", moment);
 		result.addObject("url", url);
 
