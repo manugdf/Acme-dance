@@ -16,8 +16,8 @@
 	<jstl:if test="${create==false}">
 		<form:hidden path="scheduleId"/>		
 	</jstl:if>
+	<form:hidden path="danceClass"/>
 	
-	<acme:textbox path="danceClass" code="schedule.danceClass" readonly="true"/>
     <acme:textbox path="dayOfWeek" code="schedule.dayOfWeek"/>
     <acme:textbox path="startDate" code="schedule.startDate"/>
     <acme:textbox path="endTime" code="schedule.endTime"/>

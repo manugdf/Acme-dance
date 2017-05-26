@@ -40,7 +40,6 @@ public class ScheduleService {
 
 	public Schedule create() {
 		final Schedule res = new Schedule();
-
 		return res;
 	}
 
@@ -84,8 +83,8 @@ public class ScheduleService {
 		res.setStartDate(s.getStartDate());
 		res.setEndTime(s.getEndTime());
 		res.setClassroom(s.getClassroom());
-		if (s.getScheduleId() != 0)
-			this.validator.validate(res, binding);
+
+		this.validator.validate(res, binding);
 
 		return res;
 

@@ -1,7 +1,8 @@
 
 package controllers.manager;
 
-import javax.validation.Valid;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,15 +52,17 @@ public class ScheduleManagerController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/create", params = "save")
-	public ModelAndView create(@Valid final ScheduleForm schedule, final BindingResult binding) {
+	public ModelAndView create(final ScheduleForm schedule, final BindingResult binding) {
 		ModelAndView res = new ModelAndView("schedule/create");
+
+		final Date now = Calendar.getInstance().getTime();
 
 		final Schedule schedul = this.scheduleService.reconstruct(schedule, binding);
 
 		if (binding.hasErrors()) {
 			System.out.println(binding.getAllErrors());
 			res.addObject("schedule", schedule);
-		} else if (schedule.getStartDate().after(schedule.getEndTime())) {
+		} else if (schedule.getStartDate().before(now) || schedule.getStartDate().after(schedule.getEndTime())) {
 			res.addObject("schedule", schedule);
 			res.addObject("message", "schedule.error.date");
 		} else
@@ -98,27 +101,27 @@ public class ScheduleManagerController extends AbstractController {
 	@RequestMapping(value = "/edit", params = "save")
 	public ModelAndView edit(final ScheduleForm schedule, final BindingResult binding) {
 		ModelAndView res = new ModelAndView("schedule/edit");
+		final Date now = Calendar.getInstance().getTime();
 
-		try {
-			final Schedule schedul = this.scheduleService.reconstruct(schedule, binding);
+		final Schedule schedul = this.scheduleService.reconstruct(schedule, binding);
 
-			if (binding.hasErrors()) {
-				System.out.println(binding.getAllErrors());
-				res.addObject("schedule", schedule);
-			} else if (schedule.getStartDate().after(schedule.getEndTime())) {
-				res.addObject("schedule", schedule);
-				res.addObject("message", "schedule.error.date");
-			} else
-
+		if (binding.hasErrors()) {
+			System.out.println(binding.getAllErrors());
+			res.addObject("schedule", schedule);
+		} else if (schedule.getStartDate().before(now) || schedule.getStartDate().after(schedule.getEndTime())) {
+			res.addObject("schedule", schedule);
+			res.addObject("message", "schedule.error.date");
+		} else
+			try {
 				this.scheduleService.createSchedule(schedul);
 
-			res = new ModelAndView("redirect:/schedule/list.do?classId=" + schedul.getDanceClass().getId());
-		} catch (final Exception e) {
+				res = new ModelAndView("redirect:/schedule/list.do?classId=" + schedul.getDanceClass().getId());
+			} catch (final Exception e) {
 
-			System.out.println(e);
-			res.addObject("schedule", schedule);
-			res.addObject("message", "alumn.commit.error");
-		}
+				System.out.println(e);
+				res.addObject("schedule", schedule);
+				res.addObject("message", "alumn.commit.error");
+			}
 		return res;
 
 	}
