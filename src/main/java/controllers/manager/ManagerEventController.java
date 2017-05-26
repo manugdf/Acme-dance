@@ -1,6 +1,7 @@
 
 package controllers.manager;
 
+import java.util.Calendar;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class ManagerEventController extends AbstractController {
 		res.addObject("events", events);
 		res.addObject("logged", logged);
 		res.addObject("danceSchool", d);
+		res.addObject("requestURI", "manager/event/list.do");
 		return res;
 	}
 
@@ -75,17 +77,19 @@ public class ManagerEventController extends AbstractController {
 		if (binding.hasErrors()) {
 			res.addObject("event", event);
 			res.addObject("requestUri", "manager/event/create.do");
+		} else if (event.getStartDate().before(Calendar.getInstance().getTime())) {
+			res.addObject("event", event);
+			res.addObject("message", "event.date.error");
 		} else
 			try {
 				event = this.eventService.newOrEditEvent(event);
-				res = new ModelAndView("redirect:/welcome/index.do");
+				res = new ModelAndView("redirect:/manager/event/list.do?danceSchoolId=" + event.getDanceSchool().getId());
 			} catch (final Exception e) {
 				res.addObject("event", event);
 				res.addObject("message", "alumn.commit.error");
 			}
 		return res;
 	}
-
 	@RequestMapping(value = "/edit")
 	public ModelAndView edit(@RequestParam final int eventId) {
 		final ModelAndView res = new ModelAndView("event/edit");
@@ -106,14 +110,17 @@ public class ManagerEventController extends AbstractController {
 		final Event eve = this.eventService.reconstruct(event, binding);
 
 		if (binding.hasErrors()) {
-			res.addObject("event", event);
+			res.addObject("event", eve);
 			res.addObject("requestUri", "manager/event/edit.do");
+		} else if (event.getStartDate().before(Calendar.getInstance().getTime())) {
+			res.addObject("event", eve);
+			res.addObject("message", "event.date.error");
 		} else
 			try {
-				event = this.eventService.newOrEditEvent(event);
-				res = new ModelAndView("redirect:/welcome/index.do");
+				event = this.eventService.newOrEditEvent(eve);
+				res = new ModelAndView("redirect:/manager/event/list.do?danceSchoolId=" + eve.getDanceSchool().getId());
 			} catch (final Exception e) {
-				res.addObject("event", event);
+				res.addObject("event", eve);
 				res.addObject("message", "alumn.commit.error");
 			}
 		return res;
