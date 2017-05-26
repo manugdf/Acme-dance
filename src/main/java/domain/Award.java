@@ -16,7 +16,7 @@ public class Award extends DomainEntity {
 
 	private String	winnerName;
 	private int		place;
-	private String	award;
+	private String	prize;
 
 
 	@NotBlank
@@ -35,11 +35,11 @@ public class Award extends DomainEntity {
 	}
 
 	@NotBlank
-	public String getAward() {
-		return this.award;
+	public String getPrize() {
+		return this.prize;
 	}
-	public void setAward(final String award) {
-		this.award = award;
+	public void setPrize(final String prize) {
+		this.prize = prize;
 	}
 
 

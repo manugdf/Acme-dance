@@ -716,10 +716,10 @@
 			</list>
 		</property>
 		<property name="description" value="Description1" />
-		<property name="limitInscription" value="2018/12/12 00:00" />
+		<property name="limitInscription" value="2016/12/12 00:00" />
 		<property name="limitSchool" value="100" />
 		<property name="place" ref="location1" />
-		<property name="startDate" value="2018/12/20 00:00" />
+		<property name="startDate" value="2016/12/10 00:00" />
 
 	</bean>
 
@@ -1158,35 +1158,35 @@
 	<!-- Awards -->
 
 	<bean id="award1" class="domain.Award">
-		<property name="award" value="Award1" />
+		<property name="prize" value="Award1" />
 		<property name="winnerName" value="Winner1" />
 		<property name="competition" ref="competition1" />
 		<property name="danceSchool" ref="danceSchool1" />
 	</bean>
 
 	<bean id="award2" class="domain.Award">
-		<property name="award" value="Award2" />
+		<property name="prize" value="Award2" />
 		<property name="winnerName" value="Winner2" />
 		<property name="competition" ref="competition2" />
 		<property name="danceSchool" ref="danceSchool2" />
 	</bean>
 
 	<bean id="award3" class="domain.Award">
-		<property name="award" value="Award3" />
+		<property name="prize" value="Award3" />
 		<property name="winnerName" value="Winner3" />
 		<property name="competition" ref="competition3" />
 		<property name="danceSchool" ref="danceSchool3" />
 	</bean>
 
 	<bean id="award4" class="domain.Award">
-		<property name="award" value="Award4" />
+		<property name="prize" value="Award4" />
 		<property name="winnerName" value="Winner4" />
 		<property name="competition" ref="competition4" />
 		<property name="danceSchool" ref="danceSchool4" />
 	</bean>
 
 	<bean id="award5" class="domain.Award">
-		<property name="award" value="Award5" />
+		<property name="prize" value="Award5" />
 		<property name="winnerName" value="Winner5" />
 		<property name="competition" ref="competition1" />
 		<property name="danceSchool" ref="danceSchool3" />

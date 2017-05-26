@@ -22,8 +22,8 @@
 	<spring:message code="award.winnerName" var="win"/>
 	<display:column property="winnerName" title="${win}"/>
 	
-	<spring:message code="award.award" var="award"/>
-	<display:column property="award" title="${award}"/>
+	<spring:message code="award.prize" var="prize"/>
+	<display:column property="prize" title="${prize}"/>
 	
 	<spring:message code="award.competition.date" var="award"/>
 	<display:column property="competition.startDate" title="${award}"/>

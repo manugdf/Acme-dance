@@ -82,7 +82,7 @@
 		<security:intercept-url pattern="/competition/list.do"
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/award/listByCompetition.do"
-			access="hasRole('MANAGER')" />
+			access="hasAnyRole('MANAGER','COMPETITIONPLANNER')" />
 		<security:intercept-url pattern="/danceSchool/listByCompetition.do"
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/competition/manager/**"
@@ -95,6 +95,9 @@
 			access="hasRole('MANAGER')" />
 		
 		<security:intercept-url pattern="/competitionPlanner/edit.do"
+			access="hasRole('COMPETITIONPLANNER')" />
+			
+			<security:intercept-url pattern="/competitionPlanner/award/giveAward.do"
 			access="hasRole('COMPETITIONPLANNER')" />
 			
 		<security:intercept-url pattern="/competition/competitionPlanner/list.do"

@@ -37,6 +37,7 @@ public class CompetitionCompetitionPlanner extends AbstractController {
 
 		res.addObject("competitions", logged.getCompetitions());
 		res.addObject("requestURI", "/competition/competitionPlanner/list.do");
+		res.addObject("today", Calendar.getInstance().getTime());
 
 		return res;
 	}
@@ -65,7 +66,7 @@ public class CompetitionCompetitionPlanner extends AbstractController {
 		if (binding.hasErrors()) {
 			res.addObject("competition", competition);
 			res.addObject("requestUri", "competition/competitionPlanner/create.do");
-		} else if (competition.getStartDate().after(now) && competition.getLimitInscription().after(competition.getStartDate()))
+		} else if (competition.getStartDate().after(now) && competition.getLimitInscription().before(competition.getStartDate()))
 			try {
 				this.competitionService.save(competition);
 				res = new ModelAndView("redirect:/competition/competitionPlanner/list.do");

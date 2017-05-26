@@ -67,6 +67,16 @@
             </jstl:choose>
         </display:column>
     </security:authorize>
+    
+    <security:authorize access="hasRole('COMPETITIONPLANNER')">
+    	<display:column>
+    		<jstl:if test="${row.startDate le today }">
+	        	<input	onclick="javascript: window.location.replace('competitionPlanner/award/giveAward.do?competitionId=${row.id}');"
+	            		value="<spring:message code="competition.giveAward" />" type="button" />
+			</jstl:if>
+        </display:column>
+    
+    </security:authorize>
 
 
 </display:table>
