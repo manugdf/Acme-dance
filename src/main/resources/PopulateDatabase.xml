@@ -178,6 +178,23 @@
 
 	</bean>
 
+	<!-- Admin -->
+	<bean id="admin" class="domain.Admin">
+		<property name="UserAccount" ref="userAccount1" />
+		<property name="name" value="Rafael" />
+		<property name="surname" value="Manrique" />
+		<property name="phone" value="655180524" />
+		<property name="email" value="admin@dance.com" />
+		<property name="messagesSended">
+			<list>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+	</bean>
+
 	<!--Alumns -->
 
 	<bean id="alumn1" class="domain.Alumn">
@@ -220,7 +237,7 @@
 		</property>
 		<property name="reviews">
 			<list>
-				<ref bean="review1"/>
+				<ref bean="review1" />
 			</list>
 		</property>
 		<property name="partnerRequests">
@@ -586,7 +603,7 @@
 		</property>
 		<property name="reviews">
 			<list>
-				<ref bean="review1"/>
+				<ref bean="review1" />
 			</list>
 		</property>
 		<property name="presentationVideo" value="http://www.youtube.com" />
@@ -1364,14 +1381,14 @@
 		<property name="body" value="Body2" />
 	</bean>
 
-	<!-- Reviews-->
+	<!-- Reviews -->
 	<bean id="review1" class="domain.Review">
-		<property name="alumn" ref="alumn1"/>
-		<property name="teacher" ref="teacher1"/>
-		<property name="score" value="5"/>
-		<property name="comment" value="The best teacher of the world"/>
+		<property name="alumn" ref="alumn1" />
+		<property name="teacher" ref="teacher1" />
+		<property name="score" value="5" />
+		<property name="comment" value="The best teacher of the world" />
 	</bean>
-	
+
 	<!-- Fee -->
 	<bean id="fee" class="domain.Fee">
 		<property name="managerAmount" value="100.0" />
