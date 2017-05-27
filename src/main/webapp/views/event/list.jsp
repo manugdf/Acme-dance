@@ -14,6 +14,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<script>
+	function myFunction(id,t) {
+	   
+	    var r = confirm(t);
+	    if (r == true) {
+	    	document.location.href='manager/event/delete.do?eventId='+id;
+	    }	    
+	}
+</script>
+
 <b><spring:message code="event.danceschool.name" />: </b>${danceschool}
 <br>
 <display:table name="events" id="row" requestURI="${requestURI}"
@@ -48,11 +58,13 @@
 								value="<spring:message code="event.edit" />" type="button"/>
 			</display:column>
 			
+			<spring:message code="event.confirm.delete" var="sure"/>
 			<display:column>
 				<input
-								onclick="javascript: window.location.replace('manager/event/delete.do?eventId=${row.id}');"
-								value="<spring:message code="event.delete" />" type="button"/>
+					onclick="myFunction(${row.id},'${sure}')"
+					value="<spring:message code="event.delete" />" type="button" />
 			</display:column>
+			
 		</jstl:if>
 	
 	</security:authorize>
