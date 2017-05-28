@@ -176,6 +176,7 @@ public class DanceClassManagerController extends AbstractController {
 		res.addObject("requestURI", "danceClass/list.do");
 		res.addObject("danceschool", this.danceSchoolService.findOne(danceClass.getDanceSchool().getId()));
 		res.addObject("message", message);
+		res.addObject("managerPrincipal", managerService.findByPrincipal());
 
 		return res;
 	}
