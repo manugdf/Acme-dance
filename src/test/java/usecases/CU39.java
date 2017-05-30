@@ -27,7 +27,7 @@ public class CU39 extends AbstractTest {
 
 
 	@Test
-	public void purposeBanner() {
+	public void editBanner() {
 		final Object[][] testingData = {
 			{
 				null, IllegalArgumentException.class, "banner.jpg"
@@ -40,10 +40,10 @@ public class CU39 extends AbstractTest {
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
-			this.purposeBannerTemplate((String) testingData[i][0], (Class<?>) testingData[i][1], (String) testingData[i][2]);
+			this.editBannerTemplate((String) testingData[i][0], (Class<?>) testingData[i][1], (String) testingData[i][2]);
 	}
 
-	protected void purposeBannerTemplate(final String username, final Class<?> expected, final String url) {
+	protected void editBannerTemplate(final String username, final Class<?> expected, final String url) {
 		Class<?> caught;
 		caught = null;
 		try {
