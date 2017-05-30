@@ -125,15 +125,7 @@
 
 			</display:column>
 
-			<spring:message code="danceClass.materials" var="mat" />
-			<display:column title="${mat}">
-
-				<input
-					onclick="javascript: window.location.replace('material/alumn/list.do?classId=${row.id}');"
-					value="<spring:message code="danceclass.schedule.view" />"
-					type="button" />
-
-			</display:column>
+			
 
 
 		</security:authorize>
