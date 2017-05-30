@@ -1053,8 +1053,8 @@
 
 	<bean id="payment1" class="domain.Payment">
 		<property name="paymentType" value="MONTHLY" />
-		<property name="startDate" value="2018/12/12 00:00" />
-		<property name="endDate" value="2018/12/12 04:00" />
+		<property name="startDate" value="2016/10/10 00:00" />
+		<property name="endDate" value="2017/01/01 04:00" />
 		<property name="alumn" ref="alumn1" />
 		<property name="danceClass" ref="danceClass1" />
 	</bean>
