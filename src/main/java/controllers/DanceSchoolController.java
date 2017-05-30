@@ -64,6 +64,8 @@ public class DanceSchoolController extends AbstractController {
 			res.addObject("danceSchools", this.danceSchoolService.findAllAccepted());
 			res.addObject("requestURI", "danceSchool/listAll.do");
 			res.addObject("searchForm", new SearchForm());
+			res.addObject("partnerview", false);
+			res.addObject("isManager", false);
 			System.out.println(binding.getAllErrors());
 		} else
 			try {
@@ -71,10 +73,14 @@ public class DanceSchoolController extends AbstractController {
 				res.addObject("danceSchools", schools);
 				res.addObject("requestURI", "danceSchool/listAll.do");
 				res.addObject("searchForm", new SearchForm());
+				res.addObject("partnerview", false);
+				res.addObject("isManager", false);
 			} catch (final Throwable oops) {
 				res.addObject("danceSchools", this.danceSchoolService.findAllAccepted());
 				res.addObject("requestURI", "danceSchool/listAll.do");
 				res.addObject("searchForm", new SearchForm());
+				res.addObject("partnerview", false);
+				res.addObject("isManager", false);
 				System.out.println(oops.getMessage());
 			}
 		return res;
