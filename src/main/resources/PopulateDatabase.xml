@@ -1378,6 +1378,14 @@
 		<property name="invitationSender" ref="alumn1" />
 		<property name="invitationReceiver" ref="alumn2" />
 	</bean>
+	
+	<bean id="partnerInvitation2" class="domain.PartnerInvitation">
+		<property name="state" value="PENDING" />
+		<property name="danceStyle" value="Tango" />
+		<property name="comment" value="¿Te gustaria que bailaramos tango" />
+		<property name="invitationSender" ref="alumn2" />
+		<property name="invitationReceiver" ref="alumn1" />
+	</bean>
 
 	<!-- Messages -->
 

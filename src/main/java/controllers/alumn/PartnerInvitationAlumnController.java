@@ -127,6 +127,8 @@ public class PartnerInvitationAlumnController extends AbstractController {
 		try {
 
 			final PartnerInvitation pi = this.partnerInvitationService.findOne(invitationId);
+			Assert.isTrue(alumn.getId() == (pi.getInvitationReceiver().getId()));
+
 			Assert.isTrue(pi.getState().equals("PENDING"));
 			pi.setState("ACCEPTED");
 			this.partnerInvitationService.save(pi);

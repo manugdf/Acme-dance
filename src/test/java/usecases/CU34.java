@@ -8,14 +8,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import domain.Alumn;
 import domain.PartnerInvitation;
-import domain.PartnerRequest;
 import services.AlumnService;
-import services.DanceSchoolService;
 import services.PartnerInvitationService;
-import services.PartnerRequestService;
 import utilities.AbstractTest;
 
 @ContextConfiguration(locations = {
@@ -23,55 +21,46 @@ import utilities.AbstractTest;
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class CU33 extends AbstractTest {
+public class CU34 extends AbstractTest {
 
-	@Autowired
-	private PartnerRequestService		partnerRequestService;
 	@Autowired
 	private PartnerInvitationService	partnerInvitationService;
 	@Autowired
 	private AlumnService				alumnService;
-	@Autowired
-	private DanceSchoolService			danceSchoolService;
 
-
-	//CU33 - Un usuario logueado como alumno accede a una vista donde se
-	//muestran todas las solicitudes de parejas que hay abiertas y pertenezcan
-	//a sus escuela apuntadas y decide mandar una invitación al
-	//alumno de una de ellas.
 
 	@Test
-	public void invitate() {
+	public void acceptreject() {
 		final Object[][] testingData = {
 			{
-				null, IllegalArgumentException.class, 152
+				null, IllegalArgumentException.class, 154, "ACCEPTED"
 			}, {
-				"alumn1", null, 152
+				"alumn1", null, 154, "ACCEPTED"
 			}, {
-				"alumn2", null, 147
+				"alumn2", null, 153, "REJECTED"
 			}, {
-				"admin", NullPointerException.class, 147
+				"admin", NullPointerException.class, 153, "ACCEPT"
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
-			this.invitateTemplate((String) testingData[i][0], (Class<?>) testingData[i][1], (int) testingData[i][2]);
+			this.acceptrejectTemplate((String) testingData[i][0], (Class<?>) testingData[i][1], (int) testingData[i][2], (String) testingData[i][3]);
 	}
 
-	protected void invitateTemplate(final String username, final Class<?> expected, final int id) {
+	protected void acceptrejectTemplate(final String username, final Class<?> expected, final int id, final String acceptreject) {
 		Class<?> caught;
 		caught = null;
 		try {
 			this.authenticate(username);
-			final PartnerRequest pr = this.partnerRequestService.findOne(id);
-			PartnerInvitation pi = this.partnerInvitationService.create(pr.getAlumn().getId());
-			pi = this.partnerInvitationService.save(pi);
+			final PartnerInvitation pi = this.partnerInvitationService.findOne(id);
+			pi.setState(acceptreject);
 			final Alumn alumn = this.alumnService.findByPrincipal();
-
+			System.out.println(pi.getState());
+			Assert.isTrue(alumn.getId() == (pi.getInvitationReceiver().getId()));
+			this.partnerInvitationService.save(pi);
 			this.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
 		this.checkExceptions(expected, caught);
 	}
-
 }
