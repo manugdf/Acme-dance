@@ -39,13 +39,13 @@ public class CU28 extends AbstractTest {
 	public void assistEvent() {
 		final Object[][] testingData = {
 			{
-				null, IllegalArgumentException.class, 136
+				null, IllegalArgumentException.class, 137
 			}, {
-				"alumn1", null, 136
+				"alumn1", null, 137
 			}, {
-				"alumn1", IllegalArgumentException.class, 139
+				"alumn1", IllegalArgumentException.class, 140
 			}, {
-				"alumn2", null, 136
+				"alumn2", null, 137
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
