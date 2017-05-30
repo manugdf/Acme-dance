@@ -39,7 +39,7 @@ public class CU34 extends AbstractTest {
 			}, {
 				"alumn2", null, 153, "REJECTED"
 			}, {
-				"admin", NullPointerException.class, 153, "ACCEPT"
+				"admin", NullPointerException.class, 153, "ACCEPTED"
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
@@ -52,9 +52,11 @@ public class CU34 extends AbstractTest {
 		try {
 			this.authenticate(username);
 			final PartnerInvitation pi = this.partnerInvitationService.findOne(id);
-			pi.setState(acceptreject);
+
 			final Alumn alumn = this.alumnService.findByPrincipal();
 			System.out.println(pi.getState());
+			Assert.isTrue(pi.getState().equals("PENDING"));
+			pi.setState(acceptreject);
 			Assert.isTrue(alumn.getId() == (pi.getInvitationReceiver().getId()));
 			this.partnerInvitationService.save(pi);
 			this.unauthenticate();
