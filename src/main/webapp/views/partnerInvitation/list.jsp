@@ -33,7 +33,7 @@
 	</display:column>
 	
 	<spring:message code="partnerInvitation.invitationSender" var="sender"/>
-	<display:column property="invitationSender.name" title="${sender}">
+	<display:column title="${sender}">
 	${row.invitationSender.name} ${row.invitationSender.surname}
 	</display:column>
 	

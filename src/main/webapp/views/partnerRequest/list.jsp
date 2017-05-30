@@ -22,7 +22,7 @@
 <jstl:if test="${viewing == true }">
 <spring:message code="partnerRequest.alumn" var="alumn"/>
 	<display:column title="${alumn}">
-	${row.alumn.name }
+	${row.alumn.name } ${row.alumn.surname } 
 	</display:column>
 </jstl:if>
 	
