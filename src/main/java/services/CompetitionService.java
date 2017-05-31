@@ -71,9 +71,7 @@ public class CompetitionService {
 	public Competition signupDanceSchool(final SelectDanceSchoolForm selectDanceSchoolForm, final int competitionId) {
 		final Competition competition = this.competitionRepository.findOne(competitionId);
 		final DanceSchool danceSchool = selectDanceSchoolForm.getDanceSchool();
-		//if(danceSchool!=null){
 		competition.getDanceSchools().add(danceSchool);
-		//}
 		return competition;
 	}
 

@@ -802,6 +802,7 @@
 			<list>
 				<ref bean="danceClass1" />
 				<ref bean="danceClass4" />
+				<ref bean="danceClass5" />
 			</list>
 		</property>
 		<property name="description" value="Baila hasta el anochecer." />
@@ -1017,12 +1018,43 @@
 	</bean>
 
 	<bean id="danceClass4" class="domain.DanceClass">
+	<property name="danceSchool" ref="danceSchool1" />
+	<property name="danceTests">
+		<list>
+		</list>
+	</property>
+	<property name="description" value="Description1" />
+	<property name="materials">
+		<list>
+		</list>
+	</property>
+	<property name="maxAlumns" value="100" />
+	<property name="monthlyPrice" value="20.00" />
+	<property name="yearlyPrice" value="120.00" />
+	<property name="style" value="Style3" />
+	<property name="payments">
+		<list>
+		</list>
+	</property>
+	<property name="schedules">
+		<list>
+			<ref bean="schedule4" />
+		</list>
+	</property>
+	<property name="teachers">
+		<list>
+			<ref bean="teacher1" />
+		</list>
+	</property>
+</bean>
+
+	<bean id="danceClass5" class="domain.DanceClass">
 		<property name="danceSchool" ref="danceSchool1" />
 		<property name="danceTests">
 			<list>
 			</list>
 		</property>
-		<property name="description" value="Description1" />
+		<property name="description" value="Description5" />
 		<property name="materials">
 			<list>
 			</list>
@@ -1030,19 +1062,17 @@
 		<property name="maxAlumns" value="100" />
 		<property name="monthlyPrice" value="20.00" />
 		<property name="yearlyPrice" value="120.00" />
-		<property name="style" value="Style3" />
+		<property name="style" value="Style5" />
 		<property name="payments">
 			<list>
 			</list>
 		</property>
 		<property name="schedules">
 			<list>
-				<ref bean="schedule4" />
 			</list>
 		</property>
 		<property name="teachers">
 			<list>
-				<ref bean="teacher1" />
 			</list>
 		</property>
 	</bean>

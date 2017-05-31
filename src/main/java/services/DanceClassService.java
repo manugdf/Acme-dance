@@ -48,7 +48,6 @@ public class DanceClassService {
 	public DanceClass create() {
 		final DanceClass res = new DanceClass();
 
-		//res.setAlumns(new ArrayList<Alumn>());
 		res.setTeachers(new ArrayList<Teacher>());
 		res.setMaterials(new ArrayList<Material>());
 		res.setSchedules(new ArrayList<Schedule>());
