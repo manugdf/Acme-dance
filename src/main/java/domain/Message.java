@@ -20,7 +20,16 @@ public class Message extends DomainEntity {
 	private Date	moment;
 	private String	subject;
 	private String	body;
+	private boolean	copy;
 
+
+	public boolean isCopy() {
+		return this.copy;
+	}
+
+	public void setCopy(final boolean copy) {
+		this.copy = copy;
+	}
 
 	@NotNull
 	@Past
@@ -54,8 +63,8 @@ public class Message extends DomainEntity {
 	private Actor	receiver;
 
 
-	@NotNull
 	@Valid
+	@NotNull
 	@ManyToOne(optional = false)
 	public Actor getSender() {
 		return this.sender;
@@ -64,8 +73,8 @@ public class Message extends DomainEntity {
 		this.sender = sender;
 	}
 
-	@NotNull
 	@Valid
+	@NotNull
 	@ManyToOne(optional = false)
 	public Actor getReceiver() {
 		return this.receiver;

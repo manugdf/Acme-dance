@@ -79,7 +79,6 @@ public abstract class Actor extends DomainEntity {
 		this.userAccount = userAccount;
 	}
 
-	@NotNull
 	@OneToMany(mappedBy = "sender")
 	public Collection<Message> getMessagesSended() {
 		return this.messagesSended;
@@ -88,7 +87,6 @@ public abstract class Actor extends DomainEntity {
 		this.messagesSended = messagesSended;
 	}
 
-	@NotNull
 	@OneToMany(mappedBy = "receiver")
 	public Collection<Message> getMessagesReceived() {
 		return this.messagesReceived;

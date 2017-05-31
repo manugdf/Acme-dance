@@ -16,7 +16,6 @@ import domain.CensoredWords;
 import domain.Message;
 import forms.MessageForm;
 import repositories.MessageRepository;
-import security.LoginService;
 
 @Service
 @Transactional
@@ -41,6 +40,7 @@ public class MessageService {
 		final Message message = new Message();
 		message.setMoment(new Date(System.currentTimeMillis() - 1000));
 		message.setSender(this.actorService.findByPrincipal());
+		message.setCopy(true);
 		return message;
 	}
 
@@ -50,22 +50,14 @@ public class MessageService {
 		return message;
 	}
 
-	public Collection<Message> findAllReceived() {
-		final Actor actor = this.actorService.findByPrincipal();
-		final Collection<Message> received = actor.getMessagesReceived();
-		return received;
-	}
-
-	public Collection<Message> findAllSent() {
-		final Actor actor = this.actorService.findByPrincipal();
-		final Collection<Message> sent = actor.getMessagesSended();
-		return sent;
+	public Collection<Message> findAll() {
+		return this.messageRepository.findAll();
 	}
 
 	public Message save(final Message message) {
 		Assert.notNull(message);
-
-		return this.messageRepository.save(message);
+		final Message censurado = this.spam(message);
+		return this.messageRepository.save(censurado);
 	}
 	public void delete(final Message message) {
 		this.messageRepository.delete(message);
@@ -117,54 +109,46 @@ public class MessageService {
 		return message;
 	}
 
-	public void deleteMessage(Message message) {
-		if (message.getReceiver() != null && message.getReceiver().getUserAccount().getId() == LoginService.getPrincipal().getId()) {
-			message.setReceiver(null);
-			message = this.save(message);
-		}
-		if (message.getSender() != null && message.getSender().getUserAccount().getId() == LoginService.getPrincipal().getId()) {
-			message.setSender(null);
-			message = this.save(message);
-		}
-		if (message.getReceiver() == null)
-			if (message.getSender() == null)
-				this.delete(message);
-
+	public void deleteReceived(final Message message) {
+		final Actor principal = this.actorService.findByPrincipal();
+		Assert.notNull(message);
+		Assert.isTrue(principal.getId() == message.getReceiver().getId());
+		this.messageRepository.delete(Integer.valueOf(message.getId()));
 	}
 
-	//	public void deleteMessage(final int id) {
-	//		Message message = this.findOne(id);
-	//		if (message.getReceiver() != null && message.getReceiver().getId() == this.actorService.findByPrincipal().getId()) {
-	//			final Actor receiver = message.getReceiver();
-	//			final Collection<Message> received = receiver.getMessagesReceived();
-	//			received.remove(message);
-	//			message.setReceiver(null);
-	//
-	//		} else if (message.getSender() != null && message.getSender().getId() == this.actorService.findByPrincipal().getId()) {
-	//			final Actor sender = message.getSender();
-	//			final Collection<Message> sent = sender.getMessagesReceived();
-	//			sent.remove(message);
-	//			message.setSender(null);
-	//		}
-	//
-	//		if (message.getReceiver() == null && message.getSender() == null)
-	//			this.delete(message);
-	//
-	//	}
+	public void deleteSent(final Message message) {
+		Assert.notNull(message);
+		final Actor principal = this.actorService.findByPrincipal();
+		Assert.isTrue(principal.getId() == message.getSender().getId());
+		this.messageRepository.delete(Integer.valueOf(message.getId()));
+	}
 
 	public void sendMessage(final Message message) {
 
 		final Actor receiverActor = message.getReceiver();
-
-		receiverActor.getMessagesReceived().add(message);
+		final Message message2 = message;
+		message2.setCopy(false);
+		receiverActor.getMessagesReceived().add(message2);
+		this.save(message2);
 		this.actorService.save(receiverActor);
 
+		final Message message3 = message;
 		final Actor senderActor = this.actorService.findByPrincipal();
-		senderActor.getMessagesSended().add(message);
+		message3.setCopy(true);
+		senderActor.getMessagesSended().add(message3);
+		this.save(message3);
 		this.actorService.save(senderActor);
 
-		this.save(message);
+	}
 
+	public Collection<Message> mySendedMessages(final int actorId) {
+		final Collection<Message> sm = this.messageRepository.mySendedMessages(actorId);
+		return sm;
+	}
+
+	public Collection<Message> myRecivedMessages(final int actorId) {
+		final Collection<Message> sm = this.messageRepository.myRecivedMessages(actorId);
+		return sm;
 	}
 
 }

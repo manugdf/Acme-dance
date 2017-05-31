@@ -38,7 +38,7 @@
 		<display:column>
 			<input
 				onclick="javascript:
-			confirm('<spring:message code="message.confirm.delete" />');
+			confirm('<spring:message code="material.confirm.delete" />');
 			window.location.replace('material/teacher/delete.do?id=${row.id}');"
 				value="<spring:message code="material.delete" />" type="button" />
 		</display:column>
@@ -49,9 +49,7 @@
 	<div>
 		<input
 			onclick="javascript: window.location.replace('material/teacher/create.do?danceClassId=${danceClassId}');"
-			value="<spring:message code="material.create" />" type="button" />
-			
-			<input
+			value="<spring:message code="material.create" />" type="button" /> <input
 			onclick="javascript: window.location.replace('danceClass/teacher/list.do');"
 			value="<spring:message code="material.back" />" type="button" />
 	</div>

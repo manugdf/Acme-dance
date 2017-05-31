@@ -40,16 +40,27 @@ public class MessageActorController extends AbstractController {
 	}
 
 	//Methods---------------------------------------------------
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
+	@RequestMapping(value = "/listR", method = RequestMethod.GET)
+	public ModelAndView listRecivied() {
+		final ModelAndView res = new ModelAndView("message/list");
+		final Actor actor = this.actorService.findByPrincipal();
+		final Collection<Message> received = this.messageService.myRecivedMessages(actor.getId());
+
+		res.addObject("messages", received);
+		res.addObject("requestURI", "message/actor/listR.do");
+
+		return res;
+	}
+
+	@RequestMapping(value = "/listS", method = RequestMethod.GET)
+	public ModelAndView listSent() {
 		final ModelAndView res = new ModelAndView("message/list");
 
-		final Collection<Message> received = this.messageService.findAllReceived();
-		final Collection<Message> sent = this.messageService.findAllSent();
+		final Actor actor = this.actorService.findByPrincipal();
+		final Collection<Message> sent = this.messageService.mySendedMessages(actor.getId());
 
-		res.addObject("received", received);
-		res.addObject("sent", sent);
-		res.addObject("requestURI", "message/actor/list.do");
+		res.addObject("messages", sent);
+		res.addObject("requestURI", "message/actor/listS.do");
 
 		return res;
 	}
@@ -150,9 +161,8 @@ public class MessageActorController extends AbstractController {
 
 			try {
 				final Message message = this.messageService.reconstruct(messageForm);
-				final Message censurado = this.messageService.spam(message);
-				this.messageService.sendMessage(censurado);
-				result = new ModelAndView("redirect:list.do");
+				this.messageService.sendMessage(message);
+				result = new ModelAndView("redirect:listS.do");
 
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(messageForm, "message.commit.error");
@@ -171,9 +181,8 @@ public class MessageActorController extends AbstractController {
 
 			try {
 				final Message message = this.messageService.reconstruct(messageForm);
-				final Message censurado = this.messageService.spam(message);
-				this.messageService.sendMessage(censurado);
-				result = new ModelAndView("redirect:list.do");
+				this.messageService.sendMessage(message);
+				result = new ModelAndView("redirect:listS.do");
 
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(messageForm, "message.commit.error");
@@ -181,20 +190,56 @@ public class MessageActorController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = {
+		"/deleteReceived"
+	}, method = {
+		RequestMethod.GET
+	})
 	public ModelAndView delete(@RequestParam final int id) {
-		ModelAndView modelAndView;
 		final Message message = this.messageService.findOne(id);
 
 		try {
-			this.messageService.deleteMessage(message);
-			modelAndView = new ModelAndView("redirect:list.do");
-		} catch (final Throwable oops) {
-			modelAndView = new ModelAndView("redirect:list.do");
-			System.out.println(oops.getMessage());
+			this.messageService.deleteReceived(message);
+		} catch (final Throwable var5) {
+			;
 		}
-		return modelAndView;
 
+		final ModelAndView result = new ModelAndView("redirect:listR.do");
+		return result;
 	}
+
+	@RequestMapping(value = {
+		"/deleteSent"
+	}, method = {
+		RequestMethod.GET
+	})
+	public ModelAndView delete2(@RequestParam final int id) {
+		final Message message = this.messageService.findOne(id);
+
+		try {
+			this.messageService.deleteSent(message);
+		} catch (final Throwable var5) {
+			;
+		}
+
+		final ModelAndView result = new ModelAndView("redirect:listS.do");
+		return result;
+	}
+
+	//	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	//	public ModelAndView delete(@RequestParam final int id) {
+	//		ModelAndView modelAndView;
+	//		final Message message = this.messageService.findOne(id);
+	//
+	//		try {
+	//			this.messageService.deleteMessage(message);
+	//			modelAndView = new ModelAndView("redirect:list.do");
+	//		} catch (final Throwable oops) {
+	//			modelAndView = new ModelAndView("redirect:list.do");
+	//			System.out.println(oops.getMessage());
+	//		}
+	//		return modelAndView;
+	//
+	//	}
 
 }

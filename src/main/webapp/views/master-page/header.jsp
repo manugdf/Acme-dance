@@ -42,13 +42,14 @@
 					<li><a href="banner/administrator/listAll.do"><spring:message
 								code="master.page.listAllBanners" /> </a></li>
 				</ul></li>
-			
+
 			<li><a class="fNiv" href="dashboard/administrator.do"><spring:message
 						code="master.page.dashboard" /></a></li>
 		</security:authorize>
-		
+
 		<security:authorize access="hasRole('COMPETITIONPLANNER')">
-			<li><a class="fNiv" href="competition/competitionPlanner/list.do"><spring:message
+			<li><a class="fNiv"
+				href="competition/competitionPlanner/list.do"><spring:message
 						code="master.page.competitionPlanner.myCompetitions" /></a></li>
 		</security:authorize>
 
@@ -76,7 +77,8 @@
 		<security:authorize access="hasRole('ALUMN')">
 			<li><a class="fNiv" href="danceSchool/listAll.do"><spring:message
 						code="master.page.schools" /></a></li>
-			<li><a class="fNiv" href="partnerInvitation/alumn/listPartners.do"><spring:message
+			<li><a class="fNiv"
+				href="partnerInvitation/alumn/listPartners.do"><spring:message
 						code="master.page.partners" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -92,7 +94,7 @@
 			<li><a class="fNiv" href="danceClass/alumn/listMyClasses.do"><spring:message
 						code="master.page.myClasses" /></a></li>
 			<li><a class="fNiv" href="danceCertificate/alumn/list.do"><spring:message
-					code="master.page.myCertificates" /></a></li>
+						code="master.page.myCertificates" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="isAnonymous()">
@@ -119,8 +121,16 @@
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">
-			<li><a class="fNiv" href="message/actor/list.do"><spring:message
-						code="master.page.messages" /></a></li>
+			<li><a class="fNiv"> <spring:message
+						code="master.page.messages" />
+			</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="message/actor/listR.do"><spring:message
+								code="master.page.messages.recivied" /></a></li>
+					<li><a href="message/actor/listS.do"><spring:message
+								code="master.page.messages.sent" /></a></li>
+				</ul></li>
 			<li><a class="fNiv"> <spring:message
 						code="master.page.profile" /> (<security:authentication
 						property="principal.username" />)

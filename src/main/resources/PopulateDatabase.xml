@@ -212,7 +212,7 @@
 		</property>
 		<property name="messagesReceived">
 			<list>
-				<ref bean="message2" />
+				<ref bean="message4" />
 			</list>
 		</property>
 		<property name="fee" value="0.0" />
@@ -582,7 +582,7 @@
 		</property>
 		<property name="messagesReceived">
 			<list>
-				<ref bean="message1" />
+				<ref bean="message3" />
 			</list>
 		</property>
 		<property name="averageScore" value="10.0" />
@@ -1378,7 +1378,7 @@
 		<property name="invitationSender" ref="alumn1" />
 		<property name="invitationReceiver" ref="alumn2" />
 	</bean>
-	
+
 	<bean id="partnerInvitation2" class="domain.PartnerInvitation">
 		<property name="state" value="PENDING" />
 		<property name="danceStyle" value="Tango" />
@@ -1395,6 +1395,7 @@
 		<property name="moment" value="2016/12/11 00:00" />
 		<property name="subject" value="Subject1" />
 		<property name="body" value="Body1" />
+		<property name="copy" value="true" />
 	</bean>
 
 	<bean id="message2" class="domain.Message">
@@ -1403,6 +1404,25 @@
 		<property name="moment" value="2016/12/11 01:00" />
 		<property name="subject" value="Subject2" />
 		<property name="body" value="Body2" />
+		<property name="copy" value="true" />
+	</bean>
+
+	<bean id="message3" class="domain.Message">
+		<property name="sender" ref="alumn1" />
+		<property name="receiver" ref="teacher1" />
+		<property name="moment" value="2016/12/11 00:00" />
+		<property name="subject" value="Subject1" />
+		<property name="body" value="Body1" />
+		<property name="copy" value="false" />
+	</bean>
+
+	<bean id="message4" class="domain.Message">
+		<property name="sender" ref="teacher1" />
+		<property name="receiver" ref="alumn1" />
+		<property name="moment" value="2016/12/11 01:00" />
+		<property name="subject" value="Subject2" />
+		<property name="body" value="Body2" />
+		<property name="copy" value="false" />
 	</bean>
 
 	<!-- Reviews -->
