@@ -23,7 +23,7 @@
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
 		<security:authorize access="hasRole('ADMIN')">
-			<li><a class="fNiv" href="manager/administrator/list.do"><spring:message
+			<li><a class="fNiv" href="mngr/administrator/list.do"><spring:message
 						code="master.page.managers" /></a></li>
 			<li><a class="fNiv" href="fee/administrator/edit.do"><spring:message
 						code="master.page.editFee" /></a></li>
@@ -112,7 +112,7 @@
 					<li class="arrow"></li>
 					<li><a href="alumn/register.do"><spring:message
 								code="master.page.register.alumn" /></a></li>
-					<li><a href="manager/register.do"><spring:message
+					<li><a href="mngr/register.do"><spring:message
 								code="master.page.register.manager" /></a></li>
 					<li><a href="competitionPlanner/register.do"><spring:message
 								code="master.page.register.competitionPlanner" /></a></li>
@@ -142,7 +142,7 @@
 									code="master.page.profile.edit" /></a></li>
 					</security:authorize>
 					<security:authorize access="hasRole('MANAGER')">
-						<li><a href="manager/edit.do"><spring:message
+						<li><a href="mngr/edit.do"><spring:message
 									code="master.page.profile.edit" /></a></li>
 					</security:authorize>
 					<security:authorize access="hasRole('COMPETITIONPLANNER')">

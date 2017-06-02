@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.DanceSchoolService;
-import services.EventService;
-import services.ManagerService;
 import controllers.AbstractController;
 import domain.DanceSchool;
 import domain.Event;
 import domain.Manager;
+import services.DanceSchoolService;
+import services.EventService;
+import services.ManagerService;
 
 @Controller
-@RequestMapping("/manager/event")
+@RequestMapping("/mngr/event")
 public class ManagerEventController extends AbstractController {
 
 	@Autowired
@@ -47,7 +47,7 @@ public class ManagerEventController extends AbstractController {
 		res.addObject("events", events);
 		res.addObject("logged", logged);
 		res.addObject("danceSchool", d);
-		res.addObject("requestURI", "manager/event/list.do");
+		res.addObject("requestURI", "mngr/event/list.do");
 		return res;
 	}
 
@@ -61,7 +61,7 @@ public class ManagerEventController extends AbstractController {
 		final Event e = this.eventService.create();
 		e.setDanceSchool(d);
 
-		res.addObject("requestUri", "manager/event/create.do");
+		res.addObject("requestUri", "mngr/event/create.do");
 		res.addObject("event", e);
 		res.addObject("danceSchoolId", d.getId());
 
@@ -76,14 +76,14 @@ public class ManagerEventController extends AbstractController {
 
 		if (binding.hasErrors()) {
 			res.addObject("event", event);
-			res.addObject("requestUri", "manager/event/create.do");
+			res.addObject("requestUri", "mngr/event/create.do");
 		} else if (event.getStartDate().before(Calendar.getInstance().getTime())) {
 			res.addObject("event", event);
 			res.addObject("message", "event.date.error");
 		} else
 			try {
 				event = this.eventService.newOrEditEvent(event);
-				res = new ModelAndView("redirect:/manager/event/list.do?danceSchoolId=" + event.getDanceSchool().getId());
+				res = new ModelAndView("redirect:/mngr/event/list.do?danceSchoolId=" + event.getDanceSchool().getId());
 			} catch (final Exception e) {
 				res.addObject("event", event);
 				res.addObject("message", "alumn.commit.error");
@@ -97,7 +97,7 @@ public class ManagerEventController extends AbstractController {
 		final Event event = this.eventService.findOne(eventId);
 		Assert.isTrue(event.getDanceSchool().getManager().equals(this.managerService.findByPrincipal()));
 
-		res.addObject("requestUri", "manager/event/edit.do");
+		res.addObject("requestUri", "mngr/event/edit.do");
 		res.addObject("event", event);
 
 		return res;
@@ -111,14 +111,14 @@ public class ManagerEventController extends AbstractController {
 
 		if (binding.hasErrors()) {
 			res.addObject("event", eve);
-			res.addObject("requestUri", "manager/event/edit.do");
+			res.addObject("requestUri", "mngr/event/edit.do");
 		} else if (event.getStartDate().before(Calendar.getInstance().getTime())) {
 			res.addObject("event", eve);
 			res.addObject("message", "event.date.error");
 		} else
 			try {
 				event = this.eventService.newOrEditEvent(eve);
-				res = new ModelAndView("redirect:/manager/event/list.do?danceSchoolId=" + eve.getDanceSchool().getId());
+				res = new ModelAndView("redirect:/mngr/event/list.do?danceSchoolId=" + eve.getDanceSchool().getId());
 			} catch (final Exception e) {
 				res.addObject("event", eve);
 				res.addObject("message", "alumn.commit.error");

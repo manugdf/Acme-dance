@@ -1,3 +1,4 @@
+
 package controllers.administrator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,23 +11,21 @@ import controllers.AbstractController;
 import services.ManagerService;
 
 @Controller
-@RequestMapping("/manager/administrator")
-public class ManagerAdministratorController extends AbstractController{
+@RequestMapping("/mngr/administrator")
+public class ManagerAdministratorController extends AbstractController {
 
-	
 	@Autowired
 	private ManagerService managerService;
-	
+
+
 	// List
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
-		ModelAndView res = new ModelAndView("manager/list");
+		final ModelAndView res = new ModelAndView("manager/list");
 
-		res.addObject("managers", managerService.findAll());
-		res.addObject("requestURI", "manager/administrator/list.do");
+		res.addObject("managers", this.managerService.findAll());
+		res.addObject("requestURI", "mngr/administrator/list.do");
 		return res;
 	}
-	
-	
-	
+
 }

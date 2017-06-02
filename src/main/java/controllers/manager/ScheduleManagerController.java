@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.DanceClassService;
-import services.ManagerService;
-import services.ScheduleService;
 import controllers.AbstractController;
 import domain.DanceClass;
 import domain.Schedule;
 import forms.ScheduleForm;
+import services.DanceClassService;
+import services.ManagerService;
+import services.ScheduleService;
 
 @Controller
-@RequestMapping("manager/schedule")
+@RequestMapping("mngr/schedule")
 public class ScheduleManagerController extends AbstractController {
 
 	@Autowired
@@ -45,7 +45,7 @@ public class ScheduleManagerController extends AbstractController {
 
 		res.addObject("scheduleForm", s);
 		res.addObject("create", true);
-		res.addObject("requestUri", "manager/schedule/create.do");
+		res.addObject("requestUri", "mngr/schedule/create.do");
 
 		return res;
 
@@ -91,7 +91,7 @@ public class ScheduleManagerController extends AbstractController {
 		Assert.isTrue(s.getDanceClass().getDanceSchool().getManager().equals(this.managerService.findByPrincipal()));
 
 		res.addObject("scheduleForm", s);
-		res.addObject("requestUri", "manager/schedule/edit.do");
+		res.addObject("requestUri", "mngr/schedule/edit.do");
 		res.addObject("create", false);
 
 		return res;

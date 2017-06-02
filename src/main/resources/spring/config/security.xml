@@ -21,7 +21,7 @@
 	<!-- Access control -->
 
 	<security:http auto-config="true" use-expressions="true">
-		<security:intercept-url pattern="/manager/administrator/**"
+		<security:intercept-url pattern="/mngr/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/" access="permitAll" />
 
@@ -59,17 +59,17 @@
 			access="permitAll" />
 			
 			
-		<security:intercept-url pattern="/manager/event/delete.do"
+		<security:intercept-url pattern="/mngr/event/delete.do"
 			access="hasRole('MANAGER')" />
-		<security:intercept-url pattern="/manager/event/edit.do"
+		<security:intercept-url pattern="/mngr/event/edit.do"
 			access="hasRole('MANAGER')" />
-		<security:intercept-url pattern="/manager/event/create.do"
+		<security:intercept-url pattern="/mngr/event/create.do"
 			access="hasRole('MANAGER')" />
-		<security:intercept-url pattern="/manager/event/list.do"
+		<security:intercept-url pattern="/mngr/event/list.do"
 			access="hasRole('MANAGER')" />
-		<security:intercept-url pattern="/manager/schedule/create.do"
+		<security:intercept-url pattern="/mngr/schedule/create.do"
 			access="hasRole('MANAGER')" />
-		<security:intercept-url pattern="/manager/schedule/edit.do"
+		<security:intercept-url pattern="/mngr/schedule/edit.do"
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/danceClass/manager/list.do"
 			access="hasRole('MANAGER')" />
@@ -91,7 +91,9 @@
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/banner/manager/**"
 			access="hasRole('MANAGER')" />
-		<security:intercept-url pattern="/manager/**"
+		<security:intercept-url pattern="/mngr/**"
+			access="hasRole('MANAGER')" />
+			<security:intercept-url pattern="/manager/**"
 			access="hasRole('MANAGER')" />
 		
 		<security:intercept-url pattern="/competitionPlanner/edit.do"
@@ -166,7 +168,7 @@
 
 		<security:intercept-url pattern="/alumn/register.do"
 			access="isAnonymous()" />
-		<security:intercept-url pattern="/manager/register.do"
+		<security:intercept-url pattern="/mngr/register.do"
 			access="isAnonymous()" />
 
 		<security:intercept-url pattern="/competitionPlanner/register.do"
