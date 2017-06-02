@@ -135,4 +135,8 @@ public class BannerService {
 		return this.bannerRepository.findAllPending();
 	}
 
+	public Collection<Banner> findAllAccepted() {
+		return this.bannerRepository.findAllAccepted();
+	}
+
 }

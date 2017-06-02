@@ -54,7 +54,7 @@ public class WelcomeController extends AbstractController {
 		moment = formatter.format(new Date());
 
 		Banner banner = new Banner();
-		final ArrayList<Banner> banners = (ArrayList<Banner>) this.bannerService.findAll();
+		final ArrayList<Banner> banners = (ArrayList<Banner>) this.bannerService.findAllAccepted();
 
 		final int valorEntero = (int) Math.floor(Math.random() * (banners.size()));
 		banner = banners.get(valorEntero);
