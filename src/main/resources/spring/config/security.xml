@@ -93,8 +93,6 @@
 			access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/mngr/**"
 			access="hasRole('MANAGER')" />
-			<security:intercept-url pattern="/manager/**"
-			access="hasRole('MANAGER')" />
 		
 		<security:intercept-url pattern="/competitionPlanner/edit.do"
 			access="hasRole('COMPETITIONPLANNER')" />
