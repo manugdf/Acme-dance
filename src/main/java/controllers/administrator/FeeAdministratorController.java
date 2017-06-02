@@ -46,7 +46,8 @@ public class FeeAdministratorController {
 				res = edit();
 				res.addObject("message", "fee.updatedFee");
 				final Fee feeAux = this.feeService.reconstruct(fee, bindingResult);
-				feeService.save(feeAux);
+
+				feeService.editFee(feeAux);
 			} catch (final Throwable oops) {
 				res = new ModelAndView("fee/edit");
 				res.addObject("fee", fee);

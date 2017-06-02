@@ -68,11 +68,8 @@ public class DanceTestTeacherController extends AbstractController {
 			res.addObject("danceClassId", danceClassId);
 		} else
 			try {
-				final DanceTest aux = this.danceTestService.save(danceTest);
-
-				final DanceClass danceClass = this.danceClassService.findOne(danceClassId);
-				danceClass.getDanceTests().add(aux);
-				this.danceClassService.save(danceClass);
+				danceTestService.createDanceTest(danceTest, danceClassId);
+				DanceClass danceClass = this.danceClassService.findOne(danceClassId);
 
 				res = this.list(danceClassId);
 				res.addObject("requestURI", "danceTest/teacher/create.do?danceClassId=" + danceClassId);

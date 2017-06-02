@@ -80,5 +80,12 @@ public class FeeService {
 		return res;
 
 	}
+	
+	public void editFee(Fee fee){
+		Assert.notNull(fee);
+		Assert.isTrue(this.adminService.isAdministrator());
+		
+		save(fee);
+	}
 
 }

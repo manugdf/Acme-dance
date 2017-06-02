@@ -8,7 +8,11 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
+import domain.Alumn;
 import domain.DanceCertificate;
+import domain.DanceClass;
+import domain.DanceTest;
+import domain.Teacher;
 import repositories.DanceCertificateRepository;
 
 import java.util.Collection;
@@ -24,6 +28,8 @@ public class DanceCertificateService {
 	private AlumnService alumnService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private DanceTestService danceTestService;
 	@Autowired
 	private Validator validator;
 
@@ -65,5 +71,20 @@ public class DanceCertificateService {
 
 	public Collection<DanceCertificate> findDanceCertificatesByAlumn(int alumnId){
 		return danceCertificateRepository.findDanceCertificatesByAlumn(alumnId);
+	}
+	
+	public void createDanceCertificate(DanceCertificate danceCertificate, int alumnId, int danceTestId){
+		Assert.isTrue(this.teacherService.isTeacher());
+		
+		DanceCertificate aux = save(danceCertificate);
+
+		Alumn alumn=alumnService.findOne(alumnId);
+		alumn.getDanceCertificates().add(aux);
+		alumnService.save(alumn);
+
+		DanceTest danceTest=danceTestService.findOne(danceTestId);
+		danceTest.getDanceCertificates().add(aux);
+		danceTestService.save(danceTest);
+		
 	}
 }

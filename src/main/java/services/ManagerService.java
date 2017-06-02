@@ -189,6 +189,7 @@ public class ManagerService {
 	}
 	
 	public Double getMonthTotalFee(){
+		Assert.isTrue(LoggedIsManager());
 		Manager manager=findByPrincipal();
 		Assert.notNull(manager);
 		int contador=0;

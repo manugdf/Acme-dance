@@ -74,15 +74,8 @@ public class DanceCertificateTeacherController extends AbstractController{
 		} else {
 			try {
 				res= new ModelAndView("redirect:/danceCertificate/teacher/list.do?alumnId="+alumnId);
-				DanceCertificate aux = danceCertificateService.save(danceCertificate);
-
+				danceCertificateService.createDanceCertificate(danceCertificate, alumnId, danceTestId);
 				Alumn alumn=alumnService.findOne(alumnId);
-				alumn.getDanceCertificates().add(aux);
-				alumnService.save(alumn);
-
-				DanceTest danceTest=danceTestService.findOne(danceTestId);
-				danceTest.getDanceCertificates().add(aux);
-				danceTestService.save(danceTest);
 
 				res.addObject("danceCertificates", alumn.getDanceCertificates());
 				

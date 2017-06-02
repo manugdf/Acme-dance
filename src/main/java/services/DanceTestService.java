@@ -14,6 +14,7 @@ import org.springframework.validation.Validator;
 
 import domain.Alumn;
 import domain.DanceCertificate;
+import domain.DanceClass;
 import domain.DanceTest;
 import repositories.DanceTestRepository;
 
@@ -29,6 +30,8 @@ public class DanceTestService {
 
 	@Autowired
 	private AlumnService alumnService;
+	@Autowired
+	private TeacherService teacherService;
 	@Autowired
 	private Validator validator;
 
@@ -100,6 +103,16 @@ public class DanceTestService {
 
 	public Collection<DanceTest> danceTestsCanJoinIn(int alumnId){
 		return danceTestRepository.danceTestsCanJoinIn(alumnId);
+	}
+	
+	public void createDanceTest(DanceTest danceTest, int danceClassId){
+		Assert.isTrue(this.teacherService.isTeacher());
+		DanceTest aux = save(danceTest);
+
+		DanceClass danceClass = this.danceClassService.findOne(danceClassId);
+		danceClass.getDanceTests().add(aux);
+		this.danceClassService.save(danceClass);
+		
 	}
 
 }

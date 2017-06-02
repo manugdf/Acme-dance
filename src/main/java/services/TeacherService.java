@@ -113,6 +113,7 @@ public class TeacherService {
 
 	public void register(final Teacher teacher) {
 		Assert.notNull(teacher);
+		Assert.isTrue(this.managerService.LoggedIsManager());
 		UserAccount userAccount;
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		userAccount = teacher.getUserAccount();
@@ -149,6 +150,7 @@ public class TeacherService {
 	}
 
 	public Teacher modify(final Teacher teacher) {
+		Assert.isTrue(this.managerService.LoggedIsManager());
 		Assert.isTrue(this.managerService.findByPrincipal().getTeachers().contains(teacher));
 		return this.teacherRepository.saveAndFlush(teacher);
 	}
