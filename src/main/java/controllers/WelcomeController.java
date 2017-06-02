@@ -56,8 +56,13 @@ public class WelcomeController extends AbstractController {
 		Banner banner = new Banner();
 		final ArrayList<Banner> banners = (ArrayList<Banner>) this.bannerService.findAllAccepted();
 
-		final int valorEntero = (int) Math.floor(Math.random() * (banners.size()));
-		banner = banners.get(valorEntero);
+		final ArrayList<Banner> validBanners = new ArrayList<Banner>();
+		for (final Banner b : banners)
+			if (this.actorService.checkCreditCard(b.getManager().getCreditCard()) == true)
+				validBanners.add(b);
+
+		final int valorEntero = (int) Math.floor(Math.random() * (validBanners.size()));
+		banner = validBanners.get(valorEntero);
 		final String url = banner.getUrl();
 
 		final Actor loged = this.actorService.getLoggedActor();
