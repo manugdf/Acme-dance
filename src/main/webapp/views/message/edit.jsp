@@ -34,7 +34,7 @@
 
 	<br />
 	<acme:submit name="send" code="message.send" />
-	<acme:cancel url="message/actor/list.do" code="message.cancel" />
+	<acme:cancel url="welcome/index.do" code="message.cancel" />
 	<br />
 
 </form:form>
