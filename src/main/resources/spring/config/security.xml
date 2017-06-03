@@ -57,6 +57,8 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/review/list.do"
 			access="permitAll" />
+			<security:intercept-url pattern="/mngr/register.do"
+			access="isAnonymous()" />
 			
 			
 		<security:intercept-url pattern="/mngr/event/delete.do"
@@ -166,8 +168,7 @@
 
 		<security:intercept-url pattern="/alumn/register.do"
 			access="isAnonymous()" />
-		<security:intercept-url pattern="/mngr/register.do"
-			access="isAnonymous()" />
+		
 
 		<security:intercept-url pattern="/competitionPlanner/register.do"
 			access="isAnonymous()" />
