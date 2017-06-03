@@ -18,10 +18,10 @@
     <display:column property="competitionPlanner.companyName" title="${competitionPlanner}"/>
 
     <spring:message code="competition.startDate" var="startDate"/>
-    <display:column property="startDate" title="${startDate}"/>
+    <display:column property="startDate" title="${startDate}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
     <spring:message code="competition.limitInscription" var="limitInscription"/>
-    <display:column property="limitInscription" title="${limitInscription}"/>
+    <display:column property="limitInscription" title="${limitInscription}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
     <spring:message code="competition.location.address" var="address"/>
     <display:column property="place.address" title="${address}"/>

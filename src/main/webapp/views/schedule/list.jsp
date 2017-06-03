@@ -21,10 +21,10 @@
 	<display:column property="dayOfWeek" title="${week}"/>
 	
 	<spring:message code="schedule.startDate" var="date"/>
-	<display:column property="startDate" title="${date}"/>
+	<display:column property="startDate" title="${date}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	
 	<spring:message code="schedule.endTime" var="end"/>
-	<display:column property="endTime" title="${end}"/>
+	<display:column property="endTime" title="${end}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	
 	<spring:message code="schedule.classroom" var="classroom"/>
 	<display:column property="classroom" title="${classroom}"/>
