@@ -45,6 +45,7 @@ public class ScheduleManagerController extends AbstractController {
 		res.addObject("schedule", s);
 		res.addObject("create", true);
 		res.addObject("requestUri", "mngr/schedule/create.do");
+		res.addObject("danceClassId", d.getId());
 
 		return res;
 
@@ -61,9 +62,11 @@ public class ScheduleManagerController extends AbstractController {
 		if (binding.hasErrors()) {
 			System.out.println(binding.getAllErrors());
 			res.addObject("schedule", schedule);
+			res.addObject("danceClassId", schedul.getDanceClass().getId());
 		} else if (schedule.getStartDate().before(now) || schedule.getStartDate().after(schedule.getEndTime())) {
 			res.addObject("schedule", schedule);
 			res.addObject("message", "schedule.error.date");
+			res.addObject("danceClassId", schedul.getDanceClass().getId());
 		} else
 			try {
 
@@ -75,6 +78,7 @@ public class ScheduleManagerController extends AbstractController {
 				System.out.println(e);
 				res.addObject("schedule", schedule);
 				res.addObject("message", "alumn.commit.error");
+				res.addObject("danceClassId", schedul.getDanceClass().getId());
 			}
 		return res;
 
@@ -91,6 +95,7 @@ public class ScheduleManagerController extends AbstractController {
 		res.addObject("schedule", schedule);
 		res.addObject("requestUri", "mngr/schedule/edit.do");
 		res.addObject("create", false);
+		res.addObject("danceClassId", schedule.getDanceClass().getId());
 
 		return res;
 
@@ -106,12 +111,14 @@ public class ScheduleManagerController extends AbstractController {
 		if (binding.hasErrors()) {
 			System.out.println(binding.getAllErrors());
 			res.addObject("schedule", schedule);
+			res.addObject("danceClassId", schedul.getDanceClass().getId());
 		} else if (schedule.getStartDate().before(now) || schedule.getStartDate().after(schedule.getEndTime())) {
 			res.addObject("schedule", schedule);
 			res.addObject("message", "schedule.error.date");
-		} else {
+			res.addObject("danceClassId", schedul.getDanceClass().getId());
+		} else
 			try {
-				Schedule aux = this.scheduleService.editReconstruct(schedule);
+				final Schedule aux = this.scheduleService.editReconstruct(schedule);
 				this.scheduleService.createSchedule(aux);
 				res = new ModelAndView("redirect:/schedule/list.do?classId=" + schedul.getDanceClass().getId());
 			} catch (final Exception e) {
@@ -119,8 +126,8 @@ public class ScheduleManagerController extends AbstractController {
 				System.out.println(e);
 				res.addObject("schedule", schedule);
 				res.addObject("message", "alumn.commit.error");
+				res.addObject("danceClassId", schedul.getDanceClass().getId());
 			}
-		}
 		return res;
 
 	}

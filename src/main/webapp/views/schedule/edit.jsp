@@ -24,6 +24,9 @@
     <acme:textbox path="classroom" code="schedule.classroom"/>
  
     <acme:submit code="schedule.save" name="save"/>
+    
+    <acme:cancel code="schedule.cancel" url="/schedule/list.do?classId=${danceClassId }"/>
+    
 
 
 </form:form>
