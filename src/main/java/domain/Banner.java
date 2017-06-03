@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -34,6 +35,7 @@ public class Banner extends DomainEntity {
 		this.state = state;
 	}
 
+	@NotBlank
 	@URL
 	public String getUrl() {
 		return this.url;
@@ -46,7 +48,7 @@ public class Banner extends DomainEntity {
 
 	//Relationship
 
-	private Manager	manager;
+	private Manager manager;
 
 
 	@NotNull
