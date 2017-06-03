@@ -40,6 +40,7 @@
 		<value>/views/banner/tiles.xml</value>
 		<value>/views/fee/tiles.xml</value>
 		<value>/views/terms/tiles.xml</value>
+		<value>/views/privacy/tiles.xml</value>
 	</util:list>
 
 </beans>

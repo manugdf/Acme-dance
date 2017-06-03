@@ -85,4 +85,10 @@ public class WelcomeController extends AbstractController {
 		final ModelAndView res = new ModelAndView("terms/terms");
 		return res;
 	}
+
+	@RequestMapping(value = "/privacy", method = RequestMethod.GET)
+	public ModelAndView privacy() {
+		final ModelAndView res = new ModelAndView("privacy/privacy");
+		return res;
+	}
 }

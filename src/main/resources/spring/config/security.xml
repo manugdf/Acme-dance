@@ -59,6 +59,8 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/welcome/terms.do"
 			access="permitAll" />
+		<security:intercept-url pattern="/welcome/privacy.do"
+			access="permitAll" />
 		<security:intercept-url pattern="/mngr/register.do"
 			access="isAnonymous()" />
 			
