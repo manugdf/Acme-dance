@@ -23,7 +23,7 @@
  
     <acme:submit code="award.save" name="save"/>
 
-    <acme:cancel code="award.cancel" url="/manager/event/list?danceSchoolId=${danceSchoolId }"/>
+    <acme:cancel code="award.cancel" url="/mngr/event/list?danceSchoolId=${danceSchoolId }"/>
 
 
 </form:form>

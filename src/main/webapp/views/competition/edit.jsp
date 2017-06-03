@@ -29,7 +29,7 @@
 
     <acme:submit code="competition.save" name="save"/>
 
-    <acme:cancel code="competition.cancel" url="/manager/event/list?danceSchoolId=${danceSchoolId }"/>
+    <acme:cancel code="competition.cancel" url="/mngr/event/list?danceSchoolId=${danceSchoolId }"/>
 
 
 </form:form>

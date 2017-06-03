@@ -54,7 +54,7 @@
 		<jstl:if test="${row.danceSchool.manager == logged }">
 			<display:column>
 				<input
-								onclick="javascript: window.location.replace('manager/event/edit.do?eventId=${row.id}');"
+								onclick="javascript: window.location.replace('mngr/event/edit.do?eventId=${row.id}');"
 								value="<spring:message code="event.edit" />" type="button"/>
 			</display:column>
 			
@@ -85,7 +85,7 @@
 	<security:authorize access="hasRole('MANAGER')">
 
 				<input
-								onclick="javascript: window.location.replace('manager/event/create.do?danceSchoolId=${danceSchool.id}');"
+								onclick="javascript: window.location.replace('mngr/event/create.do?danceSchoolId=${danceSchool.id}');"
 								value="<spring:message code="event.create" />" type="button"/>
 
 	

@@ -97,7 +97,7 @@
 		
 		<security:authorize access="hasRole('MANAGER')">
 			<input
-				onclick="javascript: window.location.replace('manager/event/list.do?danceSchoolId=${row.id}');"
+				onclick="javascript: window.location.replace('mngr/event/list.do?danceSchoolId=${row.id}');"
 				value="<spring:message code="danceschool.view.awards" />"
 				type="button" />
 		</security:authorize>
