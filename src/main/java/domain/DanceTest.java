@@ -7,9 +7,11 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -21,6 +23,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = {
+	@Index(columnList = "limitInscription")
+})
 public class DanceTest extends DomainEntity {
 
 	private Date	testDate;
@@ -59,8 +64,8 @@ public class DanceTest extends DomainEntity {
 
 
 	//Relationship
-	private Collection<Alumn>	alumns;
-	private DanceClass			danceClass;
+	private Collection<Alumn>				alumns;
+	private DanceClass						danceClass;
 	private Collection<DanceCertificate>	danceCertificates;
 
 
@@ -82,14 +87,14 @@ public class DanceTest extends DomainEntity {
 	public void setDanceClass(final DanceClass danceClass) {
 		this.danceClass = danceClass;
 	}
-	
+
 	@NotNull
 	@OneToMany
-	public Collection<DanceCertificate> getDanceCertificates(){
+	public Collection<DanceCertificate> getDanceCertificates() {
 		return this.danceCertificates;
 	}
-	public void setDanceCertificates(final Collection<DanceCertificate> danceCertificates){
-		this.danceCertificates=danceCertificates;
+	public void setDanceCertificates(final Collection<DanceCertificate> danceCertificates) {
+		this.danceCertificates = danceCertificates;
 	}
 
 }
