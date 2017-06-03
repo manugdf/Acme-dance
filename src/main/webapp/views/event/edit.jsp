@@ -25,7 +25,7 @@
 
     <acme:submit code="event.save" name="save"/>
 
-    <acme:cancel code="event.cancel" url="/mngr/event/list?danceSchoolId=${danceSchoolId }"/>
+    <acme:cancel code="event.cancel" url="/mngr/event/list.do?danceSchoolId=${danceSchoolId }"/>
 
 
 </form:form>

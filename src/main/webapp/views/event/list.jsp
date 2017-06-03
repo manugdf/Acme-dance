@@ -37,7 +37,7 @@
 	<display:column property="description" title="${desc}" />
 
 	<spring:message code="event.startDate" var="date" />
-	<display:column property="startDate" title="${date}" />
+	<display:column property="startDate" title="${date}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
 	<spring:message code="event.duration" var="duration" />
 	<display:column property="duration" title="${duration}" />
