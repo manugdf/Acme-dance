@@ -31,7 +31,7 @@
 	
 	<security:authorize access="hasRole('MANAGER')">
 		<display:column>
-			<input	onclick="javascript: window.location.replace('manager/schedule/edit.do?scheduleId=${row.id}');"
+			<input	onclick="javascript: window.location.replace('mngr/schedule/edit.do?scheduleId=${row.id}');"
 							value="<spring:message code="schedule.edit" />" type="button" />
 		</display:column>
 	</security:authorize>
@@ -39,6 +39,6 @@
 </display:table>
 
 <security:authorize access="hasRole('MANAGER')">
-	<input	onclick="javascript: window.location.replace('manager/schedule/create.do?classId=${row.danceClass.id}');"
+	<input	onclick="javascript: window.location.replace('mngr/schedule/create.do?classId=${row.danceClass.id}');"
 					value="<spring:message code="schedule.create" />" type="button" />
 </security:authorize>

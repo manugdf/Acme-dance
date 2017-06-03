@@ -12,16 +12,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.CompetitionPlannerService;
 import domain.CompetitionPlanner;
 import forms.CompetitionPlannerForm;
-import services.CompetitionPlannerService;
 
 @Controller
 @RequestMapping("competitionPlanner/")
 public class CompetitionPlannerController extends AbstractController {
 
 	@Autowired
-	private CompetitionPlannerService competitionPlannerService;
+	private CompetitionPlannerService	competitionPlannerService;
 
 
 	@RequestMapping("register")
@@ -40,41 +40,48 @@ public class CompetitionPlannerController extends AbstractController {
 	public ModelAndView create(@Valid final CompetitionPlannerForm c, final BindingResult binding) {
 		ModelAndView res = new ModelAndView("competitionPlanner/edit");
 
-		final CompetitionPlanner comp = this.competitionPlannerService.reconstruct(c);
+		if (c.getPassword().equals(c.getRepeatPassword())) {
+			final CompetitionPlanner comp = this.competitionPlannerService.reconstruct(c);
 
-		if (binding.hasErrors()) {
-			System.out.println(binding.getAllErrors());
+			if (binding.hasErrors()) {
+				System.out.println(binding.getAllErrors());
+				res.addObject("requestUri", "competitionPlanner/register.do");
+				res.addObject("competitionPlannerForm", c);
+
+				res.addObject("edit", false);
+			} else if (c.isAcceptTerms() != true) {
+				res.addObject("competitionPlannerForm", c);
+				res.addObject("requestUri", "competitionPlanner/register.do");
+				res.addObject("message", "alumn.acceptTerms.error");
+
+				res.addObject("edit", false);
+			} else
+				try {
+					this.competitionPlannerService.save(comp);
+
+					res = new ModelAndView("redirect:/welcome/index.do");
+
+				} catch (final DataIntegrityViolationException e) {
+					res.addObject("competitionPlannerForm", c);
+					res.addObject("message", "alumn.error.exists");
+
+					res.addObject("edit", false);
+				}
+
+				catch (final Exception e) {
+
+					System.out.println(e);
+					res.addObject("competitionPlannerForm", c);
+					res.addObject("message", "alumn.commit.error");
+
+					res.addObject("edit", false);
+				}
+		} else {
 			res.addObject("requestUri", "competitionPlanner/register.do");
 			res.addObject("competitionPlannerForm", c);
-
+			res.addObject("message", "cp.passwordmatch.error");
 			res.addObject("edit", false);
-		} else if (c.isAcceptTerms() != true) {
-			res.addObject("competitionPlannerForm", c);
-			res.addObject("requestUri", "competitionPlanner/create.do");
-			res.addObject("message", "alumn.acceptTerms.error");
-
-			res.addObject("edit", false);
-		} else
-			try {
-				this.competitionPlannerService.save(comp);
-
-				res = new ModelAndView("redirect:/welcome/index.do");
-
-			} catch (final DataIntegrityViolationException e) {
-				res.addObject("competitionPlannerForm", c);
-				res.addObject("message", "alumn.error.exists");
-
-				res.addObject("edit", false);
-			}
-
-			catch (final Exception e) {
-
-				System.out.println(e);
-				res.addObject("competitionPlannerForm", c);
-				res.addObject("message", "alumn.commit.error");
-
-				res.addObject("edit", false);
-			}
+		}
 		return res;
 	}
 

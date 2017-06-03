@@ -12,10 +12,9 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <security:authorize access="hasRole('MANAGER')">
-<form:form action="${requestUri}" modelAttribute="scheduleForm">
-	<jstl:if test="${create==false}">
-		<form:hidden path="scheduleId"/>		
-	</jstl:if>
+<form:form action="${requestUri}" modelAttribute="schedule">
+
+	<form:hidden path="id"/>		
 	<form:hidden path="danceClass"/>
 	
     <acme:textbox path="dayOfWeek" code="schedule.dayOfWeek"/>

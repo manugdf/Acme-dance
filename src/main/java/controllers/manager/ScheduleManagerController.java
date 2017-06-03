@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import controllers.AbstractController;
-import domain.DanceClass;
-import domain.Schedule;
-import forms.ScheduleForm;
 import services.DanceClassService;
 import services.ManagerService;
 import services.ScheduleService;
+import controllers.AbstractController;
+import domain.DanceClass;
+import domain.Schedule;
 
 @Controller
 @RequestMapping("mngr/schedule")
@@ -38,12 +37,12 @@ public class ScheduleManagerController extends AbstractController {
 	public ModelAndView create(@RequestParam final int classId) {
 		final ModelAndView res = new ModelAndView("schedule/create");
 
-		final ScheduleForm s = new ScheduleForm();
+		final Schedule s = new Schedule();
 
 		final DanceClass d = this.danceClassService.findOne(classId);
 		s.setDanceClass(d);
 
-		res.addObject("scheduleForm", s);
+		res.addObject("schedule", s);
 		res.addObject("create", true);
 		res.addObject("requestUri", "mngr/schedule/create.do");
 
@@ -52,7 +51,7 @@ public class ScheduleManagerController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/create", params = "save")
-	public ModelAndView create(final ScheduleForm schedule, final BindingResult binding) {
+	public ModelAndView create(final Schedule schedule, final BindingResult binding) {
 		ModelAndView res = new ModelAndView("schedule/create");
 
 		final Date now = Calendar.getInstance().getTime();
@@ -86,11 +85,10 @@ public class ScheduleManagerController extends AbstractController {
 		final ModelAndView res = new ModelAndView("schedule/edit");
 
 		final Schedule schedule = this.scheduleService.findOne(scheduleId);
-		final ScheduleForm s = this.scheduleService.createBySchedule(schedule);
 
-		Assert.isTrue(s.getDanceClass().getDanceSchool().getManager().equals(this.managerService.findByPrincipal()));
+		Assert.isTrue(schedule.getDanceClass().getDanceSchool().getManager().equals(this.managerService.findByPrincipal()));
 
-		res.addObject("scheduleForm", s);
+		res.addObject("schedule", schedule);
 		res.addObject("requestUri", "mngr/schedule/edit.do");
 		res.addObject("create", false);
 
@@ -99,7 +97,7 @@ public class ScheduleManagerController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", params = "save")
-	public ModelAndView edit(final ScheduleForm schedule, final BindingResult binding) {
+	public ModelAndView edit(final Schedule schedule, final BindingResult binding) {
 		ModelAndView res = new ModelAndView("schedule/edit");
 		final Date now = Calendar.getInstance().getTime();
 

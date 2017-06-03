@@ -69,15 +69,15 @@ public class ScheduleService {
 		return this.danceClassService.findOne(classId).getSchedules();
 	}
 
-	public Schedule reconstruct(final ScheduleForm s, final BindingResult binding) {
+	public Schedule reconstruct(final Schedule s, final BindingResult binding) {
 
 		Schedule res;
 
-		if (s.getScheduleId() == 0) {
+		if (s.getId() == 0) {
 			res = this.create();
 			res.setDanceClass(s.getDanceClass());
 		} else
-			res = this.findOne(s.getScheduleId());
+			res = this.findOne(s.getId());
 
 		res.setDayOfWeek(s.getDayOfWeek());
 		res.setStartDate(s.getStartDate());
