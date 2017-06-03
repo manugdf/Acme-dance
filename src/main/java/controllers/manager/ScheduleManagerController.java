@@ -109,10 +109,10 @@ public class ScheduleManagerController extends AbstractController {
 		} else if (schedule.getStartDate().before(now) || schedule.getStartDate().after(schedule.getEndTime())) {
 			res.addObject("schedule", schedule);
 			res.addObject("message", "schedule.error.date");
-		} else
+		} else {
 			try {
-				this.scheduleService.createSchedule(schedul);
-
+				Schedule aux = this.scheduleService.editReconstruct(schedule);
+				this.scheduleService.createSchedule(aux);
 				res = new ModelAndView("redirect:/schedule/list.do?classId=" + schedul.getDanceClass().getId());
 			} catch (final Exception e) {
 
@@ -120,6 +120,7 @@ public class ScheduleManagerController extends AbstractController {
 				res.addObject("schedule", schedule);
 				res.addObject("message", "alumn.commit.error");
 			}
+		}
 		return res;
 
 	}

@@ -73,11 +73,11 @@ public class ScheduleService {
 
 		Schedule res;
 
-		if (s.getId() == 0) {
+	//	if (s.getId() == 0) {
 			res = this.create();
 			res.setDanceClass(s.getDanceClass());
-		} else
-			res = this.findOne(s.getId());
+		//} else
+		//	res = this.findOne(s.getId());
 
 		res.setDayOfWeek(s.getDayOfWeek());
 		res.setStartDate(s.getStartDate());
@@ -88,6 +88,16 @@ public class ScheduleService {
 
 		return res;
 
+	}
+	public Schedule editReconstruct(Schedule s){
+		Schedule res;
+		res = this.findOne(s.getId());
+		res.setDayOfWeek(s.getDayOfWeek());
+		res.setStartDate(s.getStartDate());
+		res.setEndTime(s.getEndTime());
+		res.setClassroom(s.getClassroom());
+
+		return res;
 	}
 
 	public ScheduleForm createBySchedule(final Schedule s) {
