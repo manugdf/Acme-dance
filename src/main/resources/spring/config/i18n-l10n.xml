@@ -17,7 +17,6 @@
 		<value>/views/security/messages</value>
 		<value>/views/welcome/messages</value>
 		<value>/views/administrator/messages</value>
-		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
 		<value>/views/danceSchool/messages</value>
 		<value>/views/teacher/messages</value>
@@ -40,6 +39,7 @@
 		<value>/views/review/messages</value>
 		<value>/views/banner/messages</value>
 		<value>/views/fee/messages</value>
+		<value>/views/terms/messages</value>
 	</util:list>
 
 </beans>

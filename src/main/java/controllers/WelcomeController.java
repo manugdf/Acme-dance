@@ -17,6 +17,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -77,5 +78,11 @@ public class WelcomeController extends AbstractController {
 		result.addObject("url", url);
 
 		return result;
+	}
+
+	@RequestMapping(value = "/terms", method = RequestMethod.GET)
+	public ModelAndView terms() {
+		final ModelAndView res = new ModelAndView("terms/terms");
+		return res;
 	}
 }
