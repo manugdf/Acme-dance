@@ -27,6 +27,9 @@ public class CompetitionPlannerService {
 	@Autowired
 	private CompetitionPlannerRepository	competitionPlannerRepository;
 
+	@Autowired
+	private ActorService					actorService;
+
 
 	public CompetitionPlanner create() {
 		final CompetitionPlanner res = new CompetitionPlanner();
@@ -46,6 +49,11 @@ public class CompetitionPlannerService {
 	}
 
 	public CompetitionPlanner save(final CompetitionPlanner c) {
+		return this.competitionPlannerRepository.save(c);
+	}
+
+	public CompetitionPlanner register(final CompetitionPlanner c) {
+		Assert.isTrue(!this.actorService.isAuthenticated());
 		return this.competitionPlannerRepository.save(c);
 	}
 

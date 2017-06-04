@@ -51,6 +51,7 @@ public class ScheduleService {
 		Assert.isTrue(this.actorService.isAuthenticated());
 		Assert.isTrue(this.managerService.LoggedIsManager());
 		Assert.isTrue(s.getDanceClass().getDanceSchool().getManager().equals(this.managerService.findByPrincipal()));
+		Assert.isTrue(s.getStartDate().before(s.getEndTime()));
 
 		return this.save(s);
 	}

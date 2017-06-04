@@ -19,7 +19,7 @@
 	   
 	    var r = confirm(t);
 	    if (r == true) {
-	    	document.location.href='manager/event/delete.do?eventId='+id;
+	    	document.location.href='mngr/event/delete.do?eventId='+id;
 	    }	    
 	}
 </script>

@@ -57,7 +57,7 @@ public class CompetitionPlannerController extends AbstractController {
 				res.addObject("edit", false);
 			} else
 				try {
-					this.competitionPlannerService.save(comp);
+					this.competitionPlannerService.register(comp);
 
 					res = new ModelAndView("redirect:/welcome/index.do");
 
