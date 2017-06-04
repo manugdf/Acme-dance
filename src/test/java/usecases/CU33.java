@@ -44,13 +44,13 @@ public class CU33 extends AbstractTest {
 	public void invitate() {
 		final Object[][] testingData = {
 			{
-				null, IllegalArgumentException.class, 152
+				null, IllegalArgumentException.class, 156
 			}, {
-				"alumn1", null, 152
+				"alumn1", null, 156
 			}, {
-				"alumn2", null, 147
+				"alumn2", null, 151
 			}, {
-				"admin", NullPointerException.class, 147
+				"admin", NullPointerException.class, 151
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
