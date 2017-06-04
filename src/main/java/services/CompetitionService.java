@@ -41,7 +41,11 @@ public class CompetitionService {
 	}
 
 	public Competition create() {
+		Assert.isTrue(this.competitionPlannerService.LoggedIsCompetitionPlanner());
 		final Competition res = new Competition();
+		res.setAwards(new ArrayList<Award>());
+		res.setDanceSchools(new ArrayList<DanceSchool>());
+		res.setCompetitionPlanner(this.competitionPlannerService.findByPrincipal());
 
 		return res;
 	}
