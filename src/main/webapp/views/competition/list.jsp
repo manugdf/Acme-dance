@@ -47,10 +47,14 @@
                   value="<spring:message code="competition.view" />" type="button" />
     </display:column>
 
+	
+	
     <spring:message code="competition.awards" var="awards"/>
     <display:column title="${awards}">
-        <input	onclick="javascript: window.location.replace('award/listByCompetition.do?competitionId=${row.id}');"
-                  value="<spring:message code="competition.view" />" type="button" />
+    	<jstl:if test="${row.startDate le today }">
+	        <input	onclick="javascript: window.location.replace('award/listByCompetition.do?competitionId=${row.id}');"
+	                  value="<spring:message code="competition.view" />" type="button" />
+        </jstl:if>
     </display:column>
 
     <security:authorize access="hasRole('MANAGER')">
