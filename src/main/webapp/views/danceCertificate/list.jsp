@@ -17,7 +17,7 @@
 	class="displaytag" keepStatus="true" pagesize="5" >
 	
 	<spring:message code="danceCertificate.certificateDate" var="certificateDate"/>
-	<display:column property="certificateDate" title="${certificateDate}"/>
+	<display:column property="certificateDate" title="${certificateDate}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 	
 	<spring:message code="danceCertificate.danceLevel" var="dancelevel"/>
 	<display:column property="danceLevel" title="${dancelevel}"/>

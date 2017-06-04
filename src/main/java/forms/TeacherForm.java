@@ -52,7 +52,7 @@ public class TeacherForm {
 		this.email = email;
 	}
 
-	@NotBlank
+	//@NotBlank
 	@Pattern(regexp = "\\+\\d{1,3}?[ -]?\\d{6,14}|\\d{6,14}$")
 	public String getPhone() {
 		return this.phone;
@@ -97,6 +97,7 @@ public class TeacherForm {
 		this.password = password;
 	}
 
+	@Size(min = 5, max = 32)
 	public String getConfirmPassword() {
 		return this.confirmPassword;
 	}
@@ -111,7 +112,8 @@ public class TeacherForm {
 	public void setAcceptTerms(final boolean acceptTerms) {
 		this.acceptTerms = acceptTerms;
 	}
-
+	
+	
 	public String getNewpassword() {
 		return this.newpassword;
 	}

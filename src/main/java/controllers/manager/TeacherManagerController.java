@@ -130,29 +130,40 @@ public class TeacherManagerController extends AbstractController{
 		ModelAndView res = new ModelAndView("teacher/edit");
 		Teacher teacher=teacherService.findOne(teacherId);
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		if (teacherForm.getPassword().isEmpty() == false) {
+		if(!teacherForm.getPassword().isEmpty() && (!teacherForm.getNewpassword().isEmpty() || !teacherForm.getRepeatnewpassword().isEmpty()) &&(teacherForm.getNewpassword().equals(teacherForm.getRepeatnewpassword()))==false){
+			res.addObject("teacherForm", teacherForm);
+			res.addObject("edit", true);
+			res.addObject("teacherId", teacherId);
+
+			res.addObject("message", "teacher.password.errorNewDontMatch");
+		}
+		else if(!teacherForm.getPassword().isEmpty() && (   (!teacherForm.getNewpassword().isEmpty() &&(teacherForm.getNewpassword().length()<5 || teacherForm.getNewpassword().length()>32) )|| !teacherForm.getRepeatnewpassword().isEmpty() &&(teacherForm.getRepeatnewpassword().length()<5 ||teacherForm.getRepeatnewpassword().length()>32))){
+			res.addObject("teacherForm", teacherForm);
+			res.addObject("edit", true);
+			res.addObject("teacherId", teacherId);
+
+			res.addObject("message", "teacher.password.errorNewLength");
+		}
+		else if (teacherForm.getPassword().isEmpty() == false) {
 			try {
 				Assert.isTrue(encoder.encodePassword(teacherForm.getPassword(), null).equals(teacher.getUserAccount().getPassword()));
 			} catch (final Throwable oops) {
 				res.addObject("teacherForm", teacherForm);
 				res.addObject("edit", true);
+				res.addObject("teacherId", teacherId);
 
 				res.addObject("message", "teacher.password.error2");
 				return res;
 			}
 			try {
-				if (teacherForm.getNewpassword().length() > 0 && teacherForm.getRepeatnewpassword().length() > 0 || teacherForm.getNewpassword().length() > 0 || teacherForm.getRepeatnewpassword().length() > 0)
-					Assert.isTrue(teacherForm.getNewpassword().equals(teacherForm.getRepeatnewpassword()));
-				teacher = this.teacherService.reconstructEdit(teacherForm, teacher);
-
 				if (bindingResult.hasErrors()) {
 					System.out.println(bindingResult.getAllErrors());
 					res.addObject("requestUri", "teacher/manager/edit.do");
 					res.addObject("teacherForm", teacherForm);
 					res.addObject("edit", true);
+					res.addObject("teacherId", teacherId);
 				} else {
-					
-
+					teacher = this.teacherService.reconstructEdit(teacherForm, teacher);
 					this.teacherService.modify(teacher);
 
 					res = list();
@@ -164,17 +175,20 @@ public class TeacherManagerController extends AbstractController{
 				res.addObject("teacherForm", teacherForm);
 				res.addObject("edit", true);
 				res.addObject("message", "teacher.error.exists");
+				res.addObject("teacherId", teacherId);
 
 			} catch (final Throwable e) {
 
 				System.out.println(e.getMessage());
 				res.addObject("edit", true);
 				res.addObject("message", "teacher.password.new");
+				res.addObject("teacherId", teacherId);
 
 			}
 		} else {
 			res.addObject("teacherForm", teacherForm);
 			res.addObject("edit", true);
+			res.addObject("teacherId", teacherId);
 
 			res.addObject("message", "teacher.password.error");
 		}

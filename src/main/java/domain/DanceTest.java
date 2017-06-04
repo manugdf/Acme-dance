@@ -35,7 +35,7 @@ public class DanceTest extends DomainEntity {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getTestDate() {
 		return this.testDate;
 	}
@@ -54,7 +54,7 @@ public class DanceTest extends DomainEntity {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getLimitInscription() {
 		return this.limitInscription;
 	}

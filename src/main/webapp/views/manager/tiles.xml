@@ -16,10 +16,6 @@
        
 <tiles-definitions>
 
-	<definition name="manager/list" extends="master.page">	
-		<put-attribute name="title" value="Managers" />
-		<put-attribute name="body" value="/views/manager/list.jsp" />
-	</definition>
 
 <definition name="manager/register" extends="master.page">  
     <put-attribute name="title" value="Register as manager" />

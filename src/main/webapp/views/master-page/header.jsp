@@ -23,8 +23,6 @@
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
 		<security:authorize access="hasRole('ADMIN')">
-			<li><a class="fNiv" href="mngr/administrator/list.do"><spring:message
-						code="master.page.managers" /></a></li>
 			<li><a class="fNiv" href="fee/administrator/edit.do"><spring:message
 						code="master.page.editFee" /></a></li>
 			<li><a class="fNiv" href="censoredWords/administrator/list.do"><spring:message

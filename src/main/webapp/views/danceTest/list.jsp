@@ -15,14 +15,14 @@
 	class="displaytag" keepStatus="true" pagesize="5">
 
 	<spring:message code="dancetest.testDate" var="date" />
-	<display:column property="testDate" title="${date}" />
+	<display:column property="testDate" title="${date}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
 	<spring:message code="dancetest.danceLevel" var="dancelevel" />
 	<display:column property="danceLevel" title="${dancelevel}" />
 
 	<spring:message code="dancetest.limitInscription"
 		var="limitInscription" />
-	<display:column property="limitInscription" title="${limitInscription}" />
+	<display:column property="limitInscription" title="${limitInscription}" format="{0,date,dd/MM/yyyy HH:mm}"/>
 
 	<security:authorize access="hasRole('TEACHER')">
 		<spring:message code="teacher.selectAlum" var="selectAlum" />

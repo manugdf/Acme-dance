@@ -247,7 +247,7 @@ public class DanceClassManagerController extends AbstractController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, params = "save")
 	public ModelAndView add(@Valid final DanceClassAuxForm danceClassAuxForm, @RequestParam final int danceClassId,@RequestParam final int danceSchoolId, final BindingResult bindingResult) {
-		ModelAndView res = new ModelAndView("teacher/add");
+		ModelAndView res = new ModelAndView("danceClass/add");
 
 		if(danceClassAuxForm.getTeacher()==null){
 			res=add(danceClassId,danceSchoolId);
@@ -268,7 +268,7 @@ public class DanceClassManagerController extends AbstractController {
 
 			} catch (final DataIntegrityViolationException oops) {
 
-				res = new ModelAndView("teacher/add");
+				res = new ModelAndView("danceClass/add");
 				res.addObject("danceClassAuxForm", danceClassAuxForm);
 				res.addObject("message", "teacher.error.exists");
 

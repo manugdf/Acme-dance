@@ -173,7 +173,7 @@ public class TeacherService {
 	public Teacher reconstructEdit(final TeacherForm teacherForm, final Teacher teacher) {
 		teacher.getUserAccount().setUsername(teacherForm.getUsername());
 
-		if ((teacherForm.getNewpassword().length() > 0 && teacherForm.getRepeatnewpassword().length() > 0 && teacherForm.getNewpassword().equals(teacherForm.getRepeatnewpassword()))) {
+		if ((teacherForm.getNewpassword().length() > 5 && teacherForm.getNewpassword().length() < 32 && teacherForm.getRepeatnewpassword().length() > 5 && teacherForm.getRepeatnewpassword().length() < 32 && teacherForm.getNewpassword().equals(teacherForm.getRepeatnewpassword()))) {
 			final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			teacher.getUserAccount().setPassword(encoder.encodePassword(teacherForm.getNewpassword(), null));
 		}
