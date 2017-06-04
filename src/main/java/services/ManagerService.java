@@ -198,6 +198,8 @@ public class ManagerService {
 				contador++;
 			}
 		}
-		return contador*feeService.selectFee().getManagerAmount();	
+		Double fee=contador*feeService.selectFee().getManagerAmount();
+		manager.setFee(fee);
+		return fee;	
 	}
 }

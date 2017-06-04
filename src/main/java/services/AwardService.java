@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
@@ -18,12 +19,15 @@ import domain.Award;
 public class AwardService {
 
 	@Autowired
-	private AwardRepository		awardRepository;
+	private AwardRepository				awardRepository;
 	@Autowired
-	private DanceSchoolService	danceSchoolService;
+	private DanceSchoolService			danceSchoolService;
 
 	@Autowired
-	private Validator			validator;
+	private CompetitionPlannerService	competitionPlannerService;
+
+	@Autowired
+	private Validator					validator;
 
 
 	// Constructor
@@ -51,6 +55,8 @@ public class AwardService {
 
 	public Award save(final Award award) {
 
+		Assert.isTrue(this.competitionPlannerService.LoggedIsCompetitionPlanner());
+		Assert.isTrue(award.getCompetition().getDanceSchools().contains(award.getDanceSchool()));
 		return this.awardRepository.save(award);
 	}
 

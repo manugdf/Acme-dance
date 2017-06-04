@@ -33,13 +33,13 @@ public class CU34 extends AbstractTest {
 	public void acceptreject() {
 		final Object[][] testingData = {
 			{
-				null, IllegalArgumentException.class, 154, "ACCEPTED"
+				null, IllegalArgumentException.class, 158, "ACCEPTED"
 			}, {
-				"alumn1", null, 154, "ACCEPTED"
+				"alumn1", null, 158, "ACCEPTED"
 			}, {
-				"alumn2", null, 153, "REJECTED"
+				"alumn2", null, 157, "REJECTED"
 			}, {
-				"admin", NullPointerException.class, 153, "ACCEPTED"
+				"admin", NullPointerException.class, 157, "ACCEPTED"
 			}
 		};
 		for (int i = 0; i < testingData.length; i++)
