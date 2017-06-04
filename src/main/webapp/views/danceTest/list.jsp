@@ -54,3 +54,9 @@
 	</security:authorize>
 
 </display:table>
+
+<security:authorize access="hasRole('TEACHER')">
+	<input
+			onclick="javascript: window.location.replace('danceTest/teacher/create.do?danceClassId=${danceClassId}');"
+			value="<spring:message code="danceTest.create" />" type="button" />
+</security:authorize>

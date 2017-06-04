@@ -67,14 +67,13 @@ public class DanceTestService {
 	}
 	
 	
-	public DanceTest reconstruct(DanceTest danceTest,int danceClassId,BindingResult bindingResult){
+	public DanceTest reconstruct(DanceTest danceTest,BindingResult bindingResult){
 		DanceTest res;
 		
 		if(danceTest.getId()==0){
 			res=danceTest;
 			res.setAlumns(new ArrayList<Alumn>());
 			res.setDanceCertificates(new ArrayList<DanceCertificate>());
-			res.setDanceClass(danceClassService.findOne(danceClassId));
 		}else{
 			res=danceTestRepository.findOne(danceTest.getId());
 			

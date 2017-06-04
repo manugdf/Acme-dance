@@ -15,6 +15,7 @@
 
 <form:form action="${requestURI}" modelAttribute="danceTest">
 	<form:hidden path="id" />
+	<form:hidden path="danceClass" />
 
 	<acme:textbox path="testDate" code="dancetest.testDate" />
 	<acme:textbox path="danceLevel" code="dancetest.danceLevel" />

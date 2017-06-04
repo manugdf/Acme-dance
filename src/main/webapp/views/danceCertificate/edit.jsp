@@ -14,8 +14,8 @@
 
 <form:form action="${requestUri}" modelAttribute="danceCertificate">
 	<form:hidden path="id"/>
+	<form:hidden path="certificateDate"/>
 
-    <acme:textbox path="certificateDate" code="danceCertificate.certificateDate"/>
     <acme:textbox path="danceLevel" code="danceCertificate.danceLevel"/>
 
     <acme:submit code="danceCertificate.save" name="save"/>

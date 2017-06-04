@@ -16,6 +16,7 @@ import domain.Teacher;
 import repositories.DanceCertificateRepository;
 
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -58,6 +59,7 @@ public class DanceCertificateService {
 			res=danceCertificate;
 			res.setTeacher(teacherService.findByPrincipal());
 			res.setAlumn(alumnService.findOne(alumnId));
+			res.setCertificateDate(new Date());
 		}else{
 			res=danceCertificateRepository.findOne(danceCertificate.getId());
 			

@@ -165,16 +165,6 @@
 		</jstl:if>
 	</security:authorize>
 
-	<security:authorize access="hasRole('TEACHER')">
-		<spring:message code="danceclass.addDanceTest" var="addDanceTest" />
-		<display:column title="${addDanceTest}">
-			<input
-				onclick="javascript: window.location.replace('danceTest/teacher/create.do?danceClassId=${row.id}');"
-				value="<spring:message code="danceClass.addDanceTest" />"
-				type="button" />
-		</display:column>
-
-	</security:authorize>
 </display:table>
 
 <security:authorize access="hasRole('MANAGER')">

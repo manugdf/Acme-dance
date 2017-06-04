@@ -1,6 +1,8 @@
 package controllers.teacher;
 
 import controllers.AbstractController;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -12,13 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Alumn;
 import domain.DanceCertificate;
-import domain.DanceClass;
-import domain.DanceTest;
 import services.AlumnService;
 import services.DanceCertificateService;
-import services.DanceClassService;
-import services.DanceTestService;
-import services.TeacherService;
 
 @Controller
 @RequestMapping("/danceCertificate/teacher")
@@ -28,10 +25,6 @@ public class DanceCertificateTeacherController extends AbstractController{
 	private DanceCertificateService danceCertificateService;
 	@Autowired
 	private AlumnService alumnService;
-	@Autowired
-	private TeacherService teacherService;
-	@Autowired
-	private DanceTestService danceTestService;
 	
 	// List
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -71,7 +64,7 @@ public class DanceCertificateTeacherController extends AbstractController{
 			res.addObject("danceCertificate", danceCertificate);
 			res.addObject("alumnId", alumnId);
 			res.addObject("danceTestId", danceTestId);
-		} else {
+		}else {
 			try {
 				res= new ModelAndView("redirect:/danceCertificate/teacher/list.do?alumnId="+alumnId);
 				danceCertificateService.createDanceCertificate(danceCertificate, alumnId, danceTestId);
