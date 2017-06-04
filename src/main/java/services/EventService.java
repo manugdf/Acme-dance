@@ -79,20 +79,25 @@ public class EventService {
 	public Event reconstruct(final Event event, final BindingResult binding) {
 		final Event res;
 
-		if (event.getId() == 0) {
-			res = event;
-			res.setAlumns(new ArrayList<Alumn>());
-		} else {
-			res = this.findOne(event.getId());
-			res.setTitle(event.getTitle());
-			res.setDescription(event.getDescription());
-			res.setStartDate(event.getStartDate());
-			res.setMaxAlumns(event.getMaxAlumns());
-			res.setDuration(event.getDuration());
-
-		}
+		res = event;
+		res.setAlumns(new ArrayList<Alumn>());
 
 		this.validator.validate(res, binding);
+
+		return res;
+
+	}
+
+	public Event editReconstruct(final Event event) {
+		final Event res;
+
+		res = this.findOne(event.getId());
+
+		res.setDescription(event.getDescription());
+		res.setDuration(event.getDuration());
+		res.setMaxAlumns(event.getMaxAlumns());
+		res.setStartDate(event.getStartDate());
+		res.setTitle(event.getTitle());
 
 		return res;
 

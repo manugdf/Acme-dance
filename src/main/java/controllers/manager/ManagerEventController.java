@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.DanceSchoolService;
+import services.EventService;
+import services.ManagerService;
 import controllers.AbstractController;
 import domain.DanceSchool;
 import domain.Event;
 import domain.Manager;
-import services.DanceSchoolService;
-import services.EventService;
-import services.ManagerService;
 
 @Controller
 @RequestMapping("/mngr/event")
@@ -71,12 +71,14 @@ public class ManagerEventController extends AbstractController {
 	@RequestMapping(value = "/create", params = "save")
 	public ModelAndView create(Event event, final BindingResult binding) {
 		ModelAndView res = new ModelAndView("event/create");
+		res.addObject("danceSchoolId", event.getDanceSchool().getId());
 
 		event = this.eventService.reconstruct(event, binding);
 
 		if (binding.hasErrors()) {
 			res.addObject("event", event);
 			res.addObject("requestUri", "mngr/event/create.do");
+
 		} else if (event.getStartDate().before(Calendar.getInstance().getTime())) {
 			res.addObject("event", event);
 			res.addObject("message", "event.date.error");
@@ -99,6 +101,7 @@ public class ManagerEventController extends AbstractController {
 
 		res.addObject("requestUri", "mngr/event/edit.do");
 		res.addObject("event", event);
+		res.addObject("danceSchoolId", event.getDanceSchool().getId());
 
 		return res;
 	}
@@ -106,8 +109,9 @@ public class ManagerEventController extends AbstractController {
 	@RequestMapping(value = "/edit", params = "save")
 	public ModelAndView edit(Event event, final BindingResult binding) {
 		ModelAndView res = new ModelAndView("event/edit");
+		res.addObject("danceSchoolId", event.getDanceSchool().getId());
 
-		final Event eve = this.eventService.reconstruct(event, binding);
+		Event eve = this.eventService.reconstruct(event, binding);
 
 		if (binding.hasErrors()) {
 			res.addObject("event", eve);
@@ -117,6 +121,7 @@ public class ManagerEventController extends AbstractController {
 			res.addObject("message", "event.date.error");
 		} else
 			try {
+				eve = this.eventService.editReconstruct(eve);
 				event = this.eventService.newOrEditEvent(eve);
 				res = new ModelAndView("redirect:/mngr/event/list.do?danceSchoolId=" + eve.getDanceSchool().getId());
 			} catch (final Exception e) {
