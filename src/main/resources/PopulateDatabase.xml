@@ -1189,6 +1189,7 @@
 
 	<bean id="award1" class="domain.Award">
 		<property name="prize" value="Award1" />
+		<property name="place" value="1" />		
 		<property name="winnerName" value="Winner1" />
 		<property name="competition" ref="competition1" />
 		<property name="danceSchool" ref="danceSchool1" />
@@ -1196,6 +1197,7 @@
 
 	<bean id="award2" class="domain.Award">
 		<property name="prize" value="Award2" />
+		<property name="place" value="1" />
 		<property name="winnerName" value="Winner2" />
 		<property name="competition" ref="competition2" />
 		<property name="danceSchool" ref="danceSchool2" />
@@ -1203,6 +1205,7 @@
 
 	<bean id="award3" class="domain.Award">
 		<property name="prize" value="Award3" />
+		<property name="place" value="1" />
 		<property name="winnerName" value="Winner3" />
 		<property name="competition" ref="competition3" />
 		<property name="danceSchool" ref="danceSchool3" />
@@ -1210,6 +1213,7 @@
 
 	<bean id="award4" class="domain.Award">
 		<property name="prize" value="Award4" />
+		<property name="place" value="1" />
 		<property name="winnerName" value="Winner4" />
 		<property name="competition" ref="competition4" />
 		<property name="danceSchool" ref="danceSchool4" />
@@ -1217,6 +1221,7 @@
 
 	<bean id="award5" class="domain.Award">
 		<property name="prize" value="Award5" />
+		<property name="place" value="2" />
 		<property name="winnerName" value="Winner5" />
 		<property name="competition" ref="competition1" />
 		<property name="danceSchool" ref="danceSchool3" />

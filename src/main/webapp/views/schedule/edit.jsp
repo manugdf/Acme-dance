@@ -18,7 +18,21 @@
 	<form:hidden path="id"/>		
 	<form:hidden path="danceClass"/>
 	
-    <acme:textbox path="dayOfWeek" code="schedule.dayOfWeek"/>
+	<form:label path="dayOfWeek">
+	<spring:message code="schedule.dayOfWeek"/>
+	</form:label>
+	<form:select path="dayOfWeek">
+		<form:option value="MONDAY"><spring:message code="schedule.monday"/></form:option>
+		<form:option value="TUESDAY"><spring:message code="schedule.tuesday"/></form:option>
+		<form:option value="WEDNESDAY"><spring:message code="schedule.wednesday"/></form:option>
+		<form:option value="THURSDAY"><spring:message code="schedule.thursday"/></form:option>
+		<form:option value="FRIDAY"><spring:message code="schedule.friday"/></form:option>
+		<form:option value="SATURDAY"><spring:message code="schedule.saturday"/></form:option>
+		<form:option value="SUNDAY"><spring:message code="schedule.sunday"/></form:option>	
+	</form:select>
+	<form:errors path="dayOfWeek" cssClass="error" />
+	
+	
     <acme:textbox path="startDate" code="schedule.startDate"/>
     <acme:textbox path="endTime" code="schedule.endTime"/>
     <acme:textbox path="classroom" code="schedule.classroom"/>
