@@ -15,13 +15,19 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<img src="${url}" height="210" width="728">
+
+<jstl:if test="${!empty url}">
+<img src="${url}" height="210" width="728"></jstl:if>
+
 <p><spring:message code="welcome.greeting.prefix" /> 
 <jstl:if test="${name=='welcome.greeting.stranger'}">
 <spring:message code="${name }" /><spring:message code="welcome.greeting.suffix" />
 </jstl:if>
 
+
 <jstl:if test="${name!='welcome.greeting.stranger'}">
-${name}<spring:message code="welcome.greeting.suffix" /></p></jstl:if>
+${name}<spring:message code="welcome.greeting.suffix" /></p>
+</jstl:if>
+
 
 <p><spring:message code="welcome.greeting.current.time" /> ${moment}</p> 

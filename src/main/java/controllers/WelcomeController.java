@@ -57,21 +57,28 @@ public class WelcomeController extends AbstractController {
 		Banner banner = new Banner();
 		final ArrayList<Banner> banners = (ArrayList<Banner>) this.bannerService.findAllAccepted();
 
-		final ArrayList<Banner> validBanners = new ArrayList<Banner>();
-		for (final Banner b : banners)
-			if (this.actorService.checkCreditCard(b.getManager().getCreditCard()) == true)
-				validBanners.add(b);
+		result = new ModelAndView("welcome/index");
+		final String url;
+		if (banners.size() > 0) {
+			final ArrayList<Banner> validBanners = new ArrayList<Banner>();
+			for (final Banner b : banners)
+				if (this.actorService.checkCreditCard(b.getManager().getCreditCard()) == true)
+					validBanners.add(b);
 
-		final int valorEntero = (int) Math.floor(Math.random() * (validBanners.size()));
-		banner = validBanners.get(valorEntero);
-		final String url = banner.getUrl();
+			final int valorEntero = (int) Math.floor(Math.random() * (validBanners.size()));
+			banner = validBanners.get(valorEntero);
+			url = banner.getUrl();
+		} else {
+			url = null;
+			result.addObject("url", url);
+		}
 
 		final Actor loged = this.actorService.getLoggedActor();
 		if (loged != null)
 			name = loged.getName();
 		else
 			name = "welcome.greeting.stranger";
-		result = new ModelAndView("welcome/index");
+
 		result.addObject("name", name);
 		result.addObject("banner", banner);
 		result.addObject("moment", moment);
